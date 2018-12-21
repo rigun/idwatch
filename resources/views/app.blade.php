@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Id Watch </title>
-
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
     <link href="{{ asset('helper/line-icon/css/simple-line-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('helper/elegant-icon/style.css') }}" rel="stylesheet">
     <link href="{{ asset('helper/revolution/css/settings.css') }}" rel="stylesheet">

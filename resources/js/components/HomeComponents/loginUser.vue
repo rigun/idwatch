@@ -119,7 +119,7 @@ export default {
             login: {
                 email: localStorage.getItem('email'),
                 password: null,
-                remember: false,
+                remember: localStorage.getItem('remember'),
             },
             snackbar: false,
             timeout: 2000,
@@ -175,6 +175,7 @@ export default {
                 localStorage.setItem('roles', response.data.role)
                 if(this.login.remember){
                     localStorage.setItem('email', this.login.email)
+                    localStorage.setItem('remember', this.login.remember)
                 }
                 this.$router.push({ name: 'Cart' })
             }).catch(error => {

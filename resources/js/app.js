@@ -8,7 +8,6 @@
 window.Vue = require('vue');
 import router from './routes.js';
 import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css';
 
 window.Slug = require('slug');
 Slug.defaults.mode = 'rfc3986';

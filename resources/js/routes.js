@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 
 //main
 const Logout = Vue.component('logout', require('./components/LogoutComponent.vue'))
-const Login = Vue.component('login', require('./components/LoginComponent.vue'))
+const LogoutAdmin = Vue.component('LogoutAdmin', require('./components/LogoutAdminComponent.vue'))
 
 //layout
 const HomeLayout = Vue.component('HomeLayout', require('./components/LayoutComponents/homeLayout.vue'))
@@ -24,6 +24,11 @@ const Success = Vue.component('Success', require('./components/HomeComponents/su
 
 // dashboard
 const DashboardContent = Vue.component('DashboardContent', require('./components/DashboardComponents/dashboardContent.vue'))
+const LoginAdmin = Vue.component('LoginAdmin', require('./components/DashboardComponents/loginAdmin.vue'))
+const MainContent = Vue.component('MainContent', require('./components/DashboardComponents/mainContent.vue'))
+const AddContent = Vue.component('AddContent', require('./components/DashboardComponents/addContent.vue'))
+const ReportContent = Vue.component('ReportContent', require('./components/DashboardComponents/reportContent.vue'))
+const ConfirmContent = Vue.component('ConfirmContent', require('./components/DashboardComponents/confirmContent.vue'))
 const routes = [
     {
         path: '/',
@@ -62,45 +67,74 @@ const routes = [
         ]
       },
       {
-          path: '/dashboard',
+          path: '',
           component: DashboardLayout,
           children:[
               {
-                  name: 'DashboardContent',
-                  path: '',
-                  component: DashboardContent
-              }
+                  path: '/dashboard',
+                  component: DashboardContent,
+                  children:[
+                      {
+                          name: 'DashboardContent',
+                          path: '',
+                          component: MainContent,
+                      },
+                      {
+                            name: 'AddContent',
+                            path: 'add',
+                            component: AddContent,
+                        },
+                        {
+                            name: 'ReportContent',
+                            path: 'report',
+                            component: ReportContent,
+                        },
+                        {
+                            name: 'ConfirmContent',
+                            path: 'confirm',
+                            component: ConfirmContent,
+                        },
+                  ]
+              },
+              {
+                  name: 'LoginAdmin',
+                  path: '/admin/login',
+                  component: LoginAdmin
+              },
           ]
       },
-    {
-        name: 'Login',
-        path: '/admin/masuk',
-        component: Login,
-      },
+  
     {
         name: 'Logout',
         path: '/logout',
         component: Logout,
+      },
+  
+    {
+        name: 'LogoutAdmin',
+        path: '/logoutAdmin',
+        component: LogoutAdmin,
       },
 ];
 const router = new VueRouter({mode: 'history', routes: routes});
 router.beforeEach((to, from, next) => {
 
     // check if the route requires authentication and user is not logged in
-    if (to.matched.some(route => route.meta.requiresAuth) && !store.state.isLoggedIn) {
-        // redirect to login page
-        next({ name: 'Login' })
+    // if (to.matched.some(route => route.meta.requiresAuth) && !store.state.isLoggedIn) {
+    //     // redirect to login page
+    //     next({ name: 'Login' })
+    //     return
+    // }
+
+    // if logged in redirect to dashboard
+    if(to.path === '/dashboard' && !store.state.isLoggedIn) {
+        next({ name: 'LoginAdmin' })
         return
     }
 
     // if logged in redirect to dashboard
-    if(to.path === '/masuk' && store.state.isLoggedIn) {
+    if(to.path === '/admin/login' && store.state.isLoggedIn) {
         next({ name: 'DashboardContent' })
-        return
-    }
-    // if logged in redirect to dashboard
-    if(to.path === '/dashboard' && !store.state.isLoggedIn) {
-        next({ name: 'Login' })
         return
     }
 

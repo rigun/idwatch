@@ -9,7 +9,7 @@
             localStorage.removeItem('token')
             localStorage.removeItem('roles')
             store.commit('logoutUser')
-            this.$router.push({ name: 'LoginUser' })
+            this.$router.push({ name: 'LoginAdmin' })
         }
     }
 </script>

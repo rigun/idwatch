@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\UsersDetail;
 use App\Role;
 class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
     public function register(Request $request)
@@ -19,6 +20,13 @@ class AuthController extends Controller
         'email' => $request->email,
         'password' => bcrypt($request->password),
       ]);
+
+      $detail = new UsersDetail();
+      $detail->phone = $request->phone;
+      $detail->user_id = $user->id;
+      $detail->save();
+
+      $user->syncRoles(explode(',', 'user'));
 
       $token = auth()->login($user);
 

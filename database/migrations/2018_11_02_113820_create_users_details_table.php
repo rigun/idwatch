@@ -15,10 +15,11 @@ class CreateUsersDetailsTable extends Migration
     {
         Schema::create('users_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('npm');
-            $table->string('fakultas');
-            $table->string('prodi');
-            $table->string('universitas')->nullable();
+            $table->string('phone');
+            $table->string('provinsi')->nullable();
+            $table->string('kota')->nullable();
+            $table->string('kodePos')->nullable();
+            $table->text('alamat')->nullable();
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')
                   ->references('id')->on('users')

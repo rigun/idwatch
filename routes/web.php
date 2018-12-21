@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () {return view('app');});
+Route::get('/dashboard', function () {return view('app');});
+Route::get('/login', function () {return view('app');});
+Route::get('/contact', function () {return view('app');});
+Route::get('/shop', function () {return view('app');});
+Route::get('/cart', function () {return view('app');});

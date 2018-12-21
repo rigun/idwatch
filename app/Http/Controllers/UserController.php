@@ -193,5 +193,8 @@ class UserController extends Controller
             $userdata = User::with(['detail','roles'])->where('id',$user->id)->first();
             return response()->json(compact('userdata'));
     }
-
+    public function UniqueEmail($email)
+    {
+        return json_encode(User::where('email', '=', $email)->exists());
+    }
 }

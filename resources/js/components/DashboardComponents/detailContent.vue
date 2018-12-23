@@ -2,7 +2,7 @@
     <div>
 						<div class="module">
 							<div class="module-head">
-								<h3>Pengisian Barang</h3>
+								<h3>Edit Item</h3>
 							</div>
 							<div class="module-body">
 
@@ -27,12 +27,17 @@
 												</div>
 										</div>
 									<div class="col-md-12">
-																<div class="filename-holder animated fadeIn" v-cloak v-for="(filename, index) in filenames" :key="index"> 
-																	<img style="width: 150px" :src="previewBarang(index)" alt="img">
-																	<span class="label label-primary">{{ filename.name + ' (' + Number((filename.size / 1024 / 1024).toFixed(1)) + 'MB)'}}</span> 
-																	<span class="" style="background: red; cursor: pointer;" @click.prevent="removefilename(filename)"><button class="btn btn-xs btn-danger">Remove</button></span>
-																</div>
-															</div>
+											<div class="filename-holder animated fadeIn" v-cloak v-for="(filename, index) in filenames" :key="index"> 
+												<img style="width: 150px" :src="previewBarang(index)" alt="img">
+												<span class="label label-primary">{{ filename.name + ' (' + Number((filename.size / 1024 / 1024).toFixed(1)) + 'MB)'}}</span> 
+												<span class="" style="background: red; cursor: pointer;" @click.prevent="removefilename(filename)"><button class="btn btn-xs btn-danger">Remove</button></span>
+											</div>
+											<div class="filename-holder animated fadeIn" v-cloak v-for="filename in originalFile" :key="filename.id"> 
+												<img style="width: 150px" :src="'../../../itemImages/'+filename.filename" alt="img">
+												<span class="label label-primary">{{ filename.originalName }}</span> 
+												<span class="" style="background: red; cursor: pointer;" @click.prevent="removeOriginal(filename.id)"><button class="btn btn-xs btn-danger"><div class="loader" v-if="loadRemove == filename.id"></div> <span v-else>Remove</span> </button></span>
+											</div>
+										</div>
 										<div class="control-group">
 											<label class="control-label" for="basicinput">Name</label>
 											<div class="controls">
@@ -40,13 +45,7 @@
 												<span class="help-inline">Minimum 5 Characters</span>
 											</div>
 										</div>
-										<div class="control-group">
-											<label class="control-label" for="basicinput">Slug</label>
-											<div class="controls">
-												<slug-widget url="/" subdirectory="blog" :title="item.name" @copied="slugCopied" @slug-changed="updateSlug"></slug-widget>
-                                                <input type="hidden" v-model="item.slug" name="slug" />
-											</div>
-										</div>
+										
 										<div class="control-group">
 											<label class="control-label" for="basicinput">Stock</label>
 											<div class="controls">
@@ -101,18 +100,44 @@
 										<div class="control-group">
 											<div class="controls">
 												
-												<button type="submit" class="btn btn-primary"><div class="loader" v-if="load"></div> <span v-else>Submit Form</span> </button>
+												<button type="submit" class="btn btn-primary"><div class="loader" v-if="load"></div> <span v-else>Edit Form</span> </button>
+												<router-link :to="{name: 'DashboardContent'}" class="btn btn-warning">Cancel</router-link>
 											</div>
 										</div>
 									</form>
 							</div>
 						</div>
-   	<div id="myProgress" v-if="percentCompleted>0">
-		<div id="myBar" :style="'width: '+percentCompleted+'%'">{{percentCompleted}}%</div>
-	</div>
-		<div id="snackbar" :class="{'show': snackbar}">{{msg}} <a @click.prevent="snackbar = false; msg = ''" style="margin-left: 10px; color: red; text-decoration: none; cursor: pointer">X</a> </div> 
+			<div id="myProgress" v-if="percentCompleted>0">
+				<div id="myBar" :style="'width: '+percentCompleted+'%'">{{percentCompleted}}%</div>
+			</div>
+			<div id="snackbar" :class="{'show': snackbar}">{{msg}} <a @click.prevent="snackbar = false; msg = ''" style="margin-left: 10px; color: red; text-decoration: none; cursor: pointer">X</a> </div> 
+			<!-- The Modal -->
+			<div id="myModal" class="modal" :class="{'show': modal}">
+
+				 <!-- Modal content -->
+				<div class="modal-content">
+				<div class="modal-header">
+					<span class="close" @click.prevent="modal = false">&times;</span>
+					<h2>Delete ?</h2>
+				</div>
+				<div class="modal-body">
+					<p>If you delete this picture, you can't to restore it again</p>
+				</div>
+				<div class="modal-footer">
+					<a class="btn btn-sm btn-primary" @click.prevent="modal = false; loadRemove = -1;">Cancel</a>
+					<a class="btn btn-sm btn-danger" @click.prevent="deletePicture()">Remove </a>
+				</div>
+				</div> 
+
+			</div>
     </div>
 </template>
+<style>
+.show{
+	display: block;
+}
+</style>
+
 <script>
 export default {
     data(){
@@ -131,16 +156,21 @@ export default {
             },
 			categories: [],
 			 filenames: [],
+			 originalFile:[],
 			 data: new FormData(),
 			 percentCompleted: 0, 
 			 msg: '',
 			 snackbar: false,
 			 load: false,
+			 modal: false,
+			 idPicture: -1,
+			 loadRemove: -1,
         }
     },
     mounted(){
         this.$parent.refresh();
         this.interval = setInterval(() => this.$parent.refresh(), 900000);
+        this.getData();
         this.getCategory();
     },
     destroyed(){
@@ -160,7 +190,7 @@ export default {
             });
 		},
 		validate(){
-			if(this.filenames.length <= 0){
+			if(this.filenames.length <= 0 && this.originalFile.length <= 0){
 				this.msg = this.msg + 'Please add at least one picture'
 			}
 			if(this.item.name == '' || this.item.category_id == '' ||this.item.stock == null || this.item.price == null || this.item.merk == '' || this.item.description == ''){
@@ -212,7 +242,10 @@ export default {
 					return true;
             },
             removefilename(filename) {
-                
+                if(this.originalFile.length < 2 && this.filenames.length <=1){
+					alert('You have to upload new picture first before you can delete this picture');
+					return false;
+				}
                 this.filenames.splice(this.filenames.indexOf(filename), 1);
                 
                 this.getfilenameSize();
@@ -220,10 +253,40 @@ export default {
 			 uploadFieldChange(e) {
                 var files = e.target.files || e.dataTransfer.files;
                 if (!files.length)
-                    return;
-                for (var i = files.length - 1; i >= 0; i--) {
-                    this.filenames.push(files[i]);
-                }
+					return;
+for (var i = files.length - 1; i >= 0; i--) {
+						this.filenames.push(files[i]);
+					}
+				if(this.originalFile.length < 2 && this.filenames.length <=1){
+					
+					this.percentCompleted =0;
+					var config = {
+						headers: { 'Content-Type': 'multipart/form-data',
+						Authorization: 'Bearer ' + localStorage.getItem('token') } ,
+						onUploadProgress: function(progressEvent) {
+							this.percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+							this.$forceUpdate();
+						}.bind(this)
+					};
+					if (this.filenames.length > 0) {
+						for (var i = 0; i < this.filenames.length; i++) {
+							let filename = this.filenames[i];
+							this.data.append('filename[]', filename);
+						}
+					}
+					this.data.append('itemId', this.$route.params.id);
+					// Make HTTP request to store announcement
+					axios.post('/api/picture', this.data, config)
+					.then(function (response) {
+							this.resetData();
+					}.bind(this)) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
+					.catch(function (error) {
+						alert('error');
+					});
+					return;
+				}
+
+                
                 // Reset the form to avoid copying these files multiple times into this.filenames
                 document.getElementById("filenames").value = [];
 			},
@@ -242,7 +305,7 @@ export default {
                     }.bind(this)
                 };
                 // Make HTTP request to store announcement
-                axios.post('/api/item', this.data, config)
+                axios.post('/api/item/'+this.$route.params.id, this.data, config)
                 .then(function (response) {
 						this.resetData();
 						this.load = false;
@@ -254,22 +317,59 @@ export default {
             resetData() {
                 this.data = new FormData(); // Reset it completely
 				this.filenames = [];
-				this.item={
-							name: '',
-							slug: '',
-							category: 'Category',
-							category_id: '',
-							stock: null,
-							price: null,
-							type: 'Digital',
-							merk: '',
-							description: '',
-						}
+				this.getPicture();
 			},
 			previewBarang(index){
                 return URL.createObjectURL(this.filenames[index]);
-            }
-			
+			},
+			 getData(){
+				let uri = '/api/item/'+this.$route.params.id;
+				axios.get(uri).then((response) => {
+					this.item = response.data;
+					this.originalFile = response.data.picture;
+					this.item.category = response.data.category.name;
+				})
+				
+			},
+			 getPicture(){
+				let uri = '/api/picture/'+this.$route.params.id;
+				axios.get(uri,{
+					headers: {
+						Authorization: 'Bearer ' + localStorage.getItem('token')
+					}
+				}).then((response) => {
+					this.originalFile = response.data;
+				})
+				
+			},
+			deletePicture(){
+				
+				 this.loadRemove = this.idPicture;
+				let uri = '/api/picture/'+this.idPicture;
+				axios.delete(uri,{
+					headers: {
+						Authorization: 'Bearer ' + localStorage.getItem('token')
+					}
+				}).then((response) => {
+					this.loadRemove = -1;
+					this.modal = false;
+					this.getPicture();
+				}).catch(error => {
+					this.loadRemove = -1;
+					this.modal = false;
+					this.getPicture();
+				})
+			},
+			removeOriginal(id){
+				if(this.originalFile.length < 2 && this.filenames.length <=0){
+					alert('You have to upload new picture first before you can delete this picture');
+					return false;
+				}
+				this.idPicture= id;
+				this.modal = true;
+				this.loadRemove = id;
+			},
+	
 	},
 	computed: {
             

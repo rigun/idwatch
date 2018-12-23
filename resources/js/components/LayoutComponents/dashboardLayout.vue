@@ -12,7 +12,7 @@
                         alt=""> </a>
                 <div class="nav-collapse collapse navbar-inverse-collapse">
 
-                    <form class="navbar-search pull-left input-append" action="#" v-if="token != null">
+                    <form class="navbar-search pull-left input-append" v-if="token != null">
                         <input type="text" class="span3">
                         <button class="btn" type="button">
                             <i class="icon-search"></i>
@@ -20,12 +20,10 @@
                     </form>
                     <ul class="nav pull-right" v-if="token != null" >
                         <li><a href="#">Admin </a></li>
-                        <li class="nav-user dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <li class="nav-user dropdown" @click.prevent="togDrop()"><a class="dropdown-toggle" >
                                 <img src="http://127.0.0.1:8000/images/user.png" class="nav-avatar" />
                                 <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Your Profile</a></li>
-                                <li><a href="#">Edit Profile</a></li>
+                            <ul class="dropdown-menu" :class="{'showDropdown': dropdown}">
                                 <li class="divider"></li>
                                 <li>
                                      <router-link :to="{name: 'LogoutAdmin'}"  >
@@ -36,8 +34,7 @@
                         </li>
                     </ul>
                     <ul class="nav pull-right" v-if="token == null">
-
-						<li><a href="#">
+						<li><a>
 							Forgot your password?
 						</a></li>
 					</ul>
@@ -59,12 +56,19 @@
 </div>
 
 </template>
+<style>
+.showDropdown{
+    display: block;
+}
+</style>
+
 <script>
 export default {
     data(){
         return{
             admin: false,
             token: localStorage.getItem('token'),
+            dropdown: false,
         }
     },
     mounted(){
@@ -105,6 +109,13 @@ export default {
                     }).catch(error => {
                         this.mssg = 'Login';
                     })  
+            },
+            togDrop(){
+                if(this.dropdown == false){
+                    this.dropdown = true;
+                }else{
+                    this.dropdown = false;
+                }
             }
         }
 }

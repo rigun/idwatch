@@ -3,7 +3,7 @@
         
                         <div class="module">
                             <div class="module-head">
-                                <h3>Data Barang</h3>
+                                <h3>Trash</h3>
                             </div>
                             <div class="module-body table">
                                 <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display"
@@ -92,10 +92,18 @@
                                                 </center>
                                             </td>
                                             <td>
-                                                 <router-link :to="{name: 'DetailContent',  params: { id: item.id } }" class="btn btn-sm btn-primary" >
-                                                     Detail
-                                            </router-link>
+                                                <ul style="padding: 0px;margin: 0px;list-style: none;margin-left: 0;">
+                                                    <li>
+                                                         <a class="btn btn-sm btn-primary" href="detail.html">Detail</a>
+                                                    </li>
+                                                    <li>
                                                 <a class="btn btn-sm btn-danger" @click.prevent="deleteData(item.id)"><div class="loader" v-if="load == item.id"></div> <span v-else>Hapus</span> </a>
+
+                                                    </li>
+                                                    <li>
+                                                        <a class="btn btn-sm btn-warning" @click.prevent="restoreData(item.id)">Restore</a>
+                                                    </li>
+                                                </ul>
 
                                             </td>
                                         </tr>
@@ -113,36 +121,59 @@ export default {
             interval: null,
             items: [],
             load: -1,
+
         }
     },
     mounted(){
+            this.getData()
+         
         this.$parent.refresh();
         this.interval = setInterval(() => this.$parent.refresh(), 900000);
-        this.getData();
     },
     destroyed(){
            clearInterval(this.interval);
     },
     methods:{
         getData(){
-            let uri = '/api/item';
-            axios.get(uri).then((response) => {
+            let uri = '/api/item/trash';
+            axios.get(uri,{
+                  headers: {
+                      Authorization: 'Bearer ' + localStorage.getItem('token')
+                  }
+              }).then((response) => {
                 this.items = response.data;
             })
             
         },
         deleteData(id){
             this.load = id;
-            let uri = '/api/item/'+id;
+            let uri = '/api/item/permanent/'+id;
               axios.delete(uri,{
                   headers: {
                       Authorization: 'Bearer ' + localStorage.getItem('token')
                   }
               }).then((response) => {
-                  this.load = -1;
+            this.load = -1;
+
                 this.getData();
               }).catch(error => {
-                  this.load = -1;
+            this.load = -1;
+
+                this.getData();
+              })
+        
+        },
+        restoreData(id){
+            let uri = '/api/item/restore/'+id;
+              axios.get(uri,{
+                  headers: {
+                      Authorization: 'Bearer ' + localStorage.getItem('token')
+                  }
+              }).then((response) => {
+                  alert('Restore');
+                this.getData();
+              }).catch(error => {
+                alert('Fail');
                 this.getData();
               })
         

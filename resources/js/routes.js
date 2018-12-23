@@ -29,6 +29,8 @@ const MainContent = Vue.component('MainContent', require('./components/Dashboard
 const AddContent = Vue.component('AddContent', require('./components/DashboardComponents/addContent.vue'))
 const ReportContent = Vue.component('ReportContent', require('./components/DashboardComponents/reportContent.vue'))
 const ConfirmContent = Vue.component('ConfirmContent', require('./components/DashboardComponents/confirmContent.vue'))
+const TrashContent = Vue.component('TrashContent', require('./components/DashboardComponents/trashContent.vue'))
+const DetailContent = Vue.component('DetailContent', require('./components/DashboardComponents/detailContent.vue'))
 const routes = [
     {
         path: '/',
@@ -73,6 +75,7 @@ const routes = [
               {
                   path: '/dashboard',
                   component: DashboardContent,
+                  meta: { requiresAuth: true },
                   children:[
                       {
                           name: 'DashboardContent',
@@ -93,6 +96,16 @@ const routes = [
                             name: 'ConfirmContent',
                             path: 'confirm',
                             component: ConfirmContent,
+                        },
+                        {
+                            name: 'TrashContent',
+                            path: 'trash',
+                            component: TrashContent,
+                        },
+                        {
+                            name: 'DetailContent',
+                            path: 'detail/:id',
+                            component: DetailContent,
                         },
                   ]
               },
@@ -120,20 +133,14 @@ const router = new VueRouter({mode: 'history', routes: routes});
 router.beforeEach((to, from, next) => {
 
     // check if the route requires authentication and user is not logged in
-    // if (to.matched.some(route => route.meta.requiresAuth) && !store.state.isLoggedIn) {
-    //     // redirect to login page
-    //     next({ name: 'Login' })
-    //     return
-    // }
-
-    // if logged in redirect to dashboard
-    if(to.path === '/dashboard' && !store.state.isLoggedIn) {
+    if (to.matched.some(route => route.meta.requiresAuth) && !store.state.isLoggedIn) {
+        // redirect to login page
         next({ name: 'LoginAdmin' })
         return
     }
 
-    // if logged in redirect to dashboard
-    if(to.path === '/admin/login' && store.state.isLoggedIn) {
+   
+    if(to.name == 'LoginAdmin' && store.state.isLoggedIn) {
         next({ name: 'DashboardContent' })
         return
     }

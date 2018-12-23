@@ -20,9 +20,25 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('user', 'UserController@getAuthenticatedUser');
     Route::get('refresh', 'AuthController@refresh');
 
+    Route::get('/item/unique', 'ItemController@apiCheckUnique');
+    Route::post('/item', 'ItemController@store');
+    Route::post('/item/{id}', 'ItemController@update');
+    Route::delete('/item/{id}', 'ItemController@destroy');
+    Route::delete('/item/permanent/{id}', 'ItemController@permanentDestroy');
+    Route::get('/item/restore/{id}', 'ItemController@restore');
+    Route::get('/item/trash', 'ItemController@trash');
+
+    Route::delete('/picture/{id}', 'PictureController@destroy');
+    Route::get('/picture/{itemId}', 'PictureController@show');
+    Route::post('/picture', 'PictureController@store');
+    
 });
+Route::get('/item', 'ItemController@index');
+Route::get('/item/{id}', 'ItemController@show');
+
 Route::post('register', 'AuthController@register');
 Route::get('/user/email/{email}', 'UserController@UniqueEmail');
+Route::get('/category','CategoryController@index');
 
 Route::group([
 

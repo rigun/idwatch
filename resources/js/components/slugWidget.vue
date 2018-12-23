@@ -4,7 +4,7 @@
     justify-content: flex-start;
     align-items: center;
   }
-  .wrapper {
+  .wrapper-slug {
     margin-left: 8px;
   }
   .slug {
@@ -15,7 +15,7 @@
     text-overflow: ellipsis;
 
   }
-  .url-wrapper {
+  .url-wrapper-slug {
     display: inline-flex;
     align-items: center;
     height: 28px;
@@ -32,17 +32,17 @@
 
 <template>
   <div class="slug-widget">
-    <div class="icon-wrapper wrapper">
+    <div class="icon-wrapper-slug wrapper-slug">
       <i :class="icon"></i>
     </div>
-    <div class="url-wrapper wrapper">
+    <div class="url-wrapper-slug wrapper-slug">
       <span class="root-url">{{urlSanitized}}</span>
       <span class="subdirectory-url">/{{subdirectorySanitized}}/</span>
       <span class="slug" :title="slug" v-show="slug && !isEditing">{{slug}}</span>
       <input type="text" name="slug" id="slug-editor" class="input is-small" v-show="isEditing" v-model="customSlug" @keyup="adjustWidth" @keydown.esc.prevent @keydown.enter.prevent/>
     </div>
 
-    <div class="button-wrapper wrapper">
+    <div class="button-wrapper-slug wrapper-slug">
       <button class="save-slug-button button is-small" v-show="!isEditing" @click.prevent="editSlug"><span v-if="slug.length < 1">Create New Slug</span><span v-else>Edit</span></button>
      
       <!-- <button class="save-slug-button button is-small" v-show="!isEditing && slug.length > 1" @click.prevent="copyUrl"><i class="fa fa-copy"></i><span class="m-l-5">Copy</span></button> -->
@@ -127,7 +127,7 @@
 
         //   if (this.api_token && slug) {
           if (slug) {
-            axios.get('/api/posts/unique', {
+            axios.get('/api/item/unique', {
               params: {
                 api_token: vm.api_token,
                 slug: slug

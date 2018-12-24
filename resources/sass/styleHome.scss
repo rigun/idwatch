@@ -859,8 +859,7 @@ i:before {
   position: relative;
 }
 
-.cart_cart a:before {
-  content: "0";
+.cart_cart span {
   height: 20px;
   width: 20px;
   border-radius: 50%;
@@ -870,8 +869,8 @@ i:before {
   font-size: 12px;
   position: absolute;
   font-weight: normal;
-  right: 6px;
-  bottom: 6px;
+  right: auto;
+  bottom: auto;
   background: #d91522;
   line-height: 20px;
 }

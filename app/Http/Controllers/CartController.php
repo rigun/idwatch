@@ -24,6 +24,10 @@ class CartController extends Controller
     {
         return Cart::where('user_id', JWTAuth::parseToken()->authenticate()->id )->with('user','item')->get();
     }
+    public function countCart()
+    {
+        return Cart::where('user_id', JWTAuth::parseToken()->authenticate()->id )->count();
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -48,13 +52,15 @@ class CartController extends Controller
             'quantity' => 'required',
             'item_id' => 'required',
         ]);
-
-        $cart = new Cart();
+        
+        if(!$cart = Cart::where([['user_id',JWTAuth::parseToken()->authenticate()->id],['item_id', $request->item_id]])->first()){
+            $cart = new Cart();
+            $cart->user_id = JWTAuth::parseToken()->authenticate()->id;
+            $cart->item_id = $request->item_id;
+        }
         $cart->color = $request->color;
         $cart->size = $request->size;
         $cart->quantity = $request->quantity;
-        $cart->item_id = $request->item_id;
-        $cart->user_id = JWTAuth::parseToken()->authenticate()->id;
         $cart->save();
 
         return $cart;
@@ -113,7 +119,7 @@ class CartController extends Controller
      * @param  \App\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id )
     {
         $cart = Cart::findOrFail($id);
         $cart->delete();

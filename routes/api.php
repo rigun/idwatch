@@ -36,12 +36,15 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::patch('/cart/{id}','CartController@update');
     Route::delete('/cart/{id}','CartController@destroy');
     Route::get('/cart','CartController@index');
+    Route::get('/count','CartController@countCart');
     Route::get('/mycart','CartController@showByUser');
     
 });
 Route::get('/item', 'ItemController@index');
+Route::get('/search/{cat}/{search}', 'ItemController@search');
 Route::get('/item/detail/{slug}', 'ItemController@showBySlug');
 Route::get('/item/{id}', 'ItemController@show');
+Route::get('/item/{type}/{category}', 'ItemController@showByCategory');
 
 Route::post('register', 'AuthController@register');
 Route::get('/user/email/{email}', 'UserController@UniqueEmail');

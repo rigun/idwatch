@@ -84,10 +84,12 @@
                             </div>
                             <div class="l_p_text">
                                 <ul>
-                                    <li class="p_icon">    <router-link :to="{name: 'DetailPage',  params: { slug: item.slug } }"  >
+                                    <li class="p_icon">   
                                                      <i class="icon_piechart"></i>
+                                           </li>
+                                    <li><router-link  class="add_cart_btn" :to="{name: 'DetailPage',  params: { slug: item.slug } }"  >
+                                            Add To Cart
                                             </router-link></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
                                     <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
                                 </ul>
                                 <h4>{{item.name}}</h4>
@@ -127,10 +129,13 @@ export default {
         this.$parent.refresh();
         this.interval = setInterval(() => this.$parent.refresh(), 900000);
         this.$nextTick(function () {
-            this.getSlider();
+                    this.getSlider();
+                })
             this.getCategory();
+
             this.getData();
-        })
+
+    
 
     },
     computed:{
@@ -155,6 +160,7 @@ export default {
             let uri = '/api/item';
             axios.get(uri).then((response) => {
                 this.items = response.data;
+                
             })
             
         },

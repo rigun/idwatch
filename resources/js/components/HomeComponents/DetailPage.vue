@@ -59,17 +59,22 @@
                                 </div>
                                 <div class="p_color">
                                     <h4 class="p_d_title">size <span>*</span></h4>
-                                    <select class="selectpicker" v-model="cart.size">
-                                        <option value="">Select your size</option>
-                                        <option value="M">M</option>
-                                        <option value="XL">XL</option>
-                                    </select>
+                                      <v-container fluid grid-list-xl>
+                                        <v-layout wrap align-center>
+                                                <v-select
+                                                :items="['M','XL']"
+                                                label="Size"
+                                                outline
+                                                v-model="cart.size"
+                                                ></v-select>
+                                        </v-layout>
+                                    </v-container>
                                 </div>
                                 <div class="quantity">
                                     <div class="custom">
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp; &amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
-                                        <input type="text" name="qty" id="sst" maxlength="12" title="Quantity:" class="input-text qty" v-model="cart.quantity">
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
+                                        <button @click.prevent="decrement()" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
+                                        <input type="text" name="qty" id="sst" maxlength="12" title="Quantity:" class="input-text qty" style="text-align: center" v-model="cart.quantity">
+                                        <button @click.prevent="increment()" class="increase items-count" type="button"><i class="icon_plus"></i></button>
                                     </div>
                                     <button type="submit" class="add_cart_btn" ><div class="loader" v-if="load"></div> <span v-else>add to cart</span> </button>
                                 </div>
@@ -271,6 +276,11 @@
     width: 100% !important;
     display: block !important;
 }
+.v-menu__content{
+    left: auto !important;
+    right: -10px !important;
+    top: 60px !important;
+}
 </style>
 
 <script>
@@ -318,6 +328,23 @@ export default {
            clearInterval(this.interval);
     },
     methods:{
+        decrement(){
+            if(isNaN(this.cart.quantity) || this.cart.quantity <=1){
+                this.cart.quantity = 1
+            }else{
+                
+                this.cart.quantity--;
+            }
+        },
+        increment(){
+            if(isNaN(this.cart.quantity)){
+                this.cart.quantity = 1
+            }else if(this.cart.quantity >= this.item.stock){
+                this.cart.quantity = this.item.stock
+            }else{
+                this.cart.quantity++;
+            }
+        },
         validate(){
 			if(this.cart.color == null ){
 				this.msg = this.msg + ' Please choose the color'

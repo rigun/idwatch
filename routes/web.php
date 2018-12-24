@@ -22,5 +22,8 @@ Route::get('/admin/login', function () {return view('admin');});
 Route::get('/login', function () {return view('app');});
 Route::get('/contact', function () {return view('app');});
 Route::get('/shop', function () {return view('app');});
+Route::get('/shop/{type}/{category}', function () {return view('app');});
 Route::get('/cart', function () {return view('app');});
 Route::get('/detail/{slug}', function () {return view('app');});
+Route::get('/list/{category}', function () {return view('app');});
+Route::get('/search/{category}/{search}', function () {return view('app');});

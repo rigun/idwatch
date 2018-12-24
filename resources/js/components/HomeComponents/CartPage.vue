@@ -173,7 +173,8 @@
 				</div>
 				<div class="modal-footer">
 					<a class="btn btn-sm btn-primary" @click.prevent="modal = false">Cancel</a>
-					<a class="btn btn-sm btn-info" @click.prevent="editData(modalItem.id)"><div class="loader" v-if="load == 'Edit'"></div> <span v-else>Edit</span> </a>
+                    <router-link class="btn btn-sm btn-info" :to="{name: 'DetailPage',  params: { slug: modalItem.item.slug } }"  > Detail</router-link>
+					<a class="btn btn-sm btn-warning" style="color:black !important" @click.prevent="editData(modalItem.id)"><div class="loader" v-if="load == 'Edit'"></div> <span v-else>Edit</span> </a>
 					<a class="btn btn-sm btn-danger" @click.prevent="deleteData(modalItem.id)"><div class="loader" v-if="load ==  'Delete'"></div> <span v-else>Delete</span>  </a>
 				</div>
 				</div> 
@@ -286,8 +287,10 @@ export default {
         increment(){
             if(isNaN(this.modalItem.quantity)){
                 this.modalItem.quantity = 1
+            }else if(this.modalItem.quantity >= this.modalItem.item.stock){
+                this.modalItem.quantity = this.modalItem.item.stock
             }else{
-                this.modalItem.quantity+=1;
+                this.modalItem.quantity++;
             }
         },
         getCart(){

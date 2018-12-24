@@ -22,6 +22,9 @@ const Shop = Vue.component('Shop', require('./components/HomeComponents/ShopPage
 const Cart = Vue.component('Cart', require('./components/HomeComponents/CartPage.vue'))
 const Success = Vue.component('Success', require('./components/HomeComponents/successSignUp.vue'))
 const DetailPage = Vue.component('DetailPage', require('./components/HomeComponents/DetailPage.vue'))
+const ListItem = Vue.component('ListItem', require('./components/HomeComponents/ListItemShop.vue'))
+const ListCategory = Vue.component('ListCategory', require('./components/HomeComponents/ListCategory.vue'))
+const SearchList = Vue.component('SearchList', require('./components/HomeComponents/searchListPage.vue'))
 
 // dashboard
 const DashboardContent = Vue.component('DashboardContent', require('./components/DashboardComponents/dashboardContent.vue'))
@@ -53,9 +56,25 @@ const routes = [
                 component: Contact
             },
             {
-                name: 'Shop',
+                name: 'ListCategory',
+                path: 'list/:category',
+                component: ListCategory
+            },
+            {
+                name: 'SearchList',
+                path: 'search/:category/:search',
+                component: SearchList
+            },
+            {
                 path: 'shop',
-                component: Shop
+                component: Shop,
+                children:[
+                    {
+                        name: 'Shop',
+                        path: ':type/:category',
+                        component: ListItem,
+                    }
+                ]
             },
             {
                 name: 'Cart',

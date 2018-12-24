@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Item;
 use App\Picture;
+use App\Category;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -39,6 +40,15 @@ class ItemController extends Controller
 
         return "Success";
     }
+    public function search($cat,$search){
+        if($cat == 'All'){
+            return response()->json(Item::where('name', 'LIKE', '%'.$search.'%')->with('picture','category')->get());
+        }else{
+            $cat_id = Category::where('name',$cat)->first()->id;
+            return response()->json(Item::where([['category_id',$cat_id],['name', 'LIKE', '%'.$search.'%']])->with('picture','category')->get());
+        }
+    }
+  
     /**
      * Show the form for creating a new resource.
      *
@@ -112,6 +122,15 @@ class ItemController extends Controller
     public function show($id)
     {
         return response()->json(Item::find($id)->with('picture','category')->first());
+    }
+    public function showByCategory($type, $cat)
+    {
+        $cat_id = Category::where('name',$cat)->first()->id;
+        if($type == 'All'){
+            return response()->json(Item::where('category_id',$cat_id)->with('picture','category')->get());
+        }else{
+            return response()->json(Item::where([['category_id',$cat_id],['type',$type]])->with('picture','category')->get());
+        }
     }
     public function showBySlug($slug)
     {

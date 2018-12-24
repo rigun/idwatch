@@ -21,7 +21,7 @@
         <div class="carousel_menu_inner">
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="#"><img src="img/logo.png" alt=""></a>
+                    <a class="navbar-brand" href="http://127.0.0.1:8000"><img src="http://127.0.0.1:8000/img/logo.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -42,26 +42,7 @@
                                     CATEGORIES <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="categories-left-sidebar.html">Categories
-                                            1</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="categories-left-sidebar.html">Categories
-                                            2</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="categories-left-sidebar.html">Categories
-                                            3</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="categories-left-sidebar.html">Categories
-                                            4</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="categories-left-sidebar.html">Categories
-                                            5</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="categories-left-sidebar.html">Categories
-                                            6</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="categories-left-sidebar.html">Categories
-                                            7</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="categories-left-sidebar.html">Categories
-                                            8</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="categories-left-sidebar.html">Categories
-                                            9</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="categories-left-sidebar.html">Categories
-                                            10</a></li>
+                                    <li class="nav-item" v-for="category in categories" :key="category.id"><router-link :to="{name: 'ListCategory', params:{category: category.name}}" class="nav-link"  >{{category.name}}</router-link></li>
                                 </ul>
                             </li>
                              <li class="nav-item">
@@ -76,9 +57,11 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav justify-content-end">
-                            <li class="cart_cart" v-if="token != null">
-                                 <router-link :to="{name: 'Cart'}" class="nav-link">
+                            <li class="cart_cart" v-if="token != null" >
+                                 <router-link :to="{name: 'Cart'}" class="nav-link" >
                                    <i class="icon-handbag icons"></i>
+                                <span>{{count}}</span>
+
                                 </router-link>
                             </li>
                             <li class="user_icon" v-if="token == null">
@@ -133,15 +116,17 @@
                     </div>
                 </nav>
                 <div class="advanced_search_area">
-                    <select class="selectpicker">
-                        <option>All Categories</option>
-                        <option>All Categories</option>
-                        <option>All Categories</option>
+                    <select class="selectpicker" v-model="selectedCategory">
+                        <option value="All">All Categories</option>
+                        <option  v-for="category in categories" :key="category.id" >{{category.name}}</option>
                     </select>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" aria-label="Search">
-                        <span class="input-group-btn">
-                            <button class="btn btn-secondary" type="button"><i class="icon-magnifier icons"></i></button>
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Search" v-model="search">
+                        <span class="input-group-btn" v-if="search == ''">
+                            <button  class="btn btn-secondary"><i class="icon-magnifier icons"></i></button>
+                        </span>
+                        <span class="input-group-btn" v-else>
+                            <router-link :to="{name: 'SearchList', params:{search: search,category: selectedCategory}}"  class="btn btn-secondary"  ><i class="icon-magnifier icons"></i></router-link>
                         </span>
                     </div>
                 </div>
@@ -162,7 +147,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-6">
                         <aside class="f_widget f_about_widget">
-                            <img src="img/logo.png" alt="">
+                            <img src="http://127.0.0.1:8000/img/logo.png" alt="">
                             <p>ID - JAMTANGAN Merupakan Toko online jam tangan yang menjamin kepuasan pelanggan
                                 dengan mengedepankan pelayanan
                             </p>
@@ -237,18 +222,38 @@
     </div>
     
 </template>
+
+
 <script>
 export default {
     data(){
         return{
             token: localStorage.getItem('token'),
-            dialog: false
+            dialog: false,
+            categories: [],
+             selectedCategory: 'All',
+             count: 0,
+             search: '',
         }
     },
     mounted(){
           this.getUser();
+          this.getCategory();
+          this.getCount();
         },
         methods:{
+            getCount(){
+                axios.get('/api/count', {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem('token')
+                        }
+                    })
+                    .then(response => {
+                        this.count = response.data;
+                    }).catch(error => {
+                        this.count = 0;
+                    })  
+            },
             refresh(){
                  axios.get('/api/refresh', {
                     headers: {
@@ -257,7 +262,9 @@ export default {
                 }).then(response => {
                     localStorage.setItem('token', response.data.access_token);
                     this.getUser();
-
+                    this.$nextTick(function () {
+                        this.getCount();
+                    })
                 }).catch(error => {
                    this.mssg = 'Login';
                 });
@@ -278,7 +285,13 @@ export default {
                     }).catch(error => {
                         this.mssg = 'Login';
                     })  
-            }
+            },
+             getCategory(){
+                let uri = '/api/category';
+                axios.get(uri).then((response) => {
+                    this.categories = response.data;
+                });
+            },
         }
 }
 </script>

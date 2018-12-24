@@ -113,6 +113,10 @@ class ItemController extends Controller
     {
         return response()->json(Item::find($id)->with('picture','category')->first());
     }
+    public function showBySlug($slug)
+    {
+        return response()->json(Item::where('slug', $slug)->with('picture','category')->first());
+    }
 
     /**
      * Show the form for editing the specified resource.

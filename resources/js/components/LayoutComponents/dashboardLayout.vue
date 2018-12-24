@@ -8,7 +8,7 @@
         <div class="navbar-inner">
             <div class="container">
                 <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                    <i class="icon-reorder shaded"></i></a><a class="brand" href="index.html"><img src="http://127.0.0.1:8000/images/img.jpg"
+                    <i class="icon-reorder shaded"></i></a> <a class="brand" href="http://127.0.0.1:8000/"><img src="http://127.0.0.1:8000/images/img.jpg"
                         alt=""> </a>
                 <div class="nav-collapse collapse navbar-inverse-collapse">
 

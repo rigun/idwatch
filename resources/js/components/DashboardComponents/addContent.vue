@@ -43,7 +43,7 @@
 										<div class="control-group">
 											<label class="control-label" for="basicinput">Slug</label>
 											<div class="controls">
-												<slug-widget url="/" subdirectory="blog" :title="item.name" @copied="slugCopied" @slug-changed="updateSlug"></slug-widget>
+												<slug-widget url="/" subdirectory="detail" :title="item.name" @copied="slugCopied" @slug-changed="updateSlug"></slug-widget>
                                                 <input type="hidden" v-model="item.slug" name="slug" />
 											</div>
 										</div>

@@ -72,226 +72,26 @@
             </div>
             <div class="fillter_l_p_inner">
                 <ul class="fillter_l_p">
-                    <li class="active" data-filter="*"><a href="#">men's</a></li>
-                    <li data-filter=".woman"><a href="#">Woman</a></li>
-                    <li data-filter=".acc"><a href="#">Accessories</a></li>
-                    <li data-filter=".shoes"><a href="#">Shoes</a></li>
-                    <li data-filter=".bags"><a href="#">Bags</a></li>
+                    <li v-for="category in categories" :key="category.id" :class="{'active': selectedCategory == category.name}" style="cursor:pointer;"><a @click.prevent="selectedCategory = category.name">{{category.name}}</a></li>
                 </ul>
                 <div class="row isotope_l_p_inner">
-                    <div class="col-lg-3 col-md-4 col-sm-6 woman bags">
+                    <div class="col-lg-3 col-md-4 col-sm-6" v-for="item in showByCategory" :key="item.id">
                         <div class="l_product_item">
                             <div class="l_p_img">
-                                <a href="product-details3.html">
-                                    <img class="img-fluid" src="img/product/l-product-1.jpg" alt="">
-                                </a>
+                                 <router-link :to="{name: 'DetailPage',  params: { slug: item.slug } }"  >
+                                    <img class="img-fluid" :src="'./itemImages/'+item.picture[0].filename" alt="">
+                                            </router-link>
                             </div>
                             <div class="l_p_text">
                                 <ul>
-                                    <li class="p_icon"><a href="product-details3.html"><i class="icon_piechart"></i></a></li>
+                                    <li class="p_icon">    <router-link :to="{name: 'DetailPage',  params: { slug: item.slug } }"  >
+                                                     <i class="icon_piechart"></i>
+                                            </router-link></li>
                                     <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
                                     <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
                                 </ul>
-                                <h4>Mens Watch</h4>
-                                <h5><del>Rp 45.000</del> Rp 49.000</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 woman bags">
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <a href="product-details3.html">
-                                    <img class="img-fluid" src="img/product/l-product-1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="l_p_text">
-                                <ul>
-                                    <li class="p_icon"><a href="product-details3.html"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                </ul>
-                                <h4>Mens Watch</h4>
-                                <h5><del>Rp 45.000</del> Rp 49.000</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 woman bags">
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <a href="product-details3.html">
-                                    <img class="img-fluid" src="img/product/l-product-1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="l_p_text">
-                                <ul>
-                                    <li class="p_icon"><a href="product-details3.html"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                </ul>
-                                <h4>Mens Watch</h4>
-                                <h5><del>Rp 45.000</del> Rp 49.000</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 woman bags">
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <a href="product-details3.html">
-                                    <img class="img-fluid" src="img/product/l-product-1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="l_p_text">
-                                <ul>
-                                    <li class="p_icon"><a href="product-details3.html"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                </ul>
-                                <h4>Mens Watch</h4>
-                                <h5><del>Rp 45.000</del> Rp 49.000</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 woman bags">
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <a href="product-details3.html">
-                                    <img class="img-fluid" src="img/product/l-product-1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="l_p_text">
-                                <ul>
-                                    <li class="p_icon"><a href="product-details3.html"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                </ul>
-                                <h4>Mens Watch</h4>
-                                <h5><del>Rp 45.000</del> Rp 49.000</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 woman bags">
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <a href="product-details3.html">
-                                    <img class="img-fluid" src="img/product/l-product-1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="l_p_text">
-                                <ul>
-                                    <li class="p_icon"><a href="product-details3.html"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                </ul>
-                                <h4>Mens Watch</h4>
-                                <h5><del>Rp 45.000</del> Rp 49.000</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 woman bags">
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <a href="product-details3.html">
-                                    <img class="img-fluid" src="img/product/l-product-1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="l_p_text">
-                                <ul>
-                                    <li class="p_icon"><a href="product-details3.html"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                </ul>
-                                <h4>Mens Watch</h4>
-                                <h5><del>Rp 45.000</del> Rp 49.000</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 woman bags">
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <a href="product-details3.html">
-                                    <img class="img-fluid" src="img/product/l-product-1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="l_p_text">
-                                <ul>
-                                    <li class="p_icon"><a href="product-details3.html"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                </ul>
-                                <h4>Mens Watch</h4>
-                                <h5><del>Rp 45.000</del> Rp 49.000</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 woman bags">
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <a href="product-details3.html">
-                                    <img class="img-fluid" src="img/product/l-product-1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="l_p_text">
-                                <ul>
-                                    <li class="p_icon"><a href="product-details3.html"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                </ul>
-                                <h4>Mens Watch</h4>
-                                <h5><del>Rp 45.000</del> Rp 49.000</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 woman bags">
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <a href="product-details3.html">
-                                    <img class="img-fluid" src="img/product/l-product-1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="l_p_text">
-                                <ul>
-                                    <li class="p_icon"><a href="product-details3.html"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                </ul>
-                                <h4>Mens Watch</h4>
-                                <h5><del>Rp 45.000</del> Rp 49.000</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 woman bags">
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <a href="product-details3.html">
-                                    <img class="img-fluid" src="img/product/l-product-1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="l_p_text">
-                                <ul>
-                                    <li class="p_icon"><a href="product-details3.html"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                </ul>
-                                <h4>Mens Watch</h4>
-                                <h5><del>Rp 45.000</del> Rp 49.000</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 woman bags">
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <a href="product-details3.html">
-                                    <img class="img-fluid" src="img/product/l-product-1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="l_p_text">
-                                <ul>
-                                    <li class="p_icon"><a href="product-details3.html"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                </ul>
-                                <h4>Mens Watch</h4>
-                                <h5><del>Rp 45.000</del> Rp 49.000</h5>
+                                <h4>{{item.name}}</h4>
+                                <h5><del></del> Rp {{item.price}}</h5>
                             </div>
                         </div>
                     </div>
@@ -301,11 +101,20 @@
     </section>
     </div>
 </template>
+<style>
+.isotope_l_p_inner{
+    height: auto !important;
+}
+</style>
+
 <script>
 export default {
     data(){
         return{
             interval: null,
+             items: [],
+             selectedCategory: 'Man',
+             categories: [],
         }
     },
     created(){
@@ -319,12 +128,38 @@ export default {
         this.interval = setInterval(() => this.$parent.refresh(), 900000);
         this.$nextTick(function () {
             this.getSlider();
+            this.getCategory();
+            this.getData();
         })
+
+    },
+    computed:{
+        showByCategory(){
+             if(this.items.length > 0) {
+                    return this.items.filter((row, index) => {
+                            if(row.category.name == this.selectedCategory){
+                                return true;
+                            }
+                      });
+                }
+        }
     },
     methods:{
-
+        getCategory(){
+            let uri = '/api/category';
+            axios.get(uri).then((response) => {
+                this.categories = response.data;
+            });
+		},
+         getData(){
+            let uri = '/api/item';
+            axios.get(uri).then((response) => {
+                this.items = response.data;
+            })
+            
+        },
         getSlider(){
-;(function($) {
+    ;(function($) {
     "use strict";
     
 //    var nav_offset_top = $('header').height(); 
@@ -775,90 +610,7 @@ export default {
         }
     }
     home_l_product_slider();
-    /*----------------------------------------------------*/
-    /*  Explor Room Slider
-    /*----------------------------------------------------*/
-    function sunglass_slider(){
-        if ( $('.sunglass_slider').length ){
-            $('.sunglass_slider').owlCarousel({
-                loop:true,
-                margin: 0,
-                items: 1,
-                nav:false,
-                autoplay: true,
-                smartSpeed: 1500,
-                dots:true,
-            })
-        }
-    }
-    sunglass_slider();
-    
-    /*----------------------------------------------------*/
-    /*  Explor Room Slider
-    /*----------------------------------------------------*/
-    function fillter_slider(){
-        if ( $('.fillter_slider').length ){
-            $('.fillter_slider').owlCarousel({
-                loop:true,
-                margin: 30,
-                items: 3,
-                nav:true,
-                autoplay: false,
-                smartSpeed: 1500,
-                dots:true, 
-                navContainer: '.f_product_left',
-                navText: ['<i class="arrow_carrot-left" aria-hidden="true"></i>','<i class="arrow_carrot-right" aria-hidden="true"></i>'],
-                responsiveClass: true,
-                responsive: {
-                    0: {
-                        items: 1,
-                    },
-                    420: {
-                        items: 2,
-                    },
-                    768: {
-                        items: 3,
-                    }
-                }
-            })
-        }
-    }
-    fillter_slider();
-    
-    /*----------------------------------------------------*/
-    /*  Explor Room Slider
-    /*----------------------------------------------------*/
-    function fillter_p_slider(){
-        if ( $('.fillter_product_slider').length ){
-            $('.fillter_product_slider').owlCarousel({
-                loop:true,
-                margin: 30,
-                items: 4,
-                nav:true,
-                autoplay: false,
-                smartSpeed: 1500,
-                dots:true, 
-                navContainerClass: 'fillter_product_slider',
-                navText: ['<i class="arrow_carrot-left" aria-hidden="true"></i>','<i class="arrow_carrot-right" aria-hidden="true"></i>'],
-                responsiveClass: true,
-                responsive: {
-                    0: {
-                        items: 1,
-                    },
-                    575: {
-                        items: 2,
-                    },
-                    992: {
-                        items: 3,
-                    },
-                    1199: {
-                        items: 4,
-                    }
-                }
-            })
-        }
-    }
-    fillter_p_slider();
+   
     
     /*----------------------------------------------------*/
     /*  Explor Room Slider

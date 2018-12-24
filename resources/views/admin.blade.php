@@ -24,5 +24,10 @@
     <script src="{{ asset('adminHelper/jquery-ui-1.10.1.custom.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('adminHelper/bootstrap.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('adminHelper/datatables/jquery.dataTables.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('adminHelper/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
+        <script src="{{ asset('adminHelper/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
+        <script src="{{ asset('adminHelper/revolution/js/extensions/revolution.extension.navigation.min.js') }}"></script>
+        <script src="{{ asset('adminHelper/revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
+
     <script src="{{ asset('js/app.js') }}"></script>
 </html>

@@ -21,6 +21,7 @@ const Contact = Vue.component('Contact', require('./components/HomeComponents/Co
 const Shop = Vue.component('Shop', require('./components/HomeComponents/ShopPage.vue'))
 const Cart = Vue.component('Cart', require('./components/HomeComponents/CartPage.vue'))
 const Success = Vue.component('Success', require('./components/HomeComponents/successSignUp.vue'))
+const DetailPage = Vue.component('DetailPage', require('./components/HomeComponents/DetailPage.vue'))
 
 // dashboard
 const DashboardContent = Vue.component('DashboardContent', require('./components/DashboardComponents/dashboardContent.vue'))
@@ -65,6 +66,11 @@ const routes = [
                 name: 'Success',
                 path: 'success',
                 component: Success
+            },
+            {
+                name: 'DetailPage',
+                path: 'detail/:slug',
+                component: DetailPage
             }
         ]
       },

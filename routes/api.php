@@ -31,9 +31,16 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::delete('/picture/{id}', 'PictureController@destroy');
     Route::get('/picture/{itemId}', 'PictureController@show');
     Route::post('/picture', 'PictureController@store');
+
+    Route::post('/cart','CartController@store');
+    Route::patch('/cart/{id}','CartController@update');
+    Route::delete('/cart/{id}','CartController@destroy');
+    Route::get('/cart','CartController@index');
+    Route::get('/mycart','CartController@showByUser');
     
 });
 Route::get('/item', 'ItemController@index');
+Route::get('/item/detail/{slug}', 'ItemController@showBySlug');
 Route::get('/item/{id}', 'ItemController@show');
 
 Route::post('register', 'AuthController@register');

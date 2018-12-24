@@ -126,7 +126,13 @@
                             <button  class="btn btn-secondary"><i class="icon-magnifier icons"></i></button>
                         </span>
                         <span class="input-group-btn" v-else>
-                            <router-link :to="{name: 'SearchList', params:{search: search,category: selectedCategory}}"  class="btn btn-secondary"  ><i class="icon-magnifier icons"></i></router-link>
+                                <router-link :to="{name: 'SearchList', params:{search: search,category: selectedCategory}}" >
+
+                            <button  class="btn btn-secondary">
+                                    <i class="icon-magnifier icons"></i>
+                                    </button>
+                                    </router-link>
+
                         </span>
                     </div>
                 </div>

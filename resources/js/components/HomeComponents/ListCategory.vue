@@ -22,10 +22,10 @@
                     </div>
                     <div class="secand_fillter">
                         <h4>SORT BY :</h4>
-                        <select class="selectpicker">
-                            <option>Termurah</option>
-                            <option>Termahal</option>
-                            <option>Diskon</option>
+                          <select v-model="sortMethod">
+                            <option value="new">Terbaru</option>
+                            <option value="asc">Termurah</option>
+                            <option value="desc">Termahal</option>
                         </select>
                     </div>
 
@@ -78,6 +78,8 @@ export default {
             perPage: 9,
             pages: [],
             items: [],
+            sortMethod: 'new',
+
         }
     },
     created(){
@@ -128,7 +130,12 @@ export default {
             let perPage = this.perPage;
             let from = (page * perPage) - perPage;
             let to = (page * perPage);
-            return  items.slice(from, to);
+              if(this.sortMethod == 'new'){
+                var sorted = _.orderBy(items, ['created_at'],['desc']);
+            }else{
+                var sorted = _.orderBy(items, ['price'],[this.sortMethod]);
+            }
+            return  sorted.slice(from, to);
         }
     }
 }

@@ -80,7 +80,7 @@
                                 </div>
                             </form>
                             
-                            <div class="shareing_icon">
+                            <!-- <div class="shareing_icon">
                                 <h5>share :</h5>
                                 <ul>
                                     <li><a href="#"><i class="social_facebook"></i></a></li>
@@ -89,7 +89,7 @@
                                     <li><a href="#"><i class="social_instagram"></i></a></li>
                                     <li><a href="#"><i class="social_youtube"></i></a></li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="product_table_details">
                             <div class="table-responsive-md">
@@ -101,11 +101,11 @@
                                                 <h6> Semua Shipment, E-mail, Resi akan dilakukan dalam jam kerja (Senin-Jumat:10am-4pm) & (Sabtu:10am-1pm).</h6>
                                                 <h5>Item location:</h5>
                                                 <p>Indonesia, Yogyakarta, Babarsari</p>
-                                                <h5>Ships to:</h5>
-                                                <p>Keseluruh Indonesia | See More details</p>
+                                                <!-- <h5>Ships to:</h5>
+                                                <p>Keseluruh Indonesia | See More details</p> -->
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <!-- <tr>
                                             <th scope="row">Delivery:</th>
                                             <td>
                                                 <p>Perkiraan Sampai ke rumah <span>Jumat 20 februari 2019</span> <br /> Atau tracking <a href="track.html">sekarang</a></p>
@@ -117,7 +117,7 @@
                                                 <a href="#"><img src="img/master-card.png" alt=""></a>
                                                 <p>Kamu bisa menggunakan fasilitas asuransi saat checkout.  Perlu diingat bahwa asuransi hanya berlaku bagi paket yang hilang, dan bukan kerusakan selama pengiriman.</p>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -132,14 +132,12 @@
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Product Description</a>
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Reviews (1)</a>
-                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Tags</a>
                         <a class="nav-item nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="false">additional information</a>
-                        <a class="nav-item nav-link" id="nav-gur-tab" data-toggle="tab" href="#nav-gur" role="tab" aria-controls="nav-gur" aria-selected="false">gurantees</a>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.  Emo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
+                        <p>{{item.description}}</p>
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <h4>Yudha Pratama</h4>
@@ -151,14 +149,39 @@
                             <li><a href="#"><i class="fa fa-star"></i></a></li>
                         </ul>
                     </div>
-                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.  Emo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
-                    </div>
+                    
                     <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
-                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.  Emo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
-                    </div>
-                    <div class="tab-pane fade" id="nav-gur" role="tabpanel" aria-labelledby="nav-gur-tab">
-                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.  Emo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
+                        <table class="additional-List">
+                            <tr>
+                                <td>Nama</td>
+                                <td>: {{item.name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Alamat URL</td>
+                                <td>: https://127.0.0.1:8000/detail/{{item.slug}}</td>
+                            </tr>
+                            <tr>
+                                <td>Stok</td>
+                                <td>: {{item.stock}} Buah</td>
+                            </tr>
+                            <tr>
+                                <td>Merk</td>
+                                <td>: {{item.merk}}</td>
+                            </tr>
+                            <tr>
+                                <td>Tipe</td>
+                                <td>: {{item.type}}</td>
+                            </tr>
+                            <tr>
+                                <td>Harga</td>
+                                <td>: Rp. {{item.price}}</td>
+                            </tr>
+                            <tr>
+                                <td>Kategori</td>
+                                <td>: {{item.category.name}}</td>
+                            </tr>
+                        </table>
+                        
                     </div>
                 </div>
             </div>
@@ -168,91 +191,37 @@
                 <div class="related_product_inner">
                     <h2 class="single_c_title">Related Product</h2>
                     <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="l_product_item">
-                                <div class="l_p_img">
-                                        <a href="shopping-cart.html">
-                                                <img class="img-fluid" src="img/product/related-product/r-product-1.jpg" alt="">
-                                            </a>
-                                </div>
-                                <div class="l_p_text">
-                                   <ul>
-                                        <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                        <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                        <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                    </ul>
-                                    <h4>Skmei Cewek</h4>
-                                    <h5>Rp 85.500</h5>
-                                </div>
+                     
+                        <div class="col-lg-3 col-sm-6" v-for="item in displayItem" :key="item.id">
+                      <div class="l_product_item">
+                            <div class="l_p_img">
+                                 <router-link :to="{name: 'DetailPage',  params: { slug: item.slug } }"  >
+                                <img :src="'../../../itemImages/'+item.picture[0].filename" alt="image">
+                                 </router-link>
+                                <h5 class="new">New</h5>
+                            </div>
+                            <div class="l_p_text">
+                                <ul>
+                                    <li class="p_icon">   <a>
+                                                     <i class="icon_piechart"></i></a>
+                                           </li>
+                                    <li><router-link  class="add_cart_btn" :to="{name: 'DetailPage',  params: { slug: item.slug } }"  >
+                                            Add To Cart
+                                            </router-link></li>
+                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
+                                </ul>
+                                <h4>{{item.name}}</h4>
+                                <h5><del></del>Rp. {{item.price}}</h5>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="l_product_item">
-                                <div class="l_p_img">
-                                        <a href="shopping-cart.html">
-                                                <img class="img-fluid" src="img/product/related-product/r-product-1.jpg" alt="">
-                                            </a>
-                                    <h5 class="new">New</h5>
-                                </div>
-                                <div class="l_p_text">
-                                   <ul>
-                                        <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                        <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                        <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                    </ul>
-                                    <h4>Skmei Cewek</h4>
-                                    <h5><del>Rp 130.500</del>  Rp 110.000</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="l_product_item">
-                                <div class="l_p_img">
-                                        <a href="shopping-cart.html">
-                                                <img class="img-fluid" src="img/product/related-product/r-product-1.jpg" alt="">
-                                            </a>
-                                </div>
-                                <div class="l_p_text">
-                                   <ul>
-                                        <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                        <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                        <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                    </ul>
-                                    <h4>Skmei Cewek</h4>
-                                    <h5>Rp 250.000</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="l_product_item">
-                                <div class="l_p_img">
-                                    <a href="shopping-cart.html">
-                                    <img class="img-fluid" src="img/product/related-product/r-product-1.jpg" alt="">
-                                </a>
-                                    <h5 class="sale">Sale</h5>
-                                </div>
-                                <div class="l_p_text">
-                                   <ul>
-                                        <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                        <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                        <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                    </ul>
-                                    <h4>Skmei Cewek</h4>
-                                    <h5>Rp 45.500</h5>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <nav aria-label="Page navigation example" class="pagination_area">
-                      <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                        <li class="page-item"><a class="page-link" href="#">6</a></li>
-                        <li class="page-item next"><a class="page-link" href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                      </ul>
+                     <div class="clearfix btn-group col-md-2 offset-md-5">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" v-if="page != 1" @click="page--"> <i class="fa fa-angle-left" aria-hidden="true"></i> </button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" v-for="pageNumber in pages.slice(page-1, page+5)" :key="pageNumber" @click="page = pageNumber"> {{pageNumber}} </button>
+                                <button type="button" @click="page++" v-if="page < pages.length" class="btn btn-sm btn-outline-secondary"> <i class="fa fa-angle-right" aria-hidden="true"></i> </button>
+                    </div>
                     </nav>
                 </div>
             </div>
@@ -281,6 +250,13 @@
     right: -10px !important;
     top: 60px !important;
 }
+.additional-List{
+    width: 100%;
+}
+.additional-List tr > td{
+    padding: 5px;
+    color: black;
+}
 </style>
 
 <script>
@@ -302,7 +278,12 @@ export default {
                     {
                         filename: '',
                     }
-                ]
+                ],
+                category:
+                    {
+                        name: ''
+                    }
+                
             },
             cart:{
                 color: null,
@@ -313,21 +294,56 @@ export default {
             snackbar: false,
              load: false,
 			 msg: '',
-             
+              page: 1,
+            perPage: 9,
+            pages: [],
+            items: [],
         }
     },
     created(){
-        this.getData();
 
     },
     mounted(){
         this.$parent.refresh();
         this.interval = setInterval(() => this.$parent.refresh(), 900000);
+        this.getData();
     },
     destroyed(){
            clearInterval(this.interval);
     },
+    watch: {
+           
+             items () {
+                this.setPages();
+            }
+        },
+        computed: {
+        displayItem () {
+            return this.paginate(this.items);
+        }
+    },
     methods:{
+         getList(){
+            let uri = '/api/item/All/'+this.item.category.name;
+            axios.get(uri).then((response) => {
+                this.items = response.data;
+                console.log(response);
+            })
+            
+        },
+        setPages () {
+            let numberOfPages = Math.ceil(this.items.length / this.perPage);
+            for (let index = 1; index <= numberOfPages; index++) {
+                this.pages.push(index);
+            }
+        },
+        paginate (items) {
+            let page = this.page;
+            let perPage = this.perPage;
+            let from = (page * perPage) - perPage;
+            let to = (page * perPage);
+            return  items.slice(from, to);
+        },
         decrement(){
             if(isNaN(this.cart.quantity) || this.cart.quantity <=1){
                 this.cart.quantity = 1
@@ -397,8 +413,8 @@ export default {
             axios.get(uri).then((response) => {
                 this.item = response.data;
                 this.$nextTick(function () {
+                    this.getList();
                     this.getSlider();
-
                 })
             })
             

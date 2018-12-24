@@ -1,17 +1,6 @@
 <template>
     <div>
-        <section class="categories_banner_area">
-        <div class="container">
-            <div class="c_banner_inner">
-                <h3>Kamu Bisa memilih semua barang yang kamu suka disini</h3>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li class="current"><a href="#">Buat harimu jadi makin asyik dengan belanja disini</a></li>
-                </ul>
-            </div>
-        </div>
-    </section>
+        
 
     <section class="no_sidebar_2column_area">
         <div class="container">

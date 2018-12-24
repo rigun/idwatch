@@ -68,29 +68,7 @@
                                     </ul>
                                 </aside>
                              
-                                <aside class="l_widgest l_feature_widget">
-                                    <div class="l_w_title">
-                                        <h3>Produk Baru</h3>
-                                    </div>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img :src="'../../img/product/featured-product/f-p-5.jpg'" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>Skmei <br /> Free Box</h4>
-                                            <h5>Rp. 45.000</h5>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img :src="'../../img/product/featured-product/f-p-6.jpg'" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>Skmei <br /> Free Box</h4>
-                                            <h5>Rp. 45.000</h5>
-                                        </div>
-                                    </div>
-                                </aside>
+                               
                             </div>
                         </div>
                     </div>

@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('status')->default(0);
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

@@ -13,67 +13,31 @@
                         <tbody>
                             <tr class="heading">
                                 <td class="cell-icon"></td>
-                                <td class="cell-title">Nama Barang</td>
-                                <td class="">Jumlah Barang</td>
+                                <td class="cell-title">List Barang & jumlahnya</td>
                                 <td class="">nama User</td>
                                 <td class="">Alamat</td>
-                                <td class="cell-status hidden-phone hidden-tablet">Status</td>
                                 <td class="cell-time ">Total</td>
+                                <td class="cell-time ">Download Bukti</td>
+                                <td class="cell-status hidden-phone hidden-tablet">Status</td>
                             </tr>
-                            <tr class="task">
+                            
+                            <tr class="task" :class="{'resolved': confirm.status > 2}" v-for="confirm in confirms" :key="confirm.id">
                                 <td class="cell-icon"><i class="icon-checker high"></i></td>
-                                <td class="cell-title"><div>SKMEI Womans</div></td>
-                                <td class="cell-title"><div>10</div></td>
-                                <td class="cell-title"><div>Agung Prio Rismawan</div></td>
-                                <td class="cell-title"><div>Palembang</div></td>
-                                <td class="cell-status hidden-phone hidden-tablet"><b class="due">Belum Terkonfirmasi</b></td>
-                                <td class="cell-time ">Rp 120.000</td>
+                                <td class="cell-title"><div>
+                                    <table width="100%" style="border: none" class="inner-table">
+                                                        <tr v-for="item in confirm.detail" :key="item.id">
+                                                            <td>{{item.cart.item.name}}</td>
+                                                            <td>{{item.cart.quantity}}</td>
+                                                        </tr>
+                                                    </table>
+                                                    </div></td>
+                                <td class="cell-title"><div>{{confirm.user.name}}</div></td>
+                                <td class="cell-title"><div>{{confirm.address}}</div></td>
+                                <td class="cell-time ">Rp {{confirm.total + confirm.shipping}}</td>
+                                <td class="cell-time "><span v-if="confirm.evidence == null">-</span><span v-else><a :href="'../../itemImages/'+confirm.evidence">Download</a></span></td>
+                                <td class="cell-status hidden-phone hidden-tablet"><a href="#" class="btn btn-primary" v-if="confirm.status > 2" @click.prevent="verifikasi(confirm.id,confirm.status)" >Sudah Dikonfirmasi</a><b class="due" v-else @click.prevent="verifikasi(confirm.id,confirm.status)">Belum Terkonfirmasi</b></td>
                             </tr>
-                            <tr class="task">
-                                <td class="cell-icon"><i class="icon-checker high"></i></td>
-                                <td class="cell-title"><div>SKMEI Mans</div></td>
-                                <td class="cell-title"><div>5</div></td>
-                                <td class="cell-title"><div>Satria Nusa Paradilaga</div></td>
-                                <td class="cell-title"><div>Bekasi</div></td>
-                                <td class="cell-status hidden-phone hidden-tablet"><b class="due">Belum Terkonfirmasi</b></td>
-                                <td class="cell-time ">Rp 120.000</td>
-                            </tr>
-                            <tr class="task resolved">
-                                <td class="cell-icon"><i class="icon-checker high"></i></td>
-                                <td class="cell-title"><div>SKMEI saja</div></td>
-                                <td class="cell-title"><div>1</div></td>
-                                <td class="cell-title"><div>Kakanya Aga</div></td>
-                                <td class="cell-title"><div>Cikarang</div></td>
-                                <td class="cell-status hidden-phone hidden-tablet"><a href="#" class="btn btn-primary">Sudah Dikonfirmasi</a></td>
-                                <td class="cell-time ">Rp 120.000</td>
-                            </tr>
-                            <tr class="task">
-                                <td class="cell-icon"><i class="icon-checker high"></i></td>
-                                <td class="cell-title"><div>SKMEI Womans</div></td>
-                                <td class="cell-title"><div>10</div></td>
-                                <td class="cell-title"><div>Agung Prio Rismawan</div></td>
-                                <td class="cell-title"><div>Palembang</div></td>
-                                <td class="cell-status hidden-phone hidden-tablet"><b class="due">Belum Terkonfirmasi</b></td>
-                                <td class="cell-time ">Rp 120.000</td>
-                            </tr>
-                            <tr class="task">
-                                <td class="cell-icon"><i class="icon-checker high"></i></td>
-                                <td class="cell-title"><div>SKMEI Mans</div></td>
-                                <td class="cell-title"><div>5</div></td>
-                                <td class="cell-title"><div>Satria Nusa Paradilaga</div></td>
-                                <td class="cell-title"><div>Bekasi</div></td>
-                                <td class="cell-status hidden-phone hidden-tablet"><b class="due">Belum Terkonfirmasi</b></td>
-                                <td class="cell-time ">Rp 120.000</td>
-                            </tr>
-                            <tr class="task resolved">
-                                <td class="cell-icon"><i class="icon-checker high"></i></td>
-                                <td class="cell-title"><div>SKMEI saja</div></td>
-                                <td class="cell-title"><div>1</div></td>
-                                <td class="cell-title"><div>Kakanya Aga</div></td>
-                                <td class="cell-title"><div>Cikarang</div></td>
-                                <td class="cell-status hidden-phone hidden-tablet"><a href="#" class="btn btn-primary">Sudah Dikonfirmasi</a></td>
-                                <td class="cell-time ">Rp 120.000</td>
-                            </tr>
+                            
                             
                         </tbody>
                     </table>
@@ -91,14 +55,55 @@ export default {
     data(){
         return{
             interval: null,
+            confirms: [],
         }
     },
     mounted(){
+        this.getConfirm();
         this.$parent.refresh();
         this.interval = setInterval(() => this.$parent.refresh(), 900000);
     },
     destroyed(){
            clearInterval(this.interval);
     },
+    methods:{
+        verifikasi(id,status){
+            var temp;
+            if(status == 1){
+                temp = 3;
+            }else if(status == 3){
+                temp = 1;
+            }else if( status == 2){
+                temp = 4;
+            }else if( status == 4){
+                temp = 2;
+            }else {
+                temp = 0;
+            }
+            let uri = '/api/verifikasi/'+id;
+            axios.post(uri,{'status': temp}, {
+                    headers: { 
+                    Authorization: 'Bearer ' + localStorage.getItem('token') } 
+                }
+            )
+                .then(function (response) {
+                        this.getConfirm();
+                        this.$parent.unconfirmCount();
+                }.bind(this)) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
+                .catch(function (error) {
+						this.getConfirm();
+                });
+        },
+        getConfirm(){
+            let uri = '/api/report';
+            axios.get(uri,{
+                    headers: { 
+                    Authorization: 'Bearer ' + localStorage.getItem('token') } 
+                }).then((response) => {
+                this.confirms = response.data;
+            })
+        },
+        
+    }
 }
 </script>

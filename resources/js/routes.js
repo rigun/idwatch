@@ -25,6 +25,9 @@ const DetailPage = Vue.component('DetailPage', require('./components/HomeCompone
 const ListItem = Vue.component('ListItem', require('./components/HomeComponents/ListItemShop.vue'))
 const ListCategory = Vue.component('ListCategory', require('./components/HomeComponents/ListCategory.vue'))
 const SearchList = Vue.component('SearchList', require('./components/HomeComponents/searchListPage.vue'))
+const Checkout = Vue.component('Checkout', require('./components/HomeComponents/CheckoutPage.vue'))
+const ConfirmOrder = Vue.component('ConfirmOrder', require('./components/HomeComponents/ConfirmOrderPage.vue'))
+const CheckoutCart = Vue.component('CheckoutCart', require('./components/HomeComponents/CheckoutCart.vue'))
 
 // dashboard
 const DashboardContent = Vue.component('DashboardContent', require('./components/DashboardComponents/dashboardContent.vue'))
@@ -56,9 +59,24 @@ const routes = [
                 component: Contact
             },
             {
+                name: 'CheckoutCart',
+                path: 'checkoutcart',
+                component: CheckoutCart
+            },
+            {
                 name: 'ListCategory',
                 path: 'list/:category',
                 component: ListCategory
+            },
+            {
+                name: 'Checkout',
+                path: 'checkout/:token',
+                component: Checkout
+            },
+            {
+                name: 'ConfirmOrder',
+                path: 'confirm',
+                component: ConfirmOrder
             },
             {
                 name: 'SearchList',

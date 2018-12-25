@@ -12,12 +12,7 @@
                         alt=""> </a>
                 <div class="nav-collapse collapse navbar-inverse-collapse">
 
-                    <form class="navbar-search pull-left input-append" v-if="token != null">
-                        <input type="text" class="span3">
-                        <button class="btn" type="button">
-                            <i class="icon-search"></i>
-                        </button>
-                    </form>
+                   
                     <ul class="nav pull-right" v-if="token != null" >
                         <li><a href="#">Admin </a></li>
                         <li class="nav-user dropdown" @click.prevent="togDrop()"><a class="dropdown-toggle" >

@@ -27,3 +27,6 @@ Route::get('/cart', function () {return view('app');});
 Route::get('/detail/{slug}', function () {return view('app');});
 Route::get('/list/{category}', function () {return view('app');});
 Route::get('/search/{category}/{search}', function () {return view('app');});
+Route::get('/checkout/{token}', function () {return view('app');});
+Route::get('/confirm', function () {return view('app');});
+Route::get('/checkoutcart', function () {return view('app');});

@@ -46,13 +46,18 @@
                                 </ul>
                             </li>
                              <li class="nav-item">
-                                <router-link :to="{name: 'Shop'}" class="nav-link">
+                                <router-link :to="{name: 'Shop', params:{type: 'All', category: 'Man'}}" class="nav-link">
                                    SHOP
                                 </router-link>
                             </li>
                              <li class="nav-item">
                                 <router-link :to="{name: 'Contact'}" class="nav-link">
                                    CONTACT
+                                </router-link>
+                            </li>
+                             <li class="nav-item" v-if="token != null">
+                                <router-link :to="{name: 'CheckoutCart'}" class="nav-link">
+                                   CheckoutCart
                                 </router-link>
                             </li>
                         </ul>

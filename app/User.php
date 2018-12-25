@@ -7,12 +7,16 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laratrust\Traits\LaratrustUserTrait;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends Authenticatable implements JWTSubject
 {
     use LaratrustUserTrait;
     use Notifiable;
+    use SoftDeletes;
 
+    protected $dates = ['deleted_at'];
     /**
      * The attributes that are mass assignable.
      *

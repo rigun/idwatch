@@ -38,8 +38,19 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('/cart','CartController@index');
     Route::get('/count','CartController@countCart');
     Route::get('/mycart','CartController@showByUser');
+    Route::get('/mycheckoutcart','TransactionController@checkoutcartByUser');
+
+    Route::post('/mytransaction','TransactionController@store');
+    Route::post('/verifikasi/{id}','TransactionController@verifikasi');
+    Route::get('/report','TransactionController@index');
+    Route::get('/confirm','TransactionController@confirm');
+    Route::get('/mytransaction/{token}','TransactionController@show');
+    Route::post('/order','TransactionController@order');
+    Route::post('/evidence/{id}','TransactionController@evidence');
+    Route::delete('/evidence/{id}','TransactionController@deleteEvidence');
     
 });
+Route::get('/unconfirmCount','TransactionController@count');
 Route::get('/item', 'ItemController@index');
 Route::get('/search/{cat}/{search}', 'ItemController@search');
 Route::get('/item/detail/{slug}', 'ItemController@showBySlug');

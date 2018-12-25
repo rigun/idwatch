@@ -17,7 +17,7 @@
 													  </div>
 													   <input type="file" name="filename[]"  multiple="multiple" id="filenames" @change="uploadFieldChange">
 													</label>
-													<div class="settings_actions vertical"><a data-action="choose_from_uploaded"><i class="fa fa-picture-o"></i> Choose from Uploads</a><a class="disabled" data-action="remove_current_image"><i class="fa fa-ban"></i> Remove Current Image</a></div>
+													<div class="settings_actions vertical"><a data-action="choose_from_uploaded"><i class="fa fa-picture-o"></i> Choose from Uploads</a></div>
 													<div class="image_details">
 													  <label class="input_line image_title">
 														<input type="text" placeholder="Title"/>

@@ -25,7 +25,7 @@
                                             <th scope="col"></th>
                                             <th scope="col">product</th>
                                             <th scope="col">price</th>
-                                            <th scope="col">qunatity</th>
+                                            <th scope="col">quantity</th>
                                             <th scope="col">total</th>
                                         </tr>
                                     </thead>
@@ -56,13 +56,7 @@
                             <h3 class="cart_single_title">Calculate Your Shipping<span><i class="icon_minus-06"></i></span></h3>
                             <div class="calculate_shop_inner">
                                 <form class="calculate_shoping_form row" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
-                                    <div class="form-group col-lg-12">
-                                        <select class="selectpicker">
-                                            <option>Indonesia (ID)</option>
-                                            <option>United State America (USA)</option>
-                                            <option>Konoha (KNH)</option>
-                                        </select>
-                                    </div>
+                                   
                                     <div class="form-group col-lg-6">
                                         <input type="text" class="form-control" id="state" name="state" placeholder="Kota">
                                     </div>
@@ -89,13 +83,12 @@
                                 <h3 class="cart_single_title">Discount Cupon</h3>
                                 <div class="cart_total_inner">
                                     <ul>
-                                        <li><a href="#"><span>Cart Subtotal</span> Rp 450 K</a></li>
-                                        <li><a href="#"><span>Shipping</span> Rp 25 K</a></li>
-                                        <li><a href="#"><span>Totals</span> Rp 475K</a></li>
+                                        <li><a href="#"><span>Cart Subtotal</span> Rp {{total}}</a></li>
+                                        <li><a href="#"><span>Shipping</span> Rp {{shipping}}</a></li>
+                                        <li><a href="#"><span>Totals</span> Rp {{total + shipping}}</a></li>
                                     </ul>
                                 </div>
-                                <button type="submit" class="btn btn-primary update_btn">update cart</button>                                
-                                <a class="btn btn-primary checkout_btn" href="checkout.html">proceed to checkout</a>
+                                <a class="btn btn-primary checkout_btn" @click.prevent="checkout()"><div class="loader" v-if="load ==  'Checkout'"></div> <span v-else>proceed to checkout</span></a>
                             </div>
                         </div>
                     </div>
@@ -229,17 +222,66 @@ export default {
             },
             modal : false,
             load: -1,
+            province: [],
+            city: [],
+            shipping: 25000,
+            diskon: null,
         }
     },
     mounted(){
         this.getCart();
         this.$parent.refresh();
         this.interval = setInterval(() => this.$parent.refresh(), 900000);
+        this.getProvince();
+        // this.getCity();
     },
     destroyed(){
            clearInterval(this.interval);
     },
+    computed:{
+        total(){
+            var sum=0;
+            for(let i=0;i< this.cart.length;i++){
+                sum = sum + (this.cart[i].item.price * this.cart[i].quantity)
+            }
+            return sum;
+        }
+    },
     methods:{
+        checkout(){
+            this.load = 'Checkout';
+            let uri = '/api/mytransaction';
+              axios.post(uri,{'shipping': this.shipping,'total':this.total, 'diskon': this.diskon},{
+                  headers: {
+                      Authorization: 'Bearer ' + localStorage.getItem('token')
+                  }
+              }).then((response) => {
+                  this.load = -1;
+                this.$router.push({name: 'Checkout', params:{token: response.data}});
+              }).catch(error => {
+                  this.load = -1;
+
+              })
+        },
+        getProvince(){
+            let uri = 'https://api.rajaongkir.com/starter/province';
+            axios.get(uri,{
+                    headers: { 
+                    Key: '731bb2c7c1583badc7fd01fb6b74113f' } 
+                }).then((response) => {
+                    console.log(response)
+                this.province = response.data;
+            })
+        },
+        getCity(){
+            let uri = '/api/mycart';
+            axios.get(uri,{
+                    headers: { 
+                    Authorization: 'Bearer ' + localStorage.getItem('token') } 
+                }).then((response) => {
+                this.cart = response.data;
+            })
+        },
         editData(id){
             this.load = 'Edit';
             let uri = '/api/cart/'+id;

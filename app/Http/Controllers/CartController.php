@@ -22,11 +22,11 @@ class CartController extends Controller
 
     public function showByUser()
     {
-        return Cart::where('user_id', JWTAuth::parseToken()->authenticate()->id )->with('user','item')->get();
+        return Cart::where([['user_id', JWTAuth::parseToken()->authenticate()->id],['status',0]] )->with('user','item')->get();
     }
     public function countCart()
     {
-        return Cart::where('user_id', JWTAuth::parseToken()->authenticate()->id )->count();
+        return Cart::where([['user_id', JWTAuth::parseToken()->authenticate()->id],['status',0]])->count();
     }
     /**
      * Show the form for creating a new resource.
@@ -53,7 +53,7 @@ class CartController extends Controller
             'item_id' => 'required',
         ]);
         
-        if(!$cart = Cart::where([['user_id',JWTAuth::parseToken()->authenticate()->id],['item_id', $request->item_id]])->first()){
+        if(!$cart = Cart::where([['user_id',JWTAuth::parseToken()->authenticate()->id],['item_id', $request->item_id],['status', 0]])->first()){
             $cart = new Cart();
             $cart->user_id = JWTAuth::parseToken()->authenticate()->id;
             $cart->item_id = $request->item_id;

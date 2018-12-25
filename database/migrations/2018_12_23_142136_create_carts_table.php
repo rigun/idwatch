@@ -18,6 +18,7 @@ class CreateCartsTable extends Migration
             $table->string('color');
             $table->string('size');
             $table->integer('quantity');
+            $table->integer('status')->default(0);
             $table->unsignedInteger('item_id');
             $table->foreign('item_id')
                   ->references('id')->on('items')
@@ -27,6 +28,8 @@ class CreateCartsTable extends Migration
                   ->references('id')->on('users')
                   ->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

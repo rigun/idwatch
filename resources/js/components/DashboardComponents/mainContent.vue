@@ -2,9 +2,15 @@
     <div>
         
                         <div class="module">
-                            <div class="module-head">
+                             
+                            <div class="module-head" style="display:flex">
                                 <h3>Data Barang</h3>
+                                <input type="text" class="span3" style="margin-left: auto;" placeholder="name" v-model="search">
+                                <button class="btn" type="button" style="height: 30px;" disabled>
+                                    <i class="icon-search"></i>
+                                </button>
                             </div>
+                            <br/>
                             <div class="module-body table">
                                 <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display"
                                     width="100%">
@@ -53,7 +59,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="gradeU" v-for="item in items" :key="item.id">
+                                        <tr class="gradeU" v-for="item in filterItem" :key="item.id">
                                             <td>
                                                 <center>
                                                     {{item.id}}
@@ -113,6 +119,7 @@ export default {
             interval: null,
             items: [],
             load: -1,
+            search: '',
         }
     },
     mounted(){
@@ -123,6 +130,16 @@ export default {
     destroyed(){
            clearInterval(this.interval);
     },
+    computed: {
+            filterItem: function(){
+                if(this.items.length) {
+                    return this.items.filter((row, index) => {
+                            if(this.search != '') return row.name.toLowerCase().includes(this.search.toLowerCase());                            
+                            return true;
+                      });
+                }
+            }
+        },
     methods:{
         getData(){
             let uri = '/api/item';

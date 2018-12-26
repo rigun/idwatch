@@ -83,15 +83,15 @@ export default {
         }
     },
     mounted(){
-        this.getReport();
-        this.$parent.refresh();
-        this.interval = setInterval(() => this.$parent.refresh(), 900000);
+        this.getReport(); //menampilkan data transaksi
+        this.$parent.refresh(); //memanggil fungsi refresh
+        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval pemanggilan fungsi refresh
     },
     destroyed(){
-           clearInterval(this.interval);
+           clearInterval(this.interval); //menghapus interval
     },
     methods:{
-          getReport(){
+          getReport(){ //mengambil data transaksi
             let uri = '/api/report';
             axios.get(uri,{
                     headers: { 

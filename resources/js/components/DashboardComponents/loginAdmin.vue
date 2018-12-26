@@ -61,13 +61,13 @@ export default {
         }
     },
     methods:{
-                loginAkun(){
+                loginAkun(){ //melakukan login akun
                     this.load = true;
             axios.post('/api/auth/login', {
                 email: this.login.email,
                 password: this.login.password
             }).then(response => {
-                if(response.data.role == 'user'){
+                if(response.data.role == 'user'){ //mengecek role dari akun
                     this.text = "Only admin can login from here"
                 }else{
                     store.commit('loginUser')

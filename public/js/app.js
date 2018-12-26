@@ -25742,6 +25742,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         unconfirmCount: function unconfirmCount() {
             var _this = this;
 
+            //mengambil jumlah data yang belum dikonfirmasi
             var uri = '/api/unconfirmCount';
             axios.get(uri).then(function (response) {
                 _this.count = response.data;
@@ -26033,12 +26034,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         loginAkun: function loginAkun() {
             var _this = this;
 
+            //melakukan login akun
             this.load = true;
             axios.post('/api/auth/login', {
                 email: this.login.email,
                 password: this.login.password
             }).then(function (response) {
                 if (response.data.role == 'user') {
+                    //mengecek role dari akun
                     _this.text = "Only admin can login from here";
                 } else {
                     __WEBPACK_IMPORTED_MODULE_0__store__["a" /* default */].commit('loginUser');
@@ -26438,23 +26441,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        this.$parent.refresh();
+        this.$parent.refresh(); //memanggil fungsi refresh pada parent
         this.interval = setInterval(function () {
             return _this.$parent.refresh();
-        }, 900000);
-        this.getData();
+        }, 900000); //mengeset interval dalam pemanggilan fungsi refresh
+        this.getData(); //mengambil data item
     },
     destroyed: function destroyed() {
-        clearInterval(this.interval);
+        clearInterval(this.interval); //menghapus interval
     },
 
     computed: {
         filterItem: function filterItem() {
             var _this2 = this;
 
+            //filter data yang akan ditampilkan
             if (this.items.length) {
                 return this.items.filter(function (row, index) {
-                    if (_this2.search != '') return row.name.toLowerCase().includes(_this2.search.toLowerCase());
+                    if (_this2.search != '') return row.name.toLowerCase().includes(_this2.search.toLowerCase()); //menampilkan data data yang memiliki kemiripan nama dengan variable search yang diinputkan               
                     return true;
                 });
             }
@@ -26464,6 +26468,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getData: function getData() {
             var _this3 = this;
 
+            //mengambil data
             var uri = '/api/itemAll';
             axios.get(uri).then(function (response) {
                 _this3.items = response.data;
@@ -26472,6 +26477,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         deleteData: function deleteData(id) {
             var _this4 = this;
 
+            //menghapus data
             this.load = id;
             var uri = '/api/item/' + id;
             axios.delete(uri, {
@@ -27024,46 +27030,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				mounted: function mounted() {
 								var _this = this;
 
-								this.$parent.refresh();
+								this.$parent.refresh(); //memanggil fungsi refersh pada parent
 								this.interval = setInterval(function () {
 												return _this.$parent.refresh();
-								}, 900000);
-								this.getCategory();
+								}, 900000); //mengeset interval untuk pemamggilan fungsi refresh
+								this.getCategory(); //mengambil kategori
 				},
 				destroyed: function destroyed() {
-								clearInterval(this.interval);
+								clearInterval(this.interval); //menghapus interval
 				},
 
 				methods: {
 								updateSlug: function updateSlug(val) {
+												//memperbaharui slug
 												this.item.slug = val;
 								},
 								slugCopied: function slugCopied(type, msg, val) {
+												//menyalin slug
 												notifications.toast(msg, { type: 'is-' + type });
 								},
 								getCategory: function getCategory() {
 												var _this2 = this;
 
+												//mengambil kategori
 												var uri = '/api/category';
 												axios.get(uri).then(function (response) {
 																_this2.categories = response.data;
 												});
 								},
 								validate: function validate() {
+												//validasi inputan
 												if (this.filenames.length <= 0) {
-																this.msg = this.msg + 'Please add at least one picture';
+																this.msg = this.msg + 'Please add at least one picture,';
 												}
 												if (this.item.name == '' || this.item.category_id == '' || this.item.stock == null || this.item.price == null || this.item.merk == '' || this.item.description == '') {
-																this.msg = this.msg + ' Please fill the blank field';
+																this.msg = this.msg + ' Please fill the blank field,';
 												}
 												if (this.item.stock < 1) {
-																this.msg = this.msg + ' Stock must be one or more';
+																this.msg = this.msg + ' Stock must be one or more,';
 												}
 												if (isNaN(this.item.stock)) {
-																this.msg = this.msg + ' Stock must be number';
+																this.msg = this.msg + ' Stock must be number,';
 												}
 												if (isNaN(this.item.price)) {
-																this.msg = this.msg + ' Price must be number';
+																this.msg = this.msg + ' Price must be number,';
 												}
 
 												if (this.msg != '') {
@@ -27077,6 +27087,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 								getfilenameSize: function getfilenameSize() {
 												var _this3 = this;
 
+												// mengambil ukuran dari file yang diupload
+
 												this.upload_size = 0; // Reset to beginningƒ
 												this.filenames.map(function (item) {
 																_this3.upload_size += parseInt(item.size);
@@ -27086,6 +27098,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 												this.$forceUpdate();
 								},
 								prepareFields: function prepareFields() {
+												//mempersiapakan data data yang akan diupload ke server
 												if (!this.validate()) {
 																return false;
 												}
@@ -27106,21 +27119,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 												return true;
 								},
 								removefilename: function removefilename(filename) {
+												//menghapus file yang sudah diupload
 
 												this.filenames.splice(this.filenames.indexOf(filename), 1);
 
 												this.getfilenameSize();
 								},
 								uploadFieldChange: function uploadFieldChange(e) {
+												//mengupload file ke browser
 												var files = e.target.files || e.dataTransfer.files;
 												if (!files.length) return;
 												for (var i = files.length - 1; i >= 0; i--) {
 																this.filenames.push(files[i]);
 												}
-												// Reset the form to avoid copying these files multiple times into this.filenames
 												document.getElementById("filenames").value = [];
 								},
 								sendData: function sendData() {
+												//mengirim data ke server
 												if (!this.prepareFields()) {
 																return false;
 												}
@@ -27134,17 +27149,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 																				this.$forceUpdate();
 																}.bind(this)
 												};
-												// Make HTTP request to store announcement
 												axios.post('/api/item', this.data, config).then(function (response) {
 																this.resetData();
 																this.load = false;
-												}.bind(this)) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
-												.catch(function (error) {
+												}.bind(this)).catch(function (error) {
 																this.load = false;
 												});
 								},
 								resetData: function resetData() {
-												this.data = new FormData(); // Reset it completely
+												//mengosongkan kembali data yang sudah terisi
+												this.data = new FormData();
 												this.filenames = [];
 												this.item = {
 																name: '',
@@ -27159,6 +27173,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 												};
 								},
 								previewBarang: function previewBarang(index) {
+												//menampilkan data yang diupload ke browser sebelum dikirimkan ke server
 												return URL.createObjectURL(this.filenames[index]);
 								}
 				},
@@ -27888,20 +27903,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        this.getReport();
-        this.$parent.refresh();
+        this.getReport(); //menampilkan data transaksi
+        this.$parent.refresh(); //memanggil fungsi refresh
         this.interval = setInterval(function () {
             return _this.$parent.refresh();
-        }, 900000);
+        }, 900000); //mengeset interval pemanggilan fungsi refresh
     },
     destroyed: function destroyed() {
-        clearInterval(this.interval);
+        clearInterval(this.interval); //menghapus interval
     },
 
     methods: {
         getReport: function getReport() {
             var _this2 = this;
 
+            //mengambil data transaksi
             var uri = '/api/report';
             axios.get(uri, {
                 headers: {
@@ -28192,29 +28208,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        this.getConfirm();
-        this.$parent.refresh();
+        this.getConfirm(); //mengambil data yang perlu dikonfirmasi
+        this.$parent.refresh(); //memanggil fungi refresh pada parent
         this.interval = setInterval(function () {
             return _this.$parent.refresh();
-        }, 900000);
+        }, 900000); //mengeset interval untuk memanggil fungsi refresh
     },
     destroyed: function destroyed() {
-        clearInterval(this.interval);
+        clearInterval(this.interval); //menghapus interval
     },
 
     methods: {
         verifikasi: function verifikasi(id, status) {
+            //kondisi verifikasi 
             var temp;
             if (status == 1) {
-                temp = 3;
+                temp = 3; //transaksi dipesan dengan metode transfer tunai dan sudah dikonfirmasi
             } else if (status == 3) {
-                temp = 1;
+                temp = 1; //transaksi dipesan dengan metode transfer tunai dan belum dikonfirmasi
             } else if (status == 2) {
-                temp = 4;
+                temp = 4; //transaksi dipesan dengan metode pembayaran secara langsung dan sudah dikonfirmasi
             } else if (status == 4) {
-                temp = 2;
+                temp = 2; //transaksi dipesan dengan metode pembayaran secara langsung dan belum dikonfirmasi
             } else {
-                temp = 0;
+                temp = 0; //status apabila terjadi error pada server
             }
             var uri = '/api/verifikasi/' + id;
             axios.post(uri, { 'status': temp }, {
@@ -28222,7 +28239,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
             }).then(function (response) {
                 this.getConfirm();
-                this.$parent.unconfirmCount();
+                this.$parent.unconfirmCount(); //memanggil fungsi pada parent berupa fungsi penghitungan jumlah data yang belum dikonfirmasi 
             }.bind(this)) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
             .catch(function (error) {
                 this.getConfirm();
@@ -28231,6 +28248,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getConfirm: function getConfirm() {
             var _this2 = this;
 
+            // mengambil data laporan transaksi
             var uri = '/api/report';
             axios.get(uri, {
                 headers: {
@@ -28600,21 +28618,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        this.getData();
+        this.getData(); //mengambil data item yang telah dihapus
 
-        this.$parent.refresh();
+        this.$parent.refresh(); //memanggil fungsi refresh pada parent
         this.interval = setInterval(function () {
             return _this.$parent.refresh();
-        }, 900000);
+        }, 900000); //mengeset interval pemanggilan fungsi refresh
     },
     destroyed: function destroyed() {
-        clearInterval(this.interval);
+        clearInterval(this.interval); //menghapus interval;
     },
 
     methods: {
         getData: function getData() {
             var _this2 = this;
 
+            //mengambil data yang telah dihapus
             var uri = '/api/item/trash';
             axios.get(uri, {
                 headers: {
@@ -28627,6 +28646,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         deleteData: function deleteData(id) {
             var _this3 = this;
 
+            //menghapus item secara permanent
             this.load = id;
             var uri = '/api/item/permanent/' + id;
             axios.delete(uri, {
@@ -28646,6 +28666,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         restoreData: function restoreData(id) {
             var _this4 = this;
 
+            //mengembalikan data yang telah dihapus
             var uri = '/api/item/restore/' + id;
             axios.get(uri, {
                 headers: {
@@ -29257,33 +29278,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	mounted: function mounted() {
 		var _this = this;
 
-		this.$parent.refresh();
+		this.$parent.refresh(); //memanggil fungsi refresh pada parent
 		this.interval = setInterval(function () {
 			return _this.$parent.refresh();
-		}, 900000);
-		this.getData();
-		this.getCategory();
+		}, 900000); //mengeset interval pemanggilan fungsi refresh
+		this.getData(); //mengambil data detail dari konten yang dipilih
+		this.getCategory(); //mengambil kategori
 	},
 	destroyed: function destroyed() {
-		clearInterval(this.interval);
+		clearInterval(this.interval); //menghapus interval
 	},
 
 	methods: {
 		updateSlug: function updateSlug(val) {
+			//memperbaharui slug berdasarkan nama dari item
 			this.item.slug = val;
 		},
 		slugCopied: function slugCopied(type, msg, val) {
+			//menyalin slug
 			notifications.toast(msg, { type: 'is-' + type });
 		},
 		getCategory: function getCategory() {
 			var _this2 = this;
 
+			//mengambil kategori
 			var uri = '/api/category';
 			axios.get(uri).then(function (response) {
 				_this2.categories = response.data;
 			});
 		},
 		validate: function validate() {
+			//menvalidasi inputan sebelum dikirim ke server
 			if (this.filenames.length <= 0 && this.originalFile.length <= 0) {
 				this.msg = this.msg + 'Please add at least one picture';
 			}
@@ -29311,6 +29336,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getfilenameSize: function getfilenameSize() {
 			var _this3 = this;
 
+			//mengambil ukuran dari file yang diupload ke browser
+
 			this.upload_size = 0; // Reset to beginningƒ
 			this.filenames.map(function (item) {
 				_this3.upload_size += parseInt(item.size);
@@ -29320,6 +29347,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.$forceUpdate();
 		},
 		prepareFields: function prepareFields() {
+			//mempersiapkan data data sebelum dikirim ke server
 			if (!this.validate()) {
 				return false;
 			}
@@ -29340,6 +29368,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			return true;
 		},
 		removefilename: function removefilename(filename) {
+			// menghapus file yang telah diupload ke browser
 			if (this.originalFile.length < 2 && this.filenames.length <= 1) {
 				alert('You have to upload new picture first before you can delete this picture');
 				return false;
@@ -29349,13 +29378,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.getfilenameSize();
 		},
 		uploadFieldChange: function uploadFieldChange(e) {
+			//mengupload file
 			var files = e.target.files || e.dataTransfer.files;
 			if (!files.length) return;
 			for (var i = files.length - 1; i >= 0; i--) {
 				this.filenames.push(files[i]);
 			}
 			if (this.originalFile.length < 2 && this.filenames.length <= 1) {
-
+				//jika file sebelumnya kurang dari 2 dan tidak ada file baru yang terupload ke browser
+				//file akan langsung diupload tanpa menyimpannya di browser
 				this.percentCompleted = 0;
 				var config = {
 					headers: { 'Content-Type': 'multipart/form-data',
@@ -29372,20 +29403,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					}
 				}
 				this.data.append('itemId', this.$route.params.id);
-				// Make HTTP request to store announcement
 				axios.post('/api/picture', this.data, config).then(function (response) {
 					this.resetData();
-				}.bind(this)) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
-				.catch(function (error) {
+				}.bind(this)).catch(function (error) {
 					alert('error');
 				});
 				return;
 			}
 
-			// Reset the form to avoid copying these files multiple times into this.filenames
 			document.getElementById("filenames").value = [];
 		},
 		sendData: function sendData() {
+			//mengirim data yang sudah diinputkan
 			if (!this.prepareFields()) {
 				return false;
 			}
@@ -29409,16 +29438,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			});
 		},
 		resetData: function resetData() {
-			this.data = new FormData(); // Reset it completely
+			//mengosongkan data yang telah diupload
+			this.data = new FormData();
 			this.filenames = [];
 			this.getPicture();
 		},
 		previewBarang: function previewBarang(index) {
+			//menampilkan preview gambar yang telah diupload ke browser
 			return URL.createObjectURL(this.filenames[index]);
 		},
 		getData: function getData() {
 			var _this4 = this;
 
+			//mengambil data item berdsarkan id
 			var uri = '/api/item/' + this.$route.params.id;
 			axios.get(uri).then(function (response) {
 				_this4.item = response.data;
@@ -29429,6 +29461,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getPicture: function getPicture() {
 			var _this5 = this;
 
+			//mengambil gambar berdsarkan id item
 			var uri = '/api/picture/' + this.$route.params.id;
 			axios.get(uri, {
 				headers: {
@@ -29440,6 +29473,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		deletePicture: function deletePicture() {
 			var _this6 = this;
+
+			//menghapus gambar yang diupload ke server
 
 			this.loadRemove = this.idPicture;
 			var uri = '/api/picture/' + this.idPicture;
@@ -29458,6 +29493,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			});
 		},
 		removeOriginal: function removeOriginal(id) {
+			//mengaktifkan modal untuk menghapus gambar
 			if (this.originalFile.length < 2 && this.filenames.length <= 0) {
 				alert('You have to upload new picture first before you can delete this picture');
 				return false;
@@ -53943,20 +53979,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        this.getdiscount();
-        this.$parent.refresh();
+        this.getdiscount(); //mengambil diskon yang sudah dibuat
+        this.$parent.refresh(); //memanggil fungsi refresh pada server
         this.interval = setInterval(function () {
             return _this.$parent.refresh();
-        }, 900000);
+        }, 900000); //mengeset interval pemanggilan fungsi refresh
     },
     destroyed: function destroyed() {
-        clearInterval(this.interval);
+        clearInterval(this.interval); //menghapus interval
     },
 
     methods: {
         getdiscount: function getdiscount() {
             var _this2 = this;
 
+            //mengambil kupon diskon yang sudah dibuat
             var uri = '/api/cupon/';
             axios.get(uri, {
                 headers: {
@@ -53966,6 +54003,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         addCupon: function addCupon() {
+            //menambahkan kupon diskon
             if (this.price == '' || this.price == null || this.price == 0) {
                 alert('Kupon tidak boleh kosong');
                 return;
@@ -53975,18 +54013,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
             };
-            // Make HTTP request to store announcement
             axios.post('/api/cupon', { 'price': this.price, 'expire': this.expire }, config).then(function (response) {
                 this.getdiscount();
                 this.load = false;
                 this.modal = false;
-            }.bind(this)) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
-            .catch(function (error) {
+            }.bind(this)).catch(function (error) {
                 this.load = false;
                 this.modal = false;
             });
         },
         editCupon: function editCupon() {
+            //memperbaharui kupon yang telah dibuat
             if (this.editData.price == '' || this.editData.price == null || this.editData.price == 0) {
                 alert('Kupon tidak boleh kosong');
                 return;
@@ -53996,18 +54033,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
             };
-            // Make HTTP request to store announcement
+
             axios.patch('/api/cupon/' + this.editData.id, { 'price': this.editData.price, 'expire': this.editData.expire }, config).then(function (response) {
                 this.getdiscount();
                 this.load = false;
                 this.modal = false;
-            }.bind(this)) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
-            .catch(function (error) {
+            }).catch(function (error) {
                 this.load = false;
                 this.modal = false;
             });
         },
         hapusCupon: function hapusCupon() {
+            //menghapus kupon yang sudah dibuat
             var config = {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
@@ -54015,8 +54052,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.delete('/api/cupon/' + this.editData.id, config).then(function (response) {
                 this.getdiscount();
                 this.modal = false;
-            }.bind(this)) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
-            .catch(function (error) {
+            }.bind(this)).catch(function (error) {
                 this.modal = false;
             });
         }

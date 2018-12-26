@@ -123,32 +123,32 @@ export default {
         }
     },
     mounted(){
-        this.$parent.refresh();
-        this.interval = setInterval(() => this.$parent.refresh(), 900000);
-        this.getData();
+        this.$parent.refresh(); //memanggil fungsi refresh pada parent
+        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval dalam pemanggilan fungsi refresh
+        this.getData(); //mengambil data item
     },
     destroyed(){
-           clearInterval(this.interval);
+           clearInterval(this.interval); //menghapus interval
     },
     computed: {
-            filterItem: function(){
+            filterItem: function(){ //filter data yang akan ditampilkan
                 if(this.items.length) {
                     return this.items.filter((row, index) => {
-                            if(this.search != '') return row.name.toLowerCase().includes(this.search.toLowerCase());                            
+                            if(this.search != '') return row.name.toLowerCase().includes(this.search.toLowerCase());  //menampilkan data data yang memiliki kemiripan nama dengan variable search yang diinputkan               
                             return true;
                       });
                 }
             }
         },
     methods:{
-        getData(){
+        getData(){ //mengambil data
             let uri = '/api/itemAll';
             axios.get(uri).then((response) => {
                 this.items = response.data;
             })
             
         },
-        deleteData(id){
+        deleteData(id){ //menghapus data
             this.load = id;
             let uri = '/api/item/'+id;
               axios.delete(uri,{

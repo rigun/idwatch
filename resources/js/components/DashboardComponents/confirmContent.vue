@@ -59,26 +59,26 @@ export default {
         }
     },
     mounted(){
-        this.getConfirm();
-        this.$parent.refresh();
-        this.interval = setInterval(() => this.$parent.refresh(), 900000);
+        this.getConfirm(); //mengambil data yang perlu dikonfirmasi
+        this.$parent.refresh(); //memanggil fungi refresh pada parent
+        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval untuk memanggil fungsi refresh
     },
     destroyed(){
-           clearInterval(this.interval);
+           clearInterval(this.interval); //menghapus interval
     },
     methods:{
-        verifikasi(id,status){
+        verifikasi(id,status){ //kondisi verifikasi 
             var temp;
             if(status == 1){
-                temp = 3;
+                temp = 3; //transaksi dipesan dengan metode transfer tunai dan sudah dikonfirmasi
             }else if(status == 3){
-                temp = 1;
+                temp = 1; //transaksi dipesan dengan metode transfer tunai dan belum dikonfirmasi
             }else if( status == 2){
-                temp = 4;
+                temp = 4; //transaksi dipesan dengan metode pembayaran secara langsung dan sudah dikonfirmasi
             }else if( status == 4){
-                temp = 2;
+                temp = 2; //transaksi dipesan dengan metode pembayaran secara langsung dan belum dikonfirmasi
             }else {
-                temp = 0;
+                temp = 0; //status apabila terjadi error pada server
             }
             let uri = '/api/verifikasi/'+id;
             axios.post(uri,{'status': temp}, {
@@ -88,13 +88,13 @@ export default {
             )
                 .then(function (response) {
                         this.getConfirm();
-                        this.$parent.unconfirmCount();
+                        this.$parent.unconfirmCount(); //memanggil fungsi pada parent berupa fungsi penghitungan jumlah data yang belum dikonfirmasi 
                 }.bind(this)) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
                 .catch(function (error) {
 						this.getConfirm();
                 });
         },
-        getConfirm(){
+        getConfirm(){ // mengambil data laporan transaksi
             let uri = '/api/report';
             axios.get(uri,{
                     headers: { 

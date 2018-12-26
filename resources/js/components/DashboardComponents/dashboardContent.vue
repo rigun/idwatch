@@ -58,7 +58,7 @@ export default {
         refresh(){
             this.$parent.refresh();
         },
-        unconfirmCount(){
+        unconfirmCount(){ //mengambil jumlah data yang belum dikonfirmasi
              let uri = '/api/unconfirmCount';
             axios.get(uri).then((response) => {
                 this.count = response.data;

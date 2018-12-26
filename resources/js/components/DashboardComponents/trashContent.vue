@@ -125,16 +125,16 @@ export default {
         }
     },
     mounted(){
-            this.getData()
+            this.getData(); //mengambil data item yang telah dihapus
          
-        this.$parent.refresh();
-        this.interval = setInterval(() => this.$parent.refresh(), 900000);
+        this.$parent.refresh(); //memanggil fungsi refresh pada parent
+        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval pemanggilan fungsi refresh
     },
     destroyed(){
-           clearInterval(this.interval);
+           clearInterval(this.interval); //menghapus interval;
     },
     methods:{
-        getData(){
+        getData(){ //mengambil data yang telah dihapus
             let uri = '/api/item/trash';
             axios.get(uri,{
                   headers: {
@@ -145,7 +145,7 @@ export default {
             })
             
         },
-        deleteData(id){
+        deleteData(id){ //menghapus item secara permanent
             this.load = id;
             let uri = '/api/item/permanent/'+id;
               axios.delete(uri,{
@@ -163,7 +163,7 @@ export default {
               })
         
         },
-        restoreData(id){
+        restoreData(id){ //mengembalikan data yang telah dihapus
             let uri = '/api/item/restore/'+id;
               axios.get(uri,{
                   headers: {

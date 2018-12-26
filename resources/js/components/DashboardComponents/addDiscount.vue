@@ -92,15 +92,15 @@ export default {
         }
     },
     mounted(){
-        this.getdiscount();
-        this.$parent.refresh();
-        this.interval = setInterval(() => this.$parent.refresh(), 900000);
+        this.getdiscount(); //mengambil diskon yang sudah dibuat
+        this.$parent.refresh(); //memanggil fungsi refresh pada server
+        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval pemanggilan fungsi refresh
     },
     destroyed(){
-           clearInterval(this.interval);
+           clearInterval(this.interval); //menghapus interval
     },
     methods:{
-        getdiscount(){
+        getdiscount(){ //mengambil kupon diskon yang sudah dibuat
             let uri = '/api/cupon/';
             axios.get(uri,{
                     headers: { 
@@ -109,7 +109,7 @@ export default {
                 this.discounts = response.data;
             })
         },
-        addCupon(){
+        addCupon(){ //menambahkan kupon diskon
                 if(this.price == '' || this.price == null || this.price == 0){
                     alert('Kupon tidak boleh kosong')
                     return;
@@ -119,20 +119,19 @@ export default {
 					headers: { 
 					Authorization: 'Bearer ' + localStorage.getItem('token') } ,
                 };
-                // Make HTTP request to store announcement
                 axios.post('/api/cupon', {'price': this.price, 'expire': this.expire}, config)
                 .then(function (response) {
 						this.getdiscount();
                         this.load = false;
                         this.modal = false;
-                }.bind(this)) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
+                }.bind(this)) 
                 .catch(function (error) {
                         this.load = false;
                         this.modal = false;
                         
                 });
         },
-        editCupon(){
+        editCupon(){ //memperbaharui kupon yang telah dibuat
                 if(this.editData.price == '' || this.editData.price == null || this.editData.price == 0){
                     alert('Kupon tidak boleh kosong')
                     return;
@@ -142,20 +141,20 @@ export default {
 					headers: { 
 					Authorization: 'Bearer ' + localStorage.getItem('token') } ,
                 };
-                // Make HTTP request to store announcement
+              
                 axios.patch('/api/cupon/'+this.editData.id, {'price': this.editData.price, 'expire': this.editData.expire}, config)
                 .then(function (response) {
 						this.getdiscount();
                         this.load = false;
                         this.modal = false;
-                }.bind(this)) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
+                }) 
                 .catch(function (error) {
                         this.load = false;
                         this.modal = false;
                         
                 });
         },
-        hapusCupon(){
+        hapusCupon(){ //menghapus kupon yang sudah dibuat
                 var config = {
 					headers: { 
 					Authorization: 'Bearer ' + localStorage.getItem('token') } ,
@@ -164,7 +163,7 @@ export default {
                 .then(function (response) {
 						this.getdiscount();
                         this.modal = false;
-                }.bind(this)) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
+                }.bind(this)) 
                 .catch(function (error) {
                         this.modal = false;
                         

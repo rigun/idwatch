@@ -139,41 +139,41 @@ export default {
         }
     },
     mounted(){
-        this.$parent.refresh();
-        this.interval = setInterval(() => this.$parent.refresh(), 900000);
-        this.getCategory();
+        this.$parent.refresh(); //memanggil fungsi refersh pada parent
+        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval untuk pemamggilan fungsi refresh
+        this.getCategory(); //mengambil kategori
     },
     destroyed(){
-           clearInterval(this.interval);
+           clearInterval(this.interval); //menghapus interval
     },
     methods:{
-        updateSlug: function(val) {
+        updateSlug: function(val) { //memperbaharui slug
              this.item.slug = val;
             },
-            slugCopied: function(type, msg, val) {
+            slugCopied: function(type, msg, val) { //menyalin slug
                 notifications.toast(msg, {type: `is-${type}`});
             },
-        getCategory(){
+        getCategory(){ //mengambil kategori
             let uri = '/api/category';
             axios.get(uri).then((response) => {
                 this.categories = response.data;
             });
 		},
-		validate(){
+		validate(){ //validasi inputan
 			if(this.filenames.length <= 0){
-				this.msg = this.msg + 'Please add at least one picture'
+				this.msg = this.msg + 'Please add at least one picture,'
 			}
 			if(this.item.name == '' || this.item.category_id == '' ||this.item.stock == null || this.item.price == null || this.item.merk == '' || this.item.description == ''){
-				this.msg = this.msg + ' Please fill the blank field'
+				this.msg = this.msg + ' Please fill the blank field,'
 			}
 			if(this.item.stock < 1){
-				this.msg = this.msg + ' Stock must be one or more'
+				this.msg = this.msg + ' Stock must be one or more,'
 			}
 			if(isNaN(this.item.stock)){
-				this.msg = this.msg + ' Stock must be number'
+				this.msg = this.msg + ' Stock must be number,'
 			}
 			if(isNaN(this.item.price)){
-				this.msg = this.msg + ' Price must be number'
+				this.msg = this.msg + ' Price must be number,'
 			}
 
 			if(this.msg != ''){
@@ -183,7 +183,7 @@ export default {
 			return true;
 		},
 		//picture
-		getfilenameSize() {
+		getfilenameSize() { // mengambil ukuran dari file yang diupload
                 
                 this.upload_size = 0; // Reset to beginningƒ
                 this.filenames.map((item) => { this.upload_size += parseInt(item.size); });
@@ -191,7 +191,7 @@ export default {
                 this.upload_size = Number((this.upload_size).toFixed(1));
                 this.$forceUpdate();
             },
-            prepareFields() {
+            prepareFields() { //mempersiapakan data data yang akan diupload ke server
                 if(!this.validate()){
 					return false;
 				}
@@ -211,23 +211,22 @@ export default {
 					this.data.append('category_id', this.item.category_id);
 					return true;
             },
-            removefilename(filename) {
+            removefilename(filename) { //menghapus file yang sudah diupload
                 
                 this.filenames.splice(this.filenames.indexOf(filename), 1);
                 
                 this.getfilenameSize();
 			},
-			 uploadFieldChange(e) {
+			 uploadFieldChange(e) { //mengupload file ke browser
                 var files = e.target.files || e.dataTransfer.files;
                 if (!files.length)
                     return;
                 for (var i = files.length - 1; i >= 0; i--) {
                     this.filenames.push(files[i]);
                 }
-                // Reset the form to avoid copying these files multiple times into this.filenames
                 document.getElementById("filenames").value = [];
 			},
-			sendData() {
+			sendData() { //mengirim data ke server
                 if(!this.prepareFields()){
 					return false;
 				}
@@ -241,18 +240,17 @@ export default {
                         this.$forceUpdate();
                     }.bind(this)
                 };
-                // Make HTTP request to store announcement
                 axios.post('/api/item', this.data, config)
                 .then(function (response) {
 						this.resetData();
 						this.load = false;
-                }.bind(this)) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
+                }.bind(this))
                 .catch(function (error) {
 						this.load = false;
                 });
             },
-            resetData() {
-                this.data = new FormData(); // Reset it completely
+            resetData() { //mengosongkan kembali data yang sudah terisi
+                this.data = new FormData(); 
 				this.filenames = [];
 				this.item={
 							name: '',
@@ -266,7 +264,7 @@ export default {
 							description: '',
 						}
 			},
-			previewBarang(index){
+			previewBarang(index){ //menampilkan data yang diupload ke browser sebelum dikirimkan ke server
                 return URL.createObjectURL(this.filenames[index]);
             }
 			

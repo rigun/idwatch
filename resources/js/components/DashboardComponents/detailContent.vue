@@ -168,28 +168,28 @@ export default {
         }
     },
     mounted(){
-        this.$parent.refresh();
-        this.interval = setInterval(() => this.$parent.refresh(), 900000);
-        this.getData();
-        this.getCategory();
+        this.$parent.refresh(); //memanggil fungsi refresh pada parent
+        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval pemanggilan fungsi refresh
+        this.getData(); //mengambil data detail dari konten yang dipilih
+        this.getCategory(); //mengambil kategori
     },
     destroyed(){
-           clearInterval(this.interval);
+           clearInterval(this.interval); //menghapus interval
     },
     methods:{
-        updateSlug: function(val) {
+        updateSlug: function(val) { //memperbaharui slug berdasarkan nama dari item
              this.item.slug = val;
             },
-            slugCopied: function(type, msg, val) {
+            slugCopied: function(type, msg, val) { //menyalin slug
                 notifications.toast(msg, {type: `is-${type}`});
             },
-        getCategory(){
+        getCategory(){ //mengambil kategori
             let uri = '/api/category';
             axios.get(uri).then((response) => {
                 this.categories = response.data;
             });
 		},
-		validate(){
+		validate(){ //menvalidasi inputan sebelum dikirim ke server
 			if(this.filenames.length <= 0 && this.originalFile.length <= 0){
 				this.msg = this.msg + 'Please add at least one picture'
 			}
@@ -213,7 +213,7 @@ export default {
 			return true;
 		},
 		//picture
-		getfilenameSize() {
+		getfilenameSize() { //mengambil ukuran dari file yang diupload ke browser
                 
                 this.upload_size = 0; // Reset to beginningƒ
                 this.filenames.map((item) => { this.upload_size += parseInt(item.size); });
@@ -221,7 +221,7 @@ export default {
                 this.upload_size = Number((this.upload_size).toFixed(1));
                 this.$forceUpdate();
             },
-            prepareFields() {
+            prepareFields() { //mempersiapkan data data sebelum dikirim ke server
                 if(!this.validate()){
 					return false;
 				}
@@ -241,7 +241,7 @@ export default {
 					this.data.append('category_id', this.item.category_id);
 					return true;
             },
-            removefilename(filename) {
+            removefilename(filename) {// menghapus file yang telah diupload ke browser
                 if(this.originalFile.length < 2 && this.filenames.length <=1){
 					alert('You have to upload new picture first before you can delete this picture');
 					return false;
@@ -250,15 +250,15 @@ export default {
                 
                 this.getfilenameSize();
 			},
-			 uploadFieldChange(e) {
+			 uploadFieldChange(e) { //mengupload file
                 var files = e.target.files || e.dataTransfer.files;
                 if (!files.length)
 					return;
 for (var i = files.length - 1; i >= 0; i--) {
 						this.filenames.push(files[i]);
 					}
-				if(this.originalFile.length < 2 && this.filenames.length <=1){
-					
+				if(this.originalFile.length < 2 && this.filenames.length <=1){ //jika file sebelumnya kurang dari 2 dan tidak ada file baru yang terupload ke browser
+					//file akan langsung diupload tanpa menyimpannya di browser
 					this.percentCompleted =0;
 					var config = {
 						headers: { 'Content-Type': 'multipart/form-data',
@@ -275,11 +275,10 @@ for (var i = files.length - 1; i >= 0; i--) {
 						}
 					}
 					this.data.append('itemId', this.$route.params.id);
-					// Make HTTP request to store announcement
 					axios.post('/api/picture', this.data, config)
 					.then(function (response) {
 							this.resetData();
-					}.bind(this)) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
+					}.bind(this)) 
 					.catch(function (error) {
 						alert('error');
 					});
@@ -287,10 +286,9 @@ for (var i = files.length - 1; i >= 0; i--) {
 				}
 
                 
-                // Reset the form to avoid copying these files multiple times into this.filenames
                 document.getElementById("filenames").value = [];
 			},
-			sendData() {
+			sendData() { //mengirim data yang sudah diinputkan
                 if(!this.prepareFields()){
 					return false;
 				}
@@ -314,15 +312,15 @@ for (var i = files.length - 1; i >= 0; i--) {
 						this.load = false;
                 });
             },
-            resetData() {
-                this.data = new FormData(); // Reset it completely
+            resetData() { //mengosongkan data yang telah diupload
+                this.data = new FormData(); 
 				this.filenames = [];
 				this.getPicture();
 			},
-			previewBarang(index){
+			previewBarang(index){  //menampilkan preview gambar yang telah diupload ke browser
                 return URL.createObjectURL(this.filenames[index]);
 			},
-			 getData(){
+			 getData(){ //mengambil data item berdsarkan id
 				let uri = '/api/item/'+this.$route.params.id;
 				axios.get(uri).then((response) => {
 					this.item = response.data;
@@ -331,7 +329,7 @@ for (var i = files.length - 1; i >= 0; i--) {
 				})
 				
 			},
-			 getPicture(){
+			 getPicture(){ //mengambil gambar berdsarkan id item
 				let uri = '/api/picture/'+this.$route.params.id;
 				axios.get(uri,{
 					headers: {
@@ -342,7 +340,7 @@ for (var i = files.length - 1; i >= 0; i--) {
 				})
 				
 			},
-			deletePicture(){
+			deletePicture(){ //menghapus gambar yang diupload ke server
 				
 				 this.loadRemove = this.idPicture;
 				let uri = '/api/picture/'+this.idPicture;
@@ -360,7 +358,7 @@ for (var i = files.length - 1; i >= 0; i--) {
 					this.getPicture();
 				})
 			},
-			removeOriginal(id){
+			removeOriginal(id){ //mengaktifkan modal untuk menghapus gambar
 				if(this.originalFile.length < 2 && this.filenames.length <=0){
 					alert('You have to upload new picture first before you can delete this picture');
 					return false;

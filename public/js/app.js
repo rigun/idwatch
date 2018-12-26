@@ -20204,6 +20204,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.load = 'Checkout';
             if (this.shipping == 0) {
                 alert('Silahkan hitung estimasi biaya pengiriman anda terlebih dahulu');
+                this.load = -1;
                 return;
             }
             var uri = '/api/mytransaction';

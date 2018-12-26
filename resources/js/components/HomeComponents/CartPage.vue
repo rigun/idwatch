@@ -328,6 +328,7 @@ export default {
             this.load = 'Checkout';
             if(this.shipping == 0){
                 alert('Silahkan hitung estimasi biaya pengiriman anda terlebih dahulu');
+                  this.load = -1;
                 return;
             }
             let uri = '/api/mytransaction';

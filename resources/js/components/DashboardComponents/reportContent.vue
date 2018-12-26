@@ -17,7 +17,7 @@
                                                     List Barang & jumlah
                                                 </th>
                                                 <th>
-                                                    Total Bayar
+                                                    Total*
                                                 </th>
                                                 <th>
                                                     Metode Pembayaran
@@ -44,7 +44,7 @@
                                                     </table>	
                                                 </td>
                                                 <td>
-                                                    Rp {{report.total + report.shipping}}
+                                                    Rp {{parseInt(report.total) + parseInt(report.shipping) - parseInt(report.diskon)}}
                                                 </td>
                                                 <td class="center">
                                                     <span v-if="report.status == 0">-</span>
@@ -64,6 +64,7 @@
                                     </table>
                                 </div>
                             </div>
+                            *Total berasal dari Biaya Barang + Biaya Pengiriman - Diskon.
                             <!--/.module-->
         
     </div>

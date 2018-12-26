@@ -71,7 +71,7 @@
                                         <li><a href="#"><span>Subtotal Keranjang</span> Rp {{total}}</a></li>
                                         <li><a href="#"><span>Biaya Pengiriman</span> Rp {{shipping}}</a></li>
                                         <li><a href="#" v-if="diskon > 0"><span>Diskon</span> Rp {{diskon}}</a></li>
-                                        <li><a href="#"><span>Total Bayar</span> Rp {{total + shipping - diskon}}</a></li>
+                                        <li><a href="#"><span>Total Bayar</span> Rp {{parseInt(total) + parseInt(shipping) - parseInt(diskon)}}</a></li>
                                     </ul>
                                 </div>
                                 <h3 class="cart_single_title" style="text-align: center">Apabila dalam 1 x 24 jam tidak melakukan pembayaran, maka transaksi akan dibatalkan</h3>                                

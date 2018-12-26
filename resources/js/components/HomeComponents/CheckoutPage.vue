@@ -69,7 +69,7 @@
                                         <h5 v-for="item in transaction.detail" :key="item.id">{{item.cart.item.name}} <span>Rp {{item.cart.item.price * item.cart.quantity}}</span></h5>
                                         <h4>Biaya Pengiriman <span>Rp {{transaction.shipping}}</span></h4>
                                         <h4 v-if="transaction.diskon > 0">Diskon <span>Rp {{transaction.diskon}}</span></h4>
-                                        <h3><span class="normal_text">Total Pesanan</span> <span>Rp {{transaction.total + transaction.shipping - transaction.diskon}}</span></h3>
+                                        <h3><span class="normal_text">Total Pesanan</span> <span>Rp {{parseInt(transaction.total) + parseInt(transaction.shipping) - parseInt(transaction.diskon)}}</span></h3>
                                     </div>
                                     <div id="accordion" role="tablist" class="price_method">
                                         <div class="card">

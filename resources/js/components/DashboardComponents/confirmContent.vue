@@ -16,7 +16,7 @@
                                 <td class="cell-title">List Barang & jumlahnya</td>
                                 <td class="">nama User</td>
                                 <td class="">Alamat</td>
-                                <td class="cell-time ">Total</td>
+                                <td class="cell-time ">Total*</td>
                                 <td class="cell-time ">Download Bukti</td>
                                 <td class="cell-status hidden-phone hidden-tablet">Status</td>
                             </tr>
@@ -33,7 +33,7 @@
                                                     </div></td>
                                 <td class="cell-title"><div>{{confirm.user.name}}</div></td>
                                 <td class="cell-title"><div>{{confirm.address}}</div></td>
-                                <td class="cell-time ">Rp {{confirm.total + confirm.shipping}}</td>
+                                <td class="cell-time ">Rp {{parseInt(confirm.total) + parseInt(confirm.shipping) - parseInt(confirm.diskon)}}</td>
                                 <td class="cell-time "><span v-if="confirm.evidence == null">-</span><span v-else><a :href="'../../itemImages/'+confirm.evidence">Download</a></span></td>
                                 <td class="cell-status hidden-phone hidden-tablet"><a href="#" class="btn btn-primary" v-if="confirm.status > 2" @click.prevent="verifikasi(confirm.id,confirm.status)" >Sudah Dikonfirmasi</a><b class="due" v-else @click.prevent="verifikasi(confirm.id,confirm.status)">Belum Terkonfirmasi</b></td>
                             </tr>
@@ -45,6 +45,7 @@
 
                 </div>
                 <div class="module-foot">
+                    *Total berasal dari Biaya Barang + Biaya Pengiriman - Diskon.
                 </div>
             </div>
 						

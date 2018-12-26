@@ -86,7 +86,7 @@
                                         <li><a href="#"><span>Subtotal keranjang</span> Rp {{total}}</a></li>
                                         <li><a href="#"><span>Biaya Pengiriman</span> Rp {{shipping}}</a></li>
                                         <li v-if="diskon != 0"><a href="#"><span>Diskon</span> Rp {{diskon}}</a></li>
-                                        <li><a href="#"><span>Total Bayar</span> Rp {{total + shipping - diskon}}</a></li>
+                                        <li><a href="#"><span>Total Bayar</span> Rp {{parseInt(total) + parseInt(shipping) - parseInt(diskon)}}</a></li>
                                     </ul>
                                 </div>
                                 <a class="btn btn-primary checkout_btn" @click.prevent="checkout()"><div class="loader" v-if="load ==  'Checkout'"></div> <span v-else>Lanjutkan ke pembayaran</span></a>

@@ -20389,7 +20389,11 @@ var render = function() {
                               _c("span", [_vm._v("Total Bayar")]),
                               _vm._v(
                                 " Rp " +
-                                  _vm._s(_vm.total + _vm.shipping - _vm.diskon)
+                                  _vm._s(
+                                    parseInt(_vm.total) +
+                                      parseInt(_vm.shipping) -
+                                      parseInt(_vm.diskon)
+                                  )
                               )
                             ])
                           ])
@@ -24509,9 +24513,9 @@ var render = function() {
                           _vm._v(
                             "Rp " +
                               _vm._s(
-                                _vm.transaction.total +
-                                  _vm.transaction.shipping -
-                                  _vm.transaction.diskon
+                                parseInt(_vm.transaction.total) +
+                                  parseInt(_vm.transaction.shipping) -
+                                  parseInt(_vm.transaction.diskon)
                               )
                           )
                         ])
@@ -25418,7 +25422,11 @@ var render = function() {
                               _c("span", [_vm._v("Total Bayar")]),
                               _vm._v(
                                 " Rp " +
-                                  _vm._s(_vm.total + _vm.shipping - _vm.diskon)
+                                  _vm._s(
+                                    parseInt(_vm.total) +
+                                      parseInt(_vm.shipping) -
+                                      parseInt(_vm.diskon)
+                                  )
                               )
                             ])
                           ])
@@ -27892,6 +27900,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -27990,7 +27999,11 @@ var render = function() {
                   _c("td", [
                     _vm._v(
                       "\n                                                Rp " +
-                        _vm._s(report.total + report.shipping) +
+                        _vm._s(
+                          parseInt(report.total) +
+                            parseInt(report.shipping) -
+                            parseInt(report.diskon)
+                        ) +
                         "\n                                            "
                     )
                   ]),
@@ -28026,7 +28039,10 @@ var render = function() {
           ]
         )
       ])
-    ])
+    ]),
+    _vm._v(
+      "\n                        *Total berasal dari Biaya Barang + Biaya Pengiriman - Diskon.\n                        "
+    )
   ])
 }
 var staticRenderFns = [
@@ -28058,7 +28074,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [
           _vm._v(
-            "\n                                                Total Bayar\n                                            "
+            "\n                                                Total*\n                                            "
           )
         ]),
         _vm._v(" "),
@@ -28145,6 +28161,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -28319,7 +28336,14 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("td", { staticClass: "cell-time " }, [
-                      _vm._v("Rp " + _vm._s(confirm.total + confirm.shipping))
+                      _vm._v(
+                        "Rp " +
+                          _vm._s(
+                            parseInt(confirm.total) +
+                              parseInt(confirm.shipping) -
+                              parseInt(confirm.diskon)
+                          )
+                      )
                     ]),
                     _vm._v(" "),
                     _c("td", { staticClass: "cell-time " }, [
@@ -28381,7 +28405,11 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "module-foot" })
+      _c("div", { staticClass: "module-foot" }, [
+        _vm._v(
+          "\n                *Total berasal dari Biaya Barang + Biaya Pengiriman - Diskon.\n            "
+        )
+      ])
     ])
   ])
 }
@@ -28409,7 +28437,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("td", {}, [_vm._v("Alamat")]),
       _vm._v(" "),
-      _c("td", { staticClass: "cell-time " }, [_vm._v("Total")]),
+      _c("td", { staticClass: "cell-time " }, [_vm._v("Total*")]),
       _vm._v(" "),
       _c("td", { staticClass: "cell-time " }, [_vm._v("Download Bukti")]),
       _vm._v(" "),

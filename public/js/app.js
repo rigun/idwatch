@@ -20071,6 +20071,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -20090,9 +20121,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             modal: false,
             load: -1,
-            province: [],
-            city: [],
-            shipping: 25000,
+            provinsi_id: -1,
+            kota_id: -1,
+            provinsis: [],
+            kotas: [],
+            jne: [],
+            tiki: [],
+            pos: [],
+            shipping: 0,
             diskon: 0,
             cupon: null
         };
@@ -20105,7 +20141,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return _this.$parent.refresh();
         }, 900000); //mengeset interval refresh agar token tidak kadaluarsa
         this.getProvince();
-        // this.getCity();
     },
     destroyed: function destroyed() {
         clearInterval(this.interval); //menghapus interval
@@ -20117,6 +20152,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var sum = 0;
             for (var i = 0; i < this.cart.length; i++) {
                 sum = sum + this.cart[i].item.price * this.cart[i].quantity;
+            }
+            return sum;
+        },
+        sumOfWeight: function sumOfWeight() {
+            var sum = 0;
+            for (var i = 0; i < this.cart.length; i++) {
+                sum = sum + parsetInt(this.cart[i].item.weight);
             }
             return sum;
         }
@@ -20162,34 +20204,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this3.load = -1;
             });
         },
-        getProvince: function getProvince() {
+        getCost: function getCost() {
             var _this4 = this;
 
+            var uri = '/api/rajaongkir/' + this.kota_id + '/' + this.sumOfWeight;
+            axios.get(uri).then(function (response) {
+                _this4.jne = response.data.jne;
+                _this4.tiki = response.data.tiki;
+                _this4.pos = response.data.pos;
+            });
+        },
+        getProvince: function getProvince() {
+            var _this5 = this;
+
             //mengambil data provinsi dari api raja ongkir
-            var uri = 'https://api.rajaongkir.com/starter/province';
-            axios.get(uri, {
-                headers: {
-                    'key': '4e783427bd2c52632a0d6fa866e5aff2'
-                }
-            }).then(function (response) {
-                console.log(response);
-                _this4.province = response.data;
+            var uri = '/api/rajaongkir/provinsi';
+            axios.get(uri).then(function (response) {
+                _this5.provinsis = response.data;
             });
         },
         getCity: function getCity() {
-            var _this5 = this;
+            var _this6 = this;
 
             //mengambil data kota dari api raja ongkir
-            var uri = '/api/mycart';
-            axios.get(uri, {
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('token') }
-            }).then(function (response) {
-                _this5.cart = response.data;
+            var uri = '/api/rajaongkir/kota/' + this.provinsi_id;
+            axios.get(uri).then(function (response) {
+                _this6.kotas = response.data;
             });
         },
         editData: function editData(id) {
-            var _this6 = this;
+            var _this7 = this;
 
             //melakukan pembaharuan data pesanan
             this.load = 'Edit';
@@ -20199,17 +20243,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 }
             }).then(function (response) {
-                _this6.load = -1;
-                _this6.modal = false;
-                _this6.getCart();
+                _this7.load = -1;
+                _this7.modal = false;
+                _this7.getCart();
             }).catch(function (error) {
-                _this6.load = -1;
-                _this6.modal = false;
-                _this6.getCart();
+                _this7.load = -1;
+                _this7.modal = false;
+                _this7.getCart();
             });
         },
         deleteData: function deleteData(id) {
-            var _this7 = this;
+            var _this8 = this;
 
             //menghapus data pesanan
             this.load = 'Delete';
@@ -20219,13 +20263,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 }
             }).then(function (response) {
-                _this7.load = -1;
-                _this7.modal = false;
-                _this7.getCart();
+                _this8.load = -1;
+                _this8.modal = false;
+                _this8.getCart();
             }).catch(function (error) {
-                _this7.load = -1;
-                _this7.modal = false;
-                _this7.getCart();
+                _this8.load = -1;
+                _this8.modal = false;
+                _this8.getCart();
             });
         },
         decrement: function decrement() {
@@ -20248,7 +20292,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         getCart: function getCart() {
-            var _this8 = this;
+            var _this9 = this;
 
             //mengambil data keranjang
             var uri = '/api/mycart';
@@ -20256,8 +20300,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
             }).then(function (response) {
-                _this8.cart = response.data;
-                _this8.$nextTick(function () {
+                _this9.cart = response.data;
+                _this9.$nextTick(function () {
                     //memanggil method ketika konten selesai dirender
                     this.$parent.refresh(); //memanggil fungsi refresh pada parent
                 });
@@ -20403,7 +20447,257 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(1)
+                  _c("div", { staticClass: "calculate_shoping_area" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "calculate_shop_inner" }, [
+                      _c("div", { staticClass: "form-group col-lg-6" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.provinsi_id,
+                                expression: "provinsi_id"
+                              }
+                            ],
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.provinsi_id = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "-1" } }, [
+                              _vm._v("Pilih Provinsi Anda")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.provinsis, function(provinsi) {
+                              return _c(
+                                "option",
+                                {
+                                  key: provinsi.province_id,
+                                  domProps: { value: provinsi.province_id },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      _vm.getCity()
+                                    }
+                                  }
+                                },
+                                [_vm._v(_vm._s(provinsi.province))]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _vm.kotas.length > 0
+                        ? _c("div", { staticClass: "form-group col-lg-6" }, [
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.kota_id,
+                                    expression: "kota_id"
+                                  }
+                                ],
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.kota_id = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "-1" } }, [
+                                  _vm._v("Pilih Kota Anda")
+                                ]),
+                                _vm._v(" "),
+                                _vm._l(_vm.kotas, function(kota) {
+                                  return _c(
+                                    "option",
+                                    {
+                                      key: kota.city_id,
+                                      domProps: { value: kota.city_id },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          _vm.getCost()
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        _vm._s(kota.type) +
+                                          " " +
+                                          _vm._s(kota.city_name)
+                                      )
+                                    ]
+                                  )
+                                })
+                              ],
+                              2
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.jne.length > 0
+                        ? _c("div", { staticClass: "form-group col-lg-12" }, [
+                            _vm._v(
+                              "\r\n                                        Silahkan pilih biaya pengiriman yang diinginkan\r\n                                        "
+                            ),
+                            _c(
+                              "table",
+                              [
+                                _vm._m(2),
+                                _vm._v(" "),
+                                _vm._l(_vm.jne.costs, function(jc, index) {
+                                  return _c("tr", { key: index }, [
+                                    _c("td", [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.shipping,
+                                            expression: "shipping"
+                                          }
+                                        ],
+                                        attrs: { type: "radio", name: "cost" },
+                                        domProps: {
+                                          value: jc.cost[0].value,
+                                          checked: _vm._q(
+                                            _vm.shipping,
+                                            jc.cost[0].value
+                                          )
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            _vm.shipping = jc.cost[0].value
+                                          }
+                                        }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(jc.service))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Rp " + _vm._s(jc.cost))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(jc.cost[0].etd) + " Hari")
+                                    ])
+                                  ])
+                                }),
+                                _vm._v(" "),
+                                _vm._l(_vm.tiki.costs, function(jc, index) {
+                                  return _c("tr", { key: index }, [
+                                    _c("td", [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.shipping,
+                                            expression: "shipping"
+                                          }
+                                        ],
+                                        attrs: { type: "radio", name: "cost" },
+                                        domProps: {
+                                          value: jc.cost[0].value,
+                                          checked: _vm._q(
+                                            _vm.shipping,
+                                            jc.cost[0].value
+                                          )
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            _vm.shipping = jc.cost[0].value
+                                          }
+                                        }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(jc.service))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Rp " + _vm._s(jc.cost))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(jc.cost[0].etd) + " Hari")
+                                    ])
+                                  ])
+                                }),
+                                _vm._v(" "),
+                                _vm._l(_vm.pos.costs, function(jc, index) {
+                                  return _c("tr", { key: index }, [
+                                    _c("td", [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.shipping,
+                                            expression: "shipping"
+                                          }
+                                        ],
+                                        attrs: { type: "radio", name: "cost" },
+                                        domProps: {
+                                          value: jc.cost[0].value,
+                                          checked: _vm._q(
+                                            _vm.shipping,
+                                            jc.cost[0].value
+                                          )
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            _vm.shipping = jc.cost[0].value
+                                          }
+                                        }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(jc.service))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Rp " + _vm._s(jc.cost))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(jc.cost[0].etd) + " Hari")
+                                    ])
+                                  ])
+                                })
+                              ],
+                              2
+                            )
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-lg-4" }, [
@@ -20947,62 +21241,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "calculate_shoping_area" }, [
-      _c("h3", { staticClass: "cart_single_title" }, [
-        _vm._v("Hitung biaya pengiriman anda"),
-        _c("span", [_c("i", { staticClass: "icon_minus-06" })])
-      ]),
+    return _c("h3", { staticClass: "cart_single_title" }, [
+      _vm._v("Hitung biaya pengiriman anda"),
+      _c("span", [_c("i", { staticClass: "icon_minus-06" })])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td"),
       _vm._v(" "),
-      _c("div", { staticClass: "calculate_shop_inner" }, [
-        _c(
-          "form",
-          {
-            staticClass: "calculate_shoping_form row",
-            attrs: {
-              action: "contact_process.php",
-              method: "post",
-              id: "contactForm",
-              novalidate: "novalidate"
-            }
-          },
-          [
-            _c("div", { staticClass: "form-group col-lg-6" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "state",
-                  name: "state",
-                  placeholder: "Kota"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group col-lg-6" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "zip",
-                  name: "zip",
-                  placeholder: "Kode Post"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group col-lg-12" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn submit_btn form-control",
-                  attrs: { type: "submit", value: "submit" }
-                },
-                [_vm._v("update totals")]
-              )
-            ])
-          ]
-        )
-      ])
+      _c("td", [_vm._v("Jenis Pengiriman")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("Jenis Layanan")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("Biaya")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("Estimasi")])
     ])
   }
 ]

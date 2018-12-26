@@ -55,18 +55,49 @@
                         <div class="calculate_shoping_area">
                             <h3 class="cart_single_title">Hitung biaya pengiriman anda<span><i class="icon_minus-06"></i></span></h3>
                             <div class="calculate_shop_inner">
-                                <form class="calculate_shoping_form row" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
-                                   
                                     <div class="form-group col-lg-6">
-                                        <input type="text" class="form-control" id="state" name="state" placeholder="Kota">
+                                        <select v-model="provinsi_id">
+                                            <option value="-1">Pilih Provinsi Anda</option>
+                                            <option v-for="provinsi in provinsis" :key="provinsi.province_id" :value="provinsi.province_id" @click.prevent="getCity()">{{provinsi.province}}</option>
+                                        </select>
                                     </div>
-                                    <div class="form-group col-lg-6">
-                                        <input type="text" class="form-control" id="zip" name="zip" placeholder="Kode Post">
+                                    <div class="form-group col-lg-6" v-if="kotas.length > 0">
+                                        <select v-model="kota_id">
+                                            <option value="-1">Pilih Kota Anda</option>
+                                            <option v-for="kota in kotas" :key="kota.city_id" :value="kota.city_id" @click.prevent="getCost()">{{kota.type}} {{kota.city_name}}</option>
+                                        </select>
                                     </div>
-                                    <div class="form-group col-lg-12">
-                                        <button type="submit" value="submit" class="btn submit_btn form-control">update totals</button>
+                                    <div class="form-group col-lg-12" v-if="jne.length > 0">
+                                        Silahkan pilih biaya pengiriman yang diinginkan
+                                        <table>
+                                            <tr>
+                                                <td></td>
+                                                <td>Jenis Pengiriman</td>
+                                                <td>Jenis Layanan</td>
+                                                <td>Biaya</td>
+                                                <td>Estimasi</td>
+                                            </tr>
+                                            <tr v-for="(jc,index) in jne.costs" :key="index">
+                                                <td><input type="radio" :value="jc.cost[0].value" v-model="shipping" name="cost"></td>
+                                                <td>{{jc.service}}</td>
+                                                <td>Rp {{jc.cost}}</td>
+                                                <td>{{jc.cost[0].etd}} Hari</td>
+                                            </tr>
+                                            <tr v-for="(jc,index) in tiki.costs" :key="index">
+                                                <td><input type="radio" :value="jc.cost[0].value" v-model="shipping" name="cost"></td>
+                                                <td>{{jc.service}}</td>
+                                                <td>Rp {{jc.cost}}</td>
+                                                <td>{{jc.cost[0].etd}} Hari</td>
+                                            </tr>
+                                            <tr v-for="(jc,index) in pos.costs" :key="index">
+                                                <td><input type="radio" :value="jc.cost[0].value" v-model="shipping" name="cost"></td>
+                                                <td>{{jc.service}}</td>
+                                                <td>Rp {{jc.cost}}</td>
+                                                <td>{{jc.cost[0].etd}} Hari</td>
+                                            </tr>
+                                        </table>
                                     </div>
-                                </form>
+
                             </div>
                         </div>
                     </div>
@@ -224,9 +255,14 @@ export default {
             },
             modal : false,
             load: -1,
-            province: [],
-            city: [],
-            shipping: 25000,
+            provinsi_id: -1,
+            kota_id: -1,
+            provinsis: [],
+            kotas: [],
+            jne: [],
+            tiki: [],
+            pos: [],
+            shipping: 0,
             diskon: 0,
             cupon: null,
         }
@@ -235,7 +271,6 @@ export default {
         this.getCart(); //mengambil data keranjang
         this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval refresh agar token tidak kadaluarsa
         this.getProvince();
-        // this.getCity();
     },
     destroyed(){
            clearInterval(this.interval); //menghapus interval
@@ -245,6 +280,13 @@ export default {
             var sum=0;
             for(let i=0;i< this.cart.length;i++){
                 sum = sum + (this.cart[i].item.price * this.cart[i].quantity)
+            }
+            return sum;
+        },
+        sumOfWeight(){
+            var sum=0;
+            for(let i=0;i< this.cart.length;i++){
+                sum = sum + parsetInt(this.cart[i].item.weight)
             }
             return sum;
         }
@@ -287,24 +329,24 @@ export default {
 
               })
         },
+        getCost(){
+            let uri = '/api/rajaongkir/'+this.kota_id+'/'+this.sumOfWeight;
+            axios.get(uri).then((response) => {
+                this.jne = response.data.jne;
+                this.tiki = response.data.tiki;
+                this.pos = response.data.pos;
+            })
+        },
         getProvince(){ //mengambil data provinsi dari api raja ongkir
-            let uri = 'https://api.rajaongkir.com/starter/province';
-            axios.get(uri,{
-                    headers: { 
-                    'key': '4e783427bd2c52632a0d6fa866e5aff2'
-                     } 
-                }).then((response) => {
-                    console.log(response)
-                this.province = response.data;
+            let uri = '/api/rajaongkir/provinsi';
+            axios.get(uri).then((response) => {
+                this.provinsis = response.data;
             })
         },
         getCity(){ //mengambil data kota dari api raja ongkir
-            let uri = '/api/mycart';
-            axios.get(uri,{
-                    headers: { 
-                    Authorization: 'Bearer ' + localStorage.getItem('token') } 
-                }).then((response) => {
-                this.cart = response.data;
+            let uri = '/api/rajaongkir/kota/'+this.provinsi_id;
+            axios.get(uri).then((response) => {
+                this.kotas = response.data;
             })
         },
         editData(id){ //melakukan pembaharuan data pesanan

@@ -26,16 +26,16 @@ class RajaOngkirController extends Controller
             'origin' 		=> 501, // id kota asal
             'destination' 	=> $id_kota, // id kota tujuan
             'weight' 		=> $weight, // berat satuan gram
-            'courier' 		=> 'jne', // kode kurir pengantar ( jne / tiki / pos )
+            'courier' 		=> 'tiki', // kode kurir pengantar ( jne / tiki / pos )
         ])->get();
         $pos = RajaOngkir::Cost([
             'origin' 		=> 501, // id kota asal
             'destination' 	=> $id_kota, // id kota tujuan
             'weight' 		=> $weight, // berat satuan gram
-            'courier' 		=> 'jne', // kode kurir pengantar ( jne / tiki / pos )
+            'courier' 		=> 'pos', // kode kurir pengantar ( jne / tiki / pos )
         ])->get();
 
-        return response()->json(['jne' => $jne, 'tiki' => $tiki, 'pos' => 'pos']);
+        return response()->json(['jne' => $jne, 'tiki' => $tiki, 'pos' => $pos]);
 
     }
 }

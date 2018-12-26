@@ -82,21 +82,21 @@
                                                 <td>JNE</td>
                                                 <td>{{jc.service}}</td>
                                                 <td>Rp {{jc.cost[0].value}}</td>
-                                                <td>{{jc.cost[0].etd}} Hari</td>
+                                                <td>{{jc.cost[0].etd}} HARI</td>
                                             </tr>
                                             <tr v-for="(jc,index) in tiki[0].costs" :key="index">
                                                 <td><input type="radio" :value="jc.cost[0].value" v-model="shipping" name="cost"></td>
                                                 <td>TIKI</td>
                                                 <td>{{jc.service}}</td>
                                                 <td>Rp {{jc.cost[0].value}}</td>
-                                                <td>{{jc.cost[0].etd}} Hari</td>
+                                                <td>{{jc.cost[0].etd}} HARI</td>
                                             </tr>
                                             <tr v-for="(jc,index) in pos[0].costs" :key="index">
                                                 <td><input type="radio" :value="jc.cost[0].value" v-model="shipping" name="cost"></td>
                                                 <td>POS</td>
                                                 <td>{{jc.service}}</td>
                                                 <td>Rp {{jc.cost[0].value}}</td>
-                                                <td>{{jc.cost[0].etd}} Hari</td>
+                                                <td>{{jc.cost[0].etd}}</td>
                                             </tr>
                                             
                                         </table>

@@ -20651,7 +20651,7 @@ var render = function() {
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(_vm._s(jc.cost[0].etd) + " Hari")
+                                      _vm._v(_vm._s(jc.cost[0].etd) + " HARI")
                                     ])
                                   ])
                                 }),
@@ -20693,7 +20693,7 @@ var render = function() {
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(_vm._s(jc.cost[0].etd) + " Hari")
+                                      _vm._v(_vm._s(jc.cost[0].etd) + " HARI")
                                     ])
                                   ])
                                 }),
@@ -20734,9 +20734,7 @@ var render = function() {
                                       _vm._v("Rp " + _vm._s(jc.cost[0].value))
                                     ]),
                                     _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(jc.cost[0].etd) + " Hari")
-                                    ])
+                                    _c("td", [_vm._v(_vm._s(jc.cost[0].etd))])
                                   ])
                                 })
                               ],

@@ -127,7 +127,7 @@ export default {
         }
     },
     methods: {
-        cekEmail(){
+        cekEmail(){ //mengecek ketersediaan email
                 var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 if(this.register.email == ''){
                     this.infoView = "none";
@@ -153,7 +153,7 @@ export default {
                 }
 
             },
-        registerAkun(){
+        registerAkun(){ //mendaftarkan pengguna
             if(!this.cek){
                 alert('Data invalid')
                 return false;
@@ -165,12 +165,12 @@ export default {
                 this.loginError = true
             });
         },
-        loginAkun(){
+        loginAkun(){ //login pengguna
             axios.post('/api/auth/login', {
                 email: this.login.email,
                 password: this.login.password
             }).then(response => {
-                store.commit('loginUser')
+                store.commit('loginUser') //membuat store atau penyimpnaan dibagian internal browser dengan vuex
                 localStorage.setItem('token', response.data.access_token)
                 localStorage.setItem('roles', response.data.role)
                 if(this.login.remember){
@@ -185,7 +185,7 @@ export default {
         }
     },
     computed:{
-        cek(){
+        cek(){ //mengecek valid tidaknya inputan
             if(this.register.password!= null && this.register.cpassword != null && this.register.name != null && this.register.email != null && this.register.phone!=null && this.valid == 1){
                 if(this.register.password == this.register.cpassword && !isNaN(this.register.phone)){
                     return true;

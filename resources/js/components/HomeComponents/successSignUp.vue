@@ -3,7 +3,7 @@
                 <section class="solid_banner_area">
                     <div class="container">
                         <div class="solid_banner_inner">
-                            <h3>Registration Success</h3>
+                            <h3>Registrasi berhasil</h3>
                             <ul>
                                 <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
                                 <li>
@@ -18,8 +18,8 @@
                 <section class="emty_cart_area p_100">
                     <div class="container">
                         <div class="emty_cart_inner">
-                            <h3>Thank you for join with us, now you can login and buy everything you want.</h3>
-                            <h4>back to   <router-link :to="{name: 'LoginUser'}" >
+                            <h3>Terima kasih sudah bergabung bersama kami, sekarang anda dapat belanja apapun yang anda inginkan.</h3>
+                            <h4>Kembali ke  <router-link :to="{name: 'LoginUser'}" >
                                     Login
                                     </router-link>
                                     </h4>

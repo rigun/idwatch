@@ -16218,9 +16218,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -16234,9 +16231,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        this.getUser();
-        this.getCategory();
-        this.getCount();
+        this.getUser(); //mengambil data pengguna
+        this.getCategory(); //mengambil kategori
+        this.getCount(); //mengambil jumlah item di keranjang
     },
 
     methods: {
@@ -16256,12 +16253,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         refresh: function refresh() {
             var _this2 = this;
 
+            //memperbaharui token JWT pengguna
             axios.get('/api/refresh', {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 }
             }).then(function (response) {
-                localStorage.setItem('token', response.data.access_token);
+                localStorage.setItem('token', response.data.access_token); //membuat variable dan mengeset data kedalam penyimpanan internal browser
                 _this2.getUser();
                 _this2.$nextTick(function () {
                     this.getCount();
@@ -16273,15 +16271,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getUser: function getUser() {
             var _this3 = this;
 
+            //mengambil data pengguna
             axios.get('/api/user', {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 }
             }).then(function (response) {
                 if (response.data.status == "Token is Expired") {
-                    _this3.$router.push({ name: 'Logout' });
+                    _this3.$router.push({ name: 'Logout' }); //mengarahkan ke komponen logout
                 } else {
-                    _this3.token = localStorage.getItem('token');
+                    _this3.token = localStorage.getItem('token'); //mengambil item dari penyimpanan broweser dengan variable token
                     // this.getCountBag();                                
                 }
             }).catch(function (error) {
@@ -16291,6 +16290,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getCategory: function getCategory() {
             var _this4 = this;
 
+            //mengambil data kategori yang tersedia
             var uri = '/api/category';
             axios.get(uri).then(function (response) {
                 _this4.categories = response.data;
@@ -16397,7 +16397,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                                 SHOP\n                              "
+                              "\n                                 BELANJA\n                              "
                             )
                           ]
                         )
@@ -16417,7 +16417,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                                 CONTACT\n                              "
+                              "\n                                 KONTAK\n                              "
                             )
                           ]
                         )
@@ -16438,7 +16438,7 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                 CheckoutCart\n                              "
+                                  "\n                                 BELANJAAN\n                              "
                                 )
                               ]
                             )
@@ -16528,14 +16528,14 @@ var render = function() {
                                       },
                                       [
                                         _vm._v(
-                                          "\n                                      Logout\n                                      "
+                                          "\n                                      Keluar\n                                      "
                                         )
                                       ]
                                     ),
                                     _vm._v(" "),
                                     _c("v-card-text", [
                                       _vm._v(
-                                        "\n                                      Are you sure you want to logout ?\n                                      "
+                                        "\n                                      Apakah anda yakin ingin keluar ?\n                                      "
                                       )
                                     ]),
                                     _vm._v(" "),
@@ -16557,7 +16557,7 @@ var render = function() {
                                           },
                                           [
                                             _vm._v(
-                                              "\n                                          Cancel\n                                      "
+                                              "\n                                          Batal\n                                      "
                                             )
                                           ]
                                         ),
@@ -16567,7 +16567,7 @@ var render = function() {
                                           { attrs: { to: { name: "Logout" } } },
                                           [
                                             _vm._v(
-                                              "\n                                                  Logout\n                                          "
+                                              "\n                                                  Keluar\n                                          "
                                             )
                                           ]
                                         )
@@ -16621,7 +16621,7 @@ var render = function() {
               },
               [
                 _c("option", { attrs: { value: "All" } }, [
-                  _vm._v("All Categories")
+                  _vm._v("Semua Kategori")
                 ]),
                 _vm._v(" "),
                 _vm._l(_vm.categories, function(category) {
@@ -16724,7 +16724,7 @@ var staticRenderFns = [
             _c("div", { staticClass: "top_header_middle" }, [
               _c("a", { attrs: { href: "#" } }, [
                 _c("i", { staticClass: "fa fa-phone" }),
-                _vm._v(" Call Us: "),
+                _vm._v(" Telepon Kami: "),
                 _c("span", [_vm._v("+812-5402-6142")])
               ]),
               _vm._v(" "),
@@ -16790,7 +16790,7 @@ var staticRenderFns = [
         }
       },
       [
-        _vm._v("\n                                  CATEGORIES "),
+        _vm._v("\n                                  KATEGORI "),
         _c("i", {
           staticClass: "fa fa-angle-down",
           attrs: { "aria-hidden": "true" }
@@ -16868,12 +16868,14 @@ var staticRenderFns = [
                 { staticClass: "f_widget link_widget f_info_widget" },
                 [
                   _c("div", { staticClass: "f_w_title" }, [
-                    _c("h3", [_vm._v("Information")])
+                    _c("h3", [_vm._v("Informasi")])
                   ]),
                   _vm._v(" "),
                   _c("ul", [
                     _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [_vm._v("About us")])
+                      _c("a", { attrs: { href: "#" } }, [
+                        _vm._v("Tentang Kami")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("li", [
@@ -16890,12 +16892,6 @@ var staticRenderFns = [
                     _vm._v(" "),
                     _c("li", [
                       _c("a", { attrs: { href: "#" } }, [_vm._v("Help Center")])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _vm._v("Returns & Refunds")
-                      ])
                     ])
                   ])
                 ]
@@ -16908,22 +16904,18 @@ var staticRenderFns = [
                 { staticClass: "f_widget link_widget f_service_widget" },
                 [
                   _c("div", { staticClass: "f_w_title" }, [
-                    _c("h3", [_vm._v("Customer Service")])
+                    _c("h3", [_vm._v("Pelayanan Pelanggan")])
                   ]),
                   _vm._v(" "),
                   _c("ul", [
                     _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [_vm._v("My account")])
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("Akun Saya")])
                     ]),
                     _vm._v(" "),
                     _c("li", [
                       _c("a", { attrs: { href: "#" } }, [
-                        _vm._v("Order History")
+                        _vm._v("Riwayat Belanja")
                       ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [_vm._v("Wish List")])
                     ])
                   ])
                 ]
@@ -16936,7 +16928,7 @@ var staticRenderFns = [
                 { staticClass: "f_widget link_widget f_extra_widget" },
                 [
                   _c("div", { staticClass: "f_w_title" }, [
-                    _c("h3", [_vm._v("contact")])
+                    _c("h3", [_vm._v("Kontak")])
                   ]),
                   _vm._v(" "),
                   _c("ul", [
@@ -16966,7 +16958,7 @@ var staticRenderFns = [
                 { staticClass: "f_widget link_widget f_account_widget" },
                 [
                   _c("div", { staticClass: "f_w_title" }, [
-                    _c("h3", [_vm._v("Order")])
+                    _c("h3", [_vm._v("Pesan")])
                   ]),
                   _vm._v(" "),
                   _c("ul", [
@@ -17189,10 +17181,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -17204,10 +17192,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         if (localStorage.getItem('roles') == 'user') {
-            window.location = "http://127.0.0.1:8000";
+            //apabila role pengguna adalah user
+            window.location = "http://127.0.0.1:8000"; //akan diarahkan ke alamat yang ditentukan.
         } else {
             this.admin = true;
-            this.getUser();
+            this.getUser(); // mengambil data pengguna
         }
     },
 
@@ -17215,6 +17204,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         refresh: function refresh() {
             var _this = this;
 
+            //melakukan refresh token pengguna
             axios.get('/api/refresh', {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -17229,13 +17219,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getUser: function getUser() {
             var _this2 = this;
 
+            //mengambil data pengguna
             axios.get('/api/user', {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 }
             }).then(function (response) {
                 if (response.data.status == "Token is Expired") {
-                    _this2.$router.push({ name: 'LogoutAdmin' });
+                    //apabila tokennya kadaluarsa
+                    _this2.$router.push({ name: 'LogoutAdmin' }); //akan diarahkan ke komponen logoutAdmin 
                 } else {
                     _this2.token = localStorage.getItem('token');
                     // this.getCountBag();                                
@@ -17245,6 +17237,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         togDrop: function togDrop() {
+            //mengaktifkan dropdown
             if (this.dropdown == false) {
                 this.dropdown = true;
             } else {
@@ -17328,10 +17321,6 @@ var render = function() {
                             ]
                           )
                         ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.token == null
-                      ? _c("ul", { staticClass: "nav pull-right" }, [_vm._m(4)])
                       : _vm._e()
                   ]
                 )
@@ -17405,16 +17394,6 @@ var staticRenderFns = [
       }),
       _vm._v(" "),
       _c("b", { staticClass: "caret" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", [
-        _vm._v("\r\n\t\t\t\t\t\t\tForgot your password?\r\n\t\t\t\t\t\t")
-      ])
     ])
   }
 ]
@@ -17524,12 +17503,6 @@ exports.push([module.i, "\n.isotope_l_p_inner{\r\n    height: auto !important;\r
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
 //
 //
 //
@@ -17650,27 +17623,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     created: function created() {},
     destroyed: function destroyed() {
-        clearInterval(this.interval);
+        clearInterval(this.interval); // menghapus interval
     },
     mounted: function mounted() {
         var _this = this;
 
-        this.$parent.refresh();
+        this.$parent.refresh(); //memanggil fungsi refresh pada parent
         this.interval = setInterval(function () {
             return _this.$parent.refresh();
-        }, 900000);
+        }, 900000); // membuat interval untuk memanggil fungsi refresh
         this.$nextTick(function () {
-            this.getSlider();
+            //memanggil method ketika konten selesai dirender
+            this.getSlider(); //method yang dipanggil ketika selesai render
         });
-        this.getCategory();
-
-        this.getData();
+        this.getCategory(); //mengambil kategori
+        this.getData(); //mengambil data barang   
     },
 
     computed: {
         showByCategory: function showByCategory() {
             var _this2 = this;
 
+            //melakukan filter agar menampilkan seluruh barang per kategori
             if (this.items.length > 0) {
                 return this.items.filter(function (row, index) {
                     if (row.category.name == _this2.selectedCategory) {
@@ -17684,6 +17658,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         getCategory: function getCategory() {
             var _this3 = this;
 
+            //mengambil kategori
             var uri = '/api/category';
             axios.get(uri).then(function (response) {
                 _this3.categories = response.data;
@@ -17692,456 +17667,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         getData: function getData() {
             var _this4 = this;
 
+            // mengambil data barang
             var uri = '/api/item';
             axios.get(uri).then(function (response) {
                 _this4.items = response.data;
             });
         },
         getSlider: function getSlider() {
+            // membuat animasi slider
             ;(function ($) {
                 "use strict";
 
-                //    var nav_offset_top = $('header').height(); 
-                //    /*-------------------------------------------------------------------------------
-                //	  Navbar 
-                //	-------------------------------------------------------------------------------*/
-                //
-                //	//* Navbar Fixed  
-                //    function navbarFixed(){
-                //        if ( $('.main_menu_area, .search_area').length ){ 
-                //            $(window).scroll(function() {
-                //                var scroll = $(window).scrollTop();   
-                //                if (scroll >= nav_offset_top ) {
-                //                    $(".main_menu_area, .search_area").addClass("navbar_fixed");
-                //                } else {
-                //                    $(".main_menu_area, .search_area").removeClass("navbar_fixed");
-                //                }
-                //            });
-                //        };
-                //    };
-                //    navbarFixed();
-
-
-                /*----------------------------------------------------*/
-                /*  Main Slider js
-                /*----------------------------------------------------*/
-
-                function main_slider() {
-                    if ($('#main_slider').length) {
-                        $("#main_slider").revolution({
-                            sliderType: "standard",
-                            sliderLayout: "auto",
-                            delay: 5000,
-                            disableProgressBar: "on",
-                            navigation: {
-                                onHoverStop: 'off',
-                                touch: {
-                                    touchenabled: "on"
-                                },
-                                arrows: {
-                                    style: "normal",
-                                    enable: false,
-                                    hide_onmobile: true,
-                                    hide_under: 820,
-                                    hide_onleave: true,
-                                    hide_delay: 200,
-                                    hide_delay_mobile: 1200,
-                                    left: {
-                                        h_align: "left",
-                                        v_align: "center",
-                                        h_offset: 5,
-                                        v_offset: 0
-                                    },
-                                    right: {
-                                        h_align: "right",
-                                        v_align: "center",
-                                        h_offset: 5,
-                                        v_offset: 0
-                                    }
-                                }
-                            },
-                            responsiveLevels: [4096, 1199, 992, 767, 480],
-                            gridwidth: [1170, 1000, 750, 700, 300],
-                            gridheight: [575, 575, 575, 600, 500],
-                            lazyType: "smart",
-                            fallbacks: {
-                                simplifyAll: "off",
-                                nextSlideOnWindowFocus: "off",
-                                disableFocusListener: false
-                            }
-                        });
-                    }
-                }
-                main_slider();
-
-                /*----------------------------------------------------*/
-                /*  Main Slider js
-                /*----------------------------------------------------*/
-                function product_slider() {
-                    if ($('#product_slider').length) {
-                        var _$$revolution;
-
-                        $("#product_slider").revolution((_$$revolution = {
-                            sliderType: "standard",
-                            sliderLayout: "auto",
-                            delay: 5000,
-                            disableProgressBar: "on",
-                            navigation: {
-                                keyboardNavigation: "off",
-                                keyboard_direction: "horizontal",
-                                mouseScrollNavigation: "off",
-                                onHoverStop: "off",
-                                arrows: {
-                                    style: "uranus",
-                                    enable: true,
-                                    hide_onmobile: true,
-                                    hide_under: 778,
-                                    hide_onleave: true,
-                                    hide_delay: 200,
-                                    hide_delay_mobile: 1200,
-                                    tmp: '',
-                                    left: {
-                                        h_align: "left",
-                                        v_align: "center",
-                                        h_offset: 20,
-                                        v_offset: 0
-                                    },
-                                    right: {
-                                        h_align: "right",
-                                        v_align: "center",
-                                        h_offset: 20,
-                                        v_offset: 0
-                                    }
-                                },
-
-                                thumbnails: {
-                                    style: "erinyen",
-                                    enable: true,
-                                    width: 80,
-                                    height: 105,
-                                    min_width: 80,
-                                    wrapper_padding: 0,
-                                    wrapper_color: "#fff",
-                                    wrapper_opacity: "1",
-                                    tmp: '<span class="tp-thumb-over"></span><span class="tp-thumb-image"></span><span class="tp-thumb-title"></span>',
-                                    visibleAmount: 10,
-                                    hide_onmobile: false,
-                                    hide_onleave: false,
-                                    direction: "horizontal",
-                                    span: true,
-                                    position: "outer-bottom",
-                                    space: 17,
-                                    h_align: "center",
-                                    v_align: "top",
-                                    h_offset: 0,
-                                    v_offset: 0
-                                }
-                            },
-                            gridwidth: 370,
-                            gridheight: 520,
-                            lazyType: "none",
-                            shadow: 0,
-                            spinner: "spinner2",
-                            stopLoop: "on",
-                            stopAfterLoops: 0,
-                            stopAtSlide: 1,
-                            shuffle: "off",
-                            autoHeight: "off"
-                        }, _defineProperty(_$$revolution, 'disableProgressBar', "on"), _defineProperty(_$$revolution, 'hideThumbsOnMobile', "off"), _defineProperty(_$$revolution, 'hideSliderAtLimit', 0), _defineProperty(_$$revolution, 'hideCaptionAtLimit', 0), _defineProperty(_$$revolution, 'hideAllCaptionAtLilmit', 0), _defineProperty(_$$revolution, 'debugMode', false), _defineProperty(_$$revolution, 'fallbacks', {
-                            simplifyAll: "off",
-                            nextSlideOnWindowFocus: "off",
-                            disableFocusListener: false
-                        }), _$$revolution));
-                    }
-                }
-                product_slider();
-
-                /*----------------------------------------------------*/
-                /*  Main Slider js
-                /*----------------------------------------------------*/
-                function product_slider2() {
-                    if ($('#product_slider2').length) {
-                        var _$$revolution2;
-
-                        $("#product_slider2").revolution((_$$revolution2 = {
-                            sliderType: "standard",
-                            sliderLayout: "auto",
-                            delay: 5000,
-                            disableProgressBar: "on",
-                            navigation: {
-                                keyboardNavigation: "on",
-                                keyboard_direction: "horizontal",
-                                mouseScrollNavigation: "off",
-                                onHoverStop: "off",
-                                touch: {
-                                    touchenabled: "on",
-                                    swipe_threshold: 75,
-                                    swipe_min_touches: 1,
-                                    swipe_direction: "horizontal",
-                                    drag_block_vertical: false
-                                },
-
-                                arrows: {
-                                    style: "hesperiden",
-                                    enable: true,
-                                    hide_onmobile: true,
-                                    hide_under: 778,
-                                    hide_onleave: true,
-                                    hide_delay: 200,
-                                    hide_delay_mobile: 200,
-                                    tmp: '',
-                                    left: {
-                                        h_align: "left",
-                                        v_align: "center",
-                                        h_offset: 20,
-                                        v_offset: 0
-                                    },
-                                    right: {
-                                        h_align: "right",
-                                        v_align: "center",
-                                        h_offset: 20,
-                                        v_offset: 0
-                                    }
-                                },
-
-                                thumbnails: {
-                                    style: "gyges",
-                                    enable: true,
-                                    width: 78,
-                                    height: 104,
-                                    min_width: 100,
-                                    wrapper_padding: 0,
-                                    wrapper_color: "#fff",
-                                    wrapper_opacity: "1",
-                                    tmp: '<span class="tp-thumb-img-wrap">  <span class="tp-thumb-image"></span></span>',
-                                    visibleAmount: 5,
-                                    hide_onmobile: false,
-                                    hide_over: 777,
-                                    hide_onleave: false,
-                                    direction: "vertical",
-                                    span: true,
-                                    position: "outer-left",
-                                    space: 15,
-                                    h_align: "left",
-                                    v_align: "top",
-                                    h_offset: 0,
-                                    v_offset: 0
-                                },
-
-                                tabs: {
-                                    style: "gyges",
-                                    enable: true,
-                                    width: 100,
-                                    height: 105,
-                                    min_width: 100,
-                                    wrapper_padding: 0,
-                                    wrapper_color: "#fff",
-                                    wrapper_opacity: "0",
-                                    tmp: '<div class="tp-tab-content">  <span class="tp-tab-date">{{param1}}</span>  <span class="tp-tab-title">{{title}}</span></div><div class="tp-tab-image"></div>',
-                                    visibleAmount: 10,
-                                    hide_onmobile: true,
-                                    hide_under: 778,
-                                    hide_onleave: false,
-                                    hide_delay: 200,
-                                    direction: "vertical",
-                                    span: true,
-                                    position: "outer-left",
-                                    space: 0,
-                                    h_align: "left",
-                                    v_align: "top",
-                                    h_offset: 0,
-                                    v_offset: 0
-                                }
-                            },
-                            gridwidth: 370,
-                            gridheight: 520,
-                            lazyType: "none",
-                            shadow: 0,
-                            spinner: "spinner2",
-                            stopLoop: "on",
-                            stopAfterLoops: 0,
-                            stopAtSlide: 1,
-                            shuffle: "off",
-                            autoHeight: "off"
-                        }, _defineProperty(_$$revolution2, 'disableProgressBar', "on"), _defineProperty(_$$revolution2, 'hideThumbsOnMobile', "off"), _defineProperty(_$$revolution2, 'hideSliderAtLimit', 0), _defineProperty(_$$revolution2, 'hideCaptionAtLimit', 0), _defineProperty(_$$revolution2, 'hideAllCaptionAtLilmit', 0), _defineProperty(_$$revolution2, 'debugMode', false), _defineProperty(_$$revolution2, 'fallbacks', {
-                            simplifyAll: "off",
-                            nextSlideOnWindowFocus: "off",
-                            disableFocusListener: false
-                        }), _$$revolution2));
-                    }
-                }
-                product_slider2();
-
-                /*----------------------------------------------------*/
-                /*  Main Slider js
-                /*----------------------------------------------------*/
-                function fullwidth_slider() {
-                    if ($('#fullwidth_slider').length) {
-                        $("#fullwidth_slider").revolution({
-                            sliderType: "standard",
-                            sliderLayout: "auto",
-                            delay: 5000,
-                            disableProgressBar: "on",
-                            navigation: {
-                                onHoverStop: 'off',
-                                touch: {
-                                    touchenabled: "on"
-                                },
-                                arrows: {
-                                    style: "normal",
-                                    enable: false,
-                                    hide_onmobile: true,
-                                    hide_under: 820,
-                                    hide_onleave: true,
-                                    hide_delay: 200,
-                                    hide_delay_mobile: 1200,
-                                    left: {
-                                        h_align: "left",
-                                        v_align: "center",
-                                        h_offset: 5,
-                                        v_offset: 0
-                                    },
-                                    right: {
-                                        h_align: "right",
-                                        v_align: "center",
-                                        h_offset: 5,
-                                        v_offset: 0
-                                    }
-                                }
-                            },
-                            responsiveLevels: [4096, 1320, 1199, 992, 767, 480],
-                            gridwidth: [1380, 1170, 960, 720, 700, 300],
-                            gridheight: [900, 900, 800, 700, 500, 500],
-                            lazyType: "smart",
-                            fallbacks: {
-                                simplifyAll: "off",
-                                nextSlideOnWindowFocus: "off",
-                                disableFocusListener: false
-                            }
-                        });
-                    }
-                }
-                fullwidth_slider();
-                /*----------------------------------------------------*/
-                /*  Main Slider js
-                /*----------------------------------------------------*/
-                function home_box_slider() {
-                    if ($('#home_box_slider').length) {
-                        $("#home_box_slider").revolution({
-                            sliderType: "standard",
-                            sliderLayout: "auto",
-                            delay: 50000000,
-                            disableProgressBar: "on",
-                            navigation: {
-                                onHoverStop: 'off',
-                                touch: {
-                                    touchenabled: "on"
-                                },
-                                arrows: {
-                                    style: "normal",
-                                    enable: true,
-                                    hide_onmobile: true,
-
-                                    left: {
-                                        h_align: "right",
-                                        v_align: "bottom",
-                                        h_offset: 60,
-                                        v_offset: 10
-                                    },
-                                    right: {
-                                        h_align: "right",
-                                        v_align: "bottom",
-                                        h_offset: 10,
-                                        v_offset: 10
-                                    }
-                                }
-                            },
-                            responsiveLevels: [4096, 1320, 1199, 992, 767, 480],
-                            gridwidth: [870, 870, 870, 720, 700, 350],
-                            gridheight: [450, 450, 450, 450, 450, 410],
-                            lazyType: "smart",
-                            fallbacks: {
-                                simplifyAll: "off",
-                                nextSlideOnWindowFocus: "off",
-                                disableFocusListener: false
-                            }
-                        });
-                    }
-                }
-                home_box_slider();
-
-                /*----------------------------------------------------*/
-                /*  Explor Room Slider
-                /*----------------------------------------------------*/
-                function l_product_slider() {
-                    if ($('.l_product_slider').length) {
-                        $('.l_product_slider').owlCarousel({
-                            loop: true,
-                            margin: 30,
-                            items: 4,
-                            nav: true,
-                            autoplay: true,
-                            smartSpeed: 1500,
-                            dots: false,
-                            navContainerClass: 'l_product_slider',
-                            navText: ['<i class="arrow_carrot-left" aria-hidden="true"></i>', '<i class="arrow_carrot-right" aria-hidden="true"></i>'],
-                            responsiveClass: true,
-                            responsive: {
-                                0: {
-                                    items: 1
-                                },
-                                575: {
-                                    items: 2
-                                },
-                                992: {
-                                    items: 3
-                                },
-                                1200: {
-                                    items: 4
-                                }
-                            }
-                        });
-                    }
-                }
-                l_product_slider();
-                /*----------------------------------------------------*/
-                /*  Explor Room Slider
-                /*----------------------------------------------------*/
-                function home_l_product_slider() {
-                    if ($('.home_l_product_slider').length) {
-                        $('.home_l_product_slider').owlCarousel({
-                            loop: true,
-                            margin: 30,
-                            items: 3,
-                            nav: true,
-                            autoplay: false,
-                            smartSpeed: 1500,
-                            dots: false,
-                            navContainerClass: 'home_l_product_slider',
-                            navText: ['<i class="arrow_carrot-left" aria-hidden="true"></i>', '<i class="arrow_carrot-right" aria-hidden="true"></i>'],
-                            responsiveClass: true,
-                            responsive: {
-                                0: {
-                                    items: 1
-                                },
-                                575: {
-                                    items: 2
-                                },
-                                992: {
-                                    items: 2
-                                },
-                                1200: {
-                                    items: 3
-                                }
-                            }
-                        });
-                    }
-                }
-                home_l_product_slider();
-
-                /*----------------------------------------------------*/
-                /*  Explor Room Slider
-                /*----------------------------------------------------*/
                 function carousel_slider() {
                     if ($('.home_carousel_slider').length) {
                         $('.home_carousel_slider').owlCarousel({
@@ -18172,116 +17708,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     }
                 }
                 carousel_slider();
-
-                /*----------------------------------------------------*/
-                /*  portfolio_isotope
-                /*----------------------------------------------------*/
-                function main_gallery() {
-                    if ($('.fillter_slider_inner, .isotope_l_p_inner').length) {
-                        // Activate isotope in container
-                        $(".fillter_slider_inner, .isotope_l_p_inner").imagesLoaded(function () {
-                            $(".fillter_slider, .isotope_l_p_inner").isotope({
-                                layoutMode: 'masonry',
-                                percentPosition: true,
-                                columnWidth: 1
-                                //            masonry: {
-                                //                columnWidth: '.grid-sizer, .grid-sizer_two',
-                                //            }            
-                            });
-                        });
-                    }
-                }
-                main_gallery();
-
-                /*----------------------------------------------------*/
-                /*  Isotope Fillter js
-                /*----------------------------------------------------*/
-                function portfolio_isotope() {
-                    if ($('.portfolio_filter li, .fillter_l_p li').length) {
-                        // Add isotope click function
-                        $(".portfolio_filter li, .fillter_l_p li").on('click', function () {
-                            $(".portfolio_filter li, .fillter_l_p li").removeClass("active");
-                            $(this).addClass("active");
-
-                            var selector = $(this).attr("data-filter");
-                            $(".fillter_slider .owl-item, .isotope_l_p_inner, .fillter_product_slider .owl-item, .home_l_product_slider .owl-item").isotope({
-                                filter: selector,
-                                animationOptions: {
-                                    duration: 450,
-                                    easing: "linear",
-                                    queue: false
-                                }
-                            });
-                            return false;
-                        });
-                    }
-                }
-
-                portfolio_isotope();
-
-                /*----------------------------------------------------*/
-                /*  Language Flag js 
-                /*----------------------------------------------------*/
-                function createByJson() {
-                    var jsonData = [{ description: 'Choos your payment gateway', value: '', text: 'Payment Gateway' }, { image: '../img/icon/flag-1.png', description: 'My life. My card...', value: 'amex', text: 'Amex' }, { image: '../img/icon/flag-1.png', description: 'It pays to Discover...', value: 'Discover', text: 'Discover' }, { image: '../img/icon/flag-1.png', title: 'For everything else...', description: 'For everything else...', value: 'Mastercard', text: 'Mastercard' }, { image: '../img/icon/flag-1.png', description: 'Sorry not available...', value: 'cash', text: 'Cash on devlivery', disabled: true }, { image: '../img/icon/flag-1.png', description: 'All you need...', value: 'Visa', text: 'Visa' }, { image: '../img/icon/flag-1.png', description: 'Pay and get paid...', value: 'Paypal', text: 'Paypal' }];
-                    $("#byjson").msDropDown({ byJson: { data: jsonData, name: 'payments2' } }).data("dd");
-                }
-                $(document).ready(function (e) {
-                    //no use
-                    try {
-                        var pages = $("#pages").msDropdown({ on: { change: function change(data, ui) {
-                                    var val = data.value;
-                                    if (val != "") window.location = val;
-                                } } }).data("dd");
-
-                        var pagename = document.location.pathname.toString();
-                        pagename = pagename.split("/");
-                        pages.setIndexByValue(pagename[pagename.length - 1]);
-                        $("#ver").html(msBeautify.version.msDropdown);
-                    } catch (e) {
-                        //console.log(e);	
-                    }
-                    $("#ver").html(msBeautify.version.msDropdown);
-
-                    //convert
-                    $(".language_drop").msDropdown({ roundedBorder: false });
-                    createByJson();
-                    $("#tech").data("dd");
-                });
-                function showValue(h) {
-                    console.log(h.name, h.value);
-                }
-                $("#tech").change(function () {
-                    console.log("by jquery: ", this.value);
-                });
-
-                $(document).ready(function () {
-                    $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
-                        disableOn: 700,
-                        type: 'iframe',
-                        mainClass: 'mfp-fade',
-                        removalDelay: 160,
-                        preloader: false,
-
-                        fixedContentPos: false
-                    });
-                });
-
-                $(".verticalCarousel").verticalCarousel({
-                    currentItem: 1,
-                    showItems: 4
-                });
-
-                $("#slider-range").slider({
-                    range: true,
-                    min: 0,
-                    max: 9000,
-                    values: [70, 9000],
-                    slide: function slide(event, ui) {
-                        $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-                    }
-                });
-                $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
             })(jQuery);
         }
     }
@@ -18389,7 +17815,7 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                           Add To Cart\n                                           "
+                                  "\n                                           Detail\n                                           "
                                 )
                               ]
                             )
@@ -18428,20 +17854,16 @@ var staticRenderFns = [
             }),
             _vm._v(" "),
             _c("div", { staticClass: "carousel_hover" }, [
-              _c("h3", [_vm._v("mens bag")]),
+              _c("h3", [_vm._v("Jam Tangan")]),
               _vm._v(" "),
-              _c("h4", [_vm._v("We feature the best professional bags ")]),
+              _c("h4", [_vm._v("Kami Menyediakan Jam Tangan Terbaik")]),
               _vm._v(" "),
-              _c("h5", [_vm._v("Including:")]),
+              _c("h5", [_vm._v("Termasuk:")]),
               _vm._v(" "),
               _c("p", [
                 _vm._v(
                   "Adidas, Century, Everlast, Fairtex, Fighting Sports, WaveMaster, Twins, Rival"
                 )
-              ]),
-              _vm._v(" "),
-              _c("a", { staticClass: "discover_btn", attrs: { href: "#" } }, [
-                _vm._v("discover now")
               ])
             ])
           ])
@@ -18454,20 +17876,16 @@ var staticRenderFns = [
             }),
             _vm._v(" "),
             _c("div", { staticClass: "carousel_hover" }, [
-              _c("h3", [_vm._v("mens bag")]),
+              _c("h3", [_vm._v("Jam Tangan")]),
               _vm._v(" "),
-              _c("h4", [_vm._v("We feature the best professional bags ")]),
+              _c("h4", [_vm._v("Kami Menyediakan Jam Tangan Terbaik")]),
               _vm._v(" "),
-              _c("h5", [_vm._v("Including:")]),
+              _c("h5", [_vm._v("Termasuk:")]),
               _vm._v(" "),
               _c("p", [
                 _vm._v(
                   "Adidas, Century, Everlast, Fairtex, Fighting Sports, WaveMaster, Twins, Rival"
                 )
-              ]),
-              _vm._v(" "),
-              _c("a", { staticClass: "discover_btn", attrs: { href: "#" } }, [
-                _vm._v("discover now")
               ])
             ])
           ])
@@ -18480,20 +17898,16 @@ var staticRenderFns = [
             }),
             _vm._v(" "),
             _c("div", { staticClass: "carousel_hover" }, [
-              _c("h3", [_vm._v("mens bag")]),
+              _c("h3", [_vm._v("Jam Tangan")]),
               _vm._v(" "),
-              _c("h4", [_vm._v("We feature the best professional bags ")]),
+              _c("h4", [_vm._v("Kami Menyediakan Jam Tangan Terbaik")]),
               _vm._v(" "),
-              _c("h5", [_vm._v("Including:")]),
+              _c("h5", [_vm._v("Termasuk:")]),
               _vm._v(" "),
               _c("p", [
                 _vm._v(
                   "Adidas, Century, Everlast, Fairtex, Fighting Sports, WaveMaster, Twins, Rival"
                 )
-              ]),
-              _vm._v(" "),
-              _c("a", { staticClass: "discover_btn", attrs: { href: "#" } }, [
-                _vm._v("discover now")
               ])
             ])
           ])
@@ -18506,20 +17920,16 @@ var staticRenderFns = [
             }),
             _vm._v(" "),
             _c("div", { staticClass: "carousel_hover" }, [
-              _c("h3", [_vm._v("mens bag")]),
+              _c("h3", [_vm._v("Jam Tangan")]),
               _vm._v(" "),
-              _c("h4", [_vm._v("We feature the best professional bags ")]),
+              _c("h4", [_vm._v("Kami Menyediakan Jam Tangan Terbaik")]),
               _vm._v(" "),
-              _c("h5", [_vm._v("Including:")]),
+              _c("h5", [_vm._v("Termasuk:")]),
               _vm._v(" "),
               _c("p", [
                 _vm._v(
                   "Adidas, Century, Everlast, Fairtex, Fighting Sports, WaveMaster, Twins, Rival"
                 )
-              ]),
-              _vm._v(" "),
-              _c("a", { staticClass: "discover_btn", attrs: { href: "#" } }, [
-                _vm._v("discover now")
               ])
             ])
           ])
@@ -18532,20 +17942,16 @@ var staticRenderFns = [
             }),
             _vm._v(" "),
             _c("div", { staticClass: "carousel_hover" }, [
-              _c("h3", [_vm._v("mens bag")]),
+              _c("h3", [_vm._v("Jam Tangan")]),
               _vm._v(" "),
-              _c("h4", [_vm._v("We feature the best professional bags ")]),
+              _c("h4", [_vm._v("Kami Menyediakan Jam Tangan Terbaik")]),
               _vm._v(" "),
-              _c("h5", [_vm._v("Including:")]),
+              _c("h5", [_vm._v("Termasuk:")]),
               _vm._v(" "),
               _c("p", [
                 _vm._v(
                   "Adidas, Century, Everlast, Fairtex, Fighting Sports, WaveMaster, Twins, Rival"
                 )
-              ]),
-              _vm._v(" "),
-              _c("a", { staticClass: "discover_btn", attrs: { href: "#" } }, [
-                _vm._v("discover now")
               ])
             ])
           ])
@@ -18558,7 +17964,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "single_c_title" }, [
-      _c("h2", [_vm._v("Produk Per Kategory")])
+      _c("h2", [_vm._v("Produk Per Kategori")])
     ])
   },
   function() {
@@ -18566,7 +17972,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "p_icon" }, [
-      _c("i", { staticClass: "icon_piechart" })
+      _c("a", [_c("i", { staticClass: "icon_piechart" })])
     ])
   },
   function() {
@@ -18819,6 +18225,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         cekEmail: function cekEmail() {
             var _this = this;
 
+            //mengecek ketersediaan email
             var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             if (this.register.email == '') {
                 this.infoView = "none";
@@ -18846,6 +18253,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         registerAkun: function registerAkun() {
             var _this2 = this;
 
+            //mendaftarkan pengguna
             if (!this.cek) {
                 alert('Data invalid');
                 return false;
@@ -18860,11 +18268,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         loginAkun: function loginAkun() {
             var _this3 = this;
 
+            //login pengguna
             axios.post('/api/auth/login', {
                 email: this.login.email,
                 password: this.login.password
             }).then(function (response) {
-                __WEBPACK_IMPORTED_MODULE_0__store__["a" /* default */].commit('loginUser');
+                __WEBPACK_IMPORTED_MODULE_0__store__["a" /* default */].commit('loginUser'); //membuat store atau penyimpnaan dibagian internal browser dengan vuex
                 localStorage.setItem('token', response.data.access_token);
                 localStorage.setItem('roles', response.data.role);
                 if (_this3.login.remember) {
@@ -18880,6 +18289,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     computed: {
         cek: function cek() {
+            //mengecek valid tidaknya inputan
             if (this.register.password != null && this.register.cpassword != null && this.register.name != null && this.register.email != null && this.register.phone != null && this.valid == 1) {
                 if (this.register.password == this.register.cpassword && !isNaN(this.register.phone)) {
                     return true;
@@ -19918,22 +19328,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         if (this.$route.params.type == null || this.$route.params.category == null) {
-            this.$router.push({ name: 'Shop', params: { type: 'All', category: 'Man' } });
+            //apabila type dan kategori pada parameter akses
+            this.$router.push({ name: 'Shop', params: { type: 'All', category: 'Man' } }); //akan diset default dengan type nya adalah All dan kategorinya adalah Man
         }
-        this.$parent.refresh();
+        this.$parent.refresh(); //memanggil fungsi refresh pada parent
         this.interval = setInterval(function () {
             return _this.$parent.refresh();
-        }, 900000);
-        this.getCategory();
+        }, 900000); //mengeset interval pemanggilan refresh
+        this.getCategory(); //mengambil kategori
     },
     destroyed: function destroyed() {
-        clearInterval(this.interval);
+        clearInterval(this.interval); //menghapus interval
     },
 
     methods: {
         getCategory: function getCategory() {
             var _this2 = this;
 
+            //mengambil kategori
             var uri = '/api/category';
             axios.get(uri).then(function (response) {
                 _this2.categories = response.data;
@@ -21557,7 +20969,7 @@ var render = function() {
     _c("section", { staticClass: "solid_banner_area" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "solid_banner_inner" }, [
-          _c("h3", [_vm._v("Registration Success")]),
+          _c("h3", [_vm._v("Registrasi berhasil")]),
           _vm._v(" "),
           _c("ul", [
             _c(
@@ -21591,14 +21003,14 @@ var render = function() {
         _c("div", { staticClass: "emty_cart_inner" }, [
           _c("h3", [
             _vm._v(
-              "Thank you for join with us, now you can login and buy everything you want."
+              "Terima kasih sudah bergabung bersama kami, sekarang anda dapat belanja apapun yang anda inginkan."
             )
           ]),
           _vm._v(" "),
           _c(
             "h4",
             [
-              _vm._v("back to   "),
+              _vm._v("Kembali ke  "),
               _c("router-link", { attrs: { to: { name: "LoginUser" } } }, [
                 _vm._v(
                   "\n                                Login\n                                "
@@ -22029,11 +21441,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     mounted: function mounted() {
         var _this = this;
 
-        this.$parent.refresh();
+        this.$parent.refresh(); //memanggil fungsi refresh dari parent
         this.interval = setInterval(function () {
             return _this.$parent.refresh();
-        }, 900000);
-        this.getData();
+        }, 900000); //mengeset interval pemanggilan fungsi refresh
+        this.getData(); //mengambil data
     },
     destroyed: function destroyed() {
         clearInterval(this.interval);
@@ -22044,15 +21456,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             if (from.params.slug != to.params.slug) {
 
-                return location.reload();
+                return location.reload(); //mereload halaman
             }
         },
         items: function items() {
-            this.setPages();
+            this.setPages(); //mengeset jumlah pagination
         }
     },
     computed: {
         displayItem: function displayItem() {
+            //menampilkan data-data hasil pemotongan untuk pagination
             return this.paginate(this.items);
         }
     },
@@ -22060,6 +21473,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         deleteComment: function deleteComment(id) {
             var _this2 = this;
 
+            //menghapus komentar
             var config = {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
@@ -22077,6 +21491,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         addComment: function addComment() {
             var _this3 = this;
 
+            //menambahkan komentar
             var config = {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
@@ -22094,6 +21509,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         getComment: function getComment() {
             var _this4 = this;
 
+            //mengambil komentar
             var uri = '/api/comment/' + this.item.id;
             axios.get(uri).then(function (response) {
                 _this4.comments = response.data;
@@ -22102,6 +21518,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         getList: function getList() {
             var _this5 = this;
 
+            //mengambil list berdasarkan kategori
             var uri = '/api/item/All/' + this.item.category.name;
             axios.get(uri).then(function (response) {
                 _this5.items = response.data;
@@ -22109,12 +21526,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             });
         },
         setPages: function setPages() {
+            //mengeset jumlah halaman yang ditampilkan
             var numberOfPages = Math.ceil(this.items.length / this.perPage);
             for (var index = 1; index <= numberOfPages; index++) {
                 this.pages.push(index);
             }
         },
         paginate: function paginate(items) {
+            //fungsi pagination
             var page = this.page;
             var perPage = this.perPage;
             var from = page * perPage - perPage;
@@ -22122,6 +21541,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             return items.slice(from, to);
         },
         decrement: function decrement() {
+            //mengurangi jumlah yang ingin dipesan
             if (isNaN(this.cart.quantity) || this.cart.quantity <= 1) {
                 this.cart.quantity = 1;
             } else {
@@ -22130,6 +21550,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
         },
         increment: function increment() {
+            //menambah jumlah yang ingin dipesan
             if (isNaN(this.cart.quantity)) {
                 this.cart.quantity = 1;
             } else if (this.cart.quantity >= this.item.stock) {
@@ -22139,17 +21560,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
         },
         validate: function validate() {
+            //melakukan validasi data yang akan dikirimkan
             if (this.cart.color == null) {
-                this.msg = this.msg + ' Please choose the color';
+                this.msg = this.msg + ' Harap untuk memilih warna,';
             }
             if (this.cart.size == null || this.cart.size == '') {
-                this.msg = this.msg + ' Please choose the size';
+                this.msg = this.msg + ' Harap untuk memilih ukuran,';
             }
             if (isNaN(this.cart.quantity)) {
-                this.msg = this.msg + ' Quantity must be number';
+                this.msg = this.msg + ' Jumlah harus berupa angka,';
             }
             if (this.item.stock < this.cart.quantity) {
-                this.msg = this.msg + ' Stock is not enough';
+                this.msg = this.msg + ' Stok tidak mencukupi pemesanan barang,';
             }
 
             if (this.msg != '') {
@@ -22159,6 +21581,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             return true;
         },
         prepareFields: function prepareFields() {
+            //menyiapkan data yang akan dikirim
             if (!this.validate()) {
                 return false;
             }
@@ -22168,6 +21591,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         sendData: function sendData() {
             var _this6 = this;
 
+            //mengirimkan data
             if (!this.prepareFields()) {
                 return false;
             }
@@ -22177,18 +21601,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
             };
-            // Make HTTP request to store announcement
             axios.post('/api/cart', this.cart, config).then(function (response) {
                 _this6.load = false;
                 _this6.$router.push({ name: 'Cart' });
-            }) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
-            .catch(function (error) {
+            }).catch(function (error) {
                 _this6.load = false;
             });
         },
         getData: function getData() {
             var _this7 = this;
 
+            //mengambil data detail
             var uri = '/api/item/detail/' + this.$route.params.slug;
             axios.get(uri).then(function (response) {
                 _this7.item = response.data;
@@ -22200,172 +21623,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             });
         },
         getSlider: function getSlider() {
+            //mengambil slider dan mengeset animasi slider
             ;(function ($) {
                 "use strict";
 
-                //    var nav_offset_top = $('header').height(); 
-                //    /*-------------------------------------------------------------------------------
-                //	  Navbar 
-                //	-------------------------------------------------------------------------------*/
-                //
-                //	//* Navbar Fixed  
-                //    function navbarFixed(){
-                //        if ( $('.main_menu_area, .search_area').length ){ 
-                //            $(window).scroll(function() {
-                //                var scroll = $(window).scrollTop();   
-                //                if (scroll >= nav_offset_top ) {
-                //                    $(".main_menu_area, .search_area").addClass("navbar_fixed");
-                //                } else {
-                //                    $(".main_menu_area, .search_area").removeClass("navbar_fixed");
-                //                }
-                //            });
-                //        };
-                //    };
-                //    navbarFixed();
-
-
                 /*----------------------------------------------------*/
                 /*  Main Slider js
                 /*----------------------------------------------------*/
 
-                function main_slider() {
-                    if ($('#main_slider').length) {
-                        $("#main_slider").revolution({
-                            sliderType: "standard",
-                            sliderLayout: "auto",
-                            delay: 5000,
-                            disableProgressBar: "on",
-                            navigation: {
-                                onHoverStop: 'off',
-                                touch: {
-                                    touchenabled: "on"
-                                },
-                                arrows: {
-                                    style: "normal",
-                                    enable: false,
-                                    hide_onmobile: true,
-                                    hide_under: 820,
-                                    hide_onleave: true,
-                                    hide_delay: 200,
-                                    hide_delay_mobile: 1200,
-                                    left: {
-                                        h_align: "left",
-                                        v_align: "center",
-                                        h_offset: 5,
-                                        v_offset: 0
-                                    },
-                                    right: {
-                                        h_align: "right",
-                                        v_align: "center",
-                                        h_offset: 5,
-                                        v_offset: 0
-                                    }
-                                }
-                            },
-                            responsiveLevels: [4096, 1199, 992, 767, 480],
-                            gridwidth: [1170, 1000, 750, 700, 300],
-                            gridheight: [575, 575, 575, 600, 500],
-                            lazyType: "smart",
-                            fallbacks: {
-                                simplifyAll: "off",
-                                nextSlideOnWindowFocus: "off",
-                                disableFocusListener: false
-                            }
-                        });
-                    }
-                }
-                main_slider();
-
-                /*----------------------------------------------------*/
-                /*  Main Slider js
-                /*----------------------------------------------------*/
-                function product_slider() {
-                    if ($('#product_slider').length) {
-                        var _$$revolution;
-
-                        $("#product_slider").revolution((_$$revolution = {
-                            sliderType: "standard",
-                            sliderLayout: "auto",
-                            delay: 5000,
-                            disableProgressBar: "on",
-                            navigation: {
-                                keyboardNavigation: "off",
-                                keyboard_direction: "horizontal",
-                                mouseScrollNavigation: "off",
-                                onHoverStop: "off",
-                                arrows: {
-                                    style: "uranus",
-                                    enable: true,
-                                    hide_onmobile: true,
-                                    hide_under: 778,
-                                    hide_onleave: true,
-                                    hide_delay: 200,
-                                    hide_delay_mobile: 1200,
-                                    tmp: '',
-                                    left: {
-                                        h_align: "left",
-                                        v_align: "center",
-                                        h_offset: 20,
-                                        v_offset: 0
-                                    },
-                                    right: {
-                                        h_align: "right",
-                                        v_align: "center",
-                                        h_offset: 20,
-                                        v_offset: 0
-                                    }
-                                },
-
-                                thumbnails: {
-                                    style: "erinyen",
-                                    enable: true,
-                                    width: 80,
-                                    height: 105,
-                                    min_width: 80,
-                                    wrapper_padding: 0,
-                                    wrapper_color: "#fff",
-                                    wrapper_opacity: "1",
-                                    tmp: '<span class="tp-thumb-over"></span><span class="tp-thumb-image"></span><span class="tp-thumb-title"></span>',
-                                    visibleAmount: 10,
-                                    hide_onmobile: false,
-                                    hide_onleave: false,
-                                    direction: "horizontal",
-                                    span: true,
-                                    position: "outer-bottom",
-                                    space: 17,
-                                    h_align: "center",
-                                    v_align: "top",
-                                    h_offset: 0,
-                                    v_offset: 0
-                                }
-                            },
-                            gridwidth: 370,
-                            gridheight: 520,
-                            lazyType: "none",
-                            shadow: 0,
-                            spinner: "spinner2",
-                            stopLoop: "on",
-                            stopAfterLoops: 0,
-                            stopAtSlide: 1,
-                            shuffle: "off",
-                            autoHeight: "off"
-                        }, _defineProperty(_$$revolution, 'disableProgressBar', "on"), _defineProperty(_$$revolution, 'hideThumbsOnMobile', "off"), _defineProperty(_$$revolution, 'hideSliderAtLimit', 0), _defineProperty(_$$revolution, 'hideCaptionAtLimit', 0), _defineProperty(_$$revolution, 'hideAllCaptionAtLilmit', 0), _defineProperty(_$$revolution, 'debugMode', false), _defineProperty(_$$revolution, 'fallbacks', {
-                            simplifyAll: "off",
-                            nextSlideOnWindowFocus: "off",
-                            disableFocusListener: false
-                        }), _$$revolution));
-                    }
-                }
-                product_slider();
-
-                /*----------------------------------------------------*/
-                /*  Main Slider js
-                /*----------------------------------------------------*/
                 function product_slider2() {
                     if ($('#product_slider2').length) {
-                        var _$$revolution2;
+                        var _$$revolution;
 
-                        $("#product_slider2").revolution((_$$revolution2 = {
+                        $("#product_slider2").revolution((_$$revolution = {
                             sliderType: "standard",
                             sliderLayout: "auto",
                             delay: 5000,
@@ -22465,325 +21735,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                             stopAtSlide: 1,
                             shuffle: "off",
                             autoHeight: "off"
-                        }, _defineProperty(_$$revolution2, 'disableProgressBar', "on"), _defineProperty(_$$revolution2, 'hideThumbsOnMobile', "off"), _defineProperty(_$$revolution2, 'hideSliderAtLimit', 0), _defineProperty(_$$revolution2, 'hideCaptionAtLimit', 0), _defineProperty(_$$revolution2, 'hideAllCaptionAtLilmit', 0), _defineProperty(_$$revolution2, 'debugMode', false), _defineProperty(_$$revolution2, 'fallbacks', {
+                        }, _defineProperty(_$$revolution, 'disableProgressBar', "on"), _defineProperty(_$$revolution, 'hideThumbsOnMobile', "off"), _defineProperty(_$$revolution, 'hideSliderAtLimit', 0), _defineProperty(_$$revolution, 'hideCaptionAtLimit', 0), _defineProperty(_$$revolution, 'hideAllCaptionAtLilmit', 0), _defineProperty(_$$revolution, 'debugMode', false), _defineProperty(_$$revolution, 'fallbacks', {
                             simplifyAll: "off",
                             nextSlideOnWindowFocus: "off",
                             disableFocusListener: false
-                        }), _$$revolution2));
+                        }), _$$revolution));
                     }
                 }
                 product_slider2();
-
-                /*----------------------------------------------------*/
-                /*  Main Slider js
-                /*----------------------------------------------------*/
-                function fullwidth_slider() {
-                    if ($('#fullwidth_slider').length) {
-                        $("#fullwidth_slider").revolution({
-                            sliderType: "standard",
-                            sliderLayout: "auto",
-                            delay: 5000,
-                            disableProgressBar: "on",
-                            navigation: {
-                                onHoverStop: 'off',
-                                touch: {
-                                    touchenabled: "on"
-                                },
-                                arrows: {
-                                    style: "normal",
-                                    enable: false,
-                                    hide_onmobile: true,
-                                    hide_under: 820,
-                                    hide_onleave: true,
-                                    hide_delay: 200,
-                                    hide_delay_mobile: 1200,
-                                    left: {
-                                        h_align: "left",
-                                        v_align: "center",
-                                        h_offset: 5,
-                                        v_offset: 0
-                                    },
-                                    right: {
-                                        h_align: "right",
-                                        v_align: "center",
-                                        h_offset: 5,
-                                        v_offset: 0
-                                    }
-                                }
-                            },
-                            responsiveLevels: [4096, 1320, 1199, 992, 767, 480],
-                            gridwidth: [1380, 1170, 960, 720, 700, 300],
-                            gridheight: [900, 900, 800, 700, 500, 500],
-                            lazyType: "smart",
-                            fallbacks: {
-                                simplifyAll: "off",
-                                nextSlideOnWindowFocus: "off",
-                                disableFocusListener: false
-                            }
-                        });
-                    }
-                }
-                fullwidth_slider();
-                /*----------------------------------------------------*/
-                /*  Main Slider js
-                /*----------------------------------------------------*/
-                function home_box_slider() {
-                    if ($('#home_box_slider').length) {
-                        $("#home_box_slider").revolution({
-                            sliderType: "standard",
-                            sliderLayout: "auto",
-                            delay: 50000000,
-                            disableProgressBar: "on",
-                            navigation: {
-                                onHoverStop: 'off',
-                                touch: {
-                                    touchenabled: "on"
-                                },
-                                arrows: {
-                                    style: "normal",
-                                    enable: true,
-                                    hide_onmobile: true,
-
-                                    left: {
-                                        h_align: "right",
-                                        v_align: "bottom",
-                                        h_offset: 60,
-                                        v_offset: 10
-                                    },
-                                    right: {
-                                        h_align: "right",
-                                        v_align: "bottom",
-                                        h_offset: 10,
-                                        v_offset: 10
-                                    }
-                                }
-                            },
-                            responsiveLevels: [4096, 1320, 1199, 992, 767, 480],
-                            gridwidth: [870, 870, 870, 720, 700, 350],
-                            gridheight: [450, 450, 450, 450, 450, 410],
-                            lazyType: "smart",
-                            fallbacks: {
-                                simplifyAll: "off",
-                                nextSlideOnWindowFocus: "off",
-                                disableFocusListener: false
-                            }
-                        });
-                    }
-                }
-                home_box_slider();
-
-                /*----------------------------------------------------*/
-                /*  Explor Room Slider
-                /*----------------------------------------------------*/
-                function l_product_slider() {
-                    if ($('.l_product_slider').length) {
-                        $('.l_product_slider').owlCarousel({
-                            loop: true,
-                            margin: 30,
-                            items: 4,
-                            nav: true,
-                            autoplay: true,
-                            smartSpeed: 1500,
-                            dots: false,
-                            navContainerClass: 'l_product_slider',
-                            navText: ['<i class="arrow_carrot-left" aria-hidden="true"></i>', '<i class="arrow_carrot-right" aria-hidden="true"></i>'],
-                            responsiveClass: true,
-                            responsive: {
-                                0: {
-                                    items: 1
-                                },
-                                575: {
-                                    items: 2
-                                },
-                                992: {
-                                    items: 3
-                                },
-                                1200: {
-                                    items: 4
-                                }
-                            }
-                        });
-                    }
-                }
-                l_product_slider();
-                /*----------------------------------------------------*/
-                /*  Explor Room Slider
-                /*----------------------------------------------------*/
-                function home_l_product_slider() {
-                    if ($('.home_l_product_slider').length) {
-                        $('.home_l_product_slider').owlCarousel({
-                            loop: true,
-                            margin: 30,
-                            items: 3,
-                            nav: true,
-                            autoplay: false,
-                            smartSpeed: 1500,
-                            dots: false,
-                            navContainerClass: 'home_l_product_slider',
-                            navText: ['<i class="arrow_carrot-left" aria-hidden="true"></i>', '<i class="arrow_carrot-right" aria-hidden="true"></i>'],
-                            responsiveClass: true,
-                            responsive: {
-                                0: {
-                                    items: 1
-                                },
-                                575: {
-                                    items: 2
-                                },
-                                992: {
-                                    items: 2
-                                },
-                                1200: {
-                                    items: 3
-                                }
-                            }
-                        });
-                    }
-                }
-                home_l_product_slider();
-
-                /*----------------------------------------------------*/
-                /*  Explor Room Slider
-                /*----------------------------------------------------*/
-                function carousel_slider() {
-                    if ($('.home_carousel_slider').length) {
-                        $('.home_carousel_slider').owlCarousel({
-                            loop: true,
-                            margin: 0,
-                            items: 5,
-                            nav: true,
-                            autoplay: false,
-                            smartSpeed: 1500,
-                            dots: true,
-                            navContainer: '.home_carousel_slider',
-                            navText: ['<i class="arrow_carrot-left" aria-hidden="true"></i>', '<i class="arrow_carrot-right" aria-hidden="true"></i>'],
-                            responsive: {
-                                0: {
-                                    items: 1
-                                },
-                                575: {
-                                    items: 2
-                                },
-                                800: {
-                                    items: 3
-                                },
-                                1200: {
-                                    items: 5
-                                }
-                            }
-                        });
-                    }
-                }
-                carousel_slider();
-
-                /*----------------------------------------------------*/
-                /*  portfolio_isotope
-                /*----------------------------------------------------*/
-                function main_gallery() {
-                    if ($('.fillter_slider_inner, .isotope_l_p_inner').length) {
-                        // Activate isotope in container
-                        $(".fillter_slider_inner, .isotope_l_p_inner").imagesLoaded(function () {
-                            $(".fillter_slider, .isotope_l_p_inner").isotope({
-                                layoutMode: 'masonry',
-                                percentPosition: true,
-                                columnWidth: 1
-                                //            masonry: {
-                                //                columnWidth: '.grid-sizer, .grid-sizer_two',
-                                //            }            
-                            });
-                        });
-                    }
-                }
-                main_gallery();
-
-                /*----------------------------------------------------*/
-                /*  Isotope Fillter js
-                /*----------------------------------------------------*/
-                function portfolio_isotope() {
-                    if ($('.portfolio_filter li, .fillter_l_p li').length) {
-                        // Add isotope click function
-                        $(".portfolio_filter li, .fillter_l_p li").on('click', function () {
-                            $(".portfolio_filter li, .fillter_l_p li").removeClass("active");
-                            $(this).addClass("active");
-
-                            var selector = $(this).attr("data-filter");
-                            $(".fillter_slider .owl-item, .isotope_l_p_inner, .fillter_product_slider .owl-item, .home_l_product_slider .owl-item").isotope({
-                                filter: selector,
-                                animationOptions: {
-                                    duration: 450,
-                                    easing: "linear",
-                                    queue: false
-                                }
-                            });
-                            return false;
-                        });
-                    }
-                }
-
-                portfolio_isotope();
-
-                /*----------------------------------------------------*/
-                /*  Language Flag js 
-                /*----------------------------------------------------*/
-                function createByJson() {
-                    var jsonData = [{ description: 'Choos your payment gateway', value: '', text: 'Payment Gateway' }, { image: '../img/icon/flag-1.png', description: 'My life. My card...', value: 'amex', text: 'Amex' }, { image: '../img/icon/flag-1.png', description: 'It pays to Discover...', value: 'Discover', text: 'Discover' }, { image: '../img/icon/flag-1.png', title: 'For everything else...', description: 'For everything else...', value: 'Mastercard', text: 'Mastercard' }, { image: '../img/icon/flag-1.png', description: 'Sorry not available...', value: 'cash', text: 'Cash on devlivery', disabled: true }, { image: '../img/icon/flag-1.png', description: 'All you need...', value: 'Visa', text: 'Visa' }, { image: '../img/icon/flag-1.png', description: 'Pay and get paid...', value: 'Paypal', text: 'Paypal' }];
-                    $("#byjson").msDropDown({ byJson: { data: jsonData, name: 'payments2' } }).data("dd");
-                }
-                $(document).ready(function (e) {
-                    //no use
-                    try {
-                        var pages = $("#pages").msDropdown({ on: { change: function change(data, ui) {
-                                    var val = data.value;
-                                    if (val != "") window.location = val;
-                                } } }).data("dd");
-
-                        var pagename = document.location.pathname.toString();
-                        pagename = pagename.split("/");
-                        pages.setIndexByValue(pagename[pagename.length - 1]);
-                        $("#ver").html(msBeautify.version.msDropdown);
-                    } catch (e) {
-                        //console.log(e);	
-                    }
-                    $("#ver").html(msBeautify.version.msDropdown);
-
-                    //convert
-                    $(".language_drop").msDropdown({ roundedBorder: false });
-                    createByJson();
-                    $("#tech").data("dd");
-                });
-                function showValue(h) {
-                    console.log(h.name, h.value);
-                }
-                $("#tech").change(function () {
-                    console.log("by jquery: ", this.value);
-                });
-
-                $(document).ready(function () {
-                    $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
-                        disableOn: 700,
-                        type: 'iframe',
-                        mainClass: 'mfp-fade',
-                        removalDelay: 160,
-                        preloader: false,
-
-                        fixedContentPos: false
-                    });
-                });
-
-                $(".verticalCarousel").verticalCarousel({
-                    currentItem: 1,
-                    showItems: 4
-                });
-
-                $("#slider-range").slider({
-                    range: true,
-                    min: 0,
-                    max: 9000,
-                    values: [70, 9000],
-                    slide: function slide(event, ui) {
-                        $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-                    }
-                });
-                $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
             })(jQuery);
         }
     }
@@ -23029,7 +21988,7 @@ var render = function() {
                               _c("v-select", {
                                 attrs: {
                                   items: ["M", "XL"],
-                                  label: "Size",
+                                  label: "Ukuran",
                                   outline: ""
                                 },
                                 model: {
@@ -23736,12 +22695,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created: function created() {},
     mounted: function mounted() {
-        this.getData();
+        this.getData(); //mengambil data
     },
     destroyed: function destroyed() {},
 
     watch: {
         '$route': function $route(to, from) {
+            //mendeteksi perubahan parameter
 
             if (from.params.type != to.params.type || from.params.category != to.params.category) {
                 this.page = 1;
@@ -23751,11 +22711,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         items: function items() {
+            //mengeset jumlah page
             this.setPages();
         }
     },
     computed: {
         displayItem: function displayItem() {
+            //filer dari data yang ditampilkan
             return this.paginate(this.items);
         }
     },
@@ -23763,6 +22725,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getData: function getData() {
             var _this = this;
 
+            //mengambil data berdasarkan type dan kategori
             var uri = '/api/item/' + this.$route.params.type + '/' + this.$route.params.category;
             axios.get(uri).then(function (response) {
                 _this.items = response.data;
@@ -23770,18 +22733,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         setPages: function setPages() {
+            //mengeset jumlah page
             var numberOfPages = Math.ceil(this.items.length / this.perPage);
             for (var index = 1; index <= numberOfPages; index++) {
                 this.pages.push(index);
             }
         },
         paginate: function paginate(items) {
+            //fungsi membuat pagination
             var page = this.page;
             var perPage = this.perPage;
             var from = page * perPage - perPage;
             var to = page * perPage;
             if (this.sortMethod == 'new') {
-                var sorted = _.orderBy(items, ['created_at'], ['desc']);
+                var sorted = _.orderBy(items, ['created_at'], ['desc']); //mengurutkan data berdasarkan created_at
             } else {
                 var sorted = _.orderBy(items, ['price'], [this.sortMethod]);
             }
@@ -23804,25 +22769,25 @@ var render = function() {
         _c("div", { staticClass: "row m0" }, [
           _c("div", { staticClass: "first_fillter" }, [
             _c("h4", [
-              _vm._v("Showing  "),
+              _vm._v("Menampilkan  "),
               _vm.items.length != 0
                 ? _c("span", [
                     _vm._v(
                       " " +
                         _vm._s(_vm.page * _vm.perPage - (_vm.perPage - 1)) +
-                        " to  "
+                        " Sampai "
                     )
                   ])
                 : _vm._e(),
               _vm.items.length > _vm.page * _vm.perPage
                 ? _c("span", [_vm._v(_vm._s(_vm.page * _vm.perPage))])
                 : _c("span", [_vm._v(" " + _vm._s(_vm.items.length) + " ")]),
-              _vm._v("of " + _vm._s(_vm.items.length) + " total")
+              _vm._v("dari " + _vm._s(_vm.items.length) + " Total")
             ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "secand_fillter" }, [
-            _c("h4", [_vm._v("SORT BY :")]),
+            _c("h4", [_vm._v("URUTKAN BERDASARKAN :")]),
             _vm._v(" "),
             _c(
               "select",
@@ -23899,7 +22864,7 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _c("h5", { staticClass: "new" }, [_vm._v("New")])
+                      _c("h5", { staticClass: "new" }, [_vm._v("Baru")])
                     ],
                     1
                   ),
@@ -23924,7 +22889,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                        Add To Cart\n                                        "
+                                "\n                                        Detail\n                                        "
                               )
                             ]
                           )
@@ -24193,12 +23158,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created: function created() {},
     mounted: function mounted() {
-        this.getData();
+        this.getData(); //mengambil data
     },
     destroyed: function destroyed() {},
 
     watch: {
         '$route': function $route(to, from) {
+            //mendeteksi perubahan parameter
 
             if (from.params.category != to.params.category) {
                 this.page = 1;
@@ -24208,11 +23174,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         items: function items() {
+            //mengeset jumlah page
             this.setPages();
         }
     },
     computed: {
         displayItem: function displayItem() {
+            //filer dari data yang ditampilkan
             return this.paginate(this.items);
         }
     },
@@ -24220,6 +23188,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getData: function getData() {
             var _this = this;
 
+            //mengambil data berdasarkan kategori
             var uri = '/api/item/All/' + this.$route.params.category;
             axios.get(uri).then(function (response) {
                 _this.items = response.data;
@@ -24227,18 +23196,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         setPages: function setPages() {
+            //mengeset jumlah page
             var numberOfPages = Math.ceil(this.items.length / this.perPage);
             for (var index = 1; index <= numberOfPages; index++) {
                 this.pages.push(index);
             }
         },
         paginate: function paginate(items) {
+            //fungsi membuat pagination
             var page = this.page;
             var perPage = this.perPage;
             var from = page * perPage - perPage;
             var to = page * perPage;
             if (this.sortMethod == 'new') {
-                var sorted = _.orderBy(items, ['created_at'], ['desc']);
+                var sorted = _.orderBy(items, ['created_at'], ['desc']); //mengurutkan data berdasarkan created_at
             } else {
                 var sorted = _.orderBy(items, ['price'], [this.sortMethod]);
             }
@@ -24288,25 +23259,25 @@ var render = function() {
           _c("div", { staticClass: "row m0" }, [
             _c("div", { staticClass: "first_fillter" }, [
               _c("h4", [
-                _vm._v("Showing "),
+                _vm._v("Menampilkan "),
                 _vm.items.length != 0
                   ? _c("span", [
                       _vm._v(
                         " " +
                           _vm._s(_vm.page * _vm.perPage - (_vm.perPage - 1)) +
-                          " to  "
+                          " Sampai  "
                       )
                     ])
                   : _vm._e(),
                 _vm.items.length > _vm.page * _vm.perPage
                   ? _c("span", [_vm._v(_vm._s(_vm.page * _vm.perPage))])
                   : _c("span", [_vm._v(" " + _vm._s(_vm.items.length) + " ")]),
-                _vm._v("of " + _vm._s(_vm.items.length) + " total")
+                _vm._v(" dari " + _vm._s(_vm.items.length) + " Total")
               ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "secand_fillter" }, [
-              _c("h4", [_vm._v("SORT BY :")]),
+              _c("h4", [_vm._v("URUTKAN BERDASARKAN :")]),
               _vm._v(" "),
               _c(
                 "select",
@@ -24389,7 +23360,7 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _c("h5", { staticClass: "new" }, [_vm._v("New")])
+                        _c("h5", { staticClass: "new" }, [_vm._v("Baru")])
                       ],
                       1
                     ),
@@ -24414,7 +23385,7 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                        Add To Cart\n                                        "
+                                  "\n                                        Detail\n                                        "
                                 )
                               ]
                             )
@@ -24682,17 +23653,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             page: 1,
             perPage: 9,
             pages: [],
-            items: []
+            items: [],
+            sortMethod: 'new'
+
         };
     },
     created: function created() {},
     mounted: function mounted() {
-        this.getData();
+        this.getData(); //mengambil data
     },
     destroyed: function destroyed() {},
 
     watch: {
         '$route': function $route(to, from) {
+            //mendeteksi perubahan parameter
 
             if (from.params.category != to.params.category || from.params.search != to.params.search) {
                 this.page = 1;
@@ -24702,11 +23676,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         items: function items() {
+            //mengeset jumlah page
             this.setPages();
         }
     },
     computed: {
         displayItem: function displayItem() {
+            //filer dari data yang ditampilkan
             return this.paginate(this.items);
         }
     },
@@ -24714,6 +23690,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getData: function getData() {
             var _this = this;
 
+            //mengambil data yang dicari
             var uri = '/api/search/' + this.$route.params.category + '/' + this.$route.params.search;
             axios.get(uri).then(function (response) {
                 _this.items = response.data;
@@ -24721,17 +23698,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         setPages: function setPages() {
+            //mengeset jumlah page
             var numberOfPages = Math.ceil(this.items.length / this.perPage);
             for (var index = 1; index <= numberOfPages; index++) {
                 this.pages.push(index);
             }
         },
         paginate: function paginate(items) {
+            //fungsi membuat pagination
             var page = this.page;
             var perPage = this.perPage;
             var from = page * perPage - perPage;
             var to = page * perPage;
-            return items.slice(from, to);
+            if (this.sortMethod == 'new') {
+                var sorted = _.orderBy(items, ['created_at'], ['desc']); //mengurutkan data berdasarkan created_at
+            } else {
+                var sorted = _.orderBy(items, ['price'], [this.sortMethod]);
+            }
+            return sorted.slice(from, to);
         }
     }
 });
@@ -24751,24 +23735,68 @@ var render = function() {
           _c("div", { staticClass: "row m0" }, [
             _c("div", { staticClass: "first_fillter" }, [
               _c("h4", [
-                _vm._v("Showing "),
+                _vm._v("Menampilkan "),
                 _vm.items.length != 0
                   ? _c("span", [
                       _vm._v(
                         " " +
                           _vm._s(_vm.page * _vm.perPage - (_vm.perPage - 1)) +
-                          " to  "
+                          " Sampai  "
                       )
                     ])
                   : _vm._e(),
                 _vm.items.length > _vm.page * _vm.perPage
                   ? _c("span", [_vm._v(_vm._s(_vm.page * _vm.perPage))])
                   : _c("span", [_vm._v(" " + _vm._s(_vm.items.length) + " ")]),
-                _vm._v("of " + _vm._s(_vm.items.length) + " total")
+                _vm._v("Dari " + _vm._s(_vm.items.length) + " Total")
               ])
             ]),
             _vm._v(" "),
-            _vm._m(0)
+            _c("div", { staticClass: "secand_fillter" }, [
+              _c("h4", [_vm._v("URUTKAN BERDASARKAN :")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.sortMethod,
+                      expression: "sortMethod"
+                    }
+                  ],
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.sortMethod = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "new" } }, [
+                    _vm._v("Terbaru")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "asc" } }, [
+                    _vm._v("Termurah")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "desc" } }, [
+                    _vm._v("Termahal")
+                  ])
+                ]
+              )
+            ])
           ])
         ]),
         _vm._v(" "),
@@ -24808,14 +23836,14 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _c("h5", { staticClass: "new" }, [_vm._v("New")])
+                        _c("h5", { staticClass: "new" }, [_vm._v("Baru")])
                       ],
                       1
                     ),
                     _vm._v(" "),
                     _c("div", { staticClass: "l_p_text" }, [
                       _c("ul", [
-                        _vm._m(1, true),
+                        _vm._m(0, true),
                         _vm._v(" "),
                         _c(
                           "li",
@@ -24833,7 +23861,7 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                        Add To Cart\n                                        "
+                                  "\n                                        Detail\n                                        "
                                 )
                               ]
                             )
@@ -24841,7 +23869,7 @@ var render = function() {
                           1
                         ),
                         _vm._v(" "),
-                        _vm._m(2, true)
+                        _vm._m(1, true)
                       ]),
                       _vm._v(" "),
                       _c("h4", [_vm._v(_vm._s(item.name))]),
@@ -24936,22 +23964,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "secand_fillter" }, [
-      _c("h4", [_vm._v("SORT BY :")]),
-      _vm._v(" "),
-      _c("select", { staticClass: "selectpicker" }, [
-        _c("option", [_vm._v("Termurah")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("Termahal")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("Diskon")])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

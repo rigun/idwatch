@@ -11,7 +11,7 @@
                     </div>
                     <div class="float-md-right">
                         <div class="top_header_middle">
-                            <a href="#"><i class="fa fa-phone"></i> Call Us: <span>+812-5402-6142</span></a>
+                            <a href="#"><i class="fa fa-phone"></i> Telepon Kami: <span>+812-5402-6142</span></a>
                             <a href="#"><i class="fa fa-envelope"></i> Email: <span>agungskak22@gmail.com</span></a>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                             <li class="nav-item dropdown submenu">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
-                                    CATEGORIES <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    KATEGORI <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item" v-for="category in categories" :key="category.id"><router-link :to="{name: 'ListCategory', params:{category: category.name}}" class="nav-link"  >{{category.name}}</router-link></li>
@@ -47,17 +47,17 @@
                             </li>
                              <li class="nav-item">
                                 <router-link :to="{name: 'Shop', params:{type: 'All', category: 'Man'}}" class="nav-link">
-                                   SHOP
+                                   BELANJA
                                 </router-link>
                             </li>
                              <li class="nav-item">
                                 <router-link :to="{name: 'Contact'}" class="nav-link">
-                                   CONTACT
+                                   KONTAK
                                 </router-link>
                             </li>
                              <li class="nav-item" v-if="token != null">
                                 <router-link :to="{name: 'CheckoutCart'}" class="nav-link">
-                                   CheckoutCart
+                                   BELANJAAN
                                 </router-link>
                             </li>
                         </ul>
@@ -91,11 +91,11 @@
                                         class="headline grey lighten-2"
                                         primary-title
                                         >
-                                        Logout
+                                        Keluar
                                         </v-card-title>
 
                                         <v-card-text>
-                                        Are you sure you want to logout ?
+                                        Apakah anda yakin ingin keluar ?
                                         </v-card-text>
 
                                         <v-divider></v-divider>
@@ -105,11 +105,11 @@
                                         <a
                                             @click="dialog = false"
                                         >
-                                            Cancel
+                                            Batal
                                         </a>
 
                                             <router-link :to="{name: 'Logout'}"  >
-                                                    Logout
+                                                    Keluar
                                             </router-link>
                                         </v-card-actions>
                                     </v-card>
@@ -122,7 +122,7 @@
                 </nav>
                 <div class="advanced_search_area">
                     <select class="selectpicker" v-model="selectedCategory">
-                        <option value="All">All Categories</option>
+                        <option value="All">Semua Kategori</option>
                         <option  v-for="category in categories" :key="category.id" >{{category.name}}</option>
                     </select>
                     <div class="input-group">
@@ -175,34 +175,31 @@
                     <div class="col-lg-2 col-md-4 col-6">
                         <aside class="f_widget link_widget f_info_widget">
                             <div class="f_w_title">
-                                <h3>Information</h3>
+                                <h3>Informasi</h3>
                             </div>
                             <ul>
-                                <li><a href="#">About us</a></li>
+                                <li><a href="#">Tentang Kami</a></li>
                                 <li><a href="#">Delivery information</a></li>
                                 <li><a href="#">Terms & Conditions</a></li>
                                 <li><a href="#">Help Center</a></li>
-                                <li><a href="#">Returns & Refunds</a></li>
                             </ul>
                         </aside>
                     </div>
                     <div class="col-lg-2 col-md-4 col-6">
                         <aside class="f_widget link_widget f_service_widget">
                             <div class="f_w_title">
-                                <h3>Customer Service</h3>
+                                <h3>Pelayanan Pelanggan</h3>
                             </div>
                             <ul>
-                                <li><a href="#">My account</a></li>
-                                <li><a href="#">Order History</a></li>
-                                <li><a href="#">Wish List</a></li>
-
+                                <li><a href="#">Akun Saya</a></li>
+                                <li><a href="#">Riwayat Belanja</a></li>
                             </ul>
                         </aside>
                     </div>
                     <div class="col-lg-2 col-md-4 col-6">
                         <aside class="f_widget link_widget f_extra_widget">
                             <div class="f_w_title">
-                                <h3>contact</h3>
+                                <h3>Kontak</h3>
                             </div>
                             <ul>
                                 <li><a href="#">xxxxxxxxxx</a></li>
@@ -215,7 +212,7 @@
                     <div class="col-lg-2 col-md-4 col-6">
                         <aside class="f_widget link_widget f_account_widget">
                             <div class="f_w_title">
-                                <h3>Order</h3>
+                                <h3>Pesan</h3>
                             </div>
                             <ul>
                                 <li><a href="#">xxxxxxxxxx</a></li>
@@ -248,9 +245,9 @@ export default {
         }
     },
     mounted(){
-          this.getUser();
-          this.getCategory();
-          this.getCount();
+          this.getUser(); //mengambil data pengguna
+          this.getCategory(); //mengambil kategori
+          this.getCount(); //mengambil jumlah item di keranjang
         },
         methods:{
             getCount(){
@@ -265,13 +262,13 @@ export default {
                         this.count = 0;
                     })  
             },
-            refresh(){
+            refresh(){ //memperbaharui token JWT pengguna
                  axios.get('/api/refresh', {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem('token')
                     }
                 }).then(response => {
-                    localStorage.setItem('token', response.data.access_token);
+                    localStorage.setItem('token', response.data.access_token); //membuat variable dan mengeset data kedalam penyimpanan internal browser
                     this.getUser();
                     this.$nextTick(function () {
                         this.getCount();
@@ -280,7 +277,7 @@ export default {
                    this.mssg = 'Login';
                 });
             },
-            getUser(){
+            getUser(){ //mengambil data pengguna
                 axios.get('/api/user', {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -288,16 +285,16 @@ export default {
                     })
                     .then(response => {
                         if(response.data.status == "Token is Expired"){
-                            this.$router.push({ name: 'Logout' })
+                            this.$router.push({ name: 'Logout' }) //mengarahkan ke komponen logout
                         }else {
-                           this.token = localStorage.getItem('token');
+                           this.token = localStorage.getItem('token'); //mengambil item dari penyimpanan broweser dengan variable token
                            // this.getCountBag();                                
                         }
                     }).catch(error => {
                         this.mssg = 'Login';
                     })  
             },
-             getCategory(){
+             getCategory(){ //mengambil data kategori yang tersedia
                 let uri = '/api/category';
                 axios.get(uri).then((response) => {
                     this.categories = response.data;

@@ -28,11 +28,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <ul class="nav pull-right" v-if="token == null">
-						<li><a>
-							Forgot your password?
-						</a></li>
-					</ul>
+                
                 </div>
                 <!-- /.nav-collapse -->
             </div>
@@ -67,15 +63,15 @@ export default {
         }
     },
     mounted(){
-        if(localStorage.getItem('roles') == 'user'){
-            window.location = "http://127.0.0.1:8000";
+        if(localStorage.getItem('roles') == 'user'){ //apabila role pengguna adalah user
+            window.location = "http://127.0.0.1:8000"; //akan diarahkan ke alamat yang ditentukan.
         }else{
             this.admin= true;
-              this.getUser();
+              this.getUser(); // mengambil data pengguna
         }
     },
         methods:{
-            refresh(){
+            refresh(){ //melakukan refresh token pengguna
                  axios.get('/api/refresh', {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -88,15 +84,15 @@ export default {
                    this.mssg = 'Login';
                 });
             },
-            getUser(){
+            getUser(){ //mengambil data pengguna
                 axios.get('/api/user', {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem('token')
                         }
                     })
                     .then(response => {
-                        if(response.data.status == "Token is Expired"){
-                            this.$router.push({ name: 'LogoutAdmin' })
+                        if(response.data.status == "Token is Expired"){ //apabila tokennya kadaluarsa
+                            this.$router.push({ name: 'LogoutAdmin' }) //akan diarahkan ke komponen logoutAdmin 
                         }else {
                            this.token = localStorage.getItem('token');
                            // this.getCountBag();                                
@@ -105,7 +101,7 @@ export default {
                         this.mssg = 'Login';
                     })  
             },
-            togDrop(){
+            togDrop(){ //mengaktifkan dropdown
                 if(this.dropdown == false){
                     this.dropdown = true;
                 }else{

@@ -18,10 +18,10 @@
               <div class="showing_fillter">
                 <div class="row m0">
                     <div class="first_fillter">
-                        <h4>Showing <span v-if="items.length != 0"> {{(page * perPage) - (perPage-1)}} to  </span><span v-if="items.length > (page * perPage)">{{(page * perPage)}}</span> <span v-else> {{items.length}} </span>of {{items.length}} total</h4>
+                        <h4>Menampilkan <span v-if="items.length != 0"> {{(page * perPage) - (perPage-1)}} Sampai  </span><span v-if="items.length > (page * perPage)">{{(page * perPage)}}</span> <span v-else> {{items.length}} </span> dari {{items.length}} Total</h4>
                     </div>
                     <div class="secand_fillter">
-                        <h4>SORT BY :</h4>
+                        <h4>URUTKAN BERDASARKAN :</h4>
                           <select v-model="sortMethod">
                             <option value="new">Terbaru</option>
                             <option value="asc">Termurah</option>
@@ -40,7 +40,7 @@
                                  <router-link :to="{name: 'DetailPage',  params: { slug: item.slug } }"  >
                                 <img :src="'../../../itemImages/'+item.picture[0].filename" alt="image">
                                  </router-link>
-                                <h5 class="new">New</h5>
+                                <h5 class="new">Baru</h5>
                             </div>
                             <div class="l_p_text">
                                 <ul>
@@ -48,7 +48,7 @@
                                                      <i class="icon_piechart"></i></a>
                                            </li>
                                     <li><router-link  class="add_cart_btn" :to="{name: 'DetailPage',  params: { slug: item.slug } }"  >
-                                            Add To Cart
+                                            Detail
                                             </router-link></li>
                                     <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
                                 </ul>
@@ -85,13 +85,13 @@ export default {
     created(){
     },
     mounted(){
-        this.getData();
+        this.getData(); //mengambil data
 
     },
     destroyed(){
     },
     watch: {
-            '$route' (to, from) {
+            '$route' (to, from) { //mendeteksi perubahan parameter
 
                 if (from.params.category != to.params.category) {
                      this.page= 1;
@@ -101,17 +101,17 @@ export default {
 
                 }
             },
-             items () {
+             items () { //mengeset jumlah page
                 this.setPages();
             }
         },
     computed: {
-        displayItem () {
+        displayItem () { //filer dari data yang ditampilkan
             return this.paginate(this.items);
         }
     },
     methods:{
-         getData(){
+         getData(){ //mengambil data berdasarkan kategori
             let uri = '/api/item/All/'+this.$route.params.category;
             axios.get(uri).then((response) => {
                 this.items = response.data;
@@ -119,19 +119,19 @@ export default {
             })
             
         },
-        setPages () {
+        setPages () { //mengeset jumlah page
             let numberOfPages = Math.ceil(this.items.length / this.perPage);
             for (let index = 1; index <= numberOfPages; index++) {
                 this.pages.push(index);
             }
         },
-        paginate (items) {
+        paginate (items) { //fungsi membuat pagination
             let page = this.page;
             let perPage = this.perPage;
             let from = (page * perPage) - perPage;
             let to = (page * perPage);
               if(this.sortMethod == 'new'){
-                var sorted = _.orderBy(items, ['created_at'],['desc']);
+                var sorted = _.orderBy(items, ['created_at'],['desc']); //mengurutkan data berdasarkan created_at
             }else{
                 var sorted = _.orderBy(items, ['price'],[this.sortMethod]);
             }

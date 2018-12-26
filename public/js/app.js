@@ -20158,7 +20158,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         sumOfWeight: function sumOfWeight() {
             var sum = 0;
             for (var i = 0; i < this.cart.length; i++) {
-                sum = sum + parsetInt(this.cart[i].item.weight);
+                sum = sum + parseInt(this.cart[i].item.weight);
             }
             return sum;
         }

@@ -286,7 +286,7 @@ export default {
         sumOfWeight(){
             var sum=0;
             for(let i=0;i< this.cart.length;i++){
-                sum = sum + parsetInt(this.cart[i].item.weight)
+                sum = sum + parseInt(this.cart[i].item.weight)
             }
             return sum;
         }

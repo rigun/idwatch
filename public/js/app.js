@@ -27111,6 +27111,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 				data: function data() {
@@ -27125,7 +27133,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 																price: null,
 																type: 'Digital',
 																merk: '',
-																description: ''
+																description: '',
+																weight: null
 												},
 												categories: [],
 												filenames: [],
@@ -27172,7 +27181,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 												if (this.filenames.length <= 0) {
 																this.msg = this.msg + 'Please add at least one picture,';
 												}
-												if (this.item.name == '' || this.item.category_id == '' || this.item.stock == null || this.item.price == null || this.item.merk == '' || this.item.description == '') {
+												if (this.item.name == '' || this.item.category_id == '' || this.item.stock == null || this.item.price == null || this.item.weight == null || this.item.merk == '' || this.item.description == '') {
 																this.msg = this.msg + ' Please fill the blank field,';
 												}
 												if (this.item.stock < 1) {
@@ -27183,6 +27192,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 												}
 												if (isNaN(this.item.price)) {
 																this.msg = this.msg + ' Price must be number,';
+												}
+												if (isNaN(this.item.weight)) {
+																this.msg = this.msg + ' Weight must be number,';
 												}
 
 												if (this.msg != '') {
@@ -27225,6 +27237,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 												this.data.append('price', this.item.price);
 												this.data.append('description', this.item.description);
 												this.data.append('category_id', this.item.category_id);
+												this.data.append('weight', this.item.weight);
 												return true;
 								},
 								removefilename: function removefilename(filename) {
@@ -27278,6 +27291,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 																price: null,
 																type: 'Digital',
 																merk: '',
+																weight: null,
 																description: ''
 												};
 								},
@@ -27634,6 +27648,41 @@ var render = function() {
                     }
                   }),
                   _c("span", { staticClass: "add-on" }, [_vm._v("Rp")])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "control-group" }, [
+              _c(
+                "label",
+                { staticClass: "control-label", attrs: { for: "basicinput" } },
+                [_vm._v("Weight")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "controls" }, [
+                _c("div", { staticClass: "input-append" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.item.weight,
+                        expression: "item.weight"
+                      }
+                    ],
+                    staticClass: "span8",
+                    attrs: { type: "number", placeholder: "00000000" },
+                    domProps: { value: _vm.item.weight },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.item, "weight", $event.target.value)
+                      }
+                    }
+                  }),
+                  _c("span", { staticClass: "add-on" }, [_vm._v("Gram")])
                 ])
               ])
             ]),
@@ -29385,6 +29434,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -29397,6 +29454,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				category_id: '',
 				stock: null,
 				price: null,
+				weight: null,
 				type: 'Digital',
 				merk: '',
 				description: ''
@@ -29451,7 +29509,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			if (this.filenames.length <= 0 && this.originalFile.length <= 0) {
 				this.msg = this.msg + 'Please add at least one picture';
 			}
-			if (this.item.name == '' || this.item.category_id == '' || this.item.stock == null || this.item.price == null || this.item.merk == '' || this.item.description == '') {
+			if (this.item.name == '' || this.item.category_id == '' || this.item.stock == null || this.item.price == null || this.item.weight == null || this.item.merk == '' || this.item.description == '') {
 				this.msg = this.msg + ' Please fill the blank field';
 			}
 			if (this.item.stock < 1) {
@@ -29462,6 +29520,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			}
 			if (isNaN(this.item.price)) {
 				this.msg = this.msg + ' Price must be number';
+			}
+			if (isNaN(this.item.weight)) {
+				this.msg = this.msg + ' Weight must be number';
 			}
 
 			if (this.msg != '') {
@@ -29502,6 +29563,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.data.append('merk', this.item.merk);
 			this.data.append('type', this.item.type);
 			this.data.append('price', this.item.price);
+			this.data.append('weight', this.item.weight);
 			this.data.append('description', this.item.description);
 			this.data.append('category_id', this.item.category_id);
 			return true;
@@ -29994,6 +30056,41 @@ var render = function() {
                     }
                   }),
                   _c("span", { staticClass: "add-on" }, [_vm._v("Rp")])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "control-group" }, [
+              _c(
+                "label",
+                { staticClass: "control-label", attrs: { for: "basicinput" } },
+                [_vm._v("Weight")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "controls" }, [
+                _c("div", { staticClass: "input-append" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.item.weight,
+                        expression: "item.weight"
+                      }
+                    ],
+                    staticClass: "span8",
+                    attrs: { type: "number", placeholder: "00000000" },
+                    domProps: { value: _vm.item.weight },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.item, "weight", $event.target.value)
+                      }
+                    }
+                  }),
+                  _c("span", { staticClass: "add-on" }, [_vm._v("Gram")])
                 ])
               ])
             ]),

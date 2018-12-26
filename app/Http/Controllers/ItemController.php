@@ -80,6 +80,7 @@ class ItemController extends Controller
             'merk' => 'required',
             'type' => 'required',
             'price' => 'required',
+            'weight' => 'required',
             'category_id' => 'required',
             'description' => 'required',
         ]);
@@ -91,6 +92,7 @@ class ItemController extends Controller
         $item->merk = $request->merk;
         $item->type = $request->type;
         $item->price = $request->price;
+        $item->weight = $request->weight;
         $item->description = $request->description;
         $item->category_id = $request->category_id;
         $item->save();
@@ -168,6 +170,7 @@ class ItemController extends Controller
             'merk' => 'required',
             'type' => 'required',
             'price' => 'required',
+            'weight' => 'required',
             'category_id' => 'required',
             'description' => 'required',
         ]);
@@ -178,6 +181,7 @@ class ItemController extends Controller
         $item->merk = $request->merk;
         $item->type = $request->type;
         $item->price = $request->price;
+        $item->weight = $request->weight;
         $item->description = $request->description;
         $item->category_id = $request->category_id;
         $item->save();

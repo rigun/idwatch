@@ -21,6 +21,7 @@ class CreateItemsTable extends Migration
             $table->string('merk');
             $table->string('type');
             $table->double('price');
+            $table->double('weight');
             $table->text('description');
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')

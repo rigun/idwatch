@@ -78,6 +78,14 @@
 											</div>
 										</div>
 										<div class="control-group">
+											<label class="control-label" for="basicinput">Weight</label>
+											<div class="controls">
+												<div class="input-append">
+													<input type="number" placeholder="00000000" class="span8" v-model="item.weight"><span class="add-on">Gram</span>
+												</div>
+											</div>
+										</div>
+										<div class="control-group">
 											<label class="control-label" for="basicinput">Category</label>
 											<div class="controls">
 												<div class="dropdown">
@@ -150,6 +158,7 @@ export default {
 				category_id: '',
 				stock: null,
 				price: null,
+				weight: null,
 				type: 'Digital',
 				merk: '',
 				description: '',
@@ -193,7 +202,7 @@ export default {
 			if(this.filenames.length <= 0 && this.originalFile.length <= 0){
 				this.msg = this.msg + 'Please add at least one picture'
 			}
-			if(this.item.name == '' || this.item.category_id == '' ||this.item.stock == null || this.item.price == null || this.item.merk == '' || this.item.description == ''){
+			if(this.item.name == '' || this.item.category_id == '' ||this.item.stock == null || this.item.price == null || this.item.weight == null || this.item.merk == '' || this.item.description == ''){
 				this.msg = this.msg + ' Please fill the blank field'
 			}
 			if(this.item.stock < 1){
@@ -204,6 +213,9 @@ export default {
 			}
 			if(isNaN(this.item.price)){
 				this.msg = this.msg + ' Price must be number'
+			}
+			if(isNaN(this.item.weight)){
+				this.msg = this.msg + ' Weight must be number'
 			}
 
 			if(this.msg != ''){
@@ -237,6 +249,7 @@ export default {
 					this.data.append('merk', this.item.merk);
 					this.data.append('type', this.item.type);
 					this.data.append('price', this.item.price);
+					this.data.append('weight', this.item.weight);
 					this.data.append('description', this.item.description);
 					this.data.append('category_id', this.item.category_id);
 					return true;

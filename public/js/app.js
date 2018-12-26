@@ -20602,7 +20602,10 @@ var render = function() {
                             ),
                             _c(
                               "table",
-                              { attrs: { sytle: " width: 100%;" } },
+                              {
+                                staticClass: "table",
+                                attrs: { sytle: " width: 100%;" }
+                              },
                               [
                                 _vm._m(2),
                                 _vm._v(" "),

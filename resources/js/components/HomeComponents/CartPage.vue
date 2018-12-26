@@ -69,7 +69,7 @@
                                     </div>
                                     <div class="form-group col-lg-12" v-if="jne.length > 0">
                                         Silahkan pilih biaya pengiriman yang diinginkan
-                                        <table sytle=" width: 100%;">
+                                        <table class="table" sytle=" width: 100%;">
                                             <tr>
                                                 <td></td>
                                                 <td>Jenis Pengiriman</td>

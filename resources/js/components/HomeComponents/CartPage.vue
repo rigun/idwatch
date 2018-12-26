@@ -289,9 +289,9 @@ export default {
         },
         getProvince(){ //mengambil data provinsi dari api raja ongkir
             let uri = 'https://api.rajaongkir.com/starter/province';
-            axios.get(uri,{
+            axios.OPTIONS(uri,{
                     headers: { 
-                    Key: '4e783427bd2c52632a0d6fa866e5aff2' } 
+                    'key': '4e783427bd2c52632a0d6fa866e5aff2' } 
                 }).then((response) => {
                     console.log(response)
                 this.province = response.data;

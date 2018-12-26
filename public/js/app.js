@@ -20167,9 +20167,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             //mengambil data provinsi dari api raja ongkir
             var uri = 'https://api.rajaongkir.com/starter/province';
-            axios.get(uri, {
+            axios.OPTIONS(uri, {
                 headers: {
-                    Key: '4e783427bd2c52632a0d6fa866e5aff2' }
+                    'key': '4e783427bd2c52632a0d6fa866e5aff2' }
             }).then(function (response) {
                 console.log(response);
                 _this4.province = response.data;

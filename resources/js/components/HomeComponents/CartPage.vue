@@ -37,7 +37,7 @@
                                             <td>
                                                 <div class="media">
                                                     <div class="d-flex">
-                                                        <img :src="'../itemImages/'+item.item.picture[0].filename" alt="img" width="60px;">
+                                                        <img :src="'../itemImages/'+item.item.picture[0].filename" alt="img" width="60px;" style="height: 100% !important">
                                                     </div>
                                                     <div class="media-body">
                                                         <h4>{{item.item.name}}</h4>

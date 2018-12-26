@@ -20261,6 +20261,9 @@ var render = function() {
                                 _c("div", { staticClass: "media" }, [
                                   _c("div", { staticClass: "d-flex" }, [
                                     _c("img", {
+                                      staticStyle: {
+                                        height: "100% !important"
+                                      },
                                       attrs: {
                                         src:
                                           "../itemImages/" +

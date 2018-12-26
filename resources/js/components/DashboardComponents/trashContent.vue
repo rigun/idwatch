@@ -127,7 +127,6 @@ export default {
     mounted(){
             this.getData(); //mengambil data item yang telah dihapus
          
-        this.$parent.refresh(); //memanggil fungsi refresh pada parent
         this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval pemanggilan fungsi refresh
     },
     destroyed(){
@@ -142,6 +141,9 @@ export default {
                   }
               }).then((response) => {
                 this.items = response.data;
+                this.$nextTick(function () { //memanggil method ketika konten selesai dirender
+                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
+                })
             })
             
         },

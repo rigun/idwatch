@@ -61,7 +61,6 @@ export default {
     },
     mounted(){
         this.getConfirm(); //mengambil data yang perlu dikonfirmasi
-        this.$parent.refresh(); //memanggil fungi refresh pada parent
         this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval untuk memanggil fungsi refresh
     },
     destroyed(){
@@ -102,6 +101,9 @@ export default {
                     Authorization: 'Bearer ' + localStorage.getItem('token') } 
                 }).then((response) => {
                 this.confirms = response.data;
+                  this.$nextTick(function () { //memanggil method ketika konten selesai dirender
+                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
+                })
             })
         },
         

@@ -234,7 +234,7 @@ export default {
     mounted(){
         this.getCart(); //mengambil data keranjang
         this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval refresh agar token tidak kadaluarsa
-        // this.getProvince();
+        this.getProvince();
         // this.getCity();
     },
     destroyed(){
@@ -291,7 +291,7 @@ export default {
             let uri = 'https://api.rajaongkir.com/starter/province';
             axios.get(uri,{
                     headers: { 
-                    Key: '731bb2c7c1583badc7fd01fb6b74113f' } 
+                    Key: '4e783427bd2c52632a0d6fa866e5aff2' } 
                 }).then((response) => {
                     console.log(response)
                 this.province = response.data;

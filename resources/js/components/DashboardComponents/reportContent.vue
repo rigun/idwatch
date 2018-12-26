@@ -85,7 +85,6 @@ export default {
     },
     mounted(){
         this.getReport(); //menampilkan data transaksi
-        this.$parent.refresh(); //memanggil fungsi refresh
         this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval pemanggilan fungsi refresh
     },
     destroyed(){
@@ -99,6 +98,10 @@ export default {
                     Authorization: 'Bearer ' + localStorage.getItem('token') } 
                 }).then((response) => {
                 this.reports = response.data;
+
+                     this.$nextTick(function () { //memanggil method ketika konten selesai dirender
+                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
+                })
             })
             
         },

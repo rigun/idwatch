@@ -20104,7 +20104,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.interval = setInterval(function () {
             return _this.$parent.refresh();
         }, 900000); //mengeset interval refresh agar token tidak kadaluarsa
-        // this.getProvince();
+        this.getProvince();
         // this.getCity();
     },
     destroyed: function destroyed() {
@@ -20169,7 +20169,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var uri = 'https://api.rajaongkir.com/starter/province';
             axios.get(uri, {
                 headers: {
-                    Key: '731bb2c7c1583badc7fd01fb6b74113f' }
+                    Key: '4e783427bd2c52632a0d6fa866e5aff2' }
             }).then(function (response) {
                 console.log(response);
                 _this4.province = response.data;
@@ -28013,7 +28013,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         this.getReport(); //menampilkan data transaksi
-        this.$parent.refresh(); //memanggil fungsi refresh
         this.interval = setInterval(function () {
             return _this.$parent.refresh();
         }, 900000); //mengeset interval pemanggilan fungsi refresh
@@ -28033,6 +28032,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
             }).then(function (response) {
                 _this2.reports = response.data;
+
+                _this2.$nextTick(function () {
+                    //memanggil method ketika konten selesai dirender
+                    this.$parent.refresh(); //memanggil fungsi refresh pada parent
+                });
             });
         }
     }
@@ -28326,7 +28330,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         this.getConfirm(); //mengambil data yang perlu dikonfirmasi
-        this.$parent.refresh(); //memanggil fungi refresh pada parent
         this.interval = setInterval(function () {
             return _this.$parent.refresh();
         }, 900000); //mengeset interval untuk memanggil fungsi refresh
@@ -28372,6 +28375,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
             }).then(function (response) {
                 _this2.confirms = response.data;
+                _this2.$nextTick(function () {
+                    //memanggil method ketika konten selesai dirender
+                    this.$parent.refresh(); //memanggil fungsi refresh pada parent
+                });
             });
         }
     }
@@ -28748,7 +28755,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         this.getData(); //mengambil data item yang telah dihapus
 
-        this.$parent.refresh(); //memanggil fungsi refresh pada parent
         this.interval = setInterval(function () {
             return _this.$parent.refresh();
         }, 900000); //mengeset interval pemanggilan fungsi refresh
@@ -28769,6 +28775,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }).then(function (response) {
                 _this2.items = response.data;
+                _this2.$nextTick(function () {
+                    //memanggil method ketika konten selesai dirender
+                    this.$parent.refresh(); //memanggil fungsi refresh pada parent
+                });
             });
         },
         deleteData: function deleteData(id) {

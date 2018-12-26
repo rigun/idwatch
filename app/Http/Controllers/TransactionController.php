@@ -126,7 +126,7 @@ class TransactionController extends Controller
         return response()->json(["cart" => $cart , "id" => $transaction->id, "file" => $transaction->evidence, "diskon" => $transaction->diskon]);
     }
     public function count(){
-        return Transaction::where('status','<',3)->count();
+        return Transaction::where([['status','<',3],['notes','!=',null]])->count();
     }
     public function evidence(Request $request, $id){
         $transaction = Transaction::findOrFail($id);

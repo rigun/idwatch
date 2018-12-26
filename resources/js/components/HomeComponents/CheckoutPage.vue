@@ -3,10 +3,10 @@
         <section class="solid_banner_area">
             <div class="container">
                 <div class="solid_banner_inner">
-                    <h3>checkout register</h3>
+                    <h3>Halaman Pemesanan</h3>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="checkout.html">Checkout Register</a></li>
+                        <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
+                        <li><a @click.prevent="getTransaction()">Halaman Pemesanan</a></li>
                     </ul>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                     <div class="row">
                         <div class="col-lg-7">
                             <div class="billing_details">
-                                <h2 class="reg_title">Complete Your account</h2>
+                                <h2 class="reg_title">Lengkapi Data Diri Anda</h2>
                                 <form class="billing_inner row">
                                     <!-- <div class="col-lg-12">
                                         <div class="form-group">
@@ -63,12 +63,13 @@
                         </div>
                         <div class="col-lg-5">
                             <div class="order_box_price">
-                                <h2 class="reg_title">Your Order</h2>
+                                <h2 class="reg_title">Pesanan Anda</h2>
                                 <div class="payment_list">
                                     <div class="price_single_cost">
                                         <h5 v-for="item in transaction.detail" :key="item.id">{{item.cart.item.name}} <span>Rp {{item.cart.item.price * item.cart.quantity}}</span></h5>
-                                        <h4>Shiping <span>Rp {{transaction.shipping}}</span></h4>
-                                        <h3><span class="normal_text">Order Totals</span> <span>Rp {{transaction.total + transaction.shipping}}</span></h3>
+                                        <h4>Biaya Pengiriman <span>Rp {{transaction.shipping}}</span></h4>
+                                        <h4 v-if="transaction.diskon > 0">Diskon <span>Rp {{transaction.diskon}}</span></h4>
+                                        <h3><span class="normal_text">Total Pesanan</span> <span>Rp {{transaction.total + transaction.shipping - transaction.diskon}}</span></h3>
                                     </div>
                                     <div id="accordion" role="tablist" class="price_method">
                                         <div class="card">
@@ -90,7 +91,7 @@
                                             <div class="card-header" role="tab" id="headingThree">
                                                 <h5 class="mb-0">
                                                     <a class="collapsed" data-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="collapseThree" @click.prevent="status = 2">
-                                                    cash on delivery
+                                                   Bayar saat penerimaan
                                                     </a>
                                                 </h5>
                                             </div>
@@ -102,7 +103,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a type="submit" value="submit" class="btn subs_btn form-control" @click.prevent="placeOrder()">place order</a>
+                                <a type="submit" value="submit" class="btn subs_btn form-control" @click.prevent="placeOrder()">Pesan Sekarang</a>
                             </div>
                         </div>
                     </div>
@@ -137,15 +138,15 @@ export default {
         }
     },
     mounted(){
-        this.getTransaction();
-        this.$parent.refresh();
-        this.interval = setInterval(() => this.$parent.refresh(), 900000);
+        this.getTransaction(); //mengambil data transaksi yang sudah dibuat sebelumnya.
+         this.$parent.refresh(); //melakukan refresh token dari fungsi parent
+        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval refresh agar token tidak kadaluarsa
     },
     destroyed(){
-           clearInterval(this.interval);
+           clearInterval(this.interval); //menghapus interval
     },
     methods:{
-        getTransaction(){
+        getTransaction(){ //mengambil data transaksi yang sudah dibuat sebelumnya.
                 let uri = '/api/mytransaction/'+this.$route.params.token;
             axios.get(uri,{
                     headers: { 
@@ -158,7 +159,7 @@ export default {
                 }
             })
         },
-        placeOrder(){
+        placeOrder(){ //melakukan pemesanan
             if(this.phone == '' || this.address == '' || this.notes == ''){
                 alert('Please fill the blank field');
                 return;

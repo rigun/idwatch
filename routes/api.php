@@ -48,8 +48,21 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::post('/order','TransactionController@order');
     Route::post('/evidence/{id}','TransactionController@evidence');
     Route::delete('/evidence/{id}','TransactionController@deleteEvidence');
-    
+    Route::post('/cupon','DiscountController@store');
+    Route::delete('/cupon/{id}','DiscountController@destroy');
+    Route::patch('/cupon/{id}','DiscountController@update');
+    Route::get('/cupon/{cupon}','DiscountController@show');
+    Route::get('/cupon','DiscountController@index');
+
+    Route::post('/comment','CommentController@store');
+    Route::delete('/comment/{id}','CommentController@destroy');
+
+
 });
+Route::get('/comment/{item_id}','CommentController@show');
+
+Route::get('/itemAll', 'ItemController@showAll');
+
 Route::get('/unconfirmCount','TransactionController@count');
 Route::get('/item', 'ItemController@index');
 Route::get('/search/{cat}/{search}', 'ItemController@search');
@@ -60,6 +73,7 @@ Route::get('/item/{type}/{category}', 'ItemController@showByCategory');
 Route::post('register', 'AuthController@register');
 Route::get('/user/email/{email}', 'UserController@UniqueEmail');
 Route::get('/category','CategoryController@index');
+
 
 Route::group([
 

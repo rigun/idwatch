@@ -5,9 +5,8 @@
                 <div class="c_banner_inner">
                     <h3>Pesan Jam kesayanganmu sekarang</h3>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li class="current"><a >Pesan Jam kesayanganmu sekarang</a></li>
+                        <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
+                        <li><router-link :to="{name: 'Shop', params:{type: 'All', category: 'Man'}}">Belanja</router-link></li>
                     </ul>
                 </div>
             </div>
@@ -22,8 +21,6 @@
                                     <li v-for="(pic, index) in item.picture" :key="index" :data-index="index" data-transition="scaledownfromleft" data-slotamount="default"  data-easein="default" data-easeout="default" data-masterspeed="1500"  :data-thumb="'../../itemImages/'+pic.filename" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Umbrella" data-param1="September 7, 2015" data-param2="Alfon Much, The Precious Stones" data-description="">
                                         <img :src="'../../itemImages/'+pic.filename"  alt=""  width="1920" height="1080" :data-lazyload="'../../itemImages/'+pic.filename" data-bgposition="center center" data-bgfit="contain" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
                                     </li>
-                                   
-                                    
                                 </ul>
                             </div>
                         </div>
@@ -31,7 +28,7 @@
                     <div class="col-lg-7">
                         <div class="product_details_text">
                             <h3>{{item.name}} {{item.category.name}} | {{item.merk}} {{item.type}}</h3>
-                            <ul class="p_rating">
+                            <!-- <ul class="p_rating">
                                 <li><a href="#"><i class="fa fa-star"></i></a></li>
                                 <li><a href="#"><i class="fa fa-star"></i></a></li>
                                 <li><a href="#"><i class="fa fa-star"></i></a></li>
@@ -40,14 +37,14 @@
                             </ul>
                             <div class="add_review">
                                 <a href="#">5 Reviews</a>
-                                <a href="#">Add your review</a>
-                            </div>
-                            <h6>Available In <span>{{item.stock}}</span></h6>
+                                <a href="#">Tambahkan Review Anda</a>
+                            </div> -->
+                            <h6>Jumlah Barang Tersedia <span>{{item.stock}}</span></h6>
                             <h4>Rp {{item.price}}</h4>
                             <p>{{item.description}}</p>
                             <form @submit.prevent="sendData()">
                                 <div class="p_color">
-                                    <h4 class="p_d_title">color <span>*</span></h4>
+                                    <h4 class="p_d_title">Warna <span>*</span></h4>
                                     <ul class="color_list">
                                         <li><a @click.prevent="cart.color = '#1cbbb4'" :class="{'active': cart.color == '#1cbbb4'}"></a></li>
                                         <li><a @click.prevent="cart.color = '#000000'" :class="{'active': cart.color == '#000000'}"></a></li>
@@ -58,7 +55,7 @@
                                     </ul>
                                 </div>
                                 <div class="p_color">
-                                    <h4 class="p_d_title">size <span>*</span></h4>
+                                    <h4 class="p_d_title">Ukuran <span>*</span></h4>
                                       <v-container fluid grid-list-xl>
                                         <v-layout wrap align-center>
                                                 <v-select
@@ -76,7 +73,7 @@
                                         <input type="text" name="qty" id="sst" maxlength="12" title="Quantity:" class="input-text qty" style="text-align: center" v-model="cart.quantity">
                                         <button @click.prevent="increment()" class="increase items-count" type="button"><i class="icon_plus"></i></button>
                                     </div>
-                                    <button type="submit" class="add_cart_btn" ><div class="loader" v-if="load"></div> <span v-else>add to cart</span> </button>
+                                    <button type="submit" class="add_cart_btn" ><div class="loader" v-if="load"></div> <span v-else>Tambahkan Ke Keranjang</span> </button>
                                 </div>
                             </form>
                             
@@ -95,16 +92,16 @@
                             <div class="table-responsive-md">
                                 <table class="table">
                                     <tbody>
-                                        <tr>
+                                        <!-- <tr>
                                             <th scope="row">Return Policy:</th>
                                             <td>
                                                 <h6> Semua Shipment, E-mail, Resi akan dilakukan dalam jam kerja (Senin-Jumat:10am-4pm) & (Sabtu:10am-1pm).</h6>
                                                 <h5>Item location:</h5>
                                                 <p>Indonesia, Yogyakarta, Babarsari</p>
-                                                <!-- <h5>Ships to:</h5>
-                                                <p>Keseluruh Indonesia | See More details</p> -->
+                                               <h5>Ships to:</h5>
+                                                <p>Keseluruh Indonesia | See More details</p>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                         <!-- <tr>
                                             <th scope="row">Delivery:</th>
                                             <td>
@@ -130,9 +127,9 @@
             <div class="container">
                 <nav class="tab_menu">
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Product Description</a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Reviews (1)</a>
-                        <a class="nav-item nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="false">additional information</a>
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Deskripsi Barang</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Reviews ({{comments.length}})</a>
+                        <a class="nav-item nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="false">Informasi Barang</a>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
@@ -140,14 +137,21 @@
                         <p>{{item.description}}</p>
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        <h4>Yudha Pratama</h4>
-                        <ul>
-                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        </ul>
+                        <div v-for="comment in comments" :key="comment.id">
+                            <h4>{{comment.user.name}}</h4>
+                            <p>{{comment.comment}}</p>
+                            <button class="btn btn-danger" v-if="role == 'administrator'" @click.prevent="deleteComment(comment.id)">Hapus</button>
+                            <hr>
+                        </div>
+
+                        <div class="col-lg-12">
+
+                            <div class="form-group">
+                                <label for="order">Komentar</label>
+                                <textarea class="form-control" id="order" rows="3" v-model="comment"></textarea>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" style="margin-left: auto" @click.prevent="addComment()">Tambahkan Komentar</button>
                     </div>
                     
                     <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
@@ -189,7 +193,7 @@
         <section class="related_product_area">
             <div class="container">
                 <div class="related_product_inner">
-                    <h2 class="single_c_title">Related Product</h2>
+                    <h2 class="single_c_title">Produk yang sama</h2>
                     <div class="row">
                      
                         <div class="col-lg-3 col-sm-6" v-for="item in displayItem" :key="item.id">
@@ -198,7 +202,7 @@
                                  <router-link :to="{name: 'DetailPage',  params: { slug: item.slug } }"  >
                                 <img :src="'../../../itemImages/'+item.picture[0].filename" alt="image">
                                  </router-link>
-                                <h5 class="new">New</h5>
+                                <h5 class="new">Baru</h5>
                             </div>
                             <div class="l_p_text">
                                 <ul>
@@ -206,7 +210,7 @@
                                                      <i class="icon_piechart"></i></a>
                                            </li>
                                     <li><router-link  class="add_cart_btn" :to="{name: 'DetailPage',  params: { slug: item.slug } }"  >
-                                            Add To Cart
+                                            Detail
                                             </router-link></li>
                                     <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
                                 </ul>
@@ -295,9 +299,12 @@ export default {
              load: false,
 			 msg: '',
               page: 1,
-            perPage: 9,
+            perPage: 4,
             pages: [],
             items: [],
+            comment: null,
+            comments: [],
+            role: localStorage.getItem('roles')
         }
     },
     created(){
@@ -312,7 +319,14 @@ export default {
            clearInterval(this.interval);
     },
     watch: {
-           
+           '$route' (to, from) {
+
+                if (from.params.slug != to.params.slug) {
+                
+                    return location.reload();
+
+                }
+            },
              items () {
                 this.setPages();
             }
@@ -323,6 +337,46 @@ export default {
         }
     },
     methods:{
+        deleteComment(id){
+            var config = {
+                headers: { 
+                Authorization: 'Bearer ' + localStorage.getItem('token') } 
+            };
+            // Make HTTP request to store announcement
+            axios.delete('/api/comment/'+id, config)
+            .then((response) =>{
+                    this.load = false;
+                    this.getComment();
+            }) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
+            .catch((error) =>{
+                    this.load = false;
+                    this.getComment();
+
+            });
+        },
+        addComment(){
+            var config = {
+                headers: { 
+                Authorization: 'Bearer ' + localStorage.getItem('token') } 
+            };
+            // Make HTTP request to store announcement
+            axios.post('/api/comment',{'comment':this.comment, 'item_id':this.item.id}, config)
+            .then((response) =>{
+                    this.load = false;
+                    this.getComment();
+            }) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
+            .catch((error) =>{
+                    this.load = false;
+                    this.getComment();
+
+            });
+        },
+        getComment(){
+             let uri = '/api/comment/'+this.item.id;
+            axios.get(uri).then((response) => {
+                this.comments = response.data;
+            })
+        },
          getList(){
             let uri = '/api/item/All/'+this.item.category.name;
             axios.get(uri).then((response) => {
@@ -415,6 +469,8 @@ export default {
                 this.$nextTick(function () {
                     this.getList();
                     this.getSlider();
+                    this.getComment();
+
                 })
             })
             

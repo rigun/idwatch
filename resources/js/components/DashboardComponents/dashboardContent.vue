@@ -9,6 +9,7 @@
                             <li><router-link :to="{name: 'DashboardContent'}"  ><i class="menu-icon icon-dashboard"></i>Dashboard</router-link></li>
                             <li><router-link :to="{name: 'ReportContent'}"  ><i class="menu-icon icon-inbox"></i>Laporan</router-link></li>
                             <li><router-link :to="{name: 'ConfirmContent'}"  ><i class="menu-icon icon-tasks"></i>Konfirmasi <b class="label orange pull-right">{{count}}</b> </router-link></li>
+                            <li><router-link :to="{name: 'Discount'}"  ><i class="menu-icon icon-paste"></i>Discount </router-link></li>
                             <li><router-link :to="{name: 'AddContent'}"  ><i class="menu-icon icon-paste"></i>Tambah Barang </router-link></li>
                             <li><router-link :to="{name: 'TrashContent'}"  ><i class="menu-icon icon-paste"></i>Trash </router-link></li>
                         </ul>

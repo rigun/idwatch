@@ -142,7 +142,7 @@ export default {
         },
     methods:{
         getData(){
-            let uri = '/api/item';
+            let uri = '/api/itemAll';
             axios.get(uri).then((response) => {
                 this.items = response.data;
             })

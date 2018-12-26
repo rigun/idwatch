@@ -5,8 +5,8 @@
                 <div class="solid_banner_inner">
                     <h3>Konfirmasi Pesanan</h3>
                     <ul>
-                        <li><a href="home-carousel.html">Home</a></li>
-                        <li><a href="track.html">Pesanan Berhasil Dibuat</a></li>
+                        <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
+                        <li><router-link :to="{name: 'CheckoutCart'}">Keranjang Checkout</router-link> </li>
                     </ul>
                 </div>
             </div>
@@ -14,9 +14,8 @@
         <section class="emty_cart_area p_100">
             <div class="container">
                 <div class="emty_cart_inner">
-                    <i class="glyphicon glyphicon-ok"></i>
-                    <h3>Pesanan Anda Telah DIterima</h3>
-                    <p>silahkan periksa email anda untuk rincian pesanan anda 
+                    <h3>Pesanan Anda Telah Diterima</h3>
+                    <p>Silahkan cek halaman <router-link :to="{name: 'CheckoutCart'}">keranjang checkout anda</router-link> untuk melihat rincian pesanan anda.
                     </p>
                 </div>
             </div>

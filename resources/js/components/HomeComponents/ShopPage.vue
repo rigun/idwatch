@@ -5,7 +5,7 @@
             <div class="c_banner_inner">
                 <h3>Kamu Bisa memilih semua barang yang kamu suka disini</h3>
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
                     <li><a href="#">Shop</a></li>
                     <li class="current"><a href="#">Buat harimu jadi makin asyik dengan belanja disini</a></li>
                 </ul>

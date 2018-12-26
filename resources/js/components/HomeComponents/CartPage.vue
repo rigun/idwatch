@@ -4,10 +4,10 @@
     <section class="solid_banner_area">
             <div class="container">
                 <div class="solid_banner_inner">
-                    <h3>shopping cart</h3>
+                    <h3>Keranjang Belanjaan</h3>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="shopping-cart.html">Shopping cart</a></li>
+                        <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
+                        <li><a @click.prevent="getCart()">Keranjang Belanjaan</a></li>
                     </ul>
                 </div>
             </div>
@@ -17,16 +17,16 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="cart_product_list">
-                            <h3 class="cart_single_title">Discount Cupon</h3>
+                            <h3 class="cart_single_title">Daftar Belanjaan</h3>
                             <div class="table-responsive-md">
                                 <table class="table">
                                     <thead>
                                         <tr>
                                             <th scope="col"></th>
-                                            <th scope="col">product</th>
-                                            <th scope="col">price</th>
-                                            <th scope="col">quantity</th>
-                                            <th scope="col">total</th>
+                                            <th scope="col">Barang</th>
+                                            <th scope="col">Harga</th>
+                                            <th scope="col">Jumlah</th>
+                                            <th scope="col">Total Harga</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -53,7 +53,7 @@
                             </div>
                         </div>
                         <div class="calculate_shoping_area">
-                            <h3 class="cart_single_title">Calculate Your Shipping<span><i class="icon_minus-06"></i></span></h3>
+                            <h3 class="cart_single_title">Hitung biaya pengiriman anda<span><i class="icon_minus-06"></i></span></h3>
                             <div class="calculate_shop_inner">
                                 <form class="calculate_shoping_form row" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
                                    
@@ -73,22 +73,23 @@
                     <div class="col-lg-4">
                         <div class="total_amount_area">
                             <div class="cupon_box">
-                                <h3 class="cart_single_title">Discount Cupon</h3>
+                                <h3 class="cart_single_title">Kupon Diskon</h3>
                                 <div class="cupon_box_inner">
-                                    <input type="text" placeholder="Enter your code here">
-                                    <button type="submit" class="btn btn-primary subs_btn">apply cupon</button>
+                                    <input type="text" placeholder="Enter your code here" v-model="cupon">
+                                    <button type="submit" class="btn btn-primary subs_btn" @click.prevent="useCupon()">Gunakan Kupon</button>
                                 </div>
                             </div>
                             <div class="cart_totals">
-                                <h3 class="cart_single_title">Discount Cupon</h3>
+                                <h3 class="cart_single_title">Total belanjaan</h3>
                                 <div class="cart_total_inner">
                                     <ul>
-                                        <li><a href="#"><span>Cart Subtotal</span> Rp {{total}}</a></li>
-                                        <li><a href="#"><span>Shipping</span> Rp {{shipping}}</a></li>
-                                        <li><a href="#"><span>Totals</span> Rp {{total + shipping}}</a></li>
+                                        <li><a href="#"><span>Subtotal keranjang</span> Rp {{total}}</a></li>
+                                        <li><a href="#"><span>Biaya Pengiriman</span> Rp {{shipping}}</a></li>
+                                        <li v-if="diskon != 0"><a href="#"><span>Diskon</span> Rp {{diskon}}</a></li>
+                                        <li><a href="#"><span>Total Bayar</span> Rp {{total + shipping - diskon}}</a></li>
                                     </ul>
                                 </div>
-                                <a class="btn btn-primary checkout_btn" @click.prevent="checkout()"><div class="loader" v-if="load ==  'Checkout'"></div> <span v-else>proceed to checkout</span></a>
+                                <a class="btn btn-primary checkout_btn" @click.prevent="checkout()"><div class="loader" v-if="load ==  'Checkout'"></div> <span v-else>Lanjutkan ke pembayaran</span></a>
                             </div>
                         </div>
                     </div>
@@ -100,10 +101,10 @@
         <section class="solid_banner_area">
             <div class="container">
                 <div class="solid_banner_inner">
-                    <h3>empty cart</h3>
+                    <h3>Keranjang Kosong</h3>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="track.html">Track Your Item</a></li>
+                        <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
+                        <li><a @click.prevent="getCart()">Keranjang Belanjaan</a></li>
                     </ul>
                 </div>
             </div>
@@ -112,8 +113,9 @@
             <div class="container">
                 <div class="emty_cart_inner">
                     <i class="icon-handbag icons"></i>
-                    <h3>Your Cart is Empty</h3>
-                    <h4>back to <a href="#">shopping</a></h4>
+                    <h3>Keranjang Anda Kosong</h3>
+                    <h4>Kembali <router-link :to="{name: 'Shop', params:{type: 'All', category: 'Man'}}">Belanja</router-link> </h4>
+                    <h4>atau cek <router-link :to="{name: 'CheckoutCart'}">Keranjang Checkout Anda</router-link> </h4>
                 </div>
             </div>
         </section>
@@ -123,7 +125,7 @@
 				 <!-- Modal content -->
 				<div class="modal-content">
 				<div class="modal-header">
-					<h2>What you want to do ?</h2>
+					<h2>Apa yang anda ingin lakukan ?</h2>
 					<span class="close" @click.prevent="modal = false">&times;</span>
 				</div>
 				<div class="modal-body">
@@ -131,7 +133,7 @@
                         <li> <img :src="'../itemImages/'+modalItem.item.picture[0].filename" alt="img" width="60px;">
                         <li><h4>{{modalItem.item.name}}</h4></li>
                         <li><div class="p_color" style="margin: auto;">
-                                    <h4 class="p_d_title">color </h4>
+                                    <h4 class="p_d_title">Warna </h4>
                                     <ul class="color_list">
                                         <li><a @click.prevent="modalItem.color = '#1cbbb4'" :class="{'active': modalItem.color == '#1cbbb4'}"></a></li>
                                         <li><a @click.prevent="modalItem.color = '#000000'" :class="{'active': modalItem.color == '#000000'}"></a></li>
@@ -165,10 +167,10 @@
                     </ul>
 				</div>
 				<div class="modal-footer">
-					<a class="btn btn-sm btn-primary" @click.prevent="modal = false">Cancel</a>
+					<a class="btn btn-sm btn-primary" @click.prevent="modal = false">Batal</a>
                     <router-link class="btn btn-sm btn-info" :to="{name: 'DetailPage',  params: { slug: modalItem.item.slug } }"  > Detail</router-link>
-					<a class="btn btn-sm btn-warning" style="color:black !important" @click.prevent="editData(modalItem.id)"><div class="loader" v-if="load == 'Edit'"></div> <span v-else>Edit</span> </a>
-					<a class="btn btn-sm btn-danger" @click.prevent="deleteData(modalItem.id)"><div class="loader" v-if="load ==  'Delete'"></div> <span v-else>Delete</span>  </a>
+					<a class="btn btn-sm btn-warning" style="color:black !important" @click.prevent="editData(modalItem.id)"><div class="loader" v-if="load == 'Edit'"></div> <span v-else>Perbaharui</span> </a>
+					<a class="btn btn-sm btn-danger" @click.prevent="deleteData(modalItem.id)"><div class="loader" v-if="load ==  'Delete'"></div> <span v-else>Hapus</span>  </a>
 				</div>
 				</div> 
 
@@ -225,21 +227,22 @@ export default {
             province: [],
             city: [],
             shipping: 25000,
-            diskon: null,
+            diskon: 0,
+            cupon: null,
         }
     },
     mounted(){
-        this.getCart();
-        this.$parent.refresh();
-        this.interval = setInterval(() => this.$parent.refresh(), 900000);
-        this.getProvince();
+        this.getCart(); //mengambil data keranjang
+        this.$parent.refresh(); //melakukan refresh token dari fungsi parent
+        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval refresh agar token tidak kadaluarsa
+        // this.getProvince();
         // this.getCity();
     },
     destroyed(){
-           clearInterval(this.interval);
+           clearInterval(this.interval); //menghapus interval
     },
     computed:{
-        total(){
+        total(){ //menghitung total belanja
             var sum=0;
             for(let i=0;i< this.cart.length;i++){
                 sum = sum + (this.cart[i].item.price * this.cart[i].quantity)
@@ -248,7 +251,25 @@ export default {
         }
     },
     methods:{
-        checkout(){
+        useCupon(){
+            let uri = '/api/cupon/'+this.cupon;
+              axios.get(uri,{
+                  headers: {
+                      Authorization: 'Bearer ' + localStorage.getItem('token')
+                  }
+              }).then((response) => {
+                  if(response.data == 0){
+                      alert('Mohon Maaf, Kupon telah kadaluarsa')
+                  }else{
+                    alert('Kupon berhasil ditambahkan');
+                    this.diskon = response.data;
+                  }
+              }).catch(error => {
+                  this.load = -1;
+
+              })
+        },
+        checkout(){ //mengarahkan ke checkout sekaligus mengirimkan data ke bagian transaksi
             this.load = 'Checkout';
             let uri = '/api/mytransaction';
               axios.post(uri,{'shipping': this.shipping,'total':this.total, 'diskon': this.diskon},{
@@ -257,13 +278,17 @@ export default {
                   }
               }).then((response) => {
                   this.load = -1;
-                this.$router.push({name: 'Checkout', params:{token: response.data}});
+                  if(response.data == 0){
+                      alert('Silahkan melakukan pelunasan barang pesanan sebelumnya terlebih dahulu sebelum anda dapat melakukan pemesanan lagi, terima kasih.')
+                  }else{
+                    this.$router.push({name: 'Checkout', params:{token: response.data}});
+                  }
               }).catch(error => {
                   this.load = -1;
 
               })
         },
-        getProvince(){
+        getProvince(){ //mengambil data provinsi dari api raja ongkir
             let uri = 'https://api.rajaongkir.com/starter/province';
             axios.get(uri,{
                     headers: { 
@@ -273,7 +298,7 @@ export default {
                 this.province = response.data;
             })
         },
-        getCity(){
+        getCity(){ //mengambil data kota dari api raja ongkir
             let uri = '/api/mycart';
             axios.get(uri,{
                     headers: { 
@@ -282,7 +307,7 @@ export default {
                 this.cart = response.data;
             })
         },
-        editData(id){
+        editData(id){ //melakukan pembaharuan data pesanan
             this.load = 'Edit';
             let uri = '/api/cart/'+id;
               axios.patch(uri,this.modalItem,{
@@ -300,7 +325,7 @@ export default {
               })
         
         },
-        deleteData(id){
+        deleteData(id){ //menghapus data pesanan
             this.load = 'Delete';
             let uri = '/api/cart/'+id;
               axios.delete(uri,{
@@ -318,7 +343,7 @@ export default {
               })
         
         },
-        decrement(){
+        decrement(){ //megurangi jumlah pesanan per barang
             if(isNaN(this.modalItem.quantity) || this.modalItem.quantity <=1){
                 this.modalItem.quantity = 1
             }else{
@@ -326,7 +351,7 @@ export default {
                 this.modalItem.quantity--;
             }
         },
-        increment(){
+        increment(){ //menambahkan jumlah pesanan per barang
             if(isNaN(this.modalItem.quantity)){
                 this.modalItem.quantity = 1
             }else if(this.modalItem.quantity >= this.modalItem.item.stock){
@@ -335,7 +360,7 @@ export default {
                 this.modalItem.quantity++;
             }
         },
-        getCart(){
+        getCart(){ //mengambil data keranjang
             let uri = '/api/mycart';
             axios.get(uri,{
                     headers: { 
@@ -345,7 +370,7 @@ export default {
             })
             
         },
-        showModal(item){
+        showModal(item){ //menampilkan modal edit, hapus, dan detail barang.
             this.modalItem = item;
             this.modal = true;
         }

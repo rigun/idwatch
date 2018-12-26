@@ -52,7 +52,9 @@ class TransactionController extends Controller
             'shipping' => 'required',
             'total' => 'required',
         ]);
-        
+        if(Transaction::where([['user_id',JWTAuth::parseToken()->authenticate()->id],['status', '<',3]])->first()){
+            return 0;
+        }
         if(!$transaction = Transaction::where([['user_id',JWTAuth::parseToken()->authenticate()->id],['status', 0]])->first()){
             $transaction = new Transaction();
             $transaction->user_id = JWTAuth::parseToken()->authenticate()->id;
@@ -123,7 +125,7 @@ class TransactionController extends Controller
         foreach($transaction->detail as $dt){
             $cart[] = $dt->cart;
         }
-        return response()->json(["cart" => $cart , "id" => $transaction->id, "file" => $transaction->evidence]);
+        return response()->json(["cart" => $cart , "id" => $transaction->id, "file" => $transaction->evidence, "diskon" => $transaction->diskon]);
     }
     public function count(){
         return Transaction::where('status','<',3)->count();

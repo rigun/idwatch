@@ -4,10 +4,10 @@
     <section class="solid_banner_area">
             <div class="container">
                 <div class="solid_banner_inner">
-                    <h3>Checkout cart</h3>
+                    <h3>Keranjang Checkout</h3>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="shopping-cart.html">Shopping cart</a></li>
+                        <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
+                        <li><a @click.prevent="getCart()">Keranjang Checkout</a></li>
                     </ul>
                 </div>
             </div>
@@ -17,15 +17,15 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="cart_product_list">
-                            <h3 class="cart_single_title">Checkout Item</h3>
+                            <h3 class="cart_single_title">Barang Pesanan</h3>
                             <div class="table-responsive-md">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">product</th>
-                                            <th scope="col">price</th>
-                                            <th scope="col">quantity</th>
-                                            <th scope="col">total</th>
+                                            <th scope="col">Barang</th>
+                                            <th scope="col">Harga</th>
+                                            <th scope="col">Jumlah</th>
+                                            <th scope="col">Total Harga</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -55,7 +55,7 @@
                                <div class="col-md-12" v-if="file!=null">
                                     <div class="filename-holder animated fadeIn" v-cloak > 
                                         <img style="width: 150px" :src="'../itemImages/'+file" alt="img">
-                                        <span class="" style="background: red; cursor: pointer;" @click.prevent="removeOriginal()"><button class="btn btn-xs btn-danger"><div class="loader" v-if="loadRemove == id"></div> <span v-else>Remove</span> </button></span>
+                                        <span class="" style="background: red; cursor: pointer;" @click.prevent="removeOriginal()"><button class="btn btn-xs btn-danger"><div class="loader" v-if="loadRemove == id"></div> <span v-else>Hapus</span> </button></span>
                                     </div>
                                 </div>
                             </div>
@@ -68,12 +68,13 @@
                                 <h3 class="cart_single_title">Silahkan melakukan pembayaran sejumlah</h3>
                                 <div class="cart_total_inner">
                                     <ul>
-                                        <li><a href="#"><span>Cart Subtotal</span> Rp {{total}}</a></li>
-                                        <li><a href="#"><span>Shipping</span> Rp {{shipping}}</a></li>
-                                        <li><a href="#"><span>Totals</span> Rp {{total + shipping}}</a></li>
+                                        <li><a href="#"><span>Subtotal Keranjang</span> Rp {{total}}</a></li>
+                                        <li><a href="#"><span>Biaya Pengiriman</span> Rp {{shipping}}</a></li>
+                                        <li><a href="#" v-if="diskon > 0"><span>Diskon</span> Rp {{diskon}}</a></li>
+                                        <li><a href="#"><span>Total Bayar</span> Rp {{total + shipping - diskon}}</a></li>
                                     </ul>
                                 </div>
-                                <h3 class="cart_single_title">Apabila dalam 1x 24 jam tidak melakukan pembayaran, maka transaksi akan dibatalkan</h3>                                
+                                <h3 class="cart_single_title" style="text-align: center">Apabila dalam 1 x 24 jam tidak melakukan pembayaran, maka transaksi akan dibatalkan</h3>                                
                             </div>
                         </div>
                     </div>
@@ -85,10 +86,10 @@
         <section class="solid_banner_area">
             <div class="container">
                 <div class="solid_banner_inner">
-                    <h3>Empty Checkout</h3>
+                    <h3>Keranjang Checkout Kosong</h3>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Checkout</a></li>
+                        <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
+                        <li><a @click.prevent="getCart()">Keranjang Checkout</a></li>
                     </ul>
                 </div>
             </div>
@@ -97,8 +98,8 @@
             <div class="container">
                 <div class="emty_cart_inner">
                     <i class="icon-handbag icons"></i>
-                    <h3>Your Checkout Cart is Empty</h3>
-                    <h4>back to <a href="#">shopping</a></h4>
+                    <h3>Keranjang Chekout Anda Kosong</h3>
+                    <h4>Kembali <router-link :to="{name: 'Shop', params:{type: 'All', category: 'Man'}}">Belanja</router-link> </h4>
                 </div>
             </div>
         </section>
@@ -110,14 +111,14 @@
 				<div class="modal-content">
 				<div class="modal-header">
 					<span class="close" @click.prevent="modal = false">&times;</span>
-					<h2>Delete ?</h2>
+					<h2>Hapus ?</h2>
 				</div>
 				<div class="modal-body">
-					<p>If you delete this picture, you can't to restore it again</p>
+					<p>Jika anda menghapus gambar ini, maka anda tidak dapat mengembalikannya lagi.</p>
 				</div>
 				<div class="modal-footer">
-					<a class="btn btn-sm btn-primary" @click.prevent="modal = false; loadRemove = -1;">Cancel</a>
-					<a class="btn btn-sm btn-danger" @click.prevent="deletePicture()">Remove </a>
+					<a class="btn btn-sm btn-primary" @click.prevent="modal = false; loadRemove = -1;">Batal</a>
+					<a class="btn btn-sm btn-danger" @click.prevent="deletePicture()">Hapus </a>
 				</div>
 				</div> 
 
@@ -136,7 +137,7 @@ export default {
             interval: null,
             cart:[],
             shipping: 25000,
-            diskon: null,
+            diskon: 0,
 			 filenames: [],
             data: new FormData(),
              percentCompleted: 0, 
@@ -147,16 +148,16 @@ export default {
         }
     },
     mounted(){
-        this.getCart();
-        this.$parent.refresh();
-        this.interval = setInterval(() => this.$parent.refresh(), 900000);
+       this.getCart(); //mengambil data keranjang
+        this.$parent.refresh(); //melakukan refresh token dari fungsi parent
+        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval refresh agar token tidak kadaluarsa
         // this.getCity();
     },
     destroyed(){
-           clearInterval(this.interval);
+           clearInterval(this.interval); //menghapus interval
     },
     computed:{
-        total(){
+        total(){ //menghitung total belanja
             var sum=0;
             for(let i=0;i< this.cart.length;i++){
                 sum = sum + (this.cart[i].item.price * this.cart[i].quantity)
@@ -166,7 +167,7 @@ export default {
     },
     methods:{
         
-        getCart(){
+        getCart(){ // mengambil barang keranjang
             let uri = '/api/mycheckoutcart';
             axios.get(uri,{
                     headers: { 
@@ -175,11 +176,12 @@ export default {
                 this.cart = response.data.cart;
                 this.id = response.data.id;
                 this.file = response.data.file;
+                this.diskon = response.data.diskon;
             })
             
         },
       
-			 uploadFieldChange(e) {
+			 uploadFieldChange(e) { //mengupload bukti pembayaran berupa foto
                 var files = e.target.files || e.dataTransfer.files;
                 if (!files.length)
 					return;
@@ -215,11 +217,11 @@ export default {
                 // Reset the form to avoid copying these files multiple times into this.filenames
                 document.getElementById("filenames").value = [];
 			},
-            removeOriginal(){
+            removeOriginal(){ // menampilkan modal hapus foto
 				this.modal = true;
 				this.loadRemove = true;
 			},
-        deletePicture(){
+        deletePicture(){ // menghapus bukti pembayaran
 				
 				 this.loadRemove = this.id;
 				let uri = '/api/evidence/'+this.id;

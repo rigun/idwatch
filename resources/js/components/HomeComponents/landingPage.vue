@@ -106,6 +106,7 @@
 <style>
 .isotope_l_p_inner{
     height: auto !important;
+    padding: 1px;
 }
 </style>
 

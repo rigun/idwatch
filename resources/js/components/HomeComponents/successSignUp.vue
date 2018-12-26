@@ -5,7 +5,7 @@
                         <div class="solid_banner_inner">
                             <h3>Registration Success</h3>
                             <ul>
-                                <li><a href="#">Home</a></li>
+                                <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
                                 <li>
                                     <router-link :to="{name: 'LoginUser'}" >
                                     Login

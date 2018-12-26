@@ -24,6 +24,10 @@ class ItemController extends Controller
      */
     public function index()
     {
+        return response()->json(Item::where('stock','>',0)->with('picture','category')->get());
+    }
+    public function showAll()
+    {
         return response()->json(Item::with('picture','category')->get());
     }
 
@@ -42,10 +46,10 @@ class ItemController extends Controller
     }
     public function search($cat,$search){
         if($cat == 'All'){
-            return response()->json(Item::where('name', 'LIKE', '%'.$search.'%')->with('picture','category')->get());
+            return response()->json(Item::where([['name', 'LIKE', '%'.$search.'%'],['stock','>',0]])->with('picture','category')->get());
         }else{
             $cat_id = Category::where('name',$cat)->first()->id;
-            return response()->json(Item::where([['category_id',$cat_id],['name', 'LIKE', '%'.$search.'%']])->with('picture','category')->get());
+            return response()->json(Item::where([['category_id',$cat_id],['name', 'LIKE', '%'.$search.'%'],['stock','>',0]])->with('picture','category')->get());
         }
     }
   
@@ -121,20 +125,20 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Item::find($id)->with('picture','category')->first());
+        return Item::where('id',$id)->with('picture','category')->first();
     }
     public function showByCategory($type, $cat)
     {
         $cat_id = Category::where('name',$cat)->first()->id;
         if($type == 'All'){
-            return response()->json(Item::where('category_id',$cat_id)->with('picture','category')->get());
+            return response()->json(Item::where([['category_id',$cat_id],['stock','>',0]])->with('picture','category')->get());
         }else{
-            return response()->json(Item::where([['category_id',$cat_id],['type',$type]])->with('picture','category')->get());
+            return response()->json(Item::where([['category_id',$cat_id],['type',$type],['stock','>',0]])->with('picture','category')->get());
         }
     }
     public function showBySlug($slug)
     {
-        return response()->json(Item::where('slug', $slug)->with('picture','category')->first());
+        return response()->json(Item::where([['slug', $slug],['stock','>',0]])->with('picture','category')->first());
     }
 
     /**

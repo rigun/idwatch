@@ -6,7 +6,7 @@
                 <div class="solid_banner_inner">
                     <h3>Contact</h3>
                     <ul>
-                        <li><a href="#">Home</a></li>
+                        <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>

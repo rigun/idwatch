@@ -60,6 +60,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 
 });
 Route::get('/comment/{item_id}','CommentController@show');
+Route::post('/mail/contactus','MailController@send');
 
 Route::get('/itemAll', 'ItemController@showAll');
 

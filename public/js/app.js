@@ -18896,7 +18896,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            interval: null
+            interval: null,
+            email: null,
+            subject: null,
+            name: null,
+            message: null
         };
     },
     mounted: function mounted() {
@@ -18909,6 +18913,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     destroyed: function destroyed() {
         clearInterval(this.interval);
+    },
+
+    methods: {
+        sendEmail: function sendEmail() {
+            if (this.email == null || this.subject == null || this.name == null || this.message == null) {
+                alert("Silahkan lengkapi data-data yang kosong terlebih dahulu");
+                return;
+            }
+            axios.post('/api/mail/contactus', { email: this.email, subject: this.subject, name: this.name, message: this.message }).then(function (response) {
+                alert('Terima kasih sudah menghubungi kami, pesan anda sudah kami terima.');
+            }).catch(function (error) {
+                alert('Mohon maaf, terjadi kesalahan saat mencoba mengirimkan pesan. silahkan diperiksa lagi kelengkapan data yang dimasukkan.');
+            });
+        }
     }
 });
 
@@ -18943,96 +18961,11 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(1)
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "contact.html" } }, [_vm._v("Contact")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "contact_area p_100" }, [
+    _c("section", { staticClass: "contact_area p_100" }, [
       _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "contact_title" }, [
-          _c("h2", [_vm._v("Get in Touch")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui."
-            )
-          ])
-        ]),
+        _vm._m(1),
         _vm._v(" "),
-        _c("div", { staticClass: "row contact_details" }, [
-          _c("div", { staticClass: "col-lg-4 col-md-6" }, [
-            _c("div", { staticClass: "media" }, [
-              _c("div", { staticClass: "d-flex" }, [
-                _c("i", {
-                  staticClass: "fa fa-map-marker",
-                  attrs: { "aria-hidden": "true" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "media-body" }, [
-                _c("p", [
-                  _vm._v("xxxxxxxxxx,"),
-                  _c("br"),
-                  _vm._v("xxxxxxxxxx.")
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-lg-4 col-md-6" }, [
-            _c("div", { staticClass: "media" }, [
-              _c("div", { staticClass: "d-flex" }, [
-                _c("i", {
-                  staticClass: "fa fa-phone",
-                  attrs: { "aria-hidden": "true" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "media-body" }, [
-                _c("a", { attrs: { href: "tel:+xxx-xxxx-xxx" } }, [
-                  _vm._v("+xxx-xxxx-xxx")
-                ]),
-                _vm._v(" "),
-                _c("a", { attrs: { href: "tel:+xxx-xxxx-xxx" } }, [
-                  _vm._v("+xxx-xxxx-xxx")
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-lg-4 col-md-6" }, [
-            _c("div", { staticClass: "media" }, [
-              _c("div", { staticClass: "d-flex" }, [
-                _c("i", {
-                  staticClass: "fa fa-envelope",
-                  attrs: { "aria-hidden": "true" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "media-body" }, [
-                _c("a", { attrs: { href: "mailto:xxxxxxx@JAMTANGAN.com" } }, [
-                  _vm._v("xxxxxxx@JAMTANGAN.com")
-                ]),
-                _vm._v(" "),
-                _c("a", { attrs: { href: "mailto:xxxxxxx@JAMTANGAN.com" } }, [
-                  _vm._v("xxxxxxx@JAMTANGAN.com")
-                ])
-              ])
-            ])
-          ])
-        ]),
+        _vm._m(2),
         _vm._v(" "),
         _c("div", { staticClass: "contact_form_inner" }, [
           _c("h3", [_vm._v("Drop a Message")]),
@@ -19051,66 +18984,227 @@ var staticRenderFns = [
             [
               _c("div", { staticClass: "form-group col-lg-4" }, [
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.name,
+                      expression: "name"
+                    }
+                  ],
                   staticClass: "form-control",
                   attrs: {
                     type: "text",
                     id: "name",
                     name: "name",
                     placeholder: "Full Name *"
+                  },
+                  domProps: { value: _vm.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.name = $event.target.value
+                    }
                   }
                 })
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group col-lg-4" }, [
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.email,
+                      expression: "email"
+                    }
+                  ],
                   staticClass: "form-control",
                   attrs: {
                     type: "email",
                     id: "email",
                     name: "email",
                     placeholder: "Email Address *"
+                  },
+                  domProps: { value: _vm.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.email = $event.target.value
+                    }
                   }
                 })
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group col-lg-4" }, [
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.subject,
+                      expression: "subject"
+                    }
+                  ],
                   staticClass: "form-control",
                   attrs: {
                     type: "text",
                     id: "subject",
                     name: "website",
                     placeholder: "Your Subject"
+                  },
+                  domProps: { value: _vm.subject },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.subject = $event.target.value
+                    }
                   }
                 })
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group col-lg-12" }, [
                 _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.message,
+                      expression: "message"
+                    }
+                  ],
                   staticClass: "form-control",
                   attrs: {
                     name: "message",
                     id: "message",
                     rows: "1",
                     placeholder: "Type Your Message..."
+                  },
+                  domProps: { value: _vm.message },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.message = $event.target.value
+                    }
                   }
                 })
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "form-group col-lg-12" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn update_btn form-control",
-                    attrs: { type: "submit", value: "submit" }
-                  },
-                  [_vm._v("Send Message")]
-                )
-              ])
+              _vm._m(3)
             ]
           )
         ])
       ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "contact.html" } }, [_vm._v("Contact")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "contact_title" }, [
+      _c("h2", [_vm._v("Get in Touch")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row contact_details" }, [
+      _c("div", { staticClass: "col-lg-4 col-md-6" }, [
+        _c("div", { staticClass: "media" }, [
+          _c("div", { staticClass: "d-flex" }, [
+            _c("i", {
+              staticClass: "fa fa-map-marker",
+              attrs: { "aria-hidden": "true" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "media-body" }, [
+            _c("p", [_vm._v("xxxxxxxxxx,"), _c("br"), _vm._v("xxxxxxxxxx.")])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-4 col-md-6" }, [
+        _c("div", { staticClass: "media" }, [
+          _c("div", { staticClass: "d-flex" }, [
+            _c("i", {
+              staticClass: "fa fa-phone",
+              attrs: { "aria-hidden": "true" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "media-body" }, [
+            _c("a", { attrs: { href: "tel:+xxx-xxxx-xxx" } }, [
+              _vm._v("+xxx-xxxx-xxx")
+            ]),
+            _vm._v(" "),
+            _c("a", { attrs: { href: "tel:+xxx-xxxx-xxx" } }, [
+              _vm._v("+xxx-xxxx-xxx")
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-4 col-md-6" }, [
+        _c("div", { staticClass: "media" }, [
+          _c("div", { staticClass: "d-flex" }, [
+            _c("i", {
+              staticClass: "fa fa-envelope",
+              attrs: { "aria-hidden": "true" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "media-body" }, [
+            _c("a", { attrs: { href: "mailto:xxxxxxx@JAMTANGAN.com" } }, [
+              _vm._v("xxxxxxx@JAMTANGAN.com")
+            ]),
+            _vm._v(" "),
+            _c("a", { attrs: { href: "mailto:xxxxxxx@JAMTANGAN.com" } }, [
+              _vm._v("xxxxxxx@JAMTANGAN.com")
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-12" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn update_btn form-control",
+          attrs: { type: "submit", value: "submit" }
+        },
+        [_vm._v("Send Message")]
+      )
     ])
   }
 ]

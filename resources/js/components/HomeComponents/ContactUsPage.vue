@@ -56,16 +56,16 @@
                     <h3>Drop a Message</h3>
                     <form class="contact_us_form row" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
                         <div class="form-group col-lg-4">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Full Name *">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Full Name *" v-model="name">
                         </div>
                         <div class="form-group col-lg-4">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Email Address *">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email Address *" v-model="email">
                         </div>
                         <div class="form-group col-lg-4">
-                            <input type="text" class="form-control" id="subject" name="website" placeholder="Your Subject">
+                            <input type="text" class="form-control" id="subject" name="website" placeholder="Your Subject" v-model="subject">
                         </div>
                         <div class="form-group col-lg-12">
-                            <textarea class="form-control" name="message" id="message" rows="1" placeholder="Type Your Message..."></textarea>
+                            <textarea class="form-control" name="message" id="message" rows="1" placeholder="Type Your Message..." v-model="message"></textarea>
                         </div>
                         <div class="form-group col-lg-12">
                             <button type="submit" value="submit" class="btn update_btn form-control">Send Message</button>
@@ -82,6 +82,10 @@ export default {
     data(){
         return{
             interval: null,
+            email: null,
+            subject: null,
+            name: null,
+            message: null,
         }
     },
     mounted(){
@@ -91,5 +95,18 @@ export default {
     destroyed(){
            clearInterval(this.interval);
     },
+    methods:{
+        sendEmail(){
+            if(this.email == null || this.subject == null || this.name == null || this.message == null){
+                alert("Silahkan lengkapi data-data yang kosong terlebih dahulu");
+                return;
+            }
+            axios.post('/api/mail/contactus',{email: this.email, subject: this.subject, name: this.name, message: this.message}).then((response) =>{
+                            alert('Terima kasih sudah menghubungi kami, pesan anda sudah kami terima.')
+                        }).catch(error =>{
+                            alert('Mohon maaf, terjadi kesalahan saat mencoba mengirimkan pesan. silahkan diperiksa lagi kelengkapan data yang dimasukkan.')
+                        })
+        }
+    }
 }
 </script>

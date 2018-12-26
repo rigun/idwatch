@@ -54,7 +54,7 @@
                 </div>
                 <div class="contact_form_inner">
                     <h3>Drop a Message</h3>
-                    <form class="contact_us_form row" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                    <form class="contact_us_form row" @submit.prevent="sendEmail()">
                         <div class="form-group col-lg-4">
                             <input type="text" class="form-control" id="name" name="name" placeholder="Full Name *" v-model="name">
                         </div>

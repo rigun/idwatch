@@ -18974,11 +18974,11 @@ var render = function() {
             "form",
             {
               staticClass: "contact_us_form row",
-              attrs: {
-                action: "contact_process.php",
-                method: "post",
-                id: "contactForm",
-                novalidate: "novalidate"
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  _vm.sendEmail()
+                }
               }
             },
             [

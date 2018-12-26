@@ -233,7 +233,6 @@ export default {
     },
     mounted(){
         this.getCart(); //mengambil data keranjang
-        this.$parent.refresh(); //melakukan refresh token dari fungsi parent
         this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval refresh agar token tidak kadaluarsa
         // this.getProvince();
         // this.getCity();
@@ -367,6 +366,9 @@ export default {
                     Authorization: 'Bearer ' + localStorage.getItem('token') } 
                 }).then((response) => {
                 this.cart = response.data;
+                  this.$nextTick(function () { //memanggil method ketika konten selesai dirender
+                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
+                })
             })
             
         },

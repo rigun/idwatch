@@ -92,9 +92,11 @@ export default {
         }
     },
     mounted(){
-        this.getdiscount(); //mengambil diskon yang sudah dibuat
-        this.$parent.refresh(); //memanggil fungsi refresh pada server
-        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval pemanggilan fungsi refresh
+        //mengambil diskon yang sudah dibuat
+            this.getdiscount();
+                      this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval pemanggilan fungsi refresh
+
+        
     },
     destroyed(){
            clearInterval(this.interval); //menghapus interval
@@ -107,6 +109,9 @@ export default {
                     Authorization: 'Bearer ' + localStorage.getItem('token') } 
                 }).then((response) => {
                 this.discounts = response.data;
+                  this.$nextTick(function () { //memanggil method ketika konten selesai dirender
+                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
+                })
             })
         },
         addCupon(){ //menambahkan kupon diskon

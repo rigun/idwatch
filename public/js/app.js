@@ -20007,7 +20007,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         this.getCart(); //mengambil data keranjang
-        this.$parent.refresh(); //melakukan refresh token dari fungsi parent
         this.interval = setInterval(function () {
             return _this.$parent.refresh();
         }, 900000); //mengeset interval refresh agar token tidak kadaluarsa
@@ -20163,6 +20162,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
             }).then(function (response) {
                 _this8.cart = response.data;
+                _this8.$nextTick(function () {
+                    //memanggil method ketika konten selesai dirender
+                    this.$parent.refresh(); //memanggil fungsi refresh pada parent
+                });
             });
         },
         showModal: function showModal(item) {
@@ -54007,11 +54010,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        this.getdiscount(); //mengambil diskon yang sudah dibuat
-        this.$parent.refresh(); //memanggil fungsi refresh pada server
+        //mengambil diskon yang sudah dibuat
+        this.getdiscount();
         this.interval = setInterval(function () {
             return _this.$parent.refresh();
         }, 900000); //mengeset interval pemanggilan fungsi refresh
+
     },
     destroyed: function destroyed() {
         clearInterval(this.interval); //menghapus interval
@@ -54028,6 +54032,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
             }).then(function (response) {
                 _this2.discounts = response.data;
+                _this2.$nextTick(function () {
+                    //memanggil method ketika konten selesai dirender
+                    this.$parent.refresh(); //memanggil fungsi refresh pada parent
+                });
             });
         },
         addCupon: function addCupon() {

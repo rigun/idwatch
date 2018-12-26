@@ -291,8 +291,8 @@ export default {
             let uri = 'https://api.rajaongkir.com/starter/province';
             axios.get(uri,{
                     headers: { 
-                    'key': '4e783427bd2c52632a0d6fa866e5aff2',
-                    'Access-Control-Allow-Origin': '*' } 
+                    'key': '4e783427bd2c52632a0d6fa866e5aff2'
+                     } 
                 }).then((response) => {
                     console.log(response)
                 this.province = response.data;

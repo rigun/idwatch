@@ -20202,6 +20202,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             //mengarahkan ke checkout sekaligus mengirimkan data ke bagian transaksi
             this.load = 'Checkout';
+            if (this.shipping == 0) {
+                alert('Silahkan hitung estimasi biaya pengiriman anda terlebih dahulu');
+                return;
+            }
             var uri = '/api/mytransaction';
             axios.post(uri, { 'shipping': this.shipping, 'total': this.total, 'diskon': this.diskon }, {
                 headers: {

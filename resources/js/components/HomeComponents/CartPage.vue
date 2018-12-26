@@ -326,6 +326,10 @@ export default {
         },
         checkout(){ //mengarahkan ke checkout sekaligus mengirimkan data ke bagian transaksi
             this.load = 'Checkout';
+            if(this.shipping == 0){
+                alert('Silahkan hitung estimasi biaya pengiriman anda terlebih dahulu');
+                return;
+            }
             let uri = '/api/mytransaction';
               axios.post(uri,{'shipping': this.shipping,'total':this.total, 'diskon': this.diskon},{
                   headers: {

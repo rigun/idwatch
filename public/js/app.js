@@ -20578,7 +20578,7 @@ var render = function() {
                               [
                                 _vm._m(2),
                                 _vm._v(" "),
-                                _vm._l(_vm.jne.costs, function(jc, index) {
+                                _vm._l(_vm.jne[0].costs, function(jc, index) {
                                   return _c("tr", { key: index }, [
                                     _c("td", [
                                       _c("input", {
@@ -20616,7 +20616,7 @@ var render = function() {
                                   ])
                                 }),
                                 _vm._v(" "),
-                                _vm._l(_vm.tiki.costs, function(jc, index) {
+                                _vm._l(_vm.tiki[0].costs, function(jc, index) {
                                   return _c("tr", { key: index }, [
                                     _c("td", [
                                       _c("input", {
@@ -20654,7 +20654,7 @@ var render = function() {
                                   ])
                                 }),
                                 _vm._v(" "),
-                                _vm._l(_vm.pos.costs, function(jc, index) {
+                                _vm._l(_vm.pos[0].costs, function(jc, index) {
                                   return _c("tr", { key: index }, [
                                     _c("td", [
                                       _c("input", {

@@ -77,19 +77,19 @@
                                                 <td>Biaya</td>
                                                 <td>Estimasi</td>
                                             </tr>
-                                            <tr v-for="(jc,index) in jne.costs" :key="index">
+                                            <tr v-for="(jc,index) in jne[0].costs" :key="index">
                                                 <td><input type="radio" :value="jc.cost[0].value" v-model="shipping" name="cost"></td>
                                                 <td>{{jc.service}}</td>
                                                 <td>Rp {{jc.cost}}</td>
                                                 <td>{{jc.cost[0].etd}} Hari</td>
                                             </tr>
-                                            <tr v-for="(jc,index) in tiki.costs" :key="index">
+                                            <tr v-for="(jc,index) in tiki[0].costs" :key="index">
                                                 <td><input type="radio" :value="jc.cost[0].value" v-model="shipping" name="cost"></td>
                                                 <td>{{jc.service}}</td>
                                                 <td>Rp {{jc.cost}}</td>
                                                 <td>{{jc.cost[0].etd}} Hari</td>
                                             </tr>
-                                            <tr v-for="(jc,index) in pos.costs" :key="index">
+                                            <tr v-for="(jc,index) in pos[0].costs" :key="index">
                                                 <td><input type="radio" :value="jc.cost[0].value" v-model="shipping" name="cost"></td>
                                                 <td>{{jc.service}}</td>
                                                 <td>Rp {{jc.cost}}</td>

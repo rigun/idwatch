@@ -30,7 +30,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="item in cart" :key="item.id">
+                                        <tr v-for="(item,index) in cart" :key="index+40">
                                             <th scope="row" @click.prevent="showModal(item)" style="cursor:pointer">
                                                      <i class="icon_pencil-edit" ></i>
                                             </th>
@@ -77,21 +77,21 @@
                                                 <td>Biaya</td>
                                                 <td>Estimasi</td>
                                             </tr>
-                                            <tr v-for="(jc,index) in jne[0].costs" :key="index">
+                                            <tr v-for="(jc,index) in jne[0].costs" :key="index+10">
                                                 <td><input type="radio" :value="jc.cost[0].value" v-model="shipping" name="cost"></td>
                                                 <td>JNE</td>
                                                 <td>{{jc.service}}</td>
                                                 <td>Rp {{jc.cost[0].value}}</td>
                                                 <td>{{jc.cost[0].etd}} HARI</td>
                                             </tr>
-                                            <tr v-for="(jc,index) in tiki[0].costs" :key="index">
+                                            <tr v-for="(jc,index) in tiki[0].costs" :key="index+20">
                                                 <td><input type="radio" :value="jc.cost[0].value" v-model="shipping" name="cost"></td>
                                                 <td>TIKI</td>
                                                 <td>{{jc.service}}</td>
                                                 <td>Rp {{jc.cost[0].value}}</td>
                                                 <td>{{jc.cost[0].etd}} HARI</td>
                                             </tr>
-                                            <tr v-for="(jc,index) in pos[0].costs" :key="index">
+                                            <tr v-for="(jc,index) in pos[0].costs" :key="index+30">
                                                 <td><input type="radio" :value="jc.cost[0].value" v-model="shipping" name="cost"></td>
                                                 <td>POS</td>
                                                 <td>{{jc.service}}</td>

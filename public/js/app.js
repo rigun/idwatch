@@ -20398,8 +20398,8 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "tbody",
-                          _vm._l(_vm.cart, function(item) {
-                            return _c("tr", { key: item.id }, [
+                          _vm._l(_vm.cart, function(item, index) {
+                            return _c("tr", { key: index + 40 }, [
                               _c(
                                 "th",
                                 {
@@ -20615,7 +20615,7 @@ var render = function() {
                                 _vm._m(2),
                                 _vm._v(" "),
                                 _vm._l(_vm.jne[0].costs, function(jc, index) {
-                                  return _c("tr", { key: index }, [
+                                  return _c("tr", { key: index + 10 }, [
                                     _c("td", [
                                       _c("input", {
                                         directives: [
@@ -20657,7 +20657,7 @@ var render = function() {
                                 }),
                                 _vm._v(" "),
                                 _vm._l(_vm.tiki[0].costs, function(jc, index) {
-                                  return _c("tr", { key: index }, [
+                                  return _c("tr", { key: index + 20 }, [
                                     _c("td", [
                                       _c("input", {
                                         directives: [
@@ -20699,7 +20699,7 @@ var render = function() {
                                 }),
                                 _vm._v(" "),
                                 _vm._l(_vm.pos[0].costs, function(jc, index) {
-                                  return _c("tr", { key: index }, [
+                                  return _c("tr", { key: index + 30 }, [
                                     _c("td", [
                                       _c("input", {
                                         directives: [

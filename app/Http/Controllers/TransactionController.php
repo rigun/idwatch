@@ -52,7 +52,7 @@ class TransactionController extends Controller
             'shipping' => 'required',
             'total' => 'required',
         ]);
-        if(Transaction::where([['user_id',JWTAuth::parseToken()->authenticate()->id],['status', '<',3]])->first()){
+        if(Transaction::where([['user_id',JWTAuth::parseToken()->authenticate()->id],['status', '<',3],['notes','!=',null]])->first()){
             return 0;
         }
         if(!$transaction = Transaction::where([['user_id',JWTAuth::parseToken()->authenticate()->id],['status', 0]])->first()){
@@ -63,9 +63,7 @@ class TransactionController extends Controller
         
         $transaction->shipping = $request->shipping;
         $transaction->total = $request->total;
-        if($request->diskon != null){
-            $transaction->diskon = $request->diskon;
-        }
+        $transaction->diskon = $request->diskon;
         $transaction->save();
 
         $carts = Cart::where([['user_id', JWTAuth::parseToken()->authenticate()->id ],['status',0]])->get();

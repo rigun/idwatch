@@ -55,13 +55,13 @@
                         <div class="calculate_shoping_area">
                             <h3 class="cart_single_title">Hitung biaya pengiriman anda<span><i class="icon_minus-06"></i></span></h3>
                             <div class="calculate_shop_inner">
-                                    <div class="form-group col-lg-6">
+                                    <div class="form-group col-lg-6 select-custom">
                                         <select v-model="provinsi_id">
                                             <option value="-1">Pilih Provinsi Anda</option>
                                             <option v-for="provinsi in provinsis" :key="provinsi.province_id" :value="provinsi.province_id" @click.prevent="getCity()">{{provinsi.province}}</option>
                                         </select>
                                     </div>
-                                    <div class="form-group col-lg-6" v-if="kotas.length > 0">
+                                    <div class="form-group col-lg-6 select-custom" v-if="kotas.length > 0">
                                         <select v-model="kota_id">
                                             <option value="-1">Pilih Kota Anda</option>
                                             <option v-for="kota in kotas" :key="kota.city_id" :value="kota.city_id" @click.prevent="getCost()">{{kota.type}} {{kota.city_name}}</option>
@@ -69,7 +69,7 @@
                                     </div>
                                     <div class="form-group col-lg-12" v-if="jne.length > 0">
                                         Silahkan pilih biaya pengiriman yang diinginkan
-                                        <table>
+                                        <table sytle=" width: 100%;">
                                             <tr>
                                                 <td></td>
                                                 <td>Jenis Pengiriman</td>
@@ -79,22 +79,26 @@
                                             </tr>
                                             <tr v-for="(jc,index) in jne[0].costs" :key="index">
                                                 <td><input type="radio" :value="jc.cost[0].value" v-model="shipping" name="cost"></td>
+                                                <td>JNE</td>
                                                 <td>{{jc.service}}</td>
-                                                <td>Rp {{jc.cost}}</td>
+                                                <td>Rp {{jc.cost[0].value}}</td>
                                                 <td>{{jc.cost[0].etd}} Hari</td>
                                             </tr>
                                             <tr v-for="(jc,index) in tiki[0].costs" :key="index">
                                                 <td><input type="radio" :value="jc.cost[0].value" v-model="shipping" name="cost"></td>
+                                                <td>TIKI</td>
                                                 <td>{{jc.service}}</td>
-                                                <td>Rp {{jc.cost}}</td>
+                                                <td>Rp {{jc.cost[0].value}}</td>
                                                 <td>{{jc.cost[0].etd}} Hari</td>
                                             </tr>
                                             <tr v-for="(jc,index) in pos[0].costs" :key="index">
                                                 <td><input type="radio" :value="jc.cost[0].value" v-model="shipping" name="cost"></td>
+                                                <td>POS</td>
                                                 <td>{{jc.service}}</td>
-                                                <td>Rp {{jc.cost}}</td>
+                                                <td>Rp {{jc.cost[0].value}}</td>
                                                 <td>{{jc.cost[0].etd}} Hari</td>
                                             </tr>
+                                            
                                         </table>
                                     </div>
 
@@ -233,6 +237,16 @@ li{
     left: auto !important;
     right: -10px !important;
     top: 60px !important;
+}
+.select-custom{
+    -moz-appearance: menulist;
+    -webkit-appearance: menulist;
+background: white;
+border: solid 1px;
+border-radius: 5px;
+width: 100%;
+height: 30px;
+padding-left: 11px;
 }
 </style>
 <script>

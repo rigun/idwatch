@@ -19854,7 +19854,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.show{\r\n\tdisplay: block;\n}\nli{\r\n    padding-top: 10px;\n}\n.color_list a{\r\n    opacity: 0.5;\r\n    cursor: pointer;\n}\n.color_list a:hover{\r\n    opacity: 0.8;\n}\n.color_list .active{\r\n    opacity: 1;\n}\n.p_color .bootstrap-select .dropdown-menu .dropdown-menu.inner li a{\r\n    width: 100% !important;\r\n    display: block !important;\n}\n.v-menu__content{\r\n    left: auto !important;\r\n    right: -10px !important;\r\n    top: 60px !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.show{\r\n\tdisplay: block;\n}\nli{\r\n    padding-top: 10px;\n}\n.color_list a{\r\n    opacity: 0.5;\r\n    cursor: pointer;\n}\n.color_list a:hover{\r\n    opacity: 0.8;\n}\n.color_list .active{\r\n    opacity: 1;\n}\n.p_color .bootstrap-select .dropdown-menu .dropdown-menu.inner li a{\r\n    width: 100% !important;\r\n    display: block !important;\n}\n.v-menu__content{\r\n    left: auto !important;\r\n    right: -10px !important;\r\n    top: 60px !important;\n}\n.select-custom{\r\n    -moz-appearance: menulist;\r\n    -webkit-appearance: menulist;\r\nbackground: white;\r\nborder: solid 1px;\r\nborder-radius: 5px;\r\nwidth: 100%;\r\nheight: 30px;\r\npadding-left: 11px;\n}\r\n", ""]);
 
 // exports
 
@@ -19865,6 +19865,20 @@ exports.push([module.i, "\n.show{\r\n\tdisplay: block;\n}\nli{\r\n    padding-to
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -20451,121 +20465,134 @@ var render = function() {
                     _vm._m(1),
                     _vm._v(" "),
                     _c("div", { staticClass: "calculate_shop_inner" }, [
-                      _c("div", { staticClass: "form-group col-lg-6" }, [
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.provinsi_id,
-                                expression: "provinsi_id"
-                              }
-                            ],
-                            on: {
-                              change: function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.provinsi_id = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              }
-                            }
-                          },
-                          [
-                            _c("option", { attrs: { value: "-1" } }, [
-                              _vm._v("Pilih Provinsi Anda")
-                            ]),
-                            _vm._v(" "),
-                            _vm._l(_vm.provinsis, function(provinsi) {
-                              return _c(
-                                "option",
+                      _c(
+                        "div",
+                        { staticClass: "form-group col-lg-6 select-custom" },
+                        [
+                          _c(
+                            "select",
+                            {
+                              directives: [
                                 {
-                                  key: provinsi.province_id,
-                                  domProps: { value: provinsi.province_id },
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.provinsi_id,
+                                  expression: "provinsi_id"
+                                }
+                              ],
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.provinsi_id = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "-1" } }, [
+                                _vm._v("Pilih Provinsi Anda")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.provinsis, function(provinsi) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: provinsi.province_id,
+                                    domProps: { value: provinsi.province_id },
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        _vm.getCity()
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(provinsi.province))]
+                                )
+                              })
+                            ],
+                            2
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm.kotas.length > 0
+                        ? _c(
+                            "div",
+                            {
+                              staticClass: "form-group col-lg-6 select-custom"
+                            },
+                            [
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.kota_id,
+                                      expression: "kota_id"
+                                    }
+                                  ],
                                   on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      _vm.getCity()
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.kota_id = $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
                                     }
                                   }
                                 },
-                                [_vm._v(_vm._s(provinsi.province))]
-                              )
-                            })
-                          ],
-                          2
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _vm.kotas.length > 0
-                        ? _c("div", { staticClass: "form-group col-lg-6" }, [
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.kota_id,
-                                    expression: "kota_id"
-                                  }
-                                ],
-                                on: {
-                                  change: function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.kota_id = $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  }
-                                }
-                              },
-                              [
-                                _c("option", { attrs: { value: "-1" } }, [
-                                  _vm._v("Pilih Kota Anda")
-                                ]),
-                                _vm._v(" "),
-                                _vm._l(_vm.kotas, function(kota) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: kota.city_id,
-                                      domProps: { value: kota.city_id },
-                                      on: {
-                                        click: function($event) {
-                                          $event.preventDefault()
-                                          _vm.getCost()
+                                [
+                                  _c("option", { attrs: { value: "-1" } }, [
+                                    _vm._v("Pilih Kota Anda")
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.kotas, function(kota) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: kota.city_id,
+                                        domProps: { value: kota.city_id },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            _vm.getCost()
+                                          }
                                         }
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        _vm._s(kota.type) +
-                                          " " +
-                                          _vm._s(kota.city_name)
-                                      )
-                                    ]
-                                  )
-                                })
-                              ],
-                              2
-                            )
-                          ])
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(kota.type) +
+                                            " " +
+                                            _vm._s(kota.city_name)
+                                        )
+                                      ]
+                                    )
+                                  })
+                                ],
+                                2
+                              )
+                            ]
+                          )
                         : _vm._e(),
                       _vm._v(" "),
                       _vm.jne.length > 0
@@ -20575,6 +20602,7 @@ var render = function() {
                             ),
                             _c(
                               "table",
+                              { attrs: { sytle: " width: 100%;" } },
                               [
                                 _vm._m(2),
                                 _vm._v(" "),
@@ -20606,9 +20634,13 @@ var render = function() {
                                       })
                                     ]),
                                     _vm._v(" "),
+                                    _c("td", [_vm._v("JNE")]),
+                                    _vm._v(" "),
                                     _c("td", [_vm._v(_vm._s(jc.service))]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("Rp " + _vm._s(jc.cost))]),
+                                    _c("td", [
+                                      _vm._v("Rp " + _vm._s(jc.cost[0].value))
+                                    ]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _vm._v(_vm._s(jc.cost[0].etd) + " Hari")
@@ -20644,9 +20676,13 @@ var render = function() {
                                       })
                                     ]),
                                     _vm._v(" "),
+                                    _c("td", [_vm._v("TIKI")]),
+                                    _vm._v(" "),
                                     _c("td", [_vm._v(_vm._s(jc.service))]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("Rp " + _vm._s(jc.cost))]),
+                                    _c("td", [
+                                      _vm._v("Rp " + _vm._s(jc.cost[0].value))
+                                    ]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _vm._v(_vm._s(jc.cost[0].etd) + " Hari")
@@ -20682,9 +20718,13 @@ var render = function() {
                                       })
                                     ]),
                                     _vm._v(" "),
+                                    _c("td", [_vm._v("POS")]),
+                                    _vm._v(" "),
                                     _c("td", [_vm._v(_vm._s(jc.service))]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("Rp " + _vm._s(jc.cost))]),
+                                    _c("td", [
+                                      _vm._v("Rp " + _vm._s(jc.cost[0].value))
+                                    ]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _vm._v(_vm._s(jc.cost[0].etd) + " Hari")

@@ -48,9 +48,22 @@
                                             </div>
                                         </div>
                                     <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label for="province">Provinsi <span>*</span></label>
+                                                <input type="text" class="form-control" id="phone" aria-describedby="phone" v-model="provinsi" disabled>
+                                            </div>
+                                        </div>
+                                    <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label for="phone">Kota <span>*</span></label>
+                                                <input type="text" class="form-control" id="phone" aria-describedby="phone" v-model="kota" disabled>
+                                            </div>
+                                        </div>
+                                    <div class="col-lg-12">
                                         <div class="form-group">
                                             <label for="address">Alamat Lengkap<span>*</span></label>
-                                            <textarea class="form-control" id="order" rows="3" v-model="address"></textarea></div>
+                                            <textarea class="form-control" id="order" rows="3" v-model="address"></textarea>
+                                            </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
@@ -134,6 +147,8 @@ export default {
             },
             phone: '',
             address: '',
+            provinsi: '',
+            kota: '',
             status: 1,
         }
     },
@@ -155,6 +170,8 @@ export default {
                 this.transaction = response.data;
                 if(this.transaction.user.detail != null){
                     this.phone = this.transaction.user.detail.phone;
+                    this.provinsi = this.transaction.user.detail.provinsi;
+                    this.kota = this.transaction.user.detail.kota;
                     this.address = this.transaction.user.detail.alamat;
                 }
             })

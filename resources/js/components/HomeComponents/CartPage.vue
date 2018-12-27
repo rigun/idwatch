@@ -350,7 +350,7 @@ export default {
                 'service_shipping' : this.shippingTemp.jc.service,
                 'estimate_shipping': this.shippingTemp.jc.cost[0].etd,
                 'provinsi' : this.provinsiTemp.province,
-                'kota' : this.kotaTemp.type + this.kotaTemp.city_name
+                'kota' : this.kotaTemp.type + " " +this.kotaTemp.city_name
                 },{ 
                   headers: {
                       Authorization: 'Bearer ' + localStorage.getItem('token')

@@ -20224,7 +20224,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'service_shipping': this.shippingTemp.jc.service,
                 'estimate_shipping': this.shippingTemp.jc.cost[0].etd,
                 'provinsi': this.provinsiTemp.province,
-                'kota': this.kotaTemp.type + this.kotaTemp.city_name
+                'kota': this.kotaTemp.type + " " + this.kotaTemp.city_name
             }, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -24593,6 +24593,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -24613,6 +24626,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             phone: '',
             address: '',
+            provinsi: '',
+            kota: '',
             status: 1
         };
     },
@@ -24642,6 +24657,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this2.transaction = response.data;
                 if (_this2.transaction.user.detail != null) {
                     _this2.phone = _this2.transaction.user.detail.phone;
+                    _this2.provinsi = _this2.transaction.user.detail.provinsi;
+                    _this2.kota = _this2.transaction.user.detail.kota;
                     _this2.address = _this2.transaction.user.detail.alamat;
                 }
             });
@@ -24834,6 +24851,72 @@ var render = function() {
                     _c("div", { staticClass: "form-group" }, [
                       _vm._m(3),
                       _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.provinsi,
+                            expression: "provinsi"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          id: "phone",
+                          "aria-describedby": "phone",
+                          disabled: ""
+                        },
+                        domProps: { value: _vm.provinsi },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.provinsi = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-lg-12" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _vm._m(4),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.kota,
+                            expression: "kota"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          id: "phone",
+                          "aria-describedby": "phone",
+                          disabled: ""
+                        },
+                        domProps: { value: _vm.kota },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.kota = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-lg-12" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _vm._m(5),
+                      _vm._v(" "),
                       _c("textarea", {
                         directives: [
                           {
@@ -24860,7 +24943,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-12" }, [
                     _c("div", { staticClass: "form-group" }, [
-                      _vm._m(4),
+                      _vm._m(6),
                       _vm._v(" "),
                       _c("textarea", {
                         directives: [
@@ -24997,7 +25080,7 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _vm._m(5)
+                        _vm._m(7)
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "card" }, [
@@ -25037,7 +25120,7 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _vm._m(6)
+                        _vm._m(8)
                       ])
                     ]
                   )
@@ -25090,6 +25173,24 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "phone" } }, [
       _vm._v("Nomor Telephone "),
+      _c("span", [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "province" } }, [
+      _vm._v("Provinsi "),
+      _c("span", [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "phone" } }, [
+      _vm._v("Kota "),
       _c("span", [_vm._v("*")])
     ])
   },

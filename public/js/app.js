@@ -20161,15 +20161,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         clearInterval(this.interval); //menghapus interval
     },
 
-    watch: {
-        shipping: function shipping() {
-            if (this.shippingTemp == null) {
-                return 0;
-            } else {
-                return this.shippingTemp.jc.cost[0].value;
-            }
-        }
-    },
+    watch: {},
     computed: {
         total: function total() {
             //menghitung total belanja
@@ -20185,6 +20177,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 sum = sum + parseInt(this.cart[i].item.weight);
             }
             return sum;
+        },
+        shipping: function shipping() {
+            if (this.shippingTemp == null) {
+                return 0;
+            } else {
+                return this.shippingTemp.jc.cost[0].value;
+            }
         }
     },
     methods: {

@@ -291,13 +291,7 @@ export default {
            clearInterval(this.interval); //menghapus interval
     },
     watch:{
-        shipping(){
-            if(this.shippingTemp == null){
-                return 0
-            }else{
-                return this.shippingTemp.jc.cost[0].value;
-            }
-        }
+        
     },
     computed:{
         total(){ //menghitung total belanja
@@ -314,7 +308,13 @@ export default {
             }
             return sum;
         },
-        
+        shipping(){
+            if(this.shippingTemp == null){
+                return 0
+            }else{
+                return this.shippingTemp.jc.cost[0].value;
+            }
+        }
     },
     methods:{
         useCupon(){

@@ -20177,6 +20177,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 sum = sum + parseInt(this.cart[i].item.weight);
             }
             return sum;
+        },
+        shipping: function shipping() {
+            if (this.shippingTemp == null) {
+                return 0;
+            } else {
+                return this.shippingTemp.jc.cost[0].value;
+            }
         }
     },
     methods: {
@@ -20204,18 +20211,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             //mengarahkan ke checkout sekaligus mengirimkan data ke bagian transaksi
             this.load = 'Checkout';
-            if (this.typeShipping == null) {
+            if (this.shippingTemp == null) {
                 alert('Silahkan hitung estimasi biaya pengiriman anda terlebih dahulu');
                 this.load = -1;
                 return;
             }
             var uri = '/api/mytransaction';
-            axios.post(uri, { 'shipping': this.shippingTemp.cost[0].value, 'total': this.total, 'diskon': this.diskon,
+            axios.post(uri, { 'shipping': this.shippingTemp.jc.cost[0].value, 'total': this.total, 'diskon': this.diskon,
                 'province_id': this.provinsiTemp.province_id,
                 'city_id': this.cityTemp.city_id,
-                'type_shipping': this.typeShipping,
-                'service_shipping': this.shippingTemp.service,
-                'estimate_shipping': this.shippingTemp.cost[0].etd,
+                'type_shipping': this.shippingTemp.code,
+                'service_shipping': this.shippingTemp.jc.service,
+                'estimate_shipping': this.shippingTemp.jc.cost[0].etd,
                 'provinsi': this.provinsiTemp.province,
                 'kota': this.provinsiTemp.type + this.provinsiTemp.city_name
             }, {

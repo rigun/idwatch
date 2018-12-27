@@ -60,8 +60,8 @@ class TransactionController extends Controller
             $transaction->user_id = JWTAuth::parseToken()->authenticate()->id;
             $transaction->token = bin2hex(random_bytes(60));
         }
-        $transaction->province_id = $request->province_id;
-        $transaction->city_id = $request->city_id;
+        $transaction->provinsi = $request->provinsi;
+        $transaction->kota = $request->kota;
         $transaction->type_shipping = $request->type_shipping;
         $transaction->service_shipping = $request->service_shipping;
         $transaction->estimate_shipping = $request->estimate_shipping;

@@ -18,6 +18,7 @@ Route::get('/dashboard/report', function () {return view('admin');});
 Route::get('/dashboard/confirm', function () {return view('admin');});
 Route::get('/dashboard/trash', function () {return view('admin');});
 Route::get('/dashboard/discount', function () {return view('admin');});
+Route::get('/dashboard/changepassword', function () {return view('admin');});
 Route::get('/dashboard/detail/{id}', function () {return view('admin');});
 Route::get('/admin/login', function () {return view('admin');});
 Route::get('/login', function () {return view('app');});

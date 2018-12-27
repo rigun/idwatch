@@ -141,13 +141,13 @@ class UserController extends Controller
           return response()->json($json);
     }
 
-    public function updatePassword(Request $request, $id)
+    public function updatePassword(Request $request)
     {
         $this->validateWith([
             'password_lama' => 'required',
             'password_baru' => 'required',
           ]);
-          $user = User::findOrFail($id);
+          $user = User::findOrFail(JWTAuth::parseToken()->authenticate()->id);
           if(Hash::check($request->password_lama, $user->password)){
             $user->password = Hash::make($request->password_baru);    
             $json=['status' => 'success','msg'=>'Password berhasil diubah'];

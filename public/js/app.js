@@ -14681,6 +14681,7 @@ var ConfirmContent = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Conf
 var TrashContent = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('TrashContent', __webpack_require__(107));
 var DetailContent = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('DetailContent', __webpack_require__(110));
 var Discount = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Discount', __webpack_require__(115));
+var ChangePassword = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Discount', __webpack_require__(167));
 var routes = [{
     path: '/',
     component: HomeLayout,
@@ -14772,6 +14773,10 @@ var routes = [{
             name: 'Discount',
             path: 'discount',
             component: Discount
+        }, {
+            name: 'ChangePassword',
+            path: 'changepassword',
+            component: ChangePassword
         }]
     }, {
         name: 'LoginAdmin',
@@ -17181,6 +17186,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -17297,6 +17305,26 @@ var render = function() {
                                   class: { showDropdown: _vm.dropdown }
                                 },
                                 [
+                                  _c(
+                                    "li",
+                                    [
+                                      _c(
+                                        "router-link",
+                                        {
+                                          attrs: {
+                                            to: { name: "ChangePassword" }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\r\n                                        Change Password\r\n                                    "
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
                                   _c("li", { staticClass: "divider" }),
                                   _vm._v(" "),
                                   _c(
@@ -20218,8 +20246,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
             var uri = '/api/mytransaction';
             axios.post(uri, { 'shipping': this.shippingTemp.jc.cost[0].value, 'total': this.total, 'diskon': this.diskon,
-                'province_id': this.provinsiTemp.province_id,
-                'city_id': this.kotaTemp.city_id,
                 'type_shipping': this.shippingTemp.code,
                 'service_shipping': this.shippingTemp.jc.service,
                 'estimate_shipping': this.shippingTemp.jc.cost[0].etd,
@@ -24744,7 +24770,9 @@ var render = function() {
                 _c("form", { staticClass: "billing_inner row" }, [
                   _c("div", { staticClass: "col-lg-12" }, [
                     _c("div", { staticClass: "form-group" }, [
-                      _vm._m(0),
+                      _c("label", { attrs: { for: "name" } }, [
+                        _vm._v("Nama Penerima")
+                      ]),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -24760,7 +24788,8 @@ var render = function() {
                           type: "text",
                           id: "name",
                           "aria-describedby": "name",
-                          placeholder: ""
+                          placeholder: "",
+                          disabled: ""
                         },
                         domProps: { value: _vm.transaction.user.name },
                         on: {
@@ -24781,7 +24810,9 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-12" }, [
                     _c("div", { staticClass: "form-group" }, [
-                      _vm._m(1),
+                      _c("label", { attrs: { for: "last" } }, [
+                        _vm._v("Alamat Email")
+                      ]),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -24796,7 +24827,8 @@ var render = function() {
                         attrs: {
                           type: "email",
                           id: "last",
-                          "aria-describedby": "email"
+                          "aria-describedby": "email",
+                          disabled: ""
                         },
                         domProps: { value: _vm.transaction.user.email },
                         on: {
@@ -24817,7 +24849,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-12" }, [
                     _c("div", { staticClass: "form-group" }, [
-                      _vm._m(2),
+                      _vm._m(0),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -24849,7 +24881,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-12" }, [
                     _c("div", { staticClass: "form-group" }, [
-                      _vm._m(3),
+                      _vm._m(1),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -24882,7 +24914,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-12" }, [
                     _c("div", { staticClass: "form-group" }, [
-                      _vm._m(4),
+                      _vm._m(2),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -24915,7 +24947,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-12" }, [
                     _c("div", { staticClass: "form-group" }, [
-                      _vm._m(5),
+                      _vm._m(3),
                       _vm._v(" "),
                       _c("textarea", {
                         directives: [
@@ -24943,7 +24975,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-12" }, [
                     _c("div", { staticClass: "form-group" }, [
-                      _vm._m(6),
+                      _vm._m(4),
                       _vm._v(" "),
                       _c("textarea", {
                         directives: [
@@ -25080,7 +25112,7 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _vm._m(7)
+                        _vm._m(5)
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "card" }, [
@@ -25120,7 +25152,7 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _vm._m(8)
+                        _vm._m(6)
                       ])
                     ]
                   )
@@ -25149,24 +25181,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "name" } }, [
-      _vm._v("Nama Penerima"),
-      _c("span", [_vm._v("*")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "last" } }, [
-      _vm._v("Alamat Email"),
-      _c("span", [_vm._v("*")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -28919,7 +28933,15 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("td", { staticClass: "cell-title" }, [
-                      _c("div", [_vm._v(_vm._s(confirm.address))])
+                      _c("div", [
+                        _vm._v(
+                          _vm._s(confirm.address) +
+                            "," +
+                            _vm._s(confirm.user.detail.provinsi) +
+                            "," +
+                            _vm._s(confirm.user.detail.kota)
+                        )
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("td", { staticClass: "cell-time " }, [
@@ -55109,6 +55131,370 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(168)
+/* template */
+var __vue_template__ = __webpack_require__(169)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/DashboardComponents/changePassword.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5263b1fb", Component.options)
+  } else {
+    hotAPI.reload("data-v-5263b1fb", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 168 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            data: {
+                password_lama: null,
+                password_baru: null,
+                cpassword_baru: null
+            },
+            load: false
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$parent.refresh(); //memanggil fungsi refersh pada parent
+        this.interval = setInterval(function () {
+            return _this.$parent.refresh();
+        }, 900000); //mengeset interval untuk pemamggilan fungsi refresh
+    },
+    destroyed: function destroyed() {
+        clearInterval(this.interval); //menghapus interval
+    },
+
+    methods: {
+        sendData: function sendData() {
+            var _this2 = this;
+
+            this.load = true;
+            if (!this.cek) {
+                alert('data invalid');
+                this.load = false;
+
+                return;
+            }
+            var uri = '/api/renewPassword';
+            axios.post(uri, this.data, {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token') }
+            }).then(function (response) {
+
+                alert(response.data.msg);
+                location.reload();
+                _this2.load = false;
+            }).catch(function (error) {
+                alert('error');
+                _this2.load = false;
+            });
+        }
+    },
+    computed: {
+        cek: function cek() {
+            //mengecek valid tidaknya inputan
+            if (this.data.password_baru != null && this.data.cpassword_baru != null && this.data.password_lama != null) {
+                if (this.data.password_baru == this.data.cpassword_baru) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            return false;
+        }
+    }
+});
+
+/***/ }),
+/* 169 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "module" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "module-body" }, [
+        _c(
+          "form",
+          {
+            staticClass: "form-horizontal row-fluid",
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                _vm.sendData()
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "control-group" }, [
+              _c(
+                "label",
+                { staticClass: "control-label", attrs: { for: "basicinput" } },
+                [_vm._v("Old Password")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "controls" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.data.password_lama,
+                      expression: "data.password_lama"
+                    }
+                  ],
+                  staticClass: "span8",
+                  attrs: { type: "password", id: "basicinput" },
+                  domProps: { value: _vm.data.password_lama },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.data, "password_lama", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "control-group" }, [
+              _c(
+                "label",
+                { staticClass: "control-label", attrs: { for: "basicinput" } },
+                [_vm._v("New Password")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "controls" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.data.password_baru,
+                      expression: "data.password_baru"
+                    }
+                  ],
+                  staticClass: "span8",
+                  attrs: { type: "password", id: "basicinput" },
+                  domProps: { value: _vm.data.password_baru },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.data, "password_baru", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "control-group" }, [
+              _c(
+                "label",
+                { staticClass: "control-label", attrs: { for: "basicinput" } },
+                [_vm._v("Retype New Password")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "controls" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.data.cpassword_baru,
+                      expression: "data.cpassword_baru"
+                    }
+                  ],
+                  staticClass: "span8",
+                  attrs: { type: "password", id: "basicinput" },
+                  domProps: { value: _vm.data.cpassword_baru },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.data, "cpassword_baru", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.data.password_baru != null &&
+                _vm.data.cpassword_baru != null &&
+                _vm.data.password_baru != _vm.data.cpassword_baru
+                  ? _c("span", { staticStyle: { color: "red" } }, [
+                      _vm._v("Your password incorrect")
+                    ])
+                  : _vm._e()
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "control-group" }, [
+              _c("div", { staticClass: "controls" }, [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                  [
+                    _vm.load
+                      ? _c("div", { staticClass: "loader" })
+                      : _c("span", [_vm._v("Change")])
+                  ]
+                )
+              ])
+            ])
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "module-head" }, [
+      _c("h3", [_vm._v("Change Password")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5263b1fb", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

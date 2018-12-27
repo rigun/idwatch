@@ -19,6 +19,9 @@
                                 <img src="http://127.0.0.1:8000/images/user.png" class="nav-avatar" />
                                 <b class="caret"></b></a>
                             <ul class="dropdown-menu" :class="{'showDropdown': dropdown}">
+                                <li> <router-link :to="{name: 'ChangePassword'}">
+                                        Change Password
+                                    </router-link></li>
                                 <li class="divider"></li>
                                 <li>
                                      <router-link :to="{name: 'LogoutAdmin'}"  >

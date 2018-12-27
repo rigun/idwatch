@@ -31,14 +31,14 @@
                                     </div> -->
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label for="name">Nama Penerima<span>*</span></label>
-                                            <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="" v-model="transaction.user.name">
+                                            <label for="name">Nama Penerima</label>
+                                            <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="" v-model="transaction.user.name" disabled>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label for="last">Alamat Email<span>*</span></label>
-                                            <input type="email" class="form-control" id="last" aria-describedby="email" v-model="transaction.user.email">
+                                            <label for="last">Alamat Email</label>
+                                            <input type="email" class="form-control" id="last" aria-describedby="email" v-model="transaction.user.email" disabled>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">

@@ -278,7 +278,6 @@ export default {
             pos: [],
             shippingTemp: null,
             typeShipping: null,
-            shipping: 0,
             diskon: 0,
             cupon: null,
         }
@@ -290,6 +289,15 @@ export default {
     },
     destroyed(){
            clearInterval(this.interval); //menghapus interval
+    },
+    watch:{
+        shipping(){
+            if(this.shippingTemp == null){
+                return 0
+            }else{
+                return this.shippingTemp.jc.cost[0].value;
+            }
+        }
     },
     computed:{
         total(){ //menghitung total belanja
@@ -306,13 +314,7 @@ export default {
             }
             return sum;
         },
-        shipping(){
-            if(this.shippingTemp == null){
-                return 0;
-            }else{
-                return 1
-            }
-        }
+        
     },
     methods:{
         useCupon(){
@@ -348,7 +350,7 @@ export default {
                 'service_shipping' : this.shippingTemp.jc.service,
                 'estimate_shipping': this.shippingTemp.jc.cost[0].etd,
                 'provinsi' : this.provinsiTemp.province,
-                'kota' : this.provinsiTemp.type + this.provinsiTemp.city_name
+                'kota' : this.kotaTemp.type + this.kotaTemp.city_name
                 },{ 
                   headers: {
                       Authorization: 'Bearer ' + localStorage.getItem('token')

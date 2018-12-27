@@ -20144,7 +20144,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             pos: [],
             shippingTemp: null,
             typeShipping: null,
-            shipping: 0,
             diskon: 0,
             cupon: null
         };
@@ -20162,6 +20161,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         clearInterval(this.interval); //menghapus interval
     },
 
+    watch: {
+        shipping: function shipping() {
+            if (this.shippingTemp == null) {
+                return 0;
+            } else {
+                return this.shippingTemp.jc.cost[0].value;
+            }
+        }
+    },
     computed: {
         total: function total() {
             //menghitung total belanja
@@ -20177,13 +20185,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 sum = sum + parseInt(this.cart[i].item.weight);
             }
             return sum;
-        },
-        shipping: function shipping() {
-            if (this.shippingTemp == null) {
-                return 0;
-            } else {
-                return 1;
-            }
         }
     },
     methods: {
@@ -20224,7 +20225,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'service_shipping': this.shippingTemp.jc.service,
                 'estimate_shipping': this.shippingTemp.jc.cost[0].etd,
                 'provinsi': this.provinsiTemp.province,
-                'kota': this.provinsiTemp.type + this.provinsiTemp.city_name
+                'kota': this.kotaTemp.type + this.kotaTemp.city_name
             }, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token')

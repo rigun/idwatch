@@ -20142,6 +20142,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             jne: [],
             tiki: [],
             pos: [],
+            shippingTemp: {},
             shipping: 0,
             diskon: 0,
             cupon: null
@@ -20622,21 +20623,18 @@ var render = function() {
                                           {
                                             name: "model",
                                             rawName: "v-model",
-                                            value: _vm.shipping,
-                                            expression: "shipping"
+                                            value: _vm.shippingTemp,
+                                            expression: "shippingTemp"
                                           }
                                         ],
                                         attrs: { type: "radio", name: "cost" },
                                         domProps: {
-                                          value: jc.cost[0].value,
-                                          checked: _vm._q(
-                                            _vm.shipping,
-                                            jc.cost[0].value
-                                          )
+                                          value: jc,
+                                          checked: _vm._q(_vm.shippingTemp, jc)
                                         },
                                         on: {
                                           change: function($event) {
-                                            _vm.shipping = jc.cost[0].value
+                                            _vm.shippingTemp = jc
                                           }
                                         }
                                       })
@@ -20664,21 +20662,18 @@ var render = function() {
                                           {
                                             name: "model",
                                             rawName: "v-model",
-                                            value: _vm.shipping,
-                                            expression: "shipping"
+                                            value: _vm.shippingTemp,
+                                            expression: "shippingTemp"
                                           }
                                         ],
                                         attrs: { type: "radio", name: "cost" },
                                         domProps: {
-                                          value: jc.cost[0].value,
-                                          checked: _vm._q(
-                                            _vm.shipping,
-                                            jc.cost[0].value
-                                          )
+                                          value: jc,
+                                          checked: _vm._q(_vm.shippingTemp, jc)
                                         },
                                         on: {
                                           change: function($event) {
-                                            _vm.shipping = jc.cost[0].value
+                                            _vm.shippingTemp = jc
                                           }
                                         }
                                       })
@@ -20706,21 +20701,18 @@ var render = function() {
                                           {
                                             name: "model",
                                             rawName: "v-model",
-                                            value: _vm.shipping,
-                                            expression: "shipping"
+                                            value: _vm.shippingTemp,
+                                            expression: "shippingTemp"
                                           }
                                         ],
                                         attrs: { type: "radio", name: "cost" },
                                         domProps: {
-                                          value: jc.cost[0].value,
-                                          checked: _vm._q(
-                                            _vm.shipping,
-                                            jc.cost[0].value
-                                          )
+                                          value: jc,
+                                          checked: _vm._q(_vm.shippingTemp, jc)
                                         },
                                         on: {
                                           change: function($event) {
-                                            _vm.shipping = jc.cost[0].value
+                                            _vm.shippingTemp = jc
                                           }
                                         }
                                       })

@@ -20182,7 +20182,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.shippingTemp == null) {
                 return 0;
             } else {
-                return this.shippingTemp.jc.cost[0].value;
+                return 1;
             }
         }
     },
@@ -20219,7 +20219,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var uri = '/api/mytransaction';
             axios.post(uri, { 'shipping': this.shippingTemp.jc.cost[0].value, 'total': this.total, 'diskon': this.diskon,
                 'province_id': this.provinsiTemp.province_id,
-                'city_id': this.cityTemp.city_id,
+                'city_id': this.kotaTemp.city_id,
                 'type_shipping': this.shippingTemp.code,
                 'service_shipping': this.shippingTemp.jc.service,
                 'estimate_shipping': this.shippingTemp.jc.cost[0].etd,

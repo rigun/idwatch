@@ -20638,16 +20638,18 @@ var render = function() {
                                         ],
                                         attrs: { type: "radio", name: "cost" },
                                         domProps: {
-                                          value: jc,
-                                          checked: _vm._q(_vm.shippingTemp, jc)
+                                          value: { jc: jc, code: "JNE" },
+                                          checked: _vm._q(_vm.shippingTemp, {
+                                            jc: jc,
+                                            code: "JNE"
+                                          })
                                         },
                                         on: {
-                                          click: function($event) {
-                                            $event.preventDefault()
-                                            _vm.typeShipping = "JNE"
-                                          },
                                           change: function($event) {
-                                            _vm.shippingTemp = jc
+                                            _vm.shippingTemp = {
+                                              jc: jc,
+                                              code: "JNE"
+                                            }
                                           }
                                         }
                                       })
@@ -20681,16 +20683,18 @@ var render = function() {
                                         ],
                                         attrs: { type: "radio", name: "cost" },
                                         domProps: {
-                                          value: jc,
-                                          checked: _vm._q(_vm.shippingTemp, jc)
+                                          value: { jc: jc, code: "TIKI" },
+                                          checked: _vm._q(_vm.shippingTemp, {
+                                            jc: jc,
+                                            code: "TIKI"
+                                          })
                                         },
                                         on: {
-                                          click: function($event) {
-                                            $event.preventDefault()
-                                            _vm.typeShipping = "TIKI"
-                                          },
                                           change: function($event) {
-                                            _vm.shippingTemp = jc
+                                            _vm.shippingTemp = {
+                                              jc: jc,
+                                              code: "TIKI"
+                                            }
                                           }
                                         }
                                       })
@@ -20724,16 +20728,18 @@ var render = function() {
                                         ],
                                         attrs: { type: "radio", name: "cost" },
                                         domProps: {
-                                          value: jc,
-                                          checked: _vm._q(_vm.shippingTemp, jc)
+                                          value: { jc: jc, code: "POS" },
+                                          checked: _vm._q(_vm.shippingTemp, {
+                                            jc: jc,
+                                            code: "POS"
+                                          })
                                         },
                                         on: {
-                                          click: function($event) {
-                                            $event.preventDefault()
-                                            _vm.typeShipping = "POS"
-                                          },
                                           change: function($event) {
-                                            _vm.shippingTemp = jc
+                                            _vm.shippingTemp = {
+                                              jc: jc,
+                                              code: "POS"
+                                            }
                                           }
                                         }
                                       })

@@ -78,21 +78,21 @@
                                                 <td>Estimasi</td>
                                             </tr>
                                             <tr v-for="(jc,index) in jne[0].costs" :key="index+10">
-                                                <td><input type="radio" :value="jc" v-model="shippingTemp" name="cost" @click.prevent="typeShipping = 'JNE'"></td>
+                                                <td><input type="radio" :value="{jc,'code' : 'JNE'}" v-model="shippingTemp" name="cost" ></td>
                                                 <td>JNE</td>
                                                 <td>{{jc.service}}</td>
                                                 <td>Rp {{jc.cost[0].value}}</td>
                                                 <td>{{jc.cost[0].etd}} HARI</td>
                                             </tr>
                                             <tr v-for="(jc,index) in tiki[0].costs" :key="index+20">
-                                                <td><input type="radio" :value="jc" v-model="shippingTemp" name="cost" @click.prevent="typeShipping = 'TIKI'"></td>
+                                                <td><input type="radio" :value="{jc,'code' : 'TIKI'}" v-model="shippingTemp" name="cost" ></td>
                                                 <td>TIKI</td>
                                                 <td>{{jc.service}}</td>
                                                 <td>Rp {{jc.cost[0].value}}</td>
                                                 <td>{{jc.cost[0].etd}} HARI</td>
                                             </tr>
                                             <tr v-for="(jc,index) in pos[0].costs" :key="index+30">
-                                                <td><input type="radio" :value="jc" v-model="shippingTemp" name="cost" @click.prevent="typeShipping = 'POS'"></td>
+                                                <td><input type="radio" :value="{jc,'code' : 'POS'}" v-model="shippingTemp" name="cost" ></td>
                                                 <td>POS</td>
                                                 <td>{{jc.service}}</td>
                                                 <td>Rp {{jc.cost[0].value}}</td>

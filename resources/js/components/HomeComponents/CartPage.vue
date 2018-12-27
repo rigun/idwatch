@@ -56,15 +56,15 @@
                             <h3 class="cart_single_title">Hitung biaya pengiriman anda<span><i class="icon_minus-06"></i></span></h3>
                             <div class="calculate_shop_inner">
                                     <div class="form-group col-lg-6 select-custom">
-                                        <select v-model="provinsi_id">
-                                            <option value="-1">Pilih Provinsi Anda</option>
-                                            <option v-for="provinsi in provinsis" :key="provinsi.province_id" :value="provinsi.province_id" @click.prevent="getCity()">{{provinsi.province}}</option>
+                                        <select v-model="provinsiTemp">
+                                            <option :value="null">Pilih Provinsi Anda</option>
+                                            <option v-for="provinsi in provinsis" :key="provinsi.province_id" :value="provinsi" @click.prevent="getCity()">{{provinsi.province}}</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-lg-6 select-custom" v-if="kotas.length > 0">
-                                        <select v-model="kota_id">
-                                            <option value="-1">Pilih Kota Anda</option>
-                                            <option v-for="kota in kotas" :key="kota.city_id" :value="kota.city_id" @click.prevent="getCost()">{{kota.type}} {{kota.city_name}}</option>
+                                        <select v-model="kotaTemp">
+                                            <option :value="null">Pilih Kota Anda</option>
+                                            <option v-for="kota in kotas" :key="kota.city_id" :value="kota" @click.prevent="getCost()">{{kota.type}} {{kota.city_name}}</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-lg-12" v-if="jne.length > 0">
@@ -78,21 +78,21 @@
                                                 <td>Estimasi</td>
                                             </tr>
                                             <tr v-for="(jc,index) in jne[0].costs" :key="index+10">
-                                                <td><input type="radio" :value="jc" v-model="shippingTemp" name="cost"></td>
+                                                <td><input type="radio" :value="jc" v-model="shippingTemp" name="cost" @click.prevent="typeShipping = 'JNE'"></td>
                                                 <td>JNE</td>
                                                 <td>{{jc.service}}</td>
                                                 <td>Rp {{jc.cost[0].value}}</td>
                                                 <td>{{jc.cost[0].etd}} HARI</td>
                                             </tr>
                                             <tr v-for="(jc,index) in tiki[0].costs" :key="index+20">
-                                                <td><input type="radio" :value="jc" v-model="shippingTemp" name="cost"></td>
+                                                <td><input type="radio" :value="jc" v-model="shippingTemp" name="cost" @click.prevent="typeShipping = 'TIKI'"></td>
                                                 <td>TIKI</td>
                                                 <td>{{jc.service}}</td>
                                                 <td>Rp {{jc.cost[0].value}}</td>
                                                 <td>{{jc.cost[0].etd}} HARI</td>
                                             </tr>
                                             <tr v-for="(jc,index) in pos[0].costs" :key="index+30">
-                                                <td><input type="radio" :value="jc" v-model="shippingTemp" name="cost"></td>
+                                                <td><input type="radio" :value="jc" v-model="shippingTemp" name="cost" @click.prevent="typeShipping = 'POS'"></td>
                                                 <td>POS</td>
                                                 <td>{{jc.service}}</td>
                                                 <td>Rp {{jc.cost[0].value}}</td>
@@ -269,14 +269,15 @@ export default {
             },
             modal : false,
             load: -1,
-            provinsi_id: -1,
-            kota_id: -1,
+            provinsiTemp: null,
+            kotaTemp: null,
             provinsis: [],
             kotas: [],
             jne: [],
             tiki: [],
             pos: [],
-            shippingTemp: {},
+            shippingTemp: null,
+            typeShipping: null,
             shipping: 0,
             diskon: 0,
             cupon: null,
@@ -327,13 +328,21 @@ export default {
         },
         checkout(){ //mengarahkan ke checkout sekaligus mengirimkan data ke bagian transaksi
             this.load = 'Checkout';
-            if(this.shipping == 0){
+            if(this.typeShipping == null){
                 alert('Silahkan hitung estimasi biaya pengiriman anda terlebih dahulu');
                   this.load = -1;
                 return;
             }
             let uri = '/api/mytransaction';
-              axios.post(uri,{'shipping': this.shipping,'total':this.total, 'diskon': this.diskon},{
+              axios.post(uri,{'shipping': this.shippingTemp.cost[0].value,'total':this.total, 'diskon': this.diskon,
+                'province_id' : this.provinsiTemp.province_id,
+                'city_id' : this.cityTemp.city_id,
+                'type_shipping' : this.typeShipping,
+                'service_shipping' : this.shippingTemp.service,
+                'estimate_shipping': this.shippingTemp.cost[0].etd,
+                'provinsi' : this.provinsiTemp.province,
+                'kota' : this.provinsiTemp.type + this.provinsiTemp.city_name
+                },{ 
                   headers: {
                       Authorization: 'Bearer ' + localStorage.getItem('token')
                   }

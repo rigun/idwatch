@@ -20135,14 +20135,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             modal: false,
             load: -1,
-            provinsi_id: -1,
-            kota_id: -1,
+            provinsiTemp: null,
+            kotaTemp: null,
             provinsis: [],
             kotas: [],
             jne: [],
             tiki: [],
             pos: [],
-            shippingTemp: {},
+            shippingTemp: null,
+            typeShipping: null,
             shipping: 0,
             diskon: 0,
             cupon: null
@@ -20203,13 +20204,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             //mengarahkan ke checkout sekaligus mengirimkan data ke bagian transaksi
             this.load = 'Checkout';
-            if (this.shipping == 0) {
+            if (this.typeShipping == null) {
                 alert('Silahkan hitung estimasi biaya pengiriman anda terlebih dahulu');
                 this.load = -1;
                 return;
             }
             var uri = '/api/mytransaction';
-            axios.post(uri, { 'shipping': this.shipping, 'total': this.total, 'diskon': this.diskon }, {
+            axios.post(uri, { 'shipping': this.shippingTemp.cost[0].value, 'total': this.total, 'diskon': this.diskon,
+                'province_id': this.provinsiTemp.province_id,
+                'city_id': this.cityTemp.city_id,
+                'type_shipping': this.typeShipping,
+                'service_shipping': this.shippingTemp.service,
+                'estimate_shipping': this.shippingTemp.cost[0].etd,
+                'provinsi': this.provinsiTemp.province,
+                'kota': this.provinsiTemp.type + this.provinsiTemp.city_name
+            }, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 }
@@ -20482,8 +20491,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.provinsi_id,
-                                  expression: "provinsi_id"
+                                  value: _vm.provinsiTemp,
+                                  expression: "provinsiTemp"
                                 }
                               ],
                               on: {
@@ -20497,14 +20506,14 @@ var render = function() {
                                         "_value" in o ? o._value : o.value
                                       return val
                                     })
-                                  _vm.provinsi_id = $event.target.multiple
+                                  _vm.provinsiTemp = $event.target.multiple
                                     ? $$selectedVal
                                     : $$selectedVal[0]
                                 }
                               }
                             },
                             [
-                              _c("option", { attrs: { value: "-1" } }, [
+                              _c("option", { domProps: { value: null } }, [
                                 _vm._v("Pilih Provinsi Anda")
                               ]),
                               _vm._v(" "),
@@ -20513,7 +20522,7 @@ var render = function() {
                                   "option",
                                   {
                                     key: provinsi.province_id,
-                                    domProps: { value: provinsi.province_id },
+                                    domProps: { value: provinsi },
                                     on: {
                                       click: function($event) {
                                         $event.preventDefault()
@@ -20544,8 +20553,8 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.kota_id,
-                                      expression: "kota_id"
+                                      value: _vm.kotaTemp,
+                                      expression: "kotaTemp"
                                     }
                                   ],
                                   on: {
@@ -20561,14 +20570,14 @@ var render = function() {
                                             "_value" in o ? o._value : o.value
                                           return val
                                         })
-                                      _vm.kota_id = $event.target.multiple
+                                      _vm.kotaTemp = $event.target.multiple
                                         ? $$selectedVal
                                         : $$selectedVal[0]
                                     }
                                   }
                                 },
                                 [
-                                  _c("option", { attrs: { value: "-1" } }, [
+                                  _c("option", { domProps: { value: null } }, [
                                     _vm._v("Pilih Kota Anda")
                                   ]),
                                   _vm._v(" "),
@@ -20577,7 +20586,7 @@ var render = function() {
                                       "option",
                                       {
                                         key: kota.city_id,
-                                        domProps: { value: kota.city_id },
+                                        domProps: { value: kota },
                                         on: {
                                           click: function($event) {
                                             $event.preventDefault()
@@ -20633,6 +20642,10 @@ var render = function() {
                                           checked: _vm._q(_vm.shippingTemp, jc)
                                         },
                                         on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            _vm.typeShipping = "JNE"
+                                          },
                                           change: function($event) {
                                             _vm.shippingTemp = jc
                                           }
@@ -20672,6 +20685,10 @@ var render = function() {
                                           checked: _vm._q(_vm.shippingTemp, jc)
                                         },
                                         on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            _vm.typeShipping = "TIKI"
+                                          },
                                           change: function($event) {
                                             _vm.shippingTemp = jc
                                           }
@@ -20711,6 +20728,10 @@ var render = function() {
                                           checked: _vm._q(_vm.shippingTemp, jc)
                                         },
                                         on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            _vm.typeShipping = "POS"
+                                          },
                                           change: function($event) {
                                             _vm.shippingTemp = jc
                                           }

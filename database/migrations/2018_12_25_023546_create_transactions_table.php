@@ -20,6 +20,11 @@ class CreateTransactionsTable extends Migration
                   ->references('id')->on('users');
             $table->integer('status')->default(0);
             $table->double('shipping')->nullable();
+            $table->double('province_id')->nullable();
+            $table->double('city_id')->nullable();
+            $table->double('type_shipping')->nullable();
+            $table->double('service_shipping')->nullable();
+            $table->double('estimate_shipping')->nullable();
             $table->double('total')->nullable();
             $table->string('notes')->nullable();
             $table->double('diskon')->nullable();

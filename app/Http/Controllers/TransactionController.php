@@ -60,11 +60,23 @@ class TransactionController extends Controller
             $transaction->user_id = JWTAuth::parseToken()->authenticate()->id;
             $transaction->token = bin2hex(random_bytes(60));
         }
-        
+        $transaction->province_id = $request->province_id;
+        $transaction->city_id = $request->city_id;
+        $transaction->type_shipping = $request->type_shipping;
+        $transaction->service_shipping = $request->service_shipping;
+        $transaction->estimate_shipping = $request->estimate_shipping;
         $transaction->shipping = $request->shipping;
         $transaction->total = $request->total;
         $transaction->diskon = $request->diskon;
         $transaction->save();
+
+        if(!$uDetail = UsersDetail::where('user_id', JWTAuth::parseToken()->authenticate()->id )->first()){
+            $uDetail = new UsersDetail();
+            $uDetail->user_id = JWTAuth::parseToken()->authenticate()->id;
+        }
+        $uDetail->provinsi = $request->provinsi;
+        $uDetail->kota = $request->kota;
+        $uDetail->save();
 
         $carts = Cart::where([['user_id', JWTAuth::parseToken()->authenticate()->id ],['status',0]])->get();
         foreach($carts as $cart)

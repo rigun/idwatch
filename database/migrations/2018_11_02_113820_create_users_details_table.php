@@ -18,7 +18,6 @@ class CreateUsersDetailsTable extends Migration
             $table->string('phone');
             $table->string('provinsi')->nullable();
             $table->string('kota')->nullable();
-            $table->string('kodePos')->nullable();
             $table->text('alamat')->nullable();
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')

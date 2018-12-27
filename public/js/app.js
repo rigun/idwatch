@@ -20236,7 +20236,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getCost: function getCost() {
             var _this4 = this;
 
-            var uri = '/api/rajaongkir/' + this.cityTemp.city_id + '/' + this.sumOfWeight;
+            var uri = '/api/rajaongkir/' + this.kotaTemp.city_id + '/' + this.sumOfWeight;
             axios.get(uri).then(function (response) {
                 _this4.jne = response.data.jne;
                 _this4.tiki = response.data.tiki;

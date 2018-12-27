@@ -359,7 +359,7 @@ export default {
               })
         },
         getCost(){
-            let uri = '/api/rajaongkir/'+this.cityTemp.city_id+'/'+this.sumOfWeight;
+            let uri = '/api/rajaongkir/'+this.kotaTemp.city_id+'/'+this.sumOfWeight;
             axios.get(uri).then((response) => {
                 this.jne = response.data.jne;
                 this.tiki = response.data.tiki;

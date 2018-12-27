@@ -359,7 +359,7 @@ export default {
               })
         },
         getCost(){
-            let uri = '/api/rajaongkir/'+this.kota_id+'/'+this.sumOfWeight;
+            let uri = '/api/rajaongkir/'+this.cityTemp.city_id+'/'+this.sumOfWeight;
             axios.get(uri).then((response) => {
                 this.jne = response.data.jne;
                 this.tiki = response.data.tiki;
@@ -373,7 +373,7 @@ export default {
             })
         },
         getCity(){ //mengambil data kota dari api raja ongkir
-            let uri = '/api/rajaongkir/kota/'+this.provinsi_id;
+            let uri = '/api/rajaongkir/kota/'+this.provinsiTemp.province_id;
             axios.get(uri).then((response) => {
                 this.kotas = response.data;
             })

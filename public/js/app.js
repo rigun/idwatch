@@ -20236,7 +20236,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getCost: function getCost() {
             var _this4 = this;
 
-            var uri = '/api/rajaongkir/' + this.kota_id + '/' + this.sumOfWeight;
+            var uri = '/api/rajaongkir/' + this.cityTemp.city_id + '/' + this.sumOfWeight;
             axios.get(uri).then(function (response) {
                 _this4.jne = response.data.jne;
                 _this4.tiki = response.data.tiki;
@@ -20256,7 +20256,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this6 = this;
 
             //mengambil data kota dari api raja ongkir
-            var uri = '/api/rajaongkir/kota/' + this.provinsi_id;
+            var uri = '/api/rajaongkir/kota/' + this.provinsiTemp.province_id;
             axios.get(uri).then(function (response) {
                 _this6.kotas = response.data;
             });

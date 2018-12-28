@@ -104,7 +104,7 @@ export default {
     },
     mounted(){
         if(this.$route.params.type == null || this.$route.params.category == null){ //apabila type dan kategori pada parameter akses
-            this.$router.push({name: 'Shop', params:{type : 'All', category : 'Man'}}) //akan diset default dengan type nya adalah All dan kategorinya adalah Man
+            this.$router.push({name: 'Shop', params:{type : 'All', category : 'Laki-Laki'}}) //akan diset default dengan type nya adalah All dan kategorinya adalah Laki-Laki
         }
         this.$parent.refresh(); //memanggil fungsi refresh pada parent
         this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval pemanggilan refresh

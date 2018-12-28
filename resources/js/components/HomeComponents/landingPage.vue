@@ -112,7 +112,7 @@ export default {
         return{
             interval: null,
              items: [],
-             selectedCategory: 'Man',
+             selectedCategory: 'Laki-Laki',
              categories: [],
         }
     },

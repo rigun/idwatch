@@ -6,7 +6,7 @@
                     <h3>Pesan Jam kesayanganmu sekarang</h3>
                     <ul>
                         <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
-                        <li><router-link :to="{name: 'Shop', params:{type: 'All', category: 'Man'}}">Belanja</router-link></li>
+                        <li><router-link :to="{name: 'Shop', params:{type: 'All', category: 'Laki-Laki'}}">Belanja</router-link></li>
                     </ul>
                 </div>
             </div>

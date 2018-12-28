@@ -99,7 +99,7 @@
                 <div class="emty_cart_inner">
                     <i class="icon-handbag icons"></i>
                     <h3>Keranjang Chekout Anda Kosong</h3>
-                    <h4>Kembali <router-link :to="{name: 'Shop', params:{type: 'All', category: 'Man'}}">Belanja</router-link> </h4>
+                    <h4>Kembali <router-link :to="{name: 'Shop', params:{type: 'All', category: 'Laki-Laki'}}">Belanja</router-link> </h4>
                 </div>
             </div>
         </section>

@@ -46,7 +46,7 @@
                                 </ul>
                             </li>
                              <li class="nav-item">
-                                <router-link :to="{name: 'Shop', params:{type: 'All', category: 'Man'}}" class="nav-link">
+                                <router-link :to="{name: 'Shop', params:{type: 'All', category: 'Laki-Laki'}}" class="nav-link">
                                    BELANJA
                                 </router-link>
                             </li>

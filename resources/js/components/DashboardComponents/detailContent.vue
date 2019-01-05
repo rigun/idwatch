@@ -53,10 +53,20 @@
 											</div>
 										</div>
 										<div class="control-group">
+											
 												<label class="control-label" for="basicinput">Merk</label>
-												<div class="controls">
-													<input type="text" id="basicinput" placeholder="Merk" class="span8" v-model="item.merk">
-												</div>
+												<select name="" id="" v-model="item.merk">
+															<option>Daniel Wellington </option> 
+															<option>Fossil </option> 
+															<option>Alexandre Christie </option> 
+															<option>Casio </option> 
+															<option>Expedition </option> 
+															<option>Fossil </option> 
+															<option>Quicksilver </option> 
+															<option>Seiko </option> 
+															<option>Alba </option> 
+															<option>Olivia Burton </option> 
+													</select>
 											</div>
 											<div class="control-group">
 													<label class="control-label" for="basicinput">Type</label>
@@ -64,6 +74,8 @@
 														<select v-model="item.type">
 															<option value="Digital">Digital</option>
 															<option value="Analog">Analog</option>
+															<option value="Aksesoris">Aksesoris</option>
+															<option value="Tali jam">Tali Jam</option>
 														</select>
 													</div>
 												</div>
@@ -159,7 +171,7 @@ export default {
 				price: null,
 				weight: null,
 				type: 'Digital',
-				merk: '',
+				merk: 'Daniel Wellington',
 				description: '',
             },
 			categories: [],
@@ -192,24 +204,36 @@ export default {
                 this.categories = response.data;
             });
 		},
-		validate(){ //menvalidasi inputan sebelum dikirim ke server
-			if(this.filenames.length <= 0 && this.originalFile.length <= 0){
-				this.msg = this.msg + 'Please add at least one picture'
+		validate(){ //validasi inputan
+			if(this.filenames.length <= 0){
+				this.msg = this.msg + 'Please add at least one picture,'
 			}
 			if(this.item.name == '' || this.item.category_id == '' ||this.item.stock == null || this.item.price == null || this.item.weight == null || this.item.merk == '' || this.item.description == ''){
-				this.msg = this.msg + ' Please fill the blank field'
+				this.msg = this.msg + ' Please fill the blank field,'
 			}
 			if(this.item.stock < 1){
-				this.msg = this.msg + ' Stock must be one or more'
+				this.msg = this.msg + ' Stock must be one or more,'
+			}
+			if(this.item.price <= 99999){
+				this.msg = this.msg + ' Price minimum 100000'
+			}
+			if(this.item.price > 99999999){
+				this.msg = this.msg + ' Price cant more than 99999999'
+			}
+			if(this.item.weight <= 9){
+				this.msg = this.msg + ' Weight minimum 10'
+			}
+			if(this.item.weight > 999){
+				this.msg = this.msg + ' Weight cant more than 999'
 			}
 			if(isNaN(this.item.stock)){
-				this.msg = this.msg + ' Stock must be number'
+				this.msg = this.msg + ' Stock must be number,'
 			}
 			if(isNaN(this.item.price)){
-				this.msg = this.msg + ' Price must be number'
+				this.msg = this.msg + ' Price must be number,'
 			}
 			if(isNaN(this.item.weight)){
-				this.msg = this.msg + ' Weight must be number'
+				this.msg = this.msg + ' Weight must be number,'
 			}
 
 			if(this.msg != ''){

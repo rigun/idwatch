@@ -27151,7 +27151,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 																stock: null,
 																price: null,
 																type: 'Digital',
-																merk: '',
+																merk: 'Daniel Wellington',
 																weight: null,
 																description: ''
 												};
@@ -29330,6 +29330,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -29343,7 +29355,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				price: null,
 				weight: null,
 				type: 'Digital',
-				merk: '',
+				merk: 'Daniel Wellington',
 				description: ''
 			},
 			categories: [],
@@ -29383,24 +29395,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			});
 		},
 		validate: function validate() {
-			//menvalidasi inputan sebelum dikirim ke server
-			if (this.filenames.length <= 0 && this.originalFile.length <= 0) {
-				this.msg = this.msg + 'Please add at least one picture';
+			//validasi inputan
+			if (this.filenames.length <= 0) {
+				this.msg = this.msg + 'Please add at least one picture,';
 			}
 			if (this.item.name == '' || this.item.category_id == '' || this.item.stock == null || this.item.price == null || this.item.weight == null || this.item.merk == '' || this.item.description == '') {
-				this.msg = this.msg + ' Please fill the blank field';
+				this.msg = this.msg + ' Please fill the blank field,';
 			}
 			if (this.item.stock < 1) {
-				this.msg = this.msg + ' Stock must be one or more';
+				this.msg = this.msg + ' Stock must be one or more,';
+			}
+			if (this.item.price <= 99999) {
+				this.msg = this.msg + ' Price minimum 100000';
+			}
+			if (this.item.price > 99999999) {
+				this.msg = this.msg + ' Price cant more than 99999999';
+			}
+			if (this.item.weight <= 9) {
+				this.msg = this.msg + ' Weight minimum 10';
+			}
+			if (this.item.weight > 999) {
+				this.msg = this.msg + ' Weight cant more than 999';
 			}
 			if (isNaN(this.item.stock)) {
-				this.msg = this.msg + ' Stock must be number';
+				this.msg = this.msg + ' Stock must be number,';
 			}
 			if (isNaN(this.item.price)) {
-				this.msg = this.msg + ' Price must be number';
+				this.msg = this.msg + ' Price must be number,';
 			}
 			if (isNaN(this.item.weight)) {
-				this.msg = this.msg + ' Weight must be number';
+				this.msg = this.msg + ' Weight must be number,';
 			}
 
 			if (this.msg != '') {
@@ -29822,8 +29846,9 @@ var render = function() {
                 [_vm._v("Merk")]
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "controls" }, [
-                _c("input", {
+              _c(
+                "select",
+                {
                   directives: [
                     {
                       name: "model",
@@ -29832,23 +29857,49 @@ var render = function() {
                       expression: "item.merk"
                     }
                   ],
-                  staticClass: "span8",
-                  attrs: {
-                    type: "text",
-                    id: "basicinput",
-                    placeholder: "Merk"
-                  },
-                  domProps: { value: _vm.item.merk },
+                  attrs: { name: "", id: "" },
                   on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.item, "merk", $event.target.value)
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.item,
+                        "merk",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
                     }
                   }
-                })
-              ])
+                },
+                [
+                  _c("option", [_vm._v("Daniel Wellington ")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("Fossil ")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("Alexandre Christie ")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("Casio ")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("Expedition ")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("Fossil ")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("Quicksilver ")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("Seiko ")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("Alba ")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("Olivia Burton ")])
+                ]
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "control-group" }, [
@@ -29897,6 +29948,14 @@ var render = function() {
                     _vm._v(" "),
                     _c("option", { attrs: { value: "Analog" } }, [
                       _vm._v("Analog")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Aksesoris" } }, [
+                      _vm._v("Aksesoris")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Tali jam" } }, [
+                      _vm._v("Tali Jam")
                     ])
                   ]
                 )

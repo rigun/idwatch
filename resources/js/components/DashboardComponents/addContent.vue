@@ -295,7 +295,7 @@ export default {
 							stock: null,
 							price: null,
 							type: 'Digital',
-							merk: '',
+							merk: 'Daniel Wellington',
 							weight: null,
 							description: '',
 						}

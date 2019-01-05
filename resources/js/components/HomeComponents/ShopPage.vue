@@ -97,27 +97,24 @@
 export default {
     data(){
         return{
-            interval: null,
              categories: [],
              selectedCategory: null,
         }
     },
     mounted(){
         if(this.$route.params.type == null || this.$route.params.category == null){ //apabila type dan kategori pada parameter akses
-            this.$router.push({name: 'Shop', params:{type : 'All', category : 'Laki-Laki'}}) //akan diset default dengan type nya adalah All dan kategorinya adalah Laki-Laki
+            this.$router.push({name: 'Shop', params:{type : 'All', category : 'Jam Tangan Pria'}}) //akan diset default dengan type nya adalah All dan kategorinya adalah Jam Tangan Pria
         }
-        this.$parent.refresh(); //memanggil fungsi refresh pada parent
-        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval pemanggilan refresh
         this.getCategory(); //mengambil kategori
-    },
-    destroyed(){
-           clearInterval(this.interval); //menghapus interval
     },
     methods:{
          getCategory(){ //mengambil kategori
             let uri = '/api/category';
             axios.get(uri).then((response) => {
                 this.categories = response.data;
+                    this.$nextTick(function () { //memanggil method ketika konten selesai dirender
+                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
+                })
             });
 		},
     }

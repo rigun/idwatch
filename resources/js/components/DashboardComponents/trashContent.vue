@@ -118,7 +118,6 @@
 export default {
     data(){
         return{
-            interval: null,
             items: [],
             load: -1,
 
@@ -127,10 +126,6 @@ export default {
     mounted(){
             this.getData(); //mengambil data item yang telah dihapus
          
-        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval pemanggilan fungsi refresh
-    },
-    destroyed(){
-           clearInterval(this.interval); //menghapus interval;
     },
     methods:{
         getData(){ //mengambil data yang telah dihapus

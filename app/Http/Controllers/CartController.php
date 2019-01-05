@@ -47,8 +47,6 @@ class CartController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'color' => 'required',
-            'size' => 'required',
             'quantity' => 'required',
             'item_id' => 'required',
         ]);
@@ -58,8 +56,18 @@ class CartController extends Controller
             $cart->user_id = JWTAuth::parseToken()->authenticate()->id;
             $cart->item_id = $request->item_id;
         }
-        $cart->color = $request->color;
-        $cart->size = $request->size;
+        $cart->quantity = $request->quantity;
+        $cart->save();
+
+        return $cart;
+    }
+    public function updateQuantity(Request $request, $id)
+    {
+        $this->validate($request, [
+            'quantity' => 'required',
+        ]);
+        
+        $cart = Cart::findOrFail($id);
         $cart->quantity = $request->quantity;
         $cart->save();
 
@@ -98,15 +106,11 @@ class CartController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'color' => 'required',
-            'size' => 'required',
             'quantity' => 'required',
             'item_id' => 'required',
         ]);
 
         $cart = Cart::findOrFail($id);
-        $cart->color = $request->color;
-        $cart->size = $request->size;
         $cart->quantity = $request->quantity;
         $cart->save();
 

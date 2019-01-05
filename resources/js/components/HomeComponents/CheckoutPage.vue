@@ -129,7 +129,6 @@
 export default {
     data(){
         return{
-            interval: null,
             transaction:{
                 total: 0,
                 shipping: 0,
@@ -154,11 +153,6 @@ export default {
     },
     mounted(){
         this.getTransaction(); //mengambil data transaksi yang sudah dibuat sebelumnya.
-         this.$parent.refresh(); //melakukan refresh token dari fungsi parent
-        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval refresh agar token tidak kadaluarsa
-    },
-    destroyed(){
-           clearInterval(this.interval); //menghapus interval
     },
     methods:{
         getTransaction(){ //mengambil data transaksi yang sudah dibuat sebelumnya.
@@ -174,6 +168,9 @@ export default {
                     this.kota = this.transaction.user.detail.kota;
                     this.address = this.transaction.user.detail.alamat;
                 }
+                    this.$nextTick(function () { //memanggil method ketika konten selesai dirender
+                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
+                })
             })
         },
         placeOrder(){ //melakukan pemesanan

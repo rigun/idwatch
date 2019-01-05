@@ -1,16 +1,5 @@
 <template>
     <div>
-        <section class="categories_banner_area">
-            <div class="container">
-                <div class="c_banner_inner">
-                    <h3>Pesan Jam kesayanganmu sekarang</h3>
-                    <ul>
-                        <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
-                        <li><router-link :to="{name: 'Shop', params:{type: 'All', category: 'Laki-Laki'}}">Belanja</router-link></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
         <section class="product_details_area">
             <div class="container">
                 <div class="row">
@@ -39,34 +28,11 @@
                                 <a href="#">5 Reviews</a>
                                 <a href="#">Tambahkan Review Anda</a>
                             </div> -->
-                            <h6>Jumlah Barang Tersedia <span>{{item.stock}}</span></h6>
+                            <h6>Stok Barang Tersedia</h6>
                             <h4>Rp {{item.price}}</h4>
                             <p>{{item.description}}</p>
                             <form @submit.prevent="sendData()">
-                                <div class="p_color">
-                                    <h4 class="p_d_title">Warna <span>*</span></h4>
-                                    <ul class="color_list">
-                                        <li><a @click.prevent="cart.color = '#1cbbb4'" :class="{'active': cart.color == '#1cbbb4'}"></a></li>
-                                        <li><a @click.prevent="cart.color = '#000000'" :class="{'active': cart.color == '#000000'}"></a></li>
-                                        <li><a @click.prevent="cart.color = '#00aeef'" :class="{'active': cart.color == '#00aeef'}"></a></li>
-                                        <li><a @click.prevent="cart.color = '#00a99d'" :class="{'active': cart.color == '#00a99d'}"></a></li>
-                                        <li><a @click.prevent="cart.color = '#e7352b'" :class="{'active': cart.color == '#e7352b'}"></a></li>
-                                        <li><a @click.prevent="cart.color = '#fbf4d9'" :class="{'active': cart.color == '#fbf4d9'}"></a></li>
-                                    </ul>
-                                </div>
-                                <div class="p_color">
-                                    <h4 class="p_d_title">Ukuran <span>*</span></h4>
-                                      <v-container fluid grid-list-xl>
-                                        <v-layout wrap align-center>
-                                                <v-select
-                                                :items="['M','XL']"
-                                                label="Ukuran"
-                                                outline
-                                                v-model="cart.size"
-                                                ></v-select>
-                                        </v-layout>
-                                    </v-container>
-                                </div>
+                                
                                 <div class="quantity">
                                     <div class="custom">
                                         <button @click.prevent="decrement()" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
@@ -127,15 +93,11 @@
             <div class="container">
                 <nav class="tab_menu">
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Deskripsi Barang</a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Reviews ({{comments.length}})</a>
-                        <a class="nav-item nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="false">Informasi Barang</a>
+                        <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Reviews ({{comments.length}})</a>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <p>{{item.description}}</p>
-                    </div>
+                    
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <div v-for="comment in comments" :key="comment.id">
                             <h4>{{comment.user.name}}</h4>
@@ -154,39 +116,6 @@
                         <button class="btn btn-primary" style="margin-left: auto" @click.prevent="addComment()">Tambahkan Komentar</button>
                     </div>
                     
-                    <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
-                        <table class="additional-List">
-                            <tr>
-                                <td>Nama</td>
-                                <td>: {{item.name}}</td>
-                            </tr>
-                            <tr>
-                                <td>Alamat URL</td>
-                                <td>: https://127.0.0.1:8000/detail/{{item.slug}}</td>
-                            </tr>
-                            <tr>
-                                <td>Stok</td>
-                                <td>: {{item.stock}} Buah</td>
-                            </tr>
-                            <tr>
-                                <td>Merk</td>
-                                <td>: {{item.merk}}</td>
-                            </tr>
-                            <tr>
-                                <td>Tipe</td>
-                                <td>: {{item.type}}</td>
-                            </tr>
-                            <tr>
-                                <td>Harga</td>
-                                <td>: Rp. {{item.price}}</td>
-                            </tr>
-                            <tr>
-                                <td>Kategori</td>
-                                <td>: {{item.category.name}}</td>
-                            </tr>
-                        </table>
-                        
-                    </div>
                 </div>
             </div>
         </section>
@@ -206,13 +135,10 @@
                             </div>
                             <div class="l_p_text">
                                 <ul>
-                                    <li class="p_icon">   <a>
-                                                     <i class="icon_piechart"></i></a>
-                                           </li>
-                                    <li><router-link  class="add_cart_btn" :to="{name: 'DetailPage',  params: { slug: item.slug } }"  >
-                                            Detail
-                                            </router-link></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
+                                     <li><router-link  class="add_cart_btn" :to="{name: 'DetailPage',  params: { slug: item.slug } }" v-if="item.stock > 0" >
+                                            Beli Sekarang
+                                            </router-link>
+                                            <a class="add_cart_btn" style="background-color: red" v-else>Stok Kosong</a></li>
                                 </ul>
                                 <h4>{{item.name}}</h4>
                                 <h5><del></del>Rp. {{item.price}}</h5>
@@ -235,16 +161,6 @@
     </div>
 </template>
 <style>
-.color_list a{
-    opacity: 0.5;
-    cursor: pointer;
-}
-.color_list a:hover{
-    opacity: 0.8;
-}
-.color_list .active{
-    opacity: 1;
-}
 .p_color .bootstrap-select .dropdown-menu .dropdown-menu.inner li a{
     width: 100% !important;
     display: block !important;
@@ -267,7 +183,6 @@
 export default {
     data(){
         return{
-            interval: null,
             item:{
                 name: '',
                 slug: '',
@@ -290,8 +205,6 @@ export default {
                 
             },
             cart:{
-                color: null,
-                size: null,
                 quantity: 1,
                 item_id: -1,
             },
@@ -311,12 +224,7 @@ export default {
 
     },
     mounted(){
-        this.$parent.refresh(); //memanggil fungsi refresh dari parent
-        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval pemanggilan fungsi refresh
         this.getData(); //mengambil data
-    },
-    destroyed(){
-           clearInterval(this.interval);
     },
     watch: {
            '$route' (to, from) {
@@ -416,12 +324,7 @@ export default {
             }
         },
         validate(){ //melakukan validasi data yang akan dikirimkan
-			if(this.cart.color == null ){
-				this.msg = this.msg + ' Harap untuk memilih warna,'
-            }
-			if(this.cart.size == null || this.cart.size == ''){
-				this.msg = this.msg + ' Harap untuk memilih ukuran,'
-            }
+			
             if(isNaN(this.cart.quantity)){
             this.msg = this.msg + ' Jumlah harus berupa angka,'
 			}
@@ -469,7 +372,7 @@ export default {
                     this.getList();
                     this.getSlider();
                     this.getComment();
-
+                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
                 })
             })
             

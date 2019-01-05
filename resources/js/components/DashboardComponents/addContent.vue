@@ -40,7 +40,7 @@
 												<span class="help-inline">Minimum 5 Characters</span>
 											</div>
 										</div>
-										<div class="control-group">
+										<div class="control-group" style="display: none">
 											<label class="control-label" for="basicinput">Slug</label>
 											<div class="controls">
 												<slug-widget url="/" subdirectory="detail" :title="item.name" @copied="slugCopied" @slug-changed="updateSlug"></slug-widget>
@@ -56,7 +56,18 @@
 										<div class="control-group">
 												<label class="control-label" for="basicinput">Merk</label>
 												<div class="controls">
-													<input type="text" id="basicinput" placeholder="Merk" class="span8" v-model="item.merk">
+													<select name="" id="" v-model="item.merk">
+															<option>Daniel Wellington </option> 
+															<option>Fossil </option> 
+															<option>Alexandre Christie </option> 
+															<option>Casio </option> 
+															<option>Expedition </option> 
+															<option>Fossil </option> 
+															<option>Quicksilver </option> 
+															<option>Seiko </option> 
+															<option>Alba </option> 
+															<option>Olivia Burton </option> 
+													</select>
 												</div>
 											</div>
 											<div class="control-group">
@@ -65,6 +76,8 @@
 														<select v-model="item.type">
 															<option value="Digital">Digital</option>
 															<option value="Analog">Analog</option>
+															<option value="Analog">Aksesoris</option>
+															<option value="Analog">Tali jam</option>
 														</select>
 													</div>
 												</div>
@@ -125,7 +138,6 @@
 export default {
     data(){
         return{
-            interval: null,
             item:{
                 name: '',
                 slug: '',
@@ -134,7 +146,7 @@ export default {
 				stock: null,
 				price: null,
 				type: 'Digital',
-				merk: '',
+				merk: 'Daniel Wellington',
 				description: '',
 				weight: null,
             },
@@ -148,12 +160,7 @@ export default {
         }
     },
     mounted(){
-        this.$parent.refresh(); //memanggil fungsi refersh pada parent
-        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval untuk pemamggilan fungsi refresh
         this.getCategory(); //mengambil kategori
-    },
-    destroyed(){
-           clearInterval(this.interval); //menghapus interval
     },
     methods:{
         updateSlug: function(val) { //memperbaharui slug
@@ -165,7 +172,10 @@ export default {
         getCategory(){ //mengambil kategori
             let uri = '/api/category';
             axios.get(uri).then((response) => {
-                this.categories = response.data;
+				this.categories = response.data;
+				    this.$nextTick(function () { //memanggil method ketika konten selesai dirender
+                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
+                })
             });
 		},
 		validate(){ //validasi inputan
@@ -177,6 +187,18 @@ export default {
 			}
 			if(this.item.stock < 1){
 				this.msg = this.msg + ' Stock must be one or more,'
+			}
+			if(this.item.price <= 99999){
+				this.msg = this.msg + ' Price minimum 100000'
+			}
+			if(this.item.price > 99999999){
+				this.msg = this.msg + ' Price cant more than 99999999'
+			}
+			if(this.item.weight <= 9){
+				this.msg = this.msg + ' Weight minimum 10'
+			}
+			if(this.item.weight > 999){
+				this.msg = this.msg + ' Weight cant more than 999'
 			}
 			if(isNaN(this.item.stock)){
 				this.msg = this.msg + ' Stock must be number,'

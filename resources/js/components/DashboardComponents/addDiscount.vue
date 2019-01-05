@@ -81,7 +81,6 @@
 export default {
     data(){
         return{
-            interval: null,
             discounts: [],
              load: false,
 			 modal: false,
@@ -94,12 +93,6 @@ export default {
     mounted(){
         //mengambil diskon yang sudah dibuat
             this.getdiscount();
-                      this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval pemanggilan fungsi refresh
-
-        
-    },
-    destroyed(){
-           clearInterval(this.interval); //menghapus interval
     },
     methods:{
         getdiscount(){ //mengambil kupon diskon yang sudah dibuat

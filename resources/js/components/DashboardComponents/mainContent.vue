@@ -116,19 +116,13 @@
 export default {
     data(){
         return{
-            interval: null,
             items: [],
             load: -1,
             search: '',
         }
     },
     mounted(){
-        this.$parent.refresh(); //memanggil fungsi refresh pada parent
-        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval dalam pemanggilan fungsi refresh
         this.getData(); //mengambil data item
-    },
-    destroyed(){
-           clearInterval(this.interval); //menghapus interval
     },
     computed: {
             filterItem: function(){ //filter data yang akan ditampilkan
@@ -145,6 +139,9 @@ export default {
             let uri = '/api/itemAll';
             axios.get(uri).then((response) => {
                 this.items = response.data;
+                  this.$nextTick(function () { //memanggil method ketika konten selesai dirender
+                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
+                })
             })
             
         },

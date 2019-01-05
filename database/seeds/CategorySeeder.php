@@ -11,8 +11,8 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        \App\Category::create(['name' => 'Laki-Laki',]);
-        \App\Category::create(['name' => 'Perempuan',]);
-        \App\Category::create(['name' => 'Pasangan',]);
+        \App\Category::create(['name' => 'Jam Tangan Pria']);
+        \App\Category::create(['name' => 'Jam Tangan Wanita']);
+        \App\Category::create(['name' => 'Jam Tangan Pasangan']);
     }
 }

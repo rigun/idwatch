@@ -81,19 +81,11 @@
 export default {
     data(){
         return{
-            interval: null,
             email: null,
             subject: null,
             name: null,
             message: null,
         }
-    },
-    mounted(){
-        this.$parent.refresh();
-        this.interval = setInterval(() => this.$parent.refresh(), 900000);
-    },
-    destroyed(){
-           clearInterval(this.interval);
     },
     methods:{
         sendEmail(){

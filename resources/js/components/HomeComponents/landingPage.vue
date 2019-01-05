@@ -60,7 +60,7 @@
         </div>
     </section>
 
-    <section class="fillter_latest_product">
+    <!-- <section class="fillter_latest_product">
         <div class="container">
             <div class="single_c_title">
                 <h2>Produk Per Kategori</h2>
@@ -96,6 +96,36 @@
                 </div>
             </div>
         </div>
+    </section> -->
+    <section class="no_sidebar_2column_area">
+        <div class="container">
+            <div class="two_column_product">
+                <div class="row">
+                       
+                     <div class="col-lg-3 col-sm-6" v-for="item in items" :key="item.id">
+                        <div class="l_product_item">
+                            <div class="l_p_img">
+                                 <router-link :to="{name: 'DetailPage',  params: { slug: item.slug } }"  >
+                                <img :src="'./itemImages/'+item.picture[0].filename" alt="image">
+                                 </router-link>
+                                <h5 class="new">Baru</h5>
+                            </div>
+                            <div class="l_p_text">
+                                <ul>
+                                    
+                                    <li><router-link  class="add_cart_btn" :to="{name: 'DetailPage',  params: { slug: item.slug } }" v-if="item.stock > 0" >
+                                            Beli Sekarang
+                                            </router-link>
+                                            <a class="add_cart_btn" style="background-color: red" v-else>Stok Kosong</a></li>
+                                </ul>
+                                <h4>{{item.name}}</h4>
+                                <h5><del></del>Rp. {{item.price}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     </div>
 </template>
@@ -110,21 +140,12 @@
 export default {
     data(){
         return{
-            interval: null,
              items: [],
-             selectedCategory: 'Laki-Laki',
+             selectedCategory: 'Jam Tangan Pria',
              categories: [],
         }
     },
-    created(){
-        
-    },
-    destroyed(){
-           clearInterval(this.interval); // menghapus interval
-    },
     mounted(){
-        this.$parent.refresh(); //memanggil fungsi refresh pada parent
-        this.interval = setInterval(() => this.$parent.refresh(), 900000); // membuat interval untuk memanggil fungsi refresh
         this.$nextTick(function () { //memanggil method ketika konten selesai dirender
                     this.getSlider(); //method yang dipanggil ketika selesai render
                 })
@@ -136,7 +157,7 @@ export default {
         showByCategory(){ //melakukan filter agar menampilkan seluruh barang per kategori
              if(this.items.length > 0) {
                     return this.items.filter((row, index) => {
-                            if(row.category.name == this.selectedCategory){
+                            if(index < 9){
                                 return true;
                             }
                       });
@@ -153,8 +174,11 @@ export default {
          getData(){ // mengambil data barang
             let uri = '/api/item';
             axios.get(uri).then((response) => {
-                this.items = response.data;
-                
+                var items = response.data;
+                this.items = _.orderBy(items, ['created_at'],['desc']);
+                this.$nextTick(function () { //memanggil method ketika konten selesai dirender
+                     this.$parent.refresh(); //memanggil fungsi refresh pada parent
+                })
             })
             
         },

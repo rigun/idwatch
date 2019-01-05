@@ -10,9 +10,14 @@
                         </div>
                     </div>
                     <div class="float-md-right">
-                        <div class="top_header_middle">
-                            <a href="#"><i class="fa fa-phone"></i> Telepon Kami: <span>+812-5402-6142</span></a>
-                            <a href="#"><i class="fa fa-envelope"></i> Email: <span>agungskak22@gmail.com</span></a>
+                        <div class="top_header_middle" >
+                              <router-link :to="{name: 'LoginUser'}" v-if="token == null">
+                                    <i class="icon-login icons"></i> <span>Login atau Daftar</span>
+                                </router-link>
+                                
+                                         <a slot="activator"  v-if="token != null" @click="dialog = true">
+                                            <i class="icon-logout icons"></i> <span>Keluar</span>
+                                        </a>
                         </div>
                     </div>
                 </div>
@@ -41,25 +46,42 @@
                                     aria-haspopup="true" aria-expanded="false">
                                     KATEGORI <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item" v-for="category in categories" :key="category.id"><router-link :to="{name: 'ListCategory', params:{category: category.name}}" class="nav-link"  >{{category.name}}</router-link></li>
+                                <ul class="dropdown-menu" >
+                                    <li class="nav-item" v-for="category in categories" :key="category.id"><router-link :to="{name: 'Shop', params:{type: 'All', category: category.name}}" class="nav-link"  >{{category.name}}</router-link></li>
                                 </ul>
                             </li>
-                             <li class="nav-item">
-                                <router-link :to="{name: 'Shop', params:{type: 'All', category: 'Laki-Laki'}}" class="nav-link">
-                                   BELANJA
+                            <li class="nav-item">
+                                <router-link :to="{name: 'ListCategory', params:{type: 'Aksesoris', category: 'All'}}" class="nav-link">
+                                   AKSESORIS
                                 </router-link>
                             </li>
                              <li class="nav-item">
+                                <router-link :to="{name: 'ListCategory', params:{type: 'Tali jam', category: 'All'}}" class="nav-link">
+                                   Tali Jam
+                                </router-link>
+                            </li>
+                             <!-- <li class="nav-item">
+                                <router-link :to="{name: 'Shop', params:{type: 'All', category: 'Jam Tangan Pria'}}" class="nav-link">
+                                   BELANJA
+                                </router-link>
+                            </li> -->
+                           
+                      
+                             <li class="nav-item">
+                                <router-link :to="{name: 'Order'}" class="nav-link">
+                                    CARA ORDER
+                                </router-link>
+                            </li>
+                             <li class="nav-item">
+                                <router-link :to="{name: 'AboutUs'}" class="nav-link">
+                                    TENTANG KAMI
+                                </router-link>
+                            </li>
+                              <li class="nav-item">
                                 <router-link :to="{name: 'Contact'}" class="nav-link">
                                    KONTAK
                                 </router-link>
-                            </li>
-                             <li class="nav-item" v-if="token != null">
-                                <router-link :to="{name: 'CheckoutCart'}" class="nav-link">
-                                   BELANJAAN
-                                </router-link>
-                            </li>
+                            </li> 
                         </ul>
                         <ul class="navbar-nav justify-content-end">
                             <li class="cart_cart" v-if="token != null" >
@@ -121,17 +143,13 @@
                     </div>
                 </nav>
                 <div class="advanced_search_area">
-                    <select class="selectpicker" v-model="selectedCategory">
-                        <option value="All">Semua Kategori</option>
-                        <option  v-for="category in categories" :key="category.id" >{{category.name}}</option>
-                    </select>
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" aria-label="Search" v-model="search">
                         <span class="input-group-btn" v-if="search == ''">
                             <button  class="btn btn-secondary"><i class="icon-magnifier icons"></i></button>
                         </span>
                         <span class="input-group-btn" v-else>
-                                <router-link :to="{name: 'SearchList', params:{search: search,category: selectedCategory}}" >
+                                <router-link :to="{name: 'SearchList', params:{search: search}}" >
 
                             <button  class="btn btn-secondary">
                                     <i class="icon-magnifier icons"></i>
@@ -230,6 +248,11 @@
     </div>
     
 </template>
+<style scoped>
+.dropActive{
+    color: #d91522 !important;
+}
+</style>
 
 
 <script>
@@ -242,12 +265,14 @@ export default {
              selectedCategory: 'All',
              count: 0,
              search: '',
+             activeDrop: null,
+             topCount: 70,
         }
     },
     mounted(){
           this.getUser(); //mengambil data pengguna
           this.getCategory(); //mengambil kategori
-          this.getCount(); //mengambil jumlah item di keranjang
+          
         },
         methods:{
             getCount(){
@@ -257,7 +282,11 @@ export default {
                         }
                     })
                     .then(response => {
-                        this.count = response.data;
+                        if(isNaN(response.data)){
+                            this.count = 0;
+                        }else{
+                            this.count = response.data;
+                        }
                     }).catch(error => {
                         this.count = 0;
                     })  
@@ -288,7 +317,10 @@ export default {
                             this.$router.push({ name: 'Logout' }) //mengarahkan ke komponen logout
                         }else {
                            this.token = localStorage.getItem('token'); //mengambil item dari penyimpanan broweser dengan variable token
-                           // this.getCountBag();                                
+                           // this.getCountBag();      
+                              this.$nextTick(function () { //memanggil method ketika konten selesai dirender
+                                setInterval(() => this.refresh(), 900000); // membuat interval untuk memanggil fungsi refresh
+                            })                          
                         }
                     }).catch(error => {
                         this.mssg = 'Login';

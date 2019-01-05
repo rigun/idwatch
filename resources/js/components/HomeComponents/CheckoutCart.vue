@@ -99,7 +99,7 @@
                 <div class="emty_cart_inner">
                     <i class="icon-handbag icons"></i>
                     <h3>Keranjang Chekout Anda Kosong</h3>
-                    <h4>Kembali <router-link :to="{name: 'Shop', params:{type: 'All', category: 'Laki-Laki'}}">Belanja</router-link> </h4>
+                    <h4>Kembali <router-link :to="{name: 'Shop', params:{type: 'All', category: 'Jam Tangan Pria'}}">Belanja</router-link> </h4>
                 </div>
             </div>
         </section>
@@ -134,7 +134,6 @@
 export default {
     data(){
         return{
-            interval: null,
             cart:[],
             shipping: 25000,
             diskon: 0,
@@ -149,12 +148,7 @@ export default {
     },
     mounted(){
        this.getCart(); //mengambil data keranjang
-        this.$parent.refresh(); //melakukan refresh token dari fungsi parent
-        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval refresh agar token tidak kadaluarsa
         // this.getCity();
-    },
-    destroyed(){
-           clearInterval(this.interval); //menghapus interval
     },
     computed:{
         total(){ //menghitung total belanja
@@ -177,6 +171,9 @@ export default {
                 this.id = response.data.id;
                 this.file = response.data.file;
                 this.diskon = response.data.diskon;
+                    this.$nextTick(function () { //memanggil method ketika konten selesai dirender
+                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
+                })
             })
             
         },

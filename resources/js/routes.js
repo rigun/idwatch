@@ -28,6 +28,8 @@ const SearchList = Vue.component('SearchList', require('./components/HomeCompone
 const Checkout = Vue.component('Checkout', require('./components/HomeComponents/CheckoutPage.vue'))
 const ConfirmOrder = Vue.component('ConfirmOrder', require('./components/HomeComponents/ConfirmOrderPage.vue'))
 const CheckoutCart = Vue.component('CheckoutCart', require('./components/HomeComponents/CheckoutCart.vue'))
+const AboutUs = Vue.component('AboutUs', require('./components/HomeComponents/AboutUs.vue'))
+const Order = Vue.component('Order', require('./components/HomeComponents/Order.vue'))
 
 // dashboard
 const DashboardContent = Vue.component('DashboardContent', require('./components/DashboardComponents/dashboardContent.vue'))
@@ -61,13 +63,18 @@ const routes = [
                 component: Contact
             },
             {
+                name: 'Order',
+                path: 'caraorder',
+                component: Order
+            },
+            {
                 name: 'CheckoutCart',
                 path: 'checkoutcart',
                 component: CheckoutCart
             },
             {
                 name: 'ListCategory',
-                path: 'list/:category',
+                path: 'list/:type/:category',
                 component: ListCategory
             },
             {
@@ -82,7 +89,7 @@ const routes = [
             },
             {
                 name: 'SearchList',
-                path: 'search/:category/:search',
+                path: 'search/:search',
                 component: SearchList
             },
             {
@@ -105,6 +112,11 @@ const routes = [
                 name: 'Success',
                 path: 'success',
                 component: Success
+            },
+            {
+                name: 'AboutUs',
+                path: 'tentangkami',
+                component: AboutUs
             },
             {
                 name: 'DetailPage',
@@ -197,6 +209,10 @@ router.beforeEach((to, from, next) => {
    
     if(to.name == 'LoginAdmin' && store.state.isLoggedIn) {
         next({ name: 'DashboardContent' })
+        return
+    }
+    if(to.name == 'LoginUser' && store.state.isLoggedIn) {
+        next({ name: 'Cart' })
         return
     }
 

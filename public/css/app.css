@@ -15691,9 +15691,6 @@ i:before {
   margin-bottom: 20px;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .advanced_search_area .bootstrap-select {
@@ -15763,7 +15760,6 @@ i:before {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 75%;
   flex: 0 0 75%;
-  max-width: 75%;
 }
 
 .advanced_search_area .input-group input {

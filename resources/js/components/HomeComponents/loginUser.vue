@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="col-lg-12 form-group">
                                     
-                                    <button type="submit" value="submit" class="btn subs_btn form-control">register now</button>
+                                    <button type="submit" value="submit" class="btn subs_btn form-control">Daftar Sekarang</button>
                                 </div>
                             </form>
                         </div>

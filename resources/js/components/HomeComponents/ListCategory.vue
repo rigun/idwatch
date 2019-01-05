@@ -44,13 +44,10 @@
                             </div>
                             <div class="l_p_text">
                                 <ul>
-                                    <li class="p_icon">   <a>
-                                                     <i class="icon_piechart"></i></a>
-                                           </li>
-                                    <li><router-link  class="add_cart_btn" :to="{name: 'DetailPage',  params: { slug: item.slug } }"  >
-                                            Detail
-                                            </router-link></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
+                                     <li><router-link  class="add_cart_btn" :to="{name: 'DetailPage',  params: { slug: item.slug } }" v-if="item.stock > 0" >
+                                            Beli Sekarang
+                                            </router-link>
+                                            <a class="add_cart_btn" style="background-color: red" v-else>Stok Kosong</a></li>
                                 </ul>
                                 <h4>{{item.name}}</h4>
                                 <h5><del></del>Rp. {{item.price}}</h5>
@@ -85,6 +82,9 @@ export default {
     created(){
     },
     mounted(){
+        if(this.$route.params.type == null || this.$route.params.category == null){ //apabila type dan kategori pada parameter akses
+            this.$router.push({name: 'Shop', params:{type : 'All', category : 'All'}}) //akan diset default dengan type nya adalah All dan kategorinya adalah Jam Tangan Pria
+        }
         this.getData(); //mengambil data
 
     },
@@ -93,7 +93,7 @@ export default {
     watch: {
             '$route' (to, from) { //mendeteksi perubahan parameter
 
-                if (from.params.category != to.params.category) {
+                if (from.params.category != to.params.category || from.params.type != to.params.type) {
                      this.page= 1;
                         this.perPage= 9;
                         this.pages= [];
@@ -112,7 +112,7 @@ export default {
     },
     methods:{
          getData(){ //mengambil data berdasarkan kategori
-            let uri = '/api/item/All/'+this.$route.params.category;
+            let uri = '/api/item/'+this.$route.params.type+'/All';
             axios.get(uri).then((response) => {
                 this.items = response.data;
                 console.log(response);

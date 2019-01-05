@@ -44,13 +44,8 @@ class ItemController extends Controller
 
         return "Success";
     }
-    public function search($cat,$search){
-        if($cat == 'All'){
-            return response()->json(Item::where([['name', 'LIKE', '%'.$search.'%'],['stock','>',0]])->with('picture','category')->get());
-        }else{
-            $cat_id = Category::where('name',$cat)->first()->id;
-            return response()->json(Item::where([['category_id',$cat_id],['name', 'LIKE', '%'.$search.'%'],['stock','>',0]])->with('picture','category')->get());
-        }
+    public function search($search){
+            return response()->json(Item::where(['name', 'LIKE', '%'.$search.'%'])->orWhere(['merk', 'LIKE', '%'.$search.'%'])->orWhere(['description', 'LIKE', '%'.$search.'%'])->with('picture','category')->get());
     }
   
     /**
@@ -131,11 +126,16 @@ class ItemController extends Controller
     }
     public function showByCategory($type, $cat)
     {
+        if($cat == 'All' && $type == 'All'){
+            return response()->json(Item::with('picture','category')->get());
+        }else if( $cat == 'All' && $type != 'All'){
+            return response()->json(Item::where('type', $type)->with('picture','category')->get());
+        }
         $cat_id = Category::where('name',$cat)->first()->id;
         if($type == 'All'){
-            return response()->json(Item::where([['category_id',$cat_id],['stock','>',0]])->with('picture','category')->get());
+            return response()->json(Item::where([['category_id',$cat_id]])->with('picture','category')->get());
         }else{
-            return response()->json(Item::where([['category_id',$cat_id],['type',$type],['stock','>',0]])->with('picture','category')->get());
+            return response()->json(Item::where([['category_id',$cat_id],['type',$type]])->with('picture','category')->get());
         }
     }
     public function showBySlug($slug)

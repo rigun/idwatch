@@ -79,16 +79,11 @@
 export default {
     data(){
         return{
-            interval: null,
             reports: [],
         }
     },
     mounted(){
         this.getReport(); //menampilkan data transaksi
-        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval pemanggilan fungsi refresh
-    },
-    destroyed(){
-           clearInterval(this.interval); //menghapus interval
     },
     methods:{
           getReport(){ //mengambil data transaksi

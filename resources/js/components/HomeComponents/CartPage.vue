@@ -32,7 +32,7 @@
                                     <tbody>
                                         <tr v-for="(item,index) in cart" :key="index+40">
                                             <th scope="row" @click.prevent="showModal(item)" style="cursor:pointer">
-                                                     <i class="icon_pencil-edit" ></i>
+                                                     <i class="icon_close" ></i>
                                             </th>
                                             <td>
                                                 <div class="media">
@@ -45,7 +45,12 @@
                                                 </div>
                                             </td>
                                             <td><p>Rp {{item.item.price}}</p></td>
-                                            <td><input type="text" :value="item.quantity" disabled></td>
+                                            <td>
+                                                    <button @click.prevent="decrement(item)" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
+                                                    <input type="text" name="qty" id="sst" maxlength="12" title="Quantity:" class="input-text qty" style="text-align: center" v-model="item.quantity" disabled>
+                                                    <button @click.prevent="increment(item)" class="increase items-count" type="button"><i class="icon_plus"></i></button>
+                                       
+                                                </td>
                                             <td><p>Rp {{item.item.price * item.quantity}}</p></td>
                                         </tr>
                                     </tbody>
@@ -149,7 +154,7 @@
                 <div class="emty_cart_inner">
                     <i class="icon-handbag icons"></i>
                     <h3>Keranjang Anda Kosong</h3>
-                    <h4>Kembali <router-link :to="{name: 'Shop', params:{type: 'All', category: 'Laki-Laki'}}">Belanja</router-link> </h4>
+                    <h4>Kembali <router-link :to="{name: 'Shop', params:{type: 'All', category: 'Jam Tangan Pria'}}">Belanja</router-link> </h4>
                     <h4>atau cek <router-link :to="{name: 'CheckoutCart'}">Keranjang Checkout Anda</router-link> </h4>
                 </div>
             </div>
@@ -160,51 +165,14 @@
 				 <!-- Modal content -->
 				<div class="modal-content">
 				<div class="modal-header">
-					<h2>Apa yang anda ingin lakukan ?</h2>
+					<h2>Hapus Barang</h2>
 					<span class="close" @click.prevent="modal = false">&times;</span>
 				</div>
 				<div class="modal-body">
-                    <ul style="text-align: center"> 
-                        <li> <img :src="'../itemImages/'+modalItem.item.picture[0].filename" alt="img" width="60px;">
-                        <li><h4>{{modalItem.item.name}}</h4></li>
-                        <li><div class="p_color" style="margin: auto;">
-                                    <h4 class="p_d_title">Warna </h4>
-                                    <ul class="color_list">
-                                        <li><a @click.prevent="modalItem.color = '#1cbbb4'" :class="{'active': modalItem.color == '#1cbbb4'}"></a></li>
-                                        <li><a @click.prevent="modalItem.color = '#000000'" :class="{'active': modalItem.color == '#000000'}"></a></li>
-                                        <li><a @click.prevent="modalItem.color = '#00aeef'" :class="{'active': modalItem.color == '#00aeef'}"></a></li>
-                                        <li><a @click.prevent="modalItem.color = '#00a99d'" :class="{'active': modalItem.color == '#00a99d'}"></a></li>
-                                        <li><a @click.prevent="modalItem.color = '#e7352b'" :class="{'active': modalItem.color == '#e7352b'}"></a></li>
-                                        <li><a @click.prevent="modalItem.color = '#fbf4d9'" :class="{'active': modalItem.color == '#fbf4d9'}"></a></li>
-                                    </ul>
-                                </div></li>
-                                <li><div class="p_color" style="margin: auto;">
-                                    <v-container fluid grid-list-xl>
-                                        <v-layout wrap align-center>
-                                                <v-select
-                                                :items="['M','XL']"
-                                                label="Size"
-                                                outline
-                                                v-model="modalItem.size"
-                                                ></v-select>
-                                        </v-layout>
-                                    </v-container>
-                                </div></li>
-                        <li><p>Rp {{modalItem.item.price}}</p></li>
-                        <li> <div class="custom">
-                                        <button @click.prevent="decrement()" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
-                                        <input type="text" name="qty" id="sst" maxlength="12" title="Quantity:" class="input-text qty" style="text-align: center" v-model="modalItem.quantity">
-                                        <button @click.prevent="increment()" class="increase items-count" type="button"><i class="icon_plus"></i></button>
-                                    </div></li>
-                        <li><p>Rp {{modalItem.item.price * modalItem.quantity}}</p></li>
-                        
-                                
-                    </ul>
+                    <p>Barang yang sudah dihapus tidak dapat dikembalikan lagi.</p>
 				</div>
 				<div class="modal-footer">
 					<a class="btn btn-sm btn-primary" @click.prevent="modal = false">Batal</a>
-                    <router-link class="btn btn-sm btn-info" :to="{name: 'DetailPage',  params: { slug: modalItem.item.slug } }"  > Detail</router-link>
-					<a class="btn btn-sm btn-warning" style="color:black !important" @click.prevent="editData(modalItem.id)"><div class="loader" v-if="load == 'Edit'"></div> <span v-else>Perbaharui</span> </a>
 					<a class="btn btn-sm btn-danger" @click.prevent="deleteData(modalItem.id)"><div class="loader" v-if="load ==  'Delete'"></div> <span v-else>Hapus</span>  </a>
 				</div>
 				</div> 
@@ -253,7 +221,6 @@ padding-left: 11px;
 export default {
     data(){
         return{
-            interval: null,
             cart:[],
             modalItem: {
                 id: -1,
@@ -284,14 +251,7 @@ export default {
     },
     mounted(){
         this.getCart(); //mengambil data keranjang
-        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval refresh agar token tidak kadaluarsa
         this.getProvince();
-    },
-    destroyed(){
-           clearInterval(this.interval); //menghapus interval
-    },
-    watch:{
-        
     },
     computed:{
         total(){ //menghitung total belanja
@@ -421,22 +381,34 @@ export default {
               })
         
         },
-        decrement(){ //megurangi jumlah pesanan per barang
-            if(isNaN(this.modalItem.quantity) || this.modalItem.quantity <=1){
-                this.modalItem.quantity = 1
+        decrement(item){ //megurangi jumlah pesanan per barang
+            if(isNaN(item.quantity) || item.quantity <=1){
+                item.quantity = 1
             }else{
                 
-                this.modalItem.quantity--;
+                item.quantity--;
+                axios.post('/api/updateQuantity/'+item.id, {quantity: item.quantity},{
+                    headers: { 
+                    Authorization: 'Bearer ' + localStorage.getItem('token') } 
+                }).then((response) => {
+                });
             }
+            
         },
-        increment(){ //menambahkan jumlah pesanan per barang
-            if(isNaN(this.modalItem.quantity)){
-                this.modalItem.quantity = 1
-            }else if(this.modalItem.quantity >= this.modalItem.item.stock){
-                this.modalItem.quantity = this.modalItem.item.stock
+        increment(item){ //menambahkan jumlah pesanan per barang
+            if(isNaN(item.quantity)){
+                item.quantity = 1
+            }else if(item.quantity >= item.item.stock){
+                item.quantity = item.item.stock
             }else{
-                this.modalItem.quantity++;
+                item.quantity++;
+                  axios.post('/api/updateQuantity/'+item.id, {quantity: item.quantity},{
+                    headers: { 
+                    Authorization: 'Bearer ' + localStorage.getItem('token') } 
+                }).then((response) => {
+                });
             }
+             
         },
         getCart(){ //mengambil data keranjang
             let uri = '/api/mycart';
@@ -451,7 +423,7 @@ export default {
             })
             
         },
-        showModal(item){ //menampilkan modal edit, hapus, dan detail barang.
+        showModal(item){ //menampilkan hapus barang.
             this.modalItem = item;
             this.modal = true;
         }

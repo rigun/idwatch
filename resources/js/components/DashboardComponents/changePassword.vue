@@ -54,13 +54,6 @@ export default {
            load: false,
         }
     },
-    mounted(){
-        this.$parent.refresh(); //memanggil fungsi refersh pada parent
-        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval untuk pemamggilan fungsi refresh
-    },
-    destroyed(){
-           clearInterval(this.interval); //menghapus interval
-    },
     methods:{
         sendData(){
             this.load = true;
@@ -75,7 +68,9 @@ export default {
                 headers: { 
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
             }).then(response=>{
-               
+                this.$nextTick(function () { //memanggil method ketika konten selesai dirender
+                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
+                })
                 alert(response.data.msg);
                location.reload();
             this.load = false;

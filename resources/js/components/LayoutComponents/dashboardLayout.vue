@@ -80,8 +80,14 @@ export default {
                         Authorization: 'Bearer ' + localStorage.getItem('token')
                     }
                 }).then(response => {
+                    console.log(response);
+                    if(response.data.message == "Unauthenticated"){
+                        this.$router.push({ name: 'LogoutAdmin' }) //akan diarahkan ke komponen logoutAdmin 
+                    }
                     localStorage.setItem('token', response.data.access_token);
-                    this.getUser();
+                     this.$nextTick(function () { //memanggil method ketika konten selesai dirender
+                        this.getUser();
+                    })
 
                 }).catch(error => {
                    this.mssg = 'Login';
@@ -96,8 +102,12 @@ export default {
                     .then(response => {
                         if(response.data.status == "Token is Expired"){ //apabila tokennya kadaluarsa
                             this.$router.push({ name: 'LogoutAdmin' }) //akan diarahkan ke komponen logoutAdmin 
-                        }else {
+                        }else{
                            this.token = localStorage.getItem('token');
+                            
+                            this.$nextTick(function () { //memanggil method ketika konten selesai dirender
+                                setInterval(() => this.refresh(), 900000); // membuat interval untuk memanggil fungsi refresh
+                            })
                            // this.getCountBag();                                
                         }
                     }).catch(error => {

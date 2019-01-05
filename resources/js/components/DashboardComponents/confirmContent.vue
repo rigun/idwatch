@@ -55,16 +55,11 @@
 export default {
     data(){
         return{
-            interval: null,
             confirms: [],
         }
     },
     mounted(){
         this.getConfirm(); //mengambil data yang perlu dikonfirmasi
-        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval untuk memanggil fungsi refresh
-    },
-    destroyed(){
-           clearInterval(this.interval); //menghapus interval
     },
     methods:{
         verifikasi(id,status){ //kondisi verifikasi 

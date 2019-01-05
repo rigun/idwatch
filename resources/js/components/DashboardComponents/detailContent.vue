@@ -150,7 +150,6 @@
 export default {
     data(){
         return{
-            interval: null,
             item:{
                 name: '',
                 slug: '',
@@ -177,13 +176,8 @@ export default {
         }
     },
     mounted(){
-        this.$parent.refresh(); //memanggil fungsi refresh pada parent
-        this.interval = setInterval(() => this.$parent.refresh(), 900000); //mengeset interval pemanggilan fungsi refresh
         this.getData(); //mengambil data detail dari konten yang dipilih
         this.getCategory(); //mengambil kategori
-    },
-    destroyed(){
-           clearInterval(this.interval); //menghapus interval
     },
     methods:{
         updateSlug: function(val) { //memperbaharui slug berdasarkan nama dari item

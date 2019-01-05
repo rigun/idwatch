@@ -29,13 +29,10 @@
                             </div>
                             <div class="l_p_text">
                                 <ul>
-                                    <li class="p_icon">   <a>
-                                                     <i class="icon_piechart"></i></a>
-                                           </li>
-                                    <li><router-link  class="add_cart_btn" :to="{name: 'DetailPage',  params: { slug: item.slug } }"  >
-                                            Detail
-                                            </router-link></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
+                                     <li><router-link  class="add_cart_btn" :to="{name: 'DetailPage',  params: { slug: item.slug } }" v-if="item.stock > 0" >
+                                            Beli Sekarang
+                                            </router-link>
+                                            <a class="add_cart_btn" style="background-color: red" v-else>Stok Kosong</a></li>
                                 </ul>
                                 <h4>{{item.name}}</h4>
                                 <h5><del></del>Rp. {{item.price}}</h5>

@@ -55,7 +55,8 @@
 										<div class="control-group">
 											
 												<label class="control-label" for="basicinput">Merk</label>
-												<select name="" id="" v-model="item.merk">
+												<div class="controls">
+													<select name="" id="" v-model="item.merk">
 															<option>Daniel Wellington </option> 
 															<option>Fossil </option> 
 															<option>Alexandre Christie </option> 
@@ -67,6 +68,8 @@
 															<option>Alba </option> 
 															<option>Olivia Burton </option> 
 													</select>
+												</div>
+											
 											</div>
 											<div class="control-group">
 													<label class="control-label" for="basicinput">Type</label>
@@ -226,7 +229,7 @@ export default {
 			if(this.item.weight > 999){
 				this.msg = this.msg + ' Weight cant more than 999'
 			}
-			
+
 			if(isNaN(this.item.stock)){
 				this.msg = this.msg + ' Stock must be number'
 			}
@@ -339,6 +342,8 @@ for (var i = files.length - 1; i >= 0; i--) {
                 .then(function (response) {
 						this.resetData();
 						this.load = false;
+               			 this.$router.push({ name: 'DashboardContent' })
+
                 }.bind(this)) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
                 .catch(function (error) {
 						this.load = false;

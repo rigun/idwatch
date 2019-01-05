@@ -20201,6 +20201,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -20915,6 +20916,19 @@ var render = function() {
                 _c("div", { staticClass: "col-lg-4" }, [
                   _c("div", { staticClass: "total_amount_area" }, [
                     _c("div", { staticClass: "cupon_box" }, [
+                      _c(
+                        "h3",
+                        { staticClass: "cart_single_title" },
+                        [
+                          _c(
+                            "router-link",
+                            { attrs: { to: { name: "CheckoutCart" } } },
+                            [_vm._v("Keranjang Checkout")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
                       _c("h3", { staticClass: "cart_single_title" }, [
                         _vm._v("Kupon Diskon")
                       ]),
@@ -29342,6 +29356,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -29536,6 +29553,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			axios.post('/api/item/' + this.$route.params.id, this.data, config).then(function (response) {
 				this.resetData();
 				this.load = false;
+				this.$router.push({ name: 'DashboardContent' });
 			}.bind(this)) // Make sure we bind Vue Component object to this funtion so we get a handle of it in order to call its other methods
 			.catch(function (error) {
 				this.load = false;
@@ -29847,60 +29865,62 @@ var render = function() {
                 [_vm._v("Merk")]
               ),
               _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.item.merk,
-                      expression: "item.merk"
+              _c("div", { staticClass: "controls" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.item.merk,
+                        expression: "item.merk"
+                      }
+                    ],
+                    attrs: { name: "", id: "" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.item,
+                          "merk",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
                     }
-                  ],
-                  attrs: { name: "", id: "" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.item,
-                        "merk",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                [
-                  _c("option", [_vm._v("Daniel Wellington ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Fossil ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Alexandre Christie ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Casio ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Expedition ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Fossil ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Quicksilver ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Seiko ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Alba ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Olivia Burton ")])
-                ]
-              )
+                  },
+                  [
+                    _c("option", [_vm._v("Daniel Wellington ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Fossil ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Alexandre Christie ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Casio ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Expedition ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Fossil ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Quicksilver ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Seiko ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Alba ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Olivia Burton ")])
+                  ]
+                )
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "control-group" }, [

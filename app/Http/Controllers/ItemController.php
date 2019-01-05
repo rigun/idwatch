@@ -24,7 +24,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        return response()->json(Item::where('stock','>',0)->with('picture','category')->get());
+        return response()->json(Item::with('picture','category')->get());
     }
     public function showAll()
     {

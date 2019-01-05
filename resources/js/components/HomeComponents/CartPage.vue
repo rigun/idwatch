@@ -113,6 +113,7 @@
                     <div class="col-lg-4">
                         <div class="total_amount_area">
                             <div class="cupon_box">
+                                <h3 class="cart_single_title"><router-link :to="{name: 'CheckoutCart'}">Keranjang Checkout</router-link> </h3>
                                 <h3 class="cart_single_title">Kupon Diskon</h3>
                                 <div class="cupon_box_inner">
                                     <input type="text" placeholder="Enter your code here" v-model="cupon">

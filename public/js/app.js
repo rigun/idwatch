@@ -27513,12 +27513,12 @@ var render = function() {
                       _vm._v("Analog")
                     ]),
                     _vm._v(" "),
-                    _c("option", { attrs: { value: "Analog" } }, [
+                    _c("option", { attrs: { value: "Aksesoris" } }, [
                       _vm._v("Aksesoris")
                     ]),
                     _vm._v(" "),
-                    _c("option", { attrs: { value: "Analog" } }, [
-                      _vm._v("Tali jam")
+                    _c("option", { attrs: { value: "Tali jam" } }, [
+                      _vm._v("Tali Jam")
                     ])
                   ]
                 )

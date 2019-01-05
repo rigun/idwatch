@@ -76,8 +76,8 @@
 														<select v-model="item.type">
 															<option value="Digital">Digital</option>
 															<option value="Analog">Analog</option>
-															<option value="Analog">Aksesoris</option>
-															<option value="Analog">Tali jam</option>
+															<option value="Aksesoris">Aksesoris</option>
+															<option value="Tali jam">Tali Jam</option>
 														</select>
 													</div>
 												</div>

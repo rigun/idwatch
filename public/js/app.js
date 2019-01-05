@@ -29395,15 +29395,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			});
 		},
 		validate: function validate() {
-			//validasi inputan
-			if (this.filenames.length <= 0) {
-				this.msg = this.msg + 'Please add at least one picture,';
+			//menvalidasi inputan sebelum dikirim ke server
+			if (this.filenames.length <= 0 && this.originalFile.length <= 0) {
+				this.msg = this.msg + 'Please add at least one picture';
 			}
 			if (this.item.name == '' || this.item.category_id == '' || this.item.stock == null || this.item.price == null || this.item.weight == null || this.item.merk == '' || this.item.description == '') {
-				this.msg = this.msg + ' Please fill the blank field,';
+				this.msg = this.msg + ' Please fill the blank field';
 			}
 			if (this.item.stock < 1) {
-				this.msg = this.msg + ' Stock must be one or more,';
+				this.msg = this.msg + ' Stock must be one or more';
 			}
 			if (this.item.price <= 99999) {
 				this.msg = this.msg + ' Price minimum 100000';
@@ -29417,14 +29417,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			if (this.item.weight > 999) {
 				this.msg = this.msg + ' Weight cant more than 999';
 			}
+
 			if (isNaN(this.item.stock)) {
-				this.msg = this.msg + ' Stock must be number,';
+				this.msg = this.msg + ' Stock must be number';
 			}
 			if (isNaN(this.item.price)) {
-				this.msg = this.msg + ' Price must be number,';
+				this.msg = this.msg + ' Price must be number';
 			}
 			if (isNaN(this.item.weight)) {
-				this.msg = this.msg + ' Weight must be number,';
+				this.msg = this.msg + ' Weight must be number';
 			}
 
 			if (this.msg != '') {

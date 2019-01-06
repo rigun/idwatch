@@ -26774,7 +26774,7 @@ var render = function() {
                 _c("br"),
                 _vm._v(" "),
                 _c("p", { staticClass: "number" }, [
-                  _vm._v(_vm._s(_vm.item.P_today))
+                  _vm._v("Rp. " + _vm._s(_vm.item.P_today))
                 ])
               ])
             ])
@@ -26790,7 +26790,7 @@ var render = function() {
                 _c("br"),
                 _vm._v(" "),
                 _c("p", { staticClass: "number" }, [
-                  _vm._v(_vm._s(_vm.item.P_month))
+                  _vm._v("Rp. " + _vm._s(_vm.item.P_month))
                 ])
               ])
             ])
@@ -26806,7 +26806,7 @@ var render = function() {
                 _c("br"),
                 _vm._v(" "),
                 _c("p", { staticClass: "number" }, [
-                  _vm._v(_vm._s(_vm.item.P_year))
+                  _vm._v("Rp. " + _vm._s(_vm.item.P_year))
                 ])
               ])
             ])

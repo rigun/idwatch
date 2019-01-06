@@ -51,7 +51,7 @@
                         <div class="card">
                             <div class="card-content">
                                 <p class="title">Pendapatan (Hari Ini) </p> <br/>
-                                <p class="number">{{item.P_today}}</p>
+                                <p class="number">Rp. {{item.P_today}}</p>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                         <div class="card">
                             <div class="card-content">
                                 <p class="title">Pendapatan (Bulan Ini) </p> <br/>
-                                <p class="number">{{item.P_month}}</p>
+                                <p class="number">Rp. {{item.P_month}}</p>
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                         <div class="card">
                             <div class="card-content">
                                 <p class="title">Pendapatan (Tahun Ini) </p> <br/>
-                                <p class="number">{{item.P_year}}</p>
+                                <p class="number">Rp. {{item.P_year}}</p>
                             </div>
                         </div>
                     </div>

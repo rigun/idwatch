@@ -28222,6 +28222,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     this.$parent.refresh(); //memanggil fungsi refresh pada parent
                 });
             });
+        },
+        download: function download() {
+            //mengambil data transaksi
+            var uri = '/api/report/download';
+            axios.get(uri, {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token') }
+            }).then(function (response) {});
         }
     }
 });
@@ -28244,7 +28252,11 @@ var render = function() {
           _vm._v(" "),
           _c("a", {
             staticClass: "button button-danger",
-            attrs: { href: "../api/report/download" }
+            on: {
+              click: function($event) {
+                _vm.download()
+              }
+            }
           })
         ]
       ),

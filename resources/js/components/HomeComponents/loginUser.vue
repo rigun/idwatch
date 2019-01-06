@@ -182,7 +182,8 @@ export default {
                 this.snackbar = true;
                 this.text = "Incorrect Username or Password"
             });
-        }
+        },
+       
     },
     computed:{
         cek(){ //mengecek valid tidaknya inputan

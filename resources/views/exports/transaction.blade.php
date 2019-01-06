@@ -29,7 +29,10 @@
             </td>
             <td>
                     @foreach ($report->detail as $item)
-                    {{$item->cart->item->name}} ({{$item->cart->quantity}}) <br>
+                    {{$item->cart->item->name}} ({{$item->cart->quantity}}) 
+                        @if(!$loop->last) 
+                            <br>
+                        @endif
                     @endforeach
             </td>
             <td>

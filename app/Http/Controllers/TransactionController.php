@@ -47,7 +47,7 @@ class TransactionController extends Controller
         //
     }
     public function graph(){
-        $transactions = Transaction::All();
+        $transactions = Transaction::where([['status','>=',3]])->get();
         $T_today = 0;
         $T_month = 0;
         $T_year = 0;

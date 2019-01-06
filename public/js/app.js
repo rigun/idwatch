@@ -16406,7 +16406,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 }
             }).then(function (response) {
-                if (response.data.status == "Token is Expired") {
+                if (response.data.status == "Token is Expired" || response.data.message == 'Authorization Token not found') {
                     _this3.$router.push({ name: 'Logout' }); //mengarahkan ke komponen logout
                 } else {
                     _this3.token = localStorage.getItem('token'); //mengambil item dari penyimpanan broweser dengan variable token
@@ -17336,7 +17336,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }).then(function (response) {
                 console.log(response);
-                if (response.data.message == "Unauthenticated") {
+                if (response.data.message == "Unauthenticated" || response.data.message == 'Authorization Token not found') {
                     _this.$router.push({ name: 'LogoutAdmin' }); //akan diarahkan ke komponen logoutAdmin 
                 }
                 localStorage.setItem('token', response.data.access_token);

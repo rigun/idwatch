@@ -313,7 +313,7 @@ export default {
                         }
                     })
                     .then(response => {
-                        if(response.data.status == "Token is Expired"){
+                        if(response.data.status == "Token is Expired" || response.data.message == 'Authorization Token not found'){
                             this.$router.push({ name: 'Logout' }) //mengarahkan ke komponen logout
                         }else {
                            this.token = localStorage.getItem('token'); //mengambil item dari penyimpanan broweser dengan variable token

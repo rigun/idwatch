@@ -81,7 +81,7 @@ export default {
                     }
                 }).then(response => {
                     console.log(response);
-                    if(response.data.message == "Unauthenticated"){
+                    if(response.data.message == "Unauthenticated" || response.data.message == 'Authorization Token not found'){
                         this.$router.push({ name: 'LogoutAdmin' }) //akan diarahkan ke komponen logoutAdmin 
                     }
                     localStorage.setItem('token', response.data.access_token);

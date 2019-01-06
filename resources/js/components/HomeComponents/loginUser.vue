@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="col-lg-6 form-group">
                                     <input class="form-control" type="password" placeholder="Re-Password" v-model="register.cpassword">
-                                    <span style="color: red;" v-if="register.password != null && register.cpassword != null && register.password!= register.cpassword">Your password incorrect</span>
+                                    <span style="color: red;" v-if="register.password != null && register.cpassword != null && register.password!= register.cpassword">Password tidak sama</span>
                                 </div>
                                 <div class="col-lg-12 form-group">
                                     
@@ -139,17 +139,17 @@ export default {
                     if(response.data){
                         this.valid = 0;
                         this.infoView = "is-danger";
-                        this.infoMessage = "Email already used"
+                        this.infoMessage = "Email Sudah Digunakan"
                     }else if(!response.data){
                         this.valid = 1;
                         this.infoView = "is-success";
-                        this.infoMessage = "Email is ready"
+                        this.infoMessage = "Email dapat digunakan"
                     }
                     })
                 }else{
                     this.valid = 0;
                     this.infoView = "is-danger";
-                    this.infoMessage = "Email not valid"
+                    this.infoMessage = "Email tidak valid"
                 }
 
             },

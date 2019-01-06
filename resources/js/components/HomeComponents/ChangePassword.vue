@@ -4,19 +4,20 @@
             <div class="column">
                 <div class="card">
                     <div class="card-content">
-                        <form @submit.prevent="sendEmail()">
+                        <form @submit.prevent="updatePassword()">
                             <div class="header">
-                                Lupa Password
+                               Ubah Password
                             </div>
                             <div class="body">
-                                <span>Masukkan Email Anda</span><br>
-                                <input type="email" class="input inputEmail" v-model="email" required  @change="cekEmail()">
-                                <p class="info" :class="{'success': valid, 'danger': !valid}"><span v-if="!valid && email != null">Email Tidak Terdaftar</span><span v-if="valid && email != null">Email Ditemukan</span></p>
+                                <span>Password Baru Anda</span><br>
+                                <input type="password" class="input inputEmail" v-model="password_baru" required  @change="cekPassword()">
+                                <span>Konfirmasi Password Baru Anda</span><br>
+                                <input type="password" class="input inputEmail" v-model="cpassword_baru" required  @change="cekPassword()">
+                                    <span style="color: red;" v-if="password_baru != null && cpassword_baru != null && password_baru!= cpassword_baru">Password tidak sama</span>
+
                             </div>
                             <div class="footer">
-                                <router-link :to="{name: 'LoginUser'}" class="btn btn-danger">
-                                Kembali</router-link>
-                                <button class="btn btn-primary">Kirim</button>
+                                <button class="btn btn-primary">Ubah Password</button>
                             </div>
                         </form>
                     </div>
@@ -84,34 +85,34 @@ export default {
         return{
             email: null,
             valid: false,
+            password_baru: null,
+            cpassword_baru: null,
         }
     },
     methods:{
-        cekEmail(){ //mengecek ketersediaan email
-                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                if(this.email == ''){
-                    this.infoView = "none";
-                        this.infoMessage = '';
-                        this.valid = false;
-                }else if( re.test(String(this.email).toLowerCase()) ){
-                    let uri = '/api/user/email/'+this.email;
-                    axios.get(uri).then((response) => {
-                    if(response.data){
-                        this.valid = true;
-                    }else if(!response.data){
-                        this.valid = false;
-                    }
-                    })
-                }
-            },
-        sendEmail(){
-    
-            axios.post('/api/forgetpassword',{email: this.email}).then(response =>
+        updatePassword(){
+            if(!cek){
+                alert('Password tidak sesuai');
+                return;
+            }
+            axios.post('/api/updatepassword/forget/'+this.$route.params.status,{password: this.password_baru}).then(response =>
             {
                 alert('Link untuk reset password telah dikirimkan ke email anda.')
             }).catch(error =>{
                 alert('coba lagi');
             })
+        }
+    }, 
+    computed:{
+        cek(){ //mengecek valid tidaknya inputan
+            if(this.password_baru!= null && this.cpassword_baru){
+                if(this.password_baru == this.cpassword_baru ){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            return false;
         }
     }
 }

@@ -14673,6 +14673,7 @@ var CheckoutCart = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Checko
 var AboutUs = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('AboutUs', __webpack_require__(89));
 var Order = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Order', __webpack_require__(92));
 var Forget = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Forget', __webpack_require__(182));
+var ChangeForget = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('ChangeForget', __webpack_require__(187));
 
 // dashboard
 var DashboardContent = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('DashboardContent', __webpack_require__(94));
@@ -14697,6 +14698,10 @@ var routes = [{
         name: 'Forget',
         path: 'forgetpassword',
         component: Forget
+    }, {
+        name: 'ChangeForget',
+        path: 'verifforgetpassword/:status',
+        component: ChangeForget
     }, {
         name: 'LoginUser',
         path: 'login',
@@ -18365,17 +18370,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     if (response.data) {
                         _this.valid = 0;
                         _this.infoView = "is-danger";
-                        _this.infoMessage = "Email already used";
+                        _this.infoMessage = "Email Sudah Digunakan";
                     } else if (!response.data) {
                         _this.valid = 1;
                         _this.infoView = "is-success";
-                        _this.infoMessage = "Email is ready";
+                        _this.infoMessage = "Email dapat digunakan";
                     }
                 });
             } else {
                 this.valid = 0;
                 this.infoView = "is-danger";
-                this.infoMessage = "Email not valid";
+                this.infoMessage = "Email tidak valid";
             }
         },
         registerAkun: function registerAkun() {
@@ -18773,7 +18778,7 @@ var render = function() {
                       _vm.register.cpassword != null &&
                       _vm.register.password != _vm.register.cpassword
                         ? _c("span", { staticStyle: { color: "red" } }, [
-                            _vm._v("Your password incorrect")
+                            _vm._v("Password tidak sama")
                           ])
                         : _vm._e()
                     ]),
@@ -56995,79 +57000,90 @@ var render = function() {
       _c("div", { staticClass: "column" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-content" }, [
-            _c("form", [
-              _c("div", { staticClass: "header" }, [
-                _vm._v(
-                  "\n                            Lupa Password\n                        "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "body" }, [
-                _c("span", [_vm._v("Masukkan Email Anda")]),
-                _c("br"),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.email,
-                      expression: "email"
-                    }
-                  ],
-                  staticClass: "input inputEmail",
-                  attrs: { type: "email", required: "" },
-                  domProps: { value: _vm.email },
-                  on: {
-                    change: function($event) {
-                      _vm.cekEmail()
-                    },
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.email = $event.target.value
-                    }
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    _vm.sendEmail()
                   }
-                }),
+                }
+              },
+              [
+                _c("div", { staticClass: "header" }, [
+                  _vm._v(
+                    "\n                            Lupa Password\n                        "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "body" }, [
+                  _c("span", [_vm._v("Masukkan Email Anda")]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.email,
+                        expression: "email"
+                      }
+                    ],
+                    staticClass: "input inputEmail",
+                    attrs: { type: "email", required: "" },
+                    domProps: { value: _vm.email },
+                    on: {
+                      change: function($event) {
+                        _vm.cekEmail()
+                      },
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.email = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    {
+                      staticClass: "info",
+                      class: { success: _vm.valid, danger: !_vm.valid }
+                    },
+                    [
+                      !_vm.valid && _vm.email != null
+                        ? _c("span", [_vm._v("Email Tidak Terdaftar")])
+                        : _vm._e(),
+                      _vm.valid && _vm.email != null
+                        ? _c("span", [_vm._v("Email Ditemukan")])
+                        : _vm._e()
+                    ]
+                  )
+                ]),
                 _vm._v(" "),
                 _c(
-                  "p",
-                  {
-                    staticClass: "info",
-                    class: { success: _vm.valid, danger: !_vm.valid }
-                  },
+                  "div",
+                  { staticClass: "footer" },
                   [
-                    !_vm.valid && _vm.email != null
-                      ? _c("span", [_vm._v("Email Tidak Terdaftar")])
-                      : _vm._e(),
-                    _vm.valid && _vm.email != null
-                      ? _c("span", [_vm._v("Email Ditemukan")])
-                      : _vm._e()
-                  ]
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { to: { name: "LoginUser" } }
+                      },
+                      [_vm._v("\n                            Kembali")]
+                    ),
+                    _vm._v(" "),
+                    _c("button", { staticClass: "btn btn-primary" }, [
+                      _vm._v("Kirim")
+                    ])
+                  ],
+                  1
                 )
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "footer" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "btn btn-danger",
-                      attrs: { to: { name: "LoginUser" } }
-                    },
-                    [_vm._v("\n                            Kembali")]
-                  ),
-                  _vm._v(" "),
-                  _c("button", { staticClass: "btn btn-primary" }, [
-                    _vm._v("Kirim")
-                  ])
-                ],
-                1
-              )
-            ])
+              ]
+            )
           ])
         ])
       ])
@@ -57081,6 +57097,349 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-ed117732", module.exports)
+  }
+}
+
+/***/ }),
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(188)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(190)
+/* template */
+var __vue_template__ = __webpack_require__(191)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/HomeComponents/ChangePassword.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4b7ae9aa", Component.options)
+  } else {
+    hotAPI.reload("data-v-4b7ae9aa", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 188 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(189);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("178a6b57", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4b7ae9aa\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ChangePassword.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4b7ae9aa\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ChangePassword.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.columns{\r\n    background: transparent;\n}\n.column{\r\n        width: 100%;\n}\n.card{\r\n        width: 300px;\r\n        margin: auto;\r\n        background: transparent;\r\n        border: none;\n}\n.card-content{\r\n        border-radius: 5px;\r\n        background: white;\r\n        display: block;\n}\n.card-content .body{\r\n        padding: 10px;\r\n        background: white;\n}\n.card-content .header{\r\n        padding: 10px;\r\n        border-top-left-radius: 8px;\r\n        border-top-right-radius: 8px;\r\n        font-size: 14px;\r\n        font-weight: bold;\r\n        text-align: center;\r\n        margin-bottom: 10px;\r\n        background: #f3f3f3;\n}\n.card-content .footer{\r\n        padding: 10px;\r\n        border-bottom-left-radius: 8px;\r\n        border-bottom-right-radius: 8px;\r\n        display: -webkit-box;\r\n        display: -ms-flexbox;\r\n        display: flex;\n}\n.card-content input{\r\n        width: 100%;\r\n        background: white;\r\n        border: 1px solid black;\r\n        border-radius: 8px;\r\n        margin: 10px auto;\r\n        padding: 5px;\n}\n.card-content .footer .btn-danger{\r\n        margin-left: auto;\n}\n.card-content .footer .btn-primary{\r\n        margin-left: 10px;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 190 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            email: null,
+            valid: false,
+            password_baru: null,
+            cpassword_baru: null
+        };
+    },
+
+    methods: {
+        updatePassword: function updatePassword() {
+            if (!cek) {
+                alert('Password tidak sesuai');
+                return;
+            }
+            axios.post('/api/updatepassword/forget/' + this.$route.params.status, { password: this.password_baru }).then(function (response) {
+                alert('Link untuk reset password telah dikirimkan ke email anda.');
+            }).catch(function (error) {
+                alert('coba lagi');
+            });
+        }
+    },
+    computed: {
+        cek: function cek() {
+            //mengecek valid tidaknya inputan
+            if (this.password_baru != null && this.cpassword_baru) {
+                if (this.password_baru == this.cpassword_baru) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            return false;
+        }
+    }
+});
+
+/***/ }),
+/* 191 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "columns" }, [
+      _c("div", { staticClass: "column" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-content" }, [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    _vm.updatePassword()
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "header" }, [
+                  _vm._v(
+                    "\n                           Ubah Password\n                        "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "body" }, [
+                  _c("span", [_vm._v("Password Baru Anda")]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.password_baru,
+                        expression: "password_baru"
+                      }
+                    ],
+                    staticClass: "input inputEmail",
+                    attrs: { type: "password", required: "" },
+                    domProps: { value: _vm.password_baru },
+                    on: {
+                      change: function($event) {
+                        _vm.cekPassword()
+                      },
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.password_baru = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Konfirmasi Password Baru Anda")]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.cpassword_baru,
+                        expression: "cpassword_baru"
+                      }
+                    ],
+                    staticClass: "input inputEmail",
+                    attrs: { type: "password", required: "" },
+                    domProps: { value: _vm.cpassword_baru },
+                    on: {
+                      change: function($event) {
+                        _vm.cekPassword()
+                      },
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.cpassword_baru = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.password_baru != null &&
+                  _vm.cpassword_baru != null &&
+                  _vm.password_baru != _vm.cpassword_baru
+                    ? _c("span", { staticStyle: { color: "red" } }, [
+                        _vm._v("Password tidak sama")
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "footer" }, [
+      _c("button", { staticClass: "btn btn-primary" }, [
+        _vm._v("Ubah Password")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4b7ae9aa", module.exports)
   }
 }
 

@@ -64,6 +64,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 Route::get('/rajaongkir/provinsi','RajaOngkirController@provinsi');
 Route::get('/rajaongkir/kota/{provinsi_id}','RajaOngkirController@kotaByProvinsi');
 Route::get('/rajaongkir/{id_kota}/{weight}','RajaOngkirController@cost');
+Route::get('/report/download','TransactionController@export');
 
 Route::get('/comment/{item_id}','CommentController@show');
 Route::post('/mail/contactus','MailController@send');

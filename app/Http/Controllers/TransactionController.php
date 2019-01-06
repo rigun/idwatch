@@ -8,7 +8,8 @@ use App\UsersDetail;
 use App\TransactionDetail;
 use App\Item;
 use Illuminate\Http\Request;
-
+use App\Exports\ReportItem;
+use Maatwebsite\Excel\Facades\Excel;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
@@ -28,6 +29,10 @@ class TransactionController extends Controller
     public function index()
     {
         return Transaction::with(['detail','user'])->get();
+    }
+    public function export() 
+    {
+        return Excel::download(new ReportItem, 'report.xlsx');
     }
 
     /**

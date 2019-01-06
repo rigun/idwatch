@@ -87,6 +87,11 @@ export default {
             message: null,
         }
     },
+    mounted(){
+          if(localStorage.getItem('token') != null){
+                this.$parent.refresh();  //memanggil fungsi refresh pada parent
+        }
+    },
     methods:{
         sendEmail(){
             if(this.email == null || this.subject == null || this.name == null || this.message == null){

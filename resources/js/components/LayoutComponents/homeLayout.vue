@@ -318,9 +318,7 @@ export default {
                         }else {
                            this.token = localStorage.getItem('token'); //mengambil item dari penyimpanan broweser dengan variable token
                            // this.getCountBag();      
-                              this.$nextTick(function () { //memanggil method ketika konten selesai dirender
-                                setInterval(() => this.refresh(), 900000); // membuat interval untuk memanggil fungsi refresh
-                            })                          
+                                              
                         }
                     }).catch(error => {
                         this.mssg = 'Login';

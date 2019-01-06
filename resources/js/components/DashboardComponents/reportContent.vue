@@ -4,7 +4,7 @@
                             <div class="module">
                                 <div class="module-head" style="display:flex">
                                     <h3>Data Barang</h3>
-                                    <a class="button button-danger" @click="download()"></a>
+                                    <button class="btn btn-primary" style="margin-left: auto" @click.prevent="download()">Download</button>
                                 </div>
                                 <div class="module-body table">
                                     <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display"

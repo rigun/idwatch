@@ -28250,14 +28250,20 @@ var render = function() {
         [
           _c("h3", [_vm._v("Data Barang")]),
           _vm._v(" "),
-          _c("a", {
-            staticClass: "button button-danger",
-            on: {
-              click: function($event) {
-                _vm.download()
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              staticStyle: { "margin-left": "auto" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.download()
+                }
               }
-            }
-          })
+            },
+            [_vm._v("Download")]
+          )
         ]
       ),
       _vm._v(" "),

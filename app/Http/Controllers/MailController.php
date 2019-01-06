@@ -27,7 +27,7 @@ class MailController extends Controller
         Mail::to('idwatchshop88@gmail.com')->send(new ContactMail($objDemo));
         return 'email terkirim';
     }
-    public function forgetpassword(){
+    public function forgetpassword(Request $request){
         $this->validateWith([
             'email' => 'required',
           ]);

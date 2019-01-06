@@ -32,7 +32,7 @@ class TransactionController extends Controller
     }
     public function export() 
     {
-        return Excel::download(new ReportItem, 'report.xlsx');
+        return Excel::download(new ReportItem(1), 'report.xlsx');
     }
 
     /**

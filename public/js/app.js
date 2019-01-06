@@ -28226,10 +28226,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         download: function download() {
             //mengambil data transaksi
             var uri = '/api/report/download';
-            axios.get(uri, {
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('token') }
-            }).then(function (response) {});
+            axios({
+                url: '/api/report/download',
+                method: 'GET',
+                responseType: 'blob', // important
+                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token'), 'Accept': 'application/vnd.ms-excel' }
+            }).then(function (response) {
+                var url = window.URL.createObjectURL(new Blob([response.data]));
+                var link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'report.xlsx');
+                document.body.appendChild(link);
+                link.click();
+            });
         }
     }
 });

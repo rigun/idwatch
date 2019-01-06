@@ -14,11 +14,26 @@ use \Maatwebsite\Excel\Sheet;
 
 class ReportItem implements FromView, ShouldAutoSize, WithEvents
 {
+    public $token;
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+    public function __construct($token)
+    {
+        $this->token = $token;
+    }
     public function view(): View
     {
-        return view('exports.transaction', [
-            'reports' => Transaction::with(['detail','user'])->get()
-        ]);
+        if($this->token != 1){
+            return null;
+        }else{
+            return view('exports.transaction', [
+                'reports' => Transaction::with(['detail','user'])->get()
+            ]);
+        }
+
     }
 
   

@@ -103,12 +103,19 @@ export default {
         },
           download(){ //mengambil data transaksi
             let uri = '/api/report/download';
-            axios.get(uri,{
-                    headers: { 
-                    Authorization: 'Bearer ' + localStorage.getItem('token') } 
-                }).then((response) => {
-
-            })
+            axios({
+                url: '/api/report/download',
+                method: 'GET',
+                responseType: 'blob', // important
+                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token'), 'Accept': 'application/vnd.ms-excel' } 
+            }).then((response) => {
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'report.xlsx');
+                document.body.appendChild(link);
+                link.click();
+            });
             
         },
     }

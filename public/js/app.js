@@ -14672,6 +14672,7 @@ var ConfirmOrder = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Confir
 var CheckoutCart = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('CheckoutCart', __webpack_require__(84));
 var AboutUs = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('AboutUs', __webpack_require__(89));
 var Order = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Order', __webpack_require__(92));
+var Forget = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Forget', __webpack_require__(182));
 
 // dashboard
 var DashboardContent = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('DashboardContent', __webpack_require__(94));
@@ -14692,6 +14693,10 @@ var routes = [{
         name: 'Landing',
         path: '',
         component: LandingPage
+    }, {
+        name: 'Forget',
+        path: 'forgetpassword',
+        component: Forget
     }, {
         name: 'LoginUser',
         path: 'login',
@@ -18525,68 +18530,77 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-lg-12 form-group" }, [
-                      _c("div", { staticClass: "creat_account" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.login.remember,
-                              expression: "login.remember"
-                            }
-                          ],
-                          attrs: {
-                            type: "checkbox",
-                            id: "f-option",
-                            name: "selector"
-                          },
-                          domProps: {
-                            checked: Array.isArray(_vm.login.remember)
-                              ? _vm._i(_vm.login.remember, null) > -1
-                              : _vm.login.remember
-                          },
-                          on: {
-                            change: function($event) {
-                              var $$a = _vm.login.remember,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? true : false
-                              if (Array.isArray($$a)) {
-                                var $$v = null,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 &&
-                                    _vm.$set(
-                                      _vm.login,
-                                      "remember",
-                                      $$a.concat([$$v])
-                                    )
+                    _c(
+                      "div",
+                      { staticClass: "col-lg-12 form-group" },
+                      [
+                        _c("div", { staticClass: "creat_account" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.login.remember,
+                                expression: "login.remember"
+                              }
+                            ],
+                            attrs: {
+                              type: "checkbox",
+                              id: "f-option",
+                              name: "selector"
+                            },
+                            domProps: {
+                              checked: Array.isArray(_vm.login.remember)
+                                ? _vm._i(_vm.login.remember, null) > -1
+                                : _vm.login.remember
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.login.remember,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      _vm.$set(
+                                        _vm.login,
+                                        "remember",
+                                        $$a.concat([$$v])
+                                      )
+                                  } else {
+                                    $$i > -1 &&
+                                      _vm.$set(
+                                        _vm.login,
+                                        "remember",
+                                        $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1))
+                                      )
+                                  }
                                 } else {
-                                  $$i > -1 &&
-                                    _vm.$set(
-                                      _vm.login,
-                                      "remember",
-                                      $$a
-                                        .slice(0, $$i)
-                                        .concat($$a.slice($$i + 1))
-                                    )
+                                  _vm.$set(_vm.login, "remember", $$c)
                                 }
-                              } else {
-                                _vm.$set(_vm.login, "remember", $$c)
                               }
                             }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("label", { attrs: { for: "f-option" } }, [
-                          _vm._v("Remember Email")
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "f-option" } }, [
+                            _vm._v("Remember Email")
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "check" })
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "check" })
-                      ]),
-                      _vm._v(" "),
-                      _c("h4", [_vm._v("Forgot your password ?")])
-                    ]),
+                        _c(
+                          "router-link",
+                          { attrs: { to: { name: "Forget" } } },
+                          [_c("h4", [_vm._v("Forgot your password ?")])]
+                        )
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
                     _vm._m(2)
                   ]
@@ -56749,6 +56763,326 @@ exports.push([module.i, "\n.columns{\n  display: -webkit-box;\n  display: -ms-fl
 
 // exports
 
+
+/***/ }),
+/* 182 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(183)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(185)
+/* template */
+var __vue_template__ = __webpack_require__(186)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/HomeComponents/ForgetPassword.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-ed117732", Component.options)
+  } else {
+    hotAPI.reload("data-v-ed117732", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 183 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(184);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("3d3dc57a", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ed117732\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ForgetPassword.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ed117732\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ForgetPassword.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 184 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.columns{\r\n    background: transparent;\n}\n.column{\r\n        width: 100%;\n}\n.card{\r\n        width: 300px;\r\n        margin: auto;\r\n        background: transparent;\r\n        border: none;\n}\n.card-content{\r\n        border-radius: 5px;\r\n        background: white;\r\n        display: block;\n}\n.card-content .body{\r\n        padding: 10px;\r\n        background: white;\n}\n.card-content .header{\r\n        padding: 10px;\r\n        border-top-left-radius: 8px;\r\n        border-top-right-radius: 8px;\r\n        font-size: 14px;\r\n        font-weight: bold;\r\n        text-align: center;\r\n        margin-bottom: 10px;\r\n        background: #f3f3f3;\n}\n.card-content .footer{\r\n        padding: 10px;\r\n        border-bottom-left-radius: 8px;\r\n        border-bottom-right-radius: 8px;\r\n        display: -webkit-box;\r\n        display: -ms-flexbox;\r\n        display: flex;\n}\n.card-content input{\r\n        width: 100%;\r\n        background: white;\r\n        border: 1px solid black;\r\n        border-radius: 8px;\r\n        margin: 10px auto;\r\n        padding: 5px;\n}\n.card-content .footer .btn-danger{\r\n        margin-left: auto;\n}\n.card-content .footer .btn-primary{\r\n        margin-left: 10px;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 185 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            email: null,
+            valid: false
+        };
+    },
+
+    methods: {
+        cekEmail: function cekEmail() {
+            var _this = this;
+
+            //mengecek ketersediaan email
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if (this.email == '') {
+                this.infoView = "none";
+                this.infoMessage = '';
+                this.valid = false;
+            } else if (re.test(String(this.email).toLowerCase())) {
+                var uri = '/api/user/email/' + this.email;
+                axios.get(uri).then(function (response) {
+                    if (response.data) {
+                        _this.valid = true;
+                    } else if (!response.data) {
+                        _this.valid = false;
+                    }
+                });
+            }
+        },
+        sendEmail: function sendEmail() {
+
+            axios.post('/api/forgetpassword', { email: this.email }).then(function (response) {
+                alert('Link untuk reset password telah dikirimkan ke email anda.');
+            }).catch(function (error) {
+                alert('coba lagi');
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 186 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "columns" }, [
+      _c("div", { staticClass: "column" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-content" }, [
+            _c("form", [
+              _c("div", { staticClass: "header" }, [
+                _vm._v(
+                  "\n                            Lupa Password\n                        "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "body" }, [
+                _c("span", [_vm._v("Masukkan Email Anda")]),
+                _c("br"),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.email,
+                      expression: "email"
+                    }
+                  ],
+                  staticClass: "input inputEmail",
+                  attrs: { type: "email", required: "" },
+                  domProps: { value: _vm.email },
+                  on: {
+                    change: function($event) {
+                      _vm.cekEmail()
+                    },
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.email = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  {
+                    staticClass: "info",
+                    class: { success: _vm.valid, danger: !_vm.valid }
+                  },
+                  [
+                    !_vm.valid && _vm.email != null
+                      ? _c("span", [_vm._v("Email Tidak Terdaftar")])
+                      : _vm._e(),
+                    _vm.valid && _vm.email != null
+                      ? _c("span", [_vm._v("Email Ditemukan")])
+                      : _vm._e()
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "footer" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { to: { name: "LoginUser" } }
+                    },
+                    [_vm._v("\n                            Kembali")]
+                  ),
+                  _vm._v(" "),
+                  _c("button", { staticClass: "btn btn-primary" }, [
+                    _vm._v("Kirim")
+                  ])
+                ],
+                1
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-ed117732", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

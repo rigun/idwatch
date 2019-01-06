@@ -70,6 +70,7 @@ Route::get('/rajaongkir/{id_kota}/{weight}','RajaOngkirController@cost');
 
 Route::get('/comment/{item_id}','CommentController@show');
 Route::post('/mail/contactus','MailController@send');
+Route::post('forgetpassword', 'MailController@forgetpassword');
 
 Route::get('/itemAll', 'ItemController@showAll');
 

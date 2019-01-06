@@ -36,4 +36,5 @@ Route::get('/checkoutcart', function () {return view('app');});
 Route::get('/tentangkami', function () {return view('app');});
 Route::get('/caraorder', function () {return view('app');});
 Route::get('/logout', function () {return view('app');});
+Route::get('/forgetpassword', function () {return view('app');});
 Route::get('/view/export', function () {return view('exports.transaction');});

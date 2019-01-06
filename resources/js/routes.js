@@ -30,6 +30,7 @@ const ConfirmOrder = Vue.component('ConfirmOrder', require('./components/HomeCom
 const CheckoutCart = Vue.component('CheckoutCart', require('./components/HomeComponents/CheckoutCart.vue'))
 const AboutUs = Vue.component('AboutUs', require('./components/HomeComponents/AboutUs.vue'))
 const Order = Vue.component('Order', require('./components/HomeComponents/Order.vue'))
+const Forget = Vue.component('Forget', require('./components/HomeComponents/ForgetPassword.vue'))
 
 // dashboard
 const DashboardContent = Vue.component('DashboardContent', require('./components/DashboardComponents/dashboardContent.vue'))
@@ -52,6 +53,11 @@ const routes = [
                 name: 'Landing',
                 path: '',
                 component: LandingPage
+            },
+            {
+                name: 'Forget',
+                path: 'forgetpassword',
+                component: Forget
             },
             {
                 name: 'LoginUser',

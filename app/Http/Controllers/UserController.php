@@ -158,6 +158,7 @@ class UserController extends Controller
           
           return response()->json($json);
     }
+    
     public function destroy($id)
     {
         $user = User::findOrFail($id);

@@ -33,7 +33,7 @@
                                         <label for="f-option">Remember Email</label>
                                         <div class="check"></div>
                                     </div>
-                                    <h4>Forgot your password ?</h4>
+                                    <router-link :to="{name: 'Forget'}"><h4>Forgot your password ?</h4></router-link>
                                 </div>
                                 <div class="col-lg-12 form-group">
                                     <button type="submit" value="submit" class="btn update_btn form-control">Login</button>

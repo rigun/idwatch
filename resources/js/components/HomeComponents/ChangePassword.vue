@@ -97,7 +97,8 @@ export default {
             }
             axios.post('/api/updatepassword/forget/'+this.$route.params.status,{password: this.password_baru}).then(response =>
             {
-                alert('Link untuk reset password telah dikirimkan ke email anda.')
+                alert('Password berhasil di ubah');
+                this.$router.push({name:'LoginUser'});
             }).catch(error =>{
                 alert('coba lagi');
             })

@@ -57291,12 +57291,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         updatePassword: function updatePassword() {
+            var _this = this;
+
             if (!this.cek) {
                 alert('Password tidak sesuai');
                 return;
             }
             axios.post('/api/updatepassword/forget/' + this.$route.params.status, { password: this.password_baru }).then(function (response) {
-                alert('Link untuk reset password telah dikirimkan ke email anda.');
+                alert('Password berhasil di ubah');
+                _this.$router.push({ name: 'LoginUser' });
             }).catch(function (error) {
                 alert('coba lagi');
             });

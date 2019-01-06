@@ -42,6 +42,7 @@ const TrashContent = Vue.component('TrashContent', require('./components/Dashboa
 const DetailContent = Vue.component('DetailContent', require('./components/DashboardComponents/detailContent.vue'))
 const Discount = Vue.component('Discount', require('./components/DashboardComponents/addDiscount.vue'))
 const ChangePassword = Vue.component('Discount', require('./components/DashboardComponents/changePassword.vue'))
+const Product = Vue.component('Product', require('./components/DashboardComponents/productComponent.vue'))
 const routes = [
     {
         path: '/',
@@ -173,6 +174,11 @@ const routes = [
                             name: 'ChangePassword',
                             path: 'changepassword',
                             component: ChangePassword,
+                        },
+                        {
+                            name: 'Product',
+                            path: 'product',
+                            component: Product,
                         },
                   ]
               },

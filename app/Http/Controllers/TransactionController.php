@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Transaction;
 use App\Cart;
+use App\User;
 use App\UsersDetail;
 use App\TransactionDetail;
 use App\Item;
@@ -12,6 +13,7 @@ use App\Exports\ReportItem;
 use Maatwebsite\Excel\Facades\Excel;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use DateTime;
 
 class TransactionController extends Controller
 {
@@ -44,7 +46,33 @@ class TransactionController extends Controller
     {
         //
     }
-
+    public function graph(){
+        $transactions = Transaction::All();
+        $T_today = 0;
+        $T_month = 0;
+        $T_year = 0;
+        $P_today = 0;
+        $P_month = 0;
+        $P_year = 0;
+        $pending = Transaction::where([['status','<',3],['notes','!=',null]])->count();
+        $barang = Item::all()->count();
+        $now = new DateTime();
+        foreach($transactions as $transaction){
+            if($transaction->created_at->format('Y') == $now->format('Y')){
+                $T_year++;
+                $P_year = $P_year + $transaction->total;
+                if($transaction->created_at->format('m') == $now->format('m')){
+                    $T_month++;
+                    $P_month = $P_month + $transaction->total;                    
+                    if($transaction->created_at->format('d') == $now->format('d')){
+                        $T_today++;
+                    $P_today = $P_today + $transaction->total;                        
+                    }
+                }
+            }
+        } 
+       return response()->json(['T_today'=> $T_today, 'T_month'=> $T_month, 'T_year'=> $T_year,'P_today'=> $P_today, 'P_month'=> $P_month, 'P_year'=> $P_year,'Pending' => $pending,'Barang'=>$barang]);
+    }
     /**
      * Store a newly created resource in storage.
      *

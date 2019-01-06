@@ -1,166 +1,150 @@
 <template>
     <div>
-        
-                        <div class="module">
-                             
-                            <div class="module-head" style="display:flex">
-                                <h3>Data Barang</h3>
-                                <input type="text" class="span3" style="margin-left: auto;" placeholder="name" v-model="search">
-                                <button class="btn" type="button" style="height: 30px;" disabled>
-                                    <i class="icon-search"></i>
-                                </button>
-                            </div>
-                            <br/>
-                            <div class="module-body table">
-                                <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display"
-                                    width="100%">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                <center>
-                                                    Id
-                                                </center>
-                                            </th>
-                                            <th>
-                                                <center>
-                                                Nama
-                                            </center>
-                                            </th>
-                                            <th>
-                                                <center>
-                                                    Gambar
-                                                </center>
-                                            </th>
-                                            <th>
-                                                <center>
-                                                Harga
-                                            </center>
-                                            </th>
-                                            <th>
-                                                <center>
-                                                    Merk
-                                                </center>
-                                            </th>
-                                            <th>
-                                                <center>
-                                                Stock</center>
-                                            </th>
-                                            <th>
-                                                <center>
-                                                        Kategory
-                                                </center>
-                                                
-                                            </th>
-                                            <th>
-                                                <center>
-                                                Button Aksi
-                                            </center>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="gradeU" v-for="item in filterItem" :key="item.id">
-                                            <td>
-                                                <center>
-                                                    {{item.id}}
-                                                </center>
-                                            </td>
-                                            <td>
-                                                    <center>
-                                                        {{item.name}}
-                                                    </center>
-                                                </td>
-                                            <td>
-                                                <center>
-                                                <img :src="'../itemImages/' + item.picture[0].filename" width="40px" alt="images">
-                                            </center>
-                                            
-                                            </td>
-                                            <td>
-                                                <center>
-                                                Rp {{item.price}}
-                                            </center>
-                                            </td>
-                                            <td>
-                                                <center>
-                                                    {{item.merk}}
-                                                </center>
-                                            </td>
-                                            <td class="center">
-                                                <center>
-                                                {{item.stock}}
-                                                </center>
+        <div class="module">
+            <div class="module-head">
+                <h3>Pengisian Barang</h3>
+            </div>
 
-                                            </td>
-                                            <td>
-                                                <center>
-                                                   {{item.category.name}}
-                                                </center>
-                                            </td>
-                                            <td>
-                                                 <router-link :to="{name: 'DetailContent',  params: { id: item.id } }" class="btn btn-sm btn-primary" >
-                                                     Detail
-                                            </router-link>
-                                                <a class="btn btn-sm btn-danger" @click.prevent="deleteData(item.id)"><div class="loader" v-if="load == item.id"></div> <span v-else>Hapus</span> </a>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+            <div class="module-body">
+                <div class="columns">
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-content">
+                                <p class="title">Jumlah Transaksi (Hari Ini)</p> <br/>
+                                <p class="number">0</p>
                             </div>
                         </div>
-                        <!--/.module-->
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-content">
+                                <p class="title">Jumlah Transaksi (Bulan Ini)</p> <br/>
+                                <p class="number">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-content">
+                                <p class="title">Jumlah Transaksi (Tahun Ini)</p> <br/>
+                                <p class="number">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-content">
+                                <p class="title">Transaksi Pending </p> <br/>
+                                <p class="number">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-content">
+                                <p class="title">Jumlah Barang </p> <br/>
+                                <p class="number">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-content">
+                                <p class="title">Pendapatan (Hari Ini) </p> <br/>
+                                <p class="number">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-content">
+                                <p class="title">Pendapatan (Bulan Ini) </p> <br/>
+                                <p class="number">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-content">
+                                <p class="title">Pendapatan (Tahun Ini) </p> <br/>
+                                <p class="number">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
     </div>
 </template>
+<style>
+    .columns{
+      display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .column{
+        display: block;
+        width: 50%;
+    }
+    .card{
+        width: 100%;
+        background-color: white;
+        text-align: center;
+    }
+    .card-content{
+        border: solid 1px whitesmoke;
+        margin: 10px;
+        padding: 20px;
+        border-radius: 5px;
+    }
+    .card-content .title{
+        font-size: 14px;
+        font-weight: bold;
+        opacity: 0.8;
+    }
+    .card-content .number{
+        font-size: 40px;
+        font-weight: bold;
+    }
+    @media (max-width: 600px){
+        .column{
+            width: 100%;
+        }
+    }
+</style>
+
+
 <script>
 export default {
     data(){
         return{
             items: [],
             load: -1,
-            search: '',
+
         }
     },
     mounted(){
-        this.getData(); //mengambil data item
+            this.getData(); //mengambil data item yang telah dihapus
+         
     },
-    computed: {
-            filterItem: function(){ //filter data yang akan ditampilkan
-                if(this.items.length) {
-                    return this.items.filter((row, index) => {
-                            if(this.search != '') return row.name.toLowerCase().includes(this.search.toLowerCase());  //menampilkan data data yang memiliki kemiripan nama dengan variable search yang diinputkan               
-                            return true;
-                      });
-                }
-            }
-        },
     methods:{
-        getData(){ //mengambil data
-            let uri = '/api/itemAll';
-            axios.get(uri).then((response) => {
+        getData(){ //mengambil data 
+            let uri = '/api/dashboard/graph';
+            axios.get(uri,{
+                  headers: {
+                      Authorization: 'Bearer ' + localStorage.getItem('token')
+                  }
+              }).then((response) => {
                 this.items = response.data;
-                  this.$nextTick(function () { //memanggil method ketika konten selesai dirender
+                this.$nextTick(function () { //memanggil method ketika konten selesai dirender
                       this.$parent.refresh();  //memanggil fungsi refresh pada parent
                 })
             })
             
         },
-        deleteData(id){ //menghapus data
-            this.load = id;
-            let uri = '/api/item/'+id;
-              axios.delete(uri,{
-                  headers: {
-                      Authorization: 'Bearer ' + localStorage.getItem('token')
-                  }
-              }).then((response) => {
-                  this.load = -1;
-                this.getData();
-              }).catch(error => {
-                  this.load = -1;
-                this.getData();
-              })
-        
-        }
 
     }
 }

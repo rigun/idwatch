@@ -29,7 +29,7 @@ class ReportItem implements FromView, ShouldAutoSize, WithEvents
                 $cellRange = 'A1:F1'; // All headers
                 // $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(14);
                 $event->sheet->getDelegate()->setAutoFilter($cellRange);
-                $event->sheet->getDelegate()->getStyle('B:B')->getAlignment()->setWrapText(true);
+                $event->sheet->getDelegate()->getStyle('B1:B2000')->getAlignment()->setWrapText(true);
             },
         ];
     }

@@ -56515,73 +56515,86 @@ var render = function() {
             "router-link",
             {
               staticClass: "btn btn-primary",
+              staticStyle: { "align-self": "center" },
               attrs: { to: { name: "AddContent" } }
             },
             [_vm._v("Tambah Barang ")]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "control-group" }, [
-            _c(
-              "label",
-              { staticClass: "control-label", attrs: { for: "basicinput" } },
-              [_vm._v("Filter")]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "controls" }, [
+          _c(
+            "div",
+            {
+              staticClass: "control-group",
+              staticStyle: {
+                display: "flex",
+                "align-content": "center",
+                margin: "0",
+                "margin-left": "auto"
+              }
+            },
+            [
               _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.merk,
-                      expression: "merk"
+                "label",
+                { staticClass: "control-label", attrs: { for: "basicinput" } },
+                [_vm._v("Filter")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "controls" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.merk,
+                        expression: "merk"
+                      }
+                    ],
+                    attrs: { name: "", id: "" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.merk = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
                     }
-                  ],
-                  attrs: { name: "", id: "" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.merk = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    }
-                  }
-                },
-                [
-                  _c("option", { attrs: { value: "-" } }, [_vm._v("Merk ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Daniel Wellington ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Fossil ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Alexandre Christie ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Casio ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Expedition ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Fossil ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Quicksilver ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Seiko ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Alba ")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Olivia Burton ")])
-                ]
-              )
-            ])
-          ])
+                  },
+                  [
+                    _c("option", { attrs: { value: "-" } }, [_vm._v("Merk ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Daniel Wellington ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Fossil ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Alexandre Christie ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Casio ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Expedition ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Fossil ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Quicksilver ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Seiko ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Alba ")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Olivia Burton ")])
+                  ]
+                )
+              ])
+            ]
+          )
         ],
         1
       ),

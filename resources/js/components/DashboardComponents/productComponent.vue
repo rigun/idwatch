@@ -11,9 +11,9 @@
                                 </button>
                             </div>
                             <div class="module-head" style="display:flex">
-                            <router-link :to="{name: 'AddContent'}"  class="btn btn-primary">Tambah Barang </router-link>
+                            <router-link :to="{name: 'AddContent'}"  class="btn btn-primary" style="align-self: center;">Tambah Barang </router-link>
                                
-                                <div class="control-group">
+                                <div class="control-group" style="display: flex;align-content: center;margin: 0; margin-left: auto">
                                     <label class="control-label" for="basicinput">Filter</label>
                                     <div class="controls">
                                         <select name="" id="" v-model="merk">

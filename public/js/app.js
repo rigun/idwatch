@@ -26662,7 +26662,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 }
             }).then(function (response) {
-                _this.items = response.data;
+                _this.item = response.data;
                 _this.$nextTick(function () {
                     //memanggil method ketika konten selesai dirender
                     this.$parent.refresh(); //memanggil fungsi refresh pada parent

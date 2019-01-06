@@ -32,7 +32,7 @@ class MailController extends Controller
             'email' => 'required',
           ]);
 
-          $user= User::findOrFail($request->email);
+          $user= User::where('email',$request->email)->first();
           $user->status = rand(1000,100000);
           $user->save();
 

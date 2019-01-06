@@ -28225,7 +28225,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         download: function download() {
             //mengambil data transaksi
-            var uri = '/api/report/download';
             axios({
                 url: '/api/report/download',
                 method: 'GET',

@@ -102,7 +102,6 @@ export default {
             
         },
           download(){ //mengambil data transaksi
-            let uri = '/api/report/download';
             axios({
                 url: '/api/report/download',
                 method: 'GET',

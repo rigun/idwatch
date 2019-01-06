@@ -29,10 +29,7 @@
             </td>
             <td>
                     @foreach ($report->detail as $item)
-                    <ul>
-                        <li>{{$item->cart->item->name}}</li>
-                        <li>{{$item->cart->quantity}}</li>
-                    </ul>
+                    {{$item->cart->item->name}} ({{$item->cart->quantity}}) <br>
                     @endforeach
             </td>
             <td>
@@ -41,9 +38,9 @@
             <td class="center">
             @if ($report->status == 0)
                 <span>-</span>
-            @elseif($report->status == 1)
+            @elseif($report->status == 1 || $report->status == 3)
                 <span>Transfer Tunai</span>
-            @elseif($report->status == 2)
+            @elseif($report->status == 2 || $report->status == 4)
                 <span>Cash on delivery</span>
             @endif
             </td>

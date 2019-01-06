@@ -26633,7 +26633,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            items: [],
+            item: {
+                T_today: 0,
+                T_month: 0,
+                T_year: 0,
+                P_today: 0,
+                P_month: 0,
+                P_year: 0,
+                pending: 0,
+                barang: 0
+            },
             load: -1
 
         };
@@ -26671,133 +26680,149 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "module" }, [
-        _c("div", { staticClass: "module-head" }, [
-          _c("h3", [_vm._v("Pengisian Barang")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "module-body" }, [
-          _c("div", { staticClass: "columns" }, [
-            _c("div", { staticClass: "column" }, [
-              _c("div", { staticClass: "card" }, [
-                _c("div", { staticClass: "card-content" }, [
-                  _c("p", { staticClass: "title" }, [
-                    _vm._v("Jumlah Transaksi (Hari Ini)")
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "number" }, [_vm._v("0")])
+  return _c("div", [
+    _c("div", { staticClass: "module" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "module-body" }, [
+        _c("div", { staticClass: "columns" }, [
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-content" }, [
+                _c("p", { staticClass: "title" }, [
+                  _vm._v("Jumlah Transaksi (Hari Ini)")
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", { staticClass: "number" }, [
+                  _vm._v(_vm._s(_vm.item.T_today))
                 ])
               ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "column" }, [
-              _c("div", { staticClass: "card" }, [
-                _c("div", { staticClass: "card-content" }, [
-                  _c("p", { staticClass: "title" }, [
-                    _vm._v("Jumlah Transaksi (Bulan Ini)")
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "number" }, [_vm._v("0")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-content" }, [
+                _c("p", { staticClass: "title" }, [
+                  _vm._v("Jumlah Transaksi (Bulan Ini)")
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", { staticClass: "number" }, [
+                  _vm._v(_vm._s(_vm.item.T_month))
                 ])
               ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "column" }, [
-              _c("div", { staticClass: "card" }, [
-                _c("div", { staticClass: "card-content" }, [
-                  _c("p", { staticClass: "title" }, [
-                    _vm._v("Jumlah Transaksi (Tahun Ini)")
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "number" }, [_vm._v("0")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-content" }, [
+                _c("p", { staticClass: "title" }, [
+                  _vm._v("Jumlah Transaksi (Tahun Ini)")
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", { staticClass: "number" }, [
+                  _vm._v(_vm._s(_vm.item.T_year))
                 ])
               ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "column" }, [
-              _c("div", { staticClass: "card" }, [
-                _c("div", { staticClass: "card-content" }, [
-                  _c("p", { staticClass: "title" }, [
-                    _vm._v("Transaksi Pending ")
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "number" }, [_vm._v("0")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-content" }, [
+                _c("p", { staticClass: "title" }, [
+                  _vm._v("Transaksi Pending ")
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", { staticClass: "number" }, [
+                  _vm._v(_vm._s(_vm.item.Pending))
                 ])
               ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "column" }, [
-              _c("div", { staticClass: "card" }, [
-                _c("div", { staticClass: "card-content" }, [
-                  _c("p", { staticClass: "title" }, [_vm._v("Jumlah Barang ")]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "number" }, [_vm._v("0")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-content" }, [
+                _c("p", { staticClass: "title" }, [_vm._v("Jumlah Barang ")]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", { staticClass: "number" }, [
+                  _vm._v(_vm._s(_vm.item.Barang))
                 ])
               ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "column" }, [
-              _c("div", { staticClass: "card" }, [
-                _c("div", { staticClass: "card-content" }, [
-                  _c("p", { staticClass: "title" }, [
-                    _vm._v("Pendapatan (Hari Ini) ")
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "number" }, [_vm._v("0")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-content" }, [
+                _c("p", { staticClass: "title" }, [
+                  _vm._v("Pendapatan (Hari Ini) ")
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", { staticClass: "number" }, [
+                  _vm._v(_vm._s(_vm.item.P_today))
                 ])
               ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "column" }, [
-              _c("div", { staticClass: "card" }, [
-                _c("div", { staticClass: "card-content" }, [
-                  _c("p", { staticClass: "title" }, [
-                    _vm._v("Pendapatan (Bulan Ini) ")
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "number" }, [_vm._v("0")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-content" }, [
+                _c("p", { staticClass: "title" }, [
+                  _vm._v("Pendapatan (Bulan Ini) ")
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", { staticClass: "number" }, [
+                  _vm._v(_vm._s(_vm.item.P_month))
                 ])
               ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "column" }, [
-              _c("div", { staticClass: "card" }, [
-                _c("div", { staticClass: "card-content" }, [
-                  _c("p", { staticClass: "title" }, [
-                    _vm._v("Pendapatan (Tahun Ini) ")
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "number" }, [_vm._v("0")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-content" }, [
+                _c("p", { staticClass: "title" }, [
+                  _vm._v("Pendapatan (Tahun Ini) ")
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", { staticClass: "number" }, [
+                  _vm._v(_vm._s(_vm.item.P_year))
                 ])
               ])
             ])
           ])
         ])
       ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "module-head" }, [
+      _c("h3", [_vm._v("Pengisian Barang")])
     ])
   }
 ]

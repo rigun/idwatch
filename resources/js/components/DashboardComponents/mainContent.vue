@@ -11,7 +11,7 @@
                         <div class="card">
                             <div class="card-content">
                                 <p class="title">Jumlah Transaksi (Hari Ini)</p> <br/>
-                                <p class="number">0</p>
+                                <p class="number">{{item.T_today}}</p>
                             </div>
                         </div>
                     </div>
@@ -19,7 +19,7 @@
                         <div class="card">
                             <div class="card-content">
                                 <p class="title">Jumlah Transaksi (Bulan Ini)</p> <br/>
-                                <p class="number">0</p>
+                                <p class="number">{{item.T_month}}</p>
                             </div>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                         <div class="card">
                             <div class="card-content">
                                 <p class="title">Jumlah Transaksi (Tahun Ini)</p> <br/>
-                                <p class="number">0</p>
+                                <p class="number">{{item.T_year}}</p>
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                         <div class="card">
                             <div class="card-content">
                                 <p class="title">Transaksi Pending </p> <br/>
-                                <p class="number">0</p>
+                                <p class="number">{{item.Pending}}</p>
                             </div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                         <div class="card">
                             <div class="card-content">
                                 <p class="title">Jumlah Barang </p> <br/>
-                                <p class="number">0</p>
+                                <p class="number">{{item.Barang}}</p>
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                         <div class="card">
                             <div class="card-content">
                                 <p class="title">Pendapatan (Hari Ini) </p> <br/>
-                                <p class="number">0</p>
+                                <p class="number">{{item.P_today}}</p>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                         <div class="card">
                             <div class="card-content">
                                 <p class="title">Pendapatan (Bulan Ini) </p> <br/>
-                                <p class="number">0</p>
+                                <p class="number">{{item.P_month}}</p>
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                         <div class="card">
                             <div class="card-content">
                                 <p class="title">Pendapatan (Tahun Ini) </p> <br/>
-                                <p class="number">0</p>
+                                <p class="number">{{item.P_year}}</p>
                             </div>
                         </div>
                     </div>
@@ -121,7 +121,16 @@
 export default {
     data(){
         return{
-            items: [],
+            item: {
+                T_today : 0,
+                T_month : 0,
+                T_year : 0,
+                P_today : 0,
+                P_month : 0,
+                P_year : 0,
+                pending : 0,
+                barang : 0,
+            },
             load: -1,
 
         }

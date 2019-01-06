@@ -57291,7 +57291,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         updatePassword: function updatePassword() {
-            if (!cek) {
+            if (!this.cek) {
                 alert('Password tidak sesuai');
                 return;
             }

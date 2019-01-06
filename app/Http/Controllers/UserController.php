@@ -158,6 +158,17 @@ class UserController extends Controller
           
           return response()->json($json);
     }
+
+    public function updatepasswordForget(Request $request, $status)
+    {
+        $this->validateWith([
+            'password' => 'required',
+          ]);
+          $user = User::where('status',$status)->first();
+        $user->password = Hash::make($request->password);    
+          $user->save();
+          return 'Password berhasil diubah';
+    }
     
     public function destroy($id)
     {

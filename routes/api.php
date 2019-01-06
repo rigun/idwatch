@@ -83,6 +83,7 @@ Route::get('/item/{type}/{category}', 'ItemController@showByCategory');
 
 Route::post('register', 'AuthController@register');
 Route::get('/user/email/{email}', 'UserController@UniqueEmail');
+Route::post('/updatepassword/forget/{status}', 'UserController@updatepasswordForget');
 Route::get('/category','CategoryController@index');
 
 

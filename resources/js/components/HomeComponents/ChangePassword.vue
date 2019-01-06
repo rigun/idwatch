@@ -91,7 +91,7 @@ export default {
     },
     methods:{
         updatePassword(){
-            if(!cek){
+            if(!this.cek){
                 alert('Password tidak sesuai');
                 return;
             }

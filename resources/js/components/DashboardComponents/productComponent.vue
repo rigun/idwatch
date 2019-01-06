@@ -5,11 +5,14 @@
                              
                             <div class="module-head" style="display:flex">
                                 <h3>Data Barang</h3>
-                            <router-link :to="{name: 'AddContent'}"  class="btn btn-primary">Tambah Barang </router-link>
                                 <input type="text" class="span3" style="margin-left: auto;" placeholder="name" v-model="search">
                                 <button class="btn" type="button" style="height: 30px;" disabled>
                                     <i class="icon-search"></i>
                                 </button>
+                            </div>
+                            <div class="module-head" style="display:flex">
+                            <router-link :to="{name: 'AddContent'}"  class="btn btn-primary">Tambah Barang </router-link>
+                               
                                 <div class="control-group">
                                     <label class="control-label" for="basicinput">Filter</label>
                                     <div class="controls">

@@ -14,6 +14,7 @@
 Route::get('/', function () {return view('app');});
 Route::get('/dashboard', function () {return view('admin');});
 Route::get('/dashboard/add', function () {return view('admin');});
+Route::get('/dashboard/product', function () {return view('admin');});
 Route::get('/dashboard/report', function () {return view('admin');});
 Route::get('/dashboard/confirm', function () {return view('admin');});
 Route::get('/dashboard/trash', function () {return view('admin');});

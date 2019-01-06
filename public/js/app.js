@@ -56398,6 +56398,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -56477,15 +56480,6 @@ var render = function() {
         [
           _c("h3", [_vm._v("Data Barang")]),
           _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn btn-primary",
-              attrs: { to: { name: "AddContent" } }
-            },
-            [_vm._v("Tambah Barang ")]
-          ),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -56509,7 +56503,22 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _vm._m(0),
+          _vm._m(0)
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "module-head", staticStyle: { display: "flex" } },
+        [
+          _c(
+            "router-link",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { to: { name: "AddContent" } }
+            },
+            [_vm._v("Tambah Barang ")]
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "control-group" }, [
             _c(

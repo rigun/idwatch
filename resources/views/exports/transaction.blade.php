@@ -28,14 +28,12 @@
                 {{$report->id}}
             </td>
             <td>
-                <table>
                     @foreach ($report->detail as $item)
-                    <tr>
-                        <td>{{$item->cart->item->name}}</td>
-                        <td>{{$item->cart->quantity}}</td>
-                    </tr>
+                    <ul>
+                        <li>{{$item->cart->item->name}}</li>
+                        <li>{{$item->cart->quantity}}</li>
+                    </ul>
                     @endforeach
-                </table>	
             </td>
             <td>
                 Rp {{$report->total + $report->shipping - $report->diskon}}

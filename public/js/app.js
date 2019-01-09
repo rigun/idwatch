@@ -28502,7 +28502,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.inner-table tr > td{\r\n    border: none;\n}\r\n", ""]);
+exports.push([module.i, "\ntable, th, td {\r\n  border: 1px solid black;\n}\r\n", ""]);
 
 // exports
 
@@ -28689,7 +28689,7 @@ var render = function() {
                   "div",
                   { key: report.id },
                   [
-                    _c("tr", { staticClass: "odd gradeX" }, [
+                    _c("tr", [
                       _c(
                         "td",
                         { attrs: { rowspan: report.detail.length + 1 } },
@@ -28720,10 +28720,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "td",
-                        {
-                          staticClass: "center",
-                          attrs: { rowspan: report.detail.length + 1 }
-                        },
+                        { attrs: { rowspan: report.detail.length + 1 } },
                         [
                           report.status == 0
                             ? _c("span", [_vm._v("-")])
@@ -28741,10 +28738,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "td",
-                        {
-                          staticClass: "center",
-                          attrs: { rowspan: report.detail.length + 1 }
-                        },
+                        { attrs: { rowspan: report.detail.length + 1 } },
                         [
                           _vm._v(
                             "\n                                                " +

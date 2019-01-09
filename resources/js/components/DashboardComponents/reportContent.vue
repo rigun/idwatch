@@ -33,7 +33,7 @@
                                         </thead>
                                         <tbody>
                                             <div v-for="report in reports" :key="report.id">
-                                            <tr class="odd gradeX" >
+                                            <tr>
                                                 <td :rowspan="report.detail.length+1">
                                                     {{report.id}}
                                                 </td>
@@ -41,12 +41,12 @@
                                                 <td :rowspan="report.detail.length+1">
                                                     Rp {{parseInt(report.total) + parseInt(report.shipping) - parseInt(report.diskon)}}
                                                 </td>
-                                                <td class="center" :rowspan="report.detail.length+1">
+                                                <td :rowspan="report.detail.length+1">
                                                     <span v-if="report.status == 0">-</span>
                                                     <span v-if="report.status == 1 || report.status == 3">Transfer Tunai</span>
                                                     <span v-if="report.status == 2 || report.status == 4">Cash on delivery</span>
                                                 </td>
-                                                <td class="center" :rowspan="report.detail.length+1">
+                                                <td :rowspan="report.detail.length+1">
                                                     {{report.created_at}}
                                                 </td>
                                             </tr>
@@ -67,8 +67,8 @@
     </div>
 </template>
 <style>
-.inner-table tr > td{
-    border: none;
+table, th, td {
+  border: 1px solid black;
 }
 </style>
 

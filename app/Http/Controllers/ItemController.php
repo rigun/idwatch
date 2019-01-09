@@ -45,7 +45,7 @@ class ItemController extends Controller
         return "Success";
     }
     public function search($search){
-            return response()->json(Item::with('picture','category')->get());
+            return response()->json(Item::where('name','LIKE','%'.$search.'%')->with('picture','category')->get());
     }
   
     /**

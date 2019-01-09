@@ -32,8 +32,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <div v-for="report in reports" :key="report.id">
-                                            <tr>
+                                            <tr  v-for="report in reports" :key="report.id">
                                                 <td :rowspan="report.detail.length+1">
                                                     {{report.id}}
                                                 </td>
@@ -54,7 +53,6 @@
                                                     <td>{{item.cart.item.name}}</td>
                                                     <td>{{item.cart.quantity}}</td>
                                                 </tr> -->
-                                            </div>
                                         </tbody>
                                     </table>
                                 </div>

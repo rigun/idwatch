@@ -32,7 +32,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr  v-for="report in reports" :key="report.id">
+                                            <div v-for="report in reports" :key="report.id">
+                                            <tr>
                                                 <td :rowspan="report.detail.length+1">
                                                     {{report.id}}
                                                 </td>
@@ -49,10 +50,13 @@
                                                     {{report.created_at}}
                                                 </td>
                                             </tr>
-                                             <!-- <tr v-for="item in report.detail" :key="item.id">
+                                             <tr v-for="item in report.detail" :key="item.id">
                                                     <td>{{item.cart.item.name}}</td>
                                                     <td>{{item.cart.quantity}}</td>
-                                                </tr> -->
+                                                </tr>
+                                            </div>
+                                            
+                                            
                                         </tbody>
                                     </table>
                                 </div>

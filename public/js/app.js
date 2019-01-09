@@ -28626,12 +28626,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 url: '/api/report/download',
                 method: 'GET',
                 responseType: 'blob', // important
-                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token'), 'Accept': 'application/vnd.ms-excel' }
+                // headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token'), 'Accept': 'application/vnd.ms-excel' } 
+                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
             }).then(function (response) {
                 var url = window.URL.createObjectURL(new Blob([response.data]));
                 var link = document.createElement('a');
                 link.href = url;
-                link.setAttribute('download', 'report.xlsx');
+                link.setAttribute('download', 'report.pdf');
                 document.body.appendChild(link);
                 link.click();
             });

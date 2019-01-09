@@ -106,12 +106,13 @@ export default {
                 url: '/api/report/download',
                 method: 'GET',
                 responseType: 'blob', // important
-                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token'), 'Accept': 'application/vnd.ms-excel' } 
+                // headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token'), 'Accept': 'application/vnd.ms-excel' } 
+                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') } 
             }).then((response) => {
                 const url = window.URL.createObjectURL(new Blob([response.data]));
                 const link = document.createElement('a');
                 link.href = url;
-                link.setAttribute('download', 'report.xlsx');
+                link.setAttribute('download', 'report.pdf');
                 document.body.appendChild(link);
                 link.click();
             });

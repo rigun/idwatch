@@ -4,10 +4,7 @@
             <div class="container">
                 <div class="solid_banner_inner">
                     <h3>Login</h3>
-                    <ul>
-                        <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
-                        <li><a href="track.html">Login</a></li>
-                    </ul>
+                    
                 </div>
             </div>
         </section>

@@ -166,6 +166,7 @@ class UserController extends Controller
           ]);
           $user = User::where('status',$status)->first();
         $user->password = Hash::make($request->password);    
+        $user->status = 0;
           $user->save();
           return 'Password berhasil diubah';
     }

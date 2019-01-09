@@ -28585,8 +28585,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -28685,80 +28683,49 @@ var render = function() {
             _c(
               "tbody",
               _vm._l(_vm.reports, function(report) {
-                return _c(
-                  "div",
-                  { key: report.id },
-                  [
-                    _c("tr", [
-                      _c(
-                        "td",
-                        { attrs: { rowspan: report.detail.length + 1 } },
-                        [
-                          _vm._v(
-                            "\n                                                " +
-                              _vm._s(report.id) +
-                              "\n                                            "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { attrs: { rowspan: report.detail.length + 1 } },
-                        [
-                          _vm._v(
-                            "\n                                                Rp " +
-                              _vm._s(
-                                parseInt(report.total) +
-                                  parseInt(report.shipping) -
-                                  parseInt(report.diskon)
-                              ) +
-                              "\n                                            "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { attrs: { rowspan: report.detail.length + 1 } },
-                        [
-                          report.status == 0
-                            ? _c("span", [_vm._v("-")])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          report.status == 1 || report.status == 3
-                            ? _c("span", [_vm._v("Transfer Tunai")])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          report.status == 2 || report.status == 4
-                            ? _c("span", [_vm._v("Cash on delivery")])
-                            : _vm._e()
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { attrs: { rowspan: report.detail.length + 1 } },
-                        [
-                          _vm._v(
-                            "\n                                                " +
-                              _vm._s(report.created_at) +
-                              "\n                                            "
-                          )
-                        ]
+                return _c("div", { key: report.id }, [
+                  _c("tr", [
+                    _c("td", { attrs: { rowspan: report.detail.length + 1 } }, [
+                      _vm._v(
+                        "\n                                                " +
+                          _vm._s(report.id) +
+                          "\n                                            "
                       )
                     ]),
                     _vm._v(" "),
-                    _vm._l(report.detail, function(item) {
-                      return _c("tr", { key: item.id }, [
-                        _c("td", [_vm._v(_vm._s(item.cart.item.name))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(item.cart.quantity))])
-                      ])
-                    })
-                  ],
-                  2
-                )
+                    _c("td", { attrs: { rowspan: report.detail.length + 1 } }, [
+                      _vm._v(
+                        "\n                                                Rp " +
+                          _vm._s(
+                            parseInt(report.total) +
+                              parseInt(report.shipping) -
+                              parseInt(report.diskon)
+                          ) +
+                          "\n                                            "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { attrs: { rowspan: report.detail.length + 1 } }, [
+                      report.status == 0 ? _c("span", [_vm._v("-")]) : _vm._e(),
+                      _vm._v(" "),
+                      report.status == 1 || report.status == 3
+                        ? _c("span", [_vm._v("Transfer Tunai")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      report.status == 2 || report.status == 4
+                        ? _c("span", [_vm._v("Cash on delivery")])
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { attrs: { rowspan: report.detail.length + 1 } }, [
+                      _vm._v(
+                        "\n                                                " +
+                          _vm._s(report.created_at) +
+                          "\n                                            "
+                      )
+                    ])
+                  ])
+                ])
               })
             )
           ]

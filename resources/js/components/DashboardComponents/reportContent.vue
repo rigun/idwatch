@@ -50,13 +50,11 @@
                                                     {{report.created_at}}
                                                 </td>
                                             </tr>
-                                             <tr v-for="item in report.detail" :key="item.id">
+                                             <!-- <tr v-for="item in report.detail" :key="item.id">
                                                     <td>{{item.cart.item.name}}</td>
                                                     <td>{{item.cart.quantity}}</td>
-                                                </tr>
+                                                </tr> -->
                                             </div>
-                                            
-                                            
                                         </tbody>
                                     </table>
                                 </div>

@@ -28672,8 +28672,6 @@ var render = function() {
         _c(
           "table",
           {
-            staticClass:
-              "datatable-1 table table-bordered table-striped\t display",
             attrs: {
               cellpadding: "0",
               cellspacing: "0",
@@ -28697,9 +28695,9 @@ var render = function() {
                         { attrs: { rowspan: report.detail.length + 1 } },
                         [
                           _vm._v(
-                            "\n                                                    " +
+                            "\n                                                " +
                               _vm._s(report.id) +
-                              "\n                                                "
+                              "\n                                            "
                           )
                         ]
                       ),
@@ -28709,13 +28707,13 @@ var render = function() {
                         { attrs: { rowspan: report.detail.length + 1 } },
                         [
                           _vm._v(
-                            "\n                                                    Rp " +
+                            "\n                                                Rp " +
                               _vm._s(
                                 parseInt(report.total) +
                                   parseInt(report.shipping) -
                                   parseInt(report.diskon)
                               ) +
-                              "\n                                                "
+                              "\n                                            "
                           )
                         ]
                       ),
@@ -28749,9 +28747,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                                                    " +
+                            "\n                                                " +
                               _vm._s(report.created_at) +
-                              "\n                                                "
+                              "\n                                            "
                           )
                         ]
                       )
@@ -28774,7 +28772,7 @@ var render = function() {
       ])
     ]),
     _vm._v(
-      "\n                            *Total berasal dari Biaya Barang + Biaya Pengiriman - Diskon.\n                            "
+      "\n                        *Total berasal dari Biaya Barang + Biaya Pengiriman - Diskon.\n                        "
     )
   ])
 }
@@ -28787,37 +28785,37 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [
           _vm._v(
-            " \n                                                 Id Transaksi  \n                                             "
+            " \n                                             Id Transaksi  \n                                         "
           )
         ]),
         _vm._v(" "),
         _c("th", [
           _vm._v(
-            "\n                                                    Total*\n                                                "
+            "\n                                                Total*\n                                            "
           )
         ]),
         _vm._v(" "),
         _c("th", [
           _vm._v(
-            "\n                                                    Metode Pembayaran\n                                                "
+            "\n                                                Metode Pembayaran\n                                            "
           )
         ]),
         _vm._v(" "),
         _c("th", [
           _vm._v(
-            "\n                                                    Tanggal Transaksi\n                                                "
+            "\n                                                Tanggal Transaksi\n                                            "
           )
         ]),
         _vm._v(" "),
         _c("th", [
           _vm._v(
-            "\n                                                    List Barang\n                                                "
+            "\n                                                List Barang\n                                            "
           )
         ]),
         _vm._v(" "),
         _c("th", [
           _vm._v(
-            "\n                                                    Jumlah\n                                                "
+            "\n                                                Jumlah\n                                            "
           )
         ])
       ])

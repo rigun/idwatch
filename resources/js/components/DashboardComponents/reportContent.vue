@@ -48,11 +48,15 @@
                                                 <td :rowspan="report.detail.length+1">
                                                     {{report.created_at}}
                                                 </td>
+                                                <table>
+                                                    <tr v-for="item in report.detail" :key="item.id">
+                                                        <td>{{item.cart.item.name}}</td>
+                                                        <td>{{item.cart.quantity}}</td>
+                                                    </tr>   
+                                                </table>
+                                               
                                             </tr>
-                                             <tr v-for="item in report.detail" :key="item.id">
-                                                    <td>{{item.cart.item.name}}</td>
-                                                    <td>{{item.cart.quantity}}</td>
-                                                </tr>
+                                             
                                             
                                         </tbody>
                                     </table>

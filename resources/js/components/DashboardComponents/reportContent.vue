@@ -11,12 +11,9 @@
                                         width="100%">
                                         <thead>
                                             <tr>
-                                                <th>
-                                                    Id Transaksi
-                                                </th>
-                                                <th>
-                                                    List Barang & jumlah
-                                                </th>
+                                             <th> 
+                                                 Id Transaksi  
+                                             </th>
                                                 <th>
                                                     Total*
                                                 </th>
@@ -27,39 +24,38 @@
                                                     Tanggal Transaksi
                                                 </th>
                                                 <th>
-                                                    Status
+                                                    List Barang
+                                                </th>
+                                                <th>
+                                                    Jumlah
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="odd gradeX" v-for="report in reports" :key="report.id">
-                                                <td>
+                                            <div v-for="report in reports" :key="report.id">
+<tr class="odd gradeX" >
+                                                <td :rowspan="report.detail.length+1">
                                                     {{report.id}}
                                                 </td>
-                                                <td>
-                                                    <table width="100%" style="border: none" class="inner-table">
-                                                        <tr v-for="item in report.detail" :key="item.id">
-                                                            <td>{{item.cart.item.name}}</td>
-                                                            <td>{{item.cart.quantity}}</td>
-                                                        </tr>
-                                                    </table>	
-                                                </td>
-                                                <td>
+        
+                                                <td :rowspan="report.detail.length+1">
                                                     Rp {{parseInt(report.total) + parseInt(report.shipping) - parseInt(report.diskon)}}
                                                 </td>
-                                                <td class="center">
+                                                <td class="center" :rowspan="report.detail.length+1">
                                                     <span v-if="report.status == 0">-</span>
                                                     <span v-if="report.status == 1 || report.status == 3">Transfer Tunai</span>
                                                     <span v-if="report.status == 2 || report.status == 4">Cash on delivery</span>
                                                 </td>
-                                                <td class="center">
+                                                <td class="center" :rowspan="report.detail.length+1">
                                                     {{report.created_at}}
                                                 </td>
-                                                <td class="center">
-                                                    <span v-if="report.status < 3">Belum terverfikiasi</span>
-                                                    <span v-else>Terverfikiasi</span>
-                                                </td>
                                             </tr>
+                                             <tr v-for="item in report.detail" :key="item.id">
+                                                    <td>{{item.cart.item.name}}</td>
+                                                    <td>{{item.cart.quantity}}</td>
+                                                </tr>
+                                            </div>
+                                            
                                             
                                         </tbody>
                                     </table>

@@ -34,9 +34,7 @@ class TransactionController extends Controller
     }
     public function export() 
     {
-        // return Excel::download(new ReportItem(1), 'report.xlsx');
-        return (new ReportItem(1))->download('report.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
-
+        return Excel::download(new ReportItem(1), 'report.pdf');
     }
 
     /**

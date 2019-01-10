@@ -32177,6 +32177,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -32184,7 +32210,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             items: [],
             load: -1,
             search: '',
-            merk: '-'
+            merk: '-',
+            dialog: false
         };
     },
     mounted: function mounted() {
@@ -32231,9 +32258,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }).then(function (response) {
                 _this3.load = -1;
+                _this3.dialog = false;
+
                 _this3.getData();
             }).catch(function (error) {
                 _this3.load = -1;
+                _this3.dialog = false;
                 _this3.getData();
             });
         }
@@ -32248,261 +32278,164 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "module" }, [
-      _c(
-        "div",
-        { staticClass: "module-head", staticStyle: { display: "flex" } },
-        [
-          _c("h3", [_vm._v("Data Barang")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.search,
-                expression: "search"
-              }
-            ],
-            staticClass: "span3",
-            staticStyle: { "margin-left": "auto" },
-            attrs: { type: "text", placeholder: "name" },
-            domProps: { value: _vm.search },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "module" }, [
+        _c(
+          "div",
+          { staticClass: "module-head", staticStyle: { display: "flex" } },
+          [
+            _c("h3", [_vm._v("Data Barang")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.search,
+                  expression: "search"
                 }
-                _vm.search = $event.target.value
+              ],
+              staticClass: "span3",
+              staticStyle: { "margin-left": "auto" },
+              attrs: { type: "text", placeholder: "name" },
+              domProps: { value: _vm.search },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.search = $event.target.value
+                }
               }
-            }
-          }),
-          _vm._v(" "),
-          _vm._m(0)
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "module-head", staticStyle: { display: "flex" } },
-        [
+            }),
+            _vm._v(" "),
+            _vm._m(0)
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "module-head", staticStyle: { display: "flex" } },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-primary",
+                staticStyle: { "align-self": "center" },
+                attrs: { to: { name: "AddContent" } }
+              },
+              [_vm._v("Tambah Barang ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "control-group",
+                staticStyle: {
+                  display: "flex",
+                  "align-content": "center",
+                  margin: "0",
+                  "margin-left": "auto"
+                }
+              },
+              [
+                _c(
+                  "label",
+                  {
+                    staticClass: "control-label",
+                    attrs: { for: "basicinput" }
+                  },
+                  [_vm._v("Filter")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "controls" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.merk,
+                          expression: "merk"
+                        }
+                      ],
+                      attrs: { name: "", id: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.merk = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "-" } }, [
+                        _vm._v("Merk ")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Daniel Wellington ")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Fossil ")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Alexandre Christie ")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Casio ")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Expedition ")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Fossil ")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Quicksilver ")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Seiko ")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Alba ")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Olivia Burton ")])
+                    ]
+                  )
+                ])
+              ]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("div", { staticClass: "module-body table" }, [
           _c(
-            "router-link",
+            "table",
             {
-              staticClass: "btn btn-primary",
-              staticStyle: { "align-self": "center" },
-              attrs: { to: { name: "AddContent" } }
-            },
-            [_vm._v("Tambah Barang ")]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "control-group",
-              staticStyle: {
-                display: "flex",
-                "align-content": "center",
-                margin: "0",
-                "margin-left": "auto"
+              staticClass:
+                "datatable-1 table table-bordered table-striped\t display",
+              attrs: {
+                cellpadding: "0",
+                cellspacing: "0",
+                border: "0",
+                width: "100%"
               }
             },
             [
-              _c(
-                "label",
-                { staticClass: "control-label", attrs: { for: "basicinput" } },
-                [_vm._v("Filter")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "controls" }, [
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.merk,
-                        expression: "merk"
-                      }
-                    ],
-                    attrs: { name: "", id: "" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.merk = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      }
-                    }
-                  },
-                  [
-                    _c("option", { attrs: { value: "-" } }, [_vm._v("Merk ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Daniel Wellington ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Fossil ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Alexandre Christie ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Casio ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Expedition ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Fossil ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Quicksilver ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Seiko ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Alba ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Olivia Burton ")])
-                  ]
-                )
-              ])
-            ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("div", { staticClass: "module-body table" }, [
-        _c(
-          "table",
-          {
-            staticClass:
-              "datatable-1 table table-bordered table-striped\t display",
-            attrs: {
-              cellpadding: "0",
-              cellspacing: "0",
-              border: "0",
-              width: "100%"
-            }
-          },
-          [
-            _c("thead", [
-              _c("tr", [
-                _c(
-                  "th",
-                  [
-                    _c("center", [
-                      _vm._v(
-                        "\n                                                Id\n                                            "
-                      )
-                    ])
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "th",
-                  [
-                    _c("center", [
-                      _vm._v(
-                        "\n                                            Nama\n                                        "
-                      )
-                    ])
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "th",
-                  [
-                    _c("center", [
-                      _vm._v(
-                        "\n                                                Gambar\n                                            "
-                      )
-                    ])
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "th",
-                  [
-                    _c("center", [
-                      _vm._v(
-                        "\n                                            Harga\n                                        "
-                      )
-                    ])
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "th",
-                  [
-                    _c("center", [
-                      _vm._v(
-                        "\n                                                Merk\n                                            "
-                      )
-                    ])
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "th",
-                  [
-                    _c("center", [
-                      _vm._v(
-                        "\n                                            Stock"
-                      )
-                    ])
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "th",
-                  [
-                    _c("center", [
-                      _vm._v(
-                        "\n                                                    Kategory\n                                            "
-                      )
-                    ])
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "th",
-                  [
-                    _c("center", [
-                      _vm._v(
-                        "\n                                            Button Aksi\n                                        "
-                      )
-                    ])
-                  ],
-                  1
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.filterItem, function(item) {
-                return _c("tr", { key: item.id, staticClass: "gradeU" }, [
+              _c("thead", [
+                _c("tr", [
                   _c(
-                    "td",
+                    "th",
                     [
                       _c("center", [
                         _vm._v(
-                          "\n                                                " +
-                            _vm._s(item.id) +
-                            "\n                                            "
+                          "\n                                                Id\n                                            "
                         )
                       ])
                     ],
@@ -32510,13 +32443,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "td",
+                    "th",
                     [
                       _c("center", [
                         _vm._v(
-                          "\n                                                    " +
-                            _vm._s(item.name) +
-                            "\n                                                "
+                          "\n                                            Nama\n                                        "
                         )
                       ])
                     ],
@@ -32524,29 +32455,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "td",
-                    [
-                      _c("center", [
-                        _c("img", {
-                          attrs: {
-                            src: "../itemImages/" + item.picture[0].filename,
-                            width: "40px",
-                            alt: "images"
-                          }
-                        })
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "td",
+                    "th",
                     [
                       _c("center", [
                         _vm._v(
-                          "\n                                            Rp " +
-                            _vm._s(item.price) +
-                            "\n                                        "
+                          "\n                                                Gambar\n                                            "
                         )
                       ])
                     ],
@@ -32554,13 +32467,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "td",
+                    "th",
                     [
                       _c("center", [
                         _vm._v(
-                          "\n                                                " +
-                            _vm._s(item.merk) +
-                            "\n                                            "
+                          "\n                                            Harga\n                                        "
                         )
                       ])
                     ],
@@ -32568,14 +32479,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "td",
-                    { staticClass: "center" },
+                    "th",
                     [
                       _c("center", [
                         _vm._v(
-                          "\n                                            " +
-                            _vm._s(item.stock) +
-                            "\n                                            "
+                          "\n                                                Merk\n                                            "
                         )
                       ])
                     ],
@@ -32583,13 +32491,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "td",
+                    "th",
                     [
                       _c("center", [
                         _vm._v(
-                          "\n                                               " +
-                            _vm._s(item.category.name) +
-                            "\n                                            "
+                          "\n                                            Stock"
                         )
                       ])
                     ],
@@ -32597,54 +32503,270 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "td",
+                    "th",
                     [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "btn btn-sm btn-primary",
-                          attrs: {
-                            to: {
-                              name: "DetailContent",
-                              params: { id: item.id }
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                                 Detail\n                                        "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "btn btn-sm btn-danger",
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              _vm.deleteData(item.id)
-                            }
-                          }
-                        },
-                        [
-                          _vm.load == item.id
-                            ? _c("div", { staticClass: "loader" })
-                            : _c("span", [_vm._v("Hapus")])
-                        ]
-                      )
+                      _c("center", [
+                        _vm._v(
+                          "\n                                                    Kategory\n                                            "
+                        )
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    [
+                      _c("center", [
+                        _vm._v(
+                          "\n                                            Button Aksi\n                                        "
+                        )
+                      ])
                     ],
                     1
                   )
                 ])
-              })
-            )
-          ]
-        )
-      ])
-    ])
-  ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.filterItem, function(item) {
+                  return _c("tr", { key: item.id, staticClass: "gradeU" }, [
+                    _c(
+                      "td",
+                      [
+                        _c("center", [
+                          _vm._v(
+                            "\n                                                " +
+                              _vm._s(item.id) +
+                              "\n                                            "
+                          )
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c("center", [
+                          _vm._v(
+                            "\n                                                    " +
+                              _vm._s(item.name) +
+                              "\n                                                "
+                          )
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c("center", [
+                          _c("img", {
+                            attrs: {
+                              src: "../itemImages/" + item.picture[0].filename,
+                              width: "40px",
+                              alt: "images"
+                            }
+                          })
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c("center", [
+                          _vm._v(
+                            "\n                                            Rp " +
+                              _vm._s(item.price) +
+                              "\n                                        "
+                          )
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c("center", [
+                          _vm._v(
+                            "\n                                                " +
+                              _vm._s(item.merk) +
+                              "\n                                            "
+                          )
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      { staticClass: "center" },
+                      [
+                        _c("center", [
+                          _vm._v(
+                            "\n                                            " +
+                              _vm._s(item.stock) +
+                              "\n                                            "
+                          )
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c("center", [
+                          _vm._v(
+                            "\n                                               " +
+                              _vm._s(item.category.name) +
+                              "\n                                            "
+                          )
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "btn btn-sm btn-primary",
+                            attrs: {
+                              to: {
+                                name: "DetailContent",
+                                params: { id: item.id }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                                 Detail\n                                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-sm btn-danger",
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.dialog = true
+                              }
+                            }
+                          },
+                          [
+                            _vm.load == item.id
+                              ? _c("div", { staticClass: "loader" })
+                              : _c("span", [_vm._v("Hapus")])
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                })
+              )
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { width: "500" },
+          model: {
+            value: _vm.dialog,
+            callback: function($$v) {
+              _vm.dialog = $$v
+            },
+            expression: "dialog"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c(
+                "v-card-title",
+                {
+                  staticClass: "headline grey lighten-2",
+                  attrs: { "primary-title": "" }
+                },
+                [
+                  _vm._v(
+                    "\n                                    Delete Item.\n                                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("v-card-text", [
+                _vm._v(
+                  "\n                                    Are you sure to delete this item ?\n                                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("v-divider"),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      on: {
+                        click: function($event) {
+                          _vm.dialog = false
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                        Cancel\n                                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      on: {
+                        click: function($event) {
+                          _vm.deleteData(_vm.item.id)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                        Delete\n                                    "
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {

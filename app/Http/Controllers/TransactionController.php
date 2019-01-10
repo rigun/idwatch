@@ -10,11 +10,12 @@ use App\TransactionDetail;
 use App\Item;
 use Illuminate\Http\Request;
 use App\Exports\ReportItem;
-use Maatwebsite\Excel\Facades\Excel;
+// use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Excel;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use DateTime;
-
+use PDF;
 class TransactionController extends Controller
 {
     private $photos_path;
@@ -34,7 +35,10 @@ class TransactionController extends Controller
     }
     public function export() 
     {
-        return Excel::download(new ReportItem(1), 'report.pdf');
+        // return Excel::download(new ReportItem(1), 'report.pdf');
+        $reports = Transaction::with(['detail','user'])->get();
+        $pdf = PDF::loadView('pdf.report', $reports);
+        return $pdf->download('report.pdf');
     }
 
     /**

@@ -58,10 +58,11 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 
     Route::post('/comment','CommentController@store');
     Route::delete('/comment/{id}','CommentController@destroy');
-    Route::get('/report/download','TransactionController@export');
 
 
 });
+Route::get('/report/download','TransactionController@export');
+
 Route::get('/dashboard/graph','TransactionController@graph');
 
 Route::get('/rajaongkir/provinsi','RajaOngkirController@provinsi');

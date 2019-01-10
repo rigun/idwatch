@@ -37,7 +37,8 @@ class TransactionController extends Controller
     {
         // return Excel::download(new ReportItem(1), 'report.pdf');
         $data = Transaction::with(['detail','user'])->get();
-        $pdf = PDF::loadView('pdf.report', $data);
+        view()->share('data',$data);
+        $pdf = PDF::loadView('pdf.report');
         return $pdf->download('report.pdf');
     }
 

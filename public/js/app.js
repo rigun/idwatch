@@ -27595,192 +27595,195 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-				data: function data() {
-								return {
-												item: {
-																name: '',
-																slug: '',
-																category: 'Category',
-																category_id: '',
-																stock: null,
-																price: null,
-																type: 'Digital',
-																merk: 'Daniel Wellington',
-																description: '',
-																weight: null
-												},
-												categories: [],
-												filenames: [],
-												data: new FormData(),
-												percentCompleted: 0,
-												msg: '',
-												snackbar: false,
-												load: false
-								};
-				},
-				mounted: function mounted() {
-								this.getCategory(); //mengambil kategori
-				},
+	data: function data() {
+		return {
+			item: {
+				name: '',
+				slug: '',
+				category: 'Category',
+				category_id: '',
+				stock: null,
+				price: null,
+				type: 'Digital',
+				merk: 'Daniel Wellington',
+				description: '',
+				weight: null
+			},
+			categories: [],
+			filenames: [],
+			data: new FormData(),
+			percentCompleted: 0,
+			msg: '',
+			snackbar: false,
+			load: false
+		};
+	},
+	mounted: function mounted() {
+		this.getCategory(); //mengambil kategori
+	},
 
-				methods: {
-								updateSlug: function updateSlug(val) {
-												//memperbaharui slug
-												this.item.slug = val;
-								},
-								slugCopied: function slugCopied(type, msg, val) {
-												//menyalin slug
-												notifications.toast(msg, { type: 'is-' + type });
-								},
-								getCategory: function getCategory() {
-												var _this = this;
+	methods: {
+		updateSlug: function updateSlug(val) {
+			//memperbaharui slug
+			this.item.slug = val;
+		},
+		slugCopied: function slugCopied(type, msg, val) {
+			//menyalin slug
+			notifications.toast(msg, { type: 'is-' + type });
+		},
+		getCategory: function getCategory() {
+			var _this = this;
 
-												//mengambil kategori
-												var uri = '/api/category';
-												axios.get(uri).then(function (response) {
-																_this.categories = response.data;
-																_this.$nextTick(function () {
-																				//memanggil method ketika konten selesai dirender
-																				this.$parent.refresh(); //memanggil fungsi refresh pada parent
-																});
-												});
-								},
-								validate: function validate() {
-												//validasi inputan
-												if (this.filenames.length <= 0) {
-																this.msg = this.msg + 'Please add at least one picture,';
-												}
-												if (this.item.name == '' || this.item.category_id == '' || this.item.stock == null || this.item.price == null || this.item.weight == null || this.item.merk == '' || this.item.description == '') {
-																this.msg = this.msg + ' Please fill the blank field,';
-												}
-												if (this.item.stock < 1) {
-																this.msg = this.msg + ' Stock must be one or more,';
-												}
-												if (this.item.price <= 99999) {
-																this.msg = this.msg + ' Price minimum 100000';
-												}
-												if (this.item.price > 99999999) {
-																this.msg = this.msg + ' Price cant more than 99999999';
-												}
-												if (this.item.weight <= 9) {
-																this.msg = this.msg + ' Weight minimum 10';
-												}
-												if (this.item.weight > 999) {
-																this.msg = this.msg + ' Weight cant more than 999';
-												}
-												if (isNaN(this.item.stock)) {
-																this.msg = this.msg + ' Stock must be number,';
-												}
-												if (isNaN(this.item.price)) {
-																this.msg = this.msg + ' Price must be number,';
-												}
-												if (isNaN(this.item.weight)) {
-																this.msg = this.msg + ' Weight must be number,';
-												}
+			//mengambil kategori
+			var uri = '/api/category';
+			axios.get(uri).then(function (response) {
+				_this.categories = response.data;
+				_this.$nextTick(function () {
+					//memanggil method ketika konten selesai dirender
+					this.$parent.refresh(); //memanggil fungsi refresh pada parent
+				});
+			});
+		},
+		validate: function validate() {
+			//validasi inputan
+			if (this.filenames.length <= 0) {
+				this.msg = this.msg + 'Please add at least one picture,';
+			}
+			if (this.item.name == '' || this.item.category_id == '' || this.item.stock == null || this.item.price == null || this.item.weight == null || this.item.merk == '' || this.item.description == '') {
+				this.msg = this.msg + ' Please fill the blank field,';
+			}
+			if (this.item.stock < 1) {
+				this.msg = this.msg + ' Stock must be one or more,';
+			}
+			if (this.item.price <= 99999) {
+				this.msg = this.msg + ' Price minimum 100000';
+			}
+			if (this.item.price > 99999999) {
+				this.msg = this.msg + ' Price cant more than 99999999';
+			}
+			if (this.item.weight <= 9) {
+				this.msg = this.msg + ' Weight minimum 10';
+			}
+			if (this.item.weight > 99) {
+				this.msg = this.msg + ' Weight cant more than 99';
+			}
+			if (this.item.stock > 9999) {
+				this.msg = this.msg + ' Weight cant more than 9999';
+			}
+			if (isNaN(this.item.stock)) {
+				this.msg = this.msg + ' Stock must be number,';
+			}
+			if (isNaN(this.item.price)) {
+				this.msg = this.msg + ' Price must be number,';
+			}
+			if (isNaN(this.item.weight)) {
+				this.msg = this.msg + ' Weight must be number,';
+			}
 
-												if (this.msg != '') {
-																this.snackbar = true;
-																return false;
-												}
-												return true;
-								},
+			if (this.msg != '') {
+				this.snackbar = true;
+				return false;
+			}
+			return true;
+		},
 
-								//picture
-								getfilenameSize: function getfilenameSize() {
-												var _this2 = this;
+		//picture
+		getfilenameSize: function getfilenameSize() {
+			var _this2 = this;
 
-												// mengambil ukuran dari file yang diupload
+			// mengambil ukuran dari file yang diupload
 
-												this.upload_size = 0; // Reset to beginningƒ
-												this.filenames.map(function (item) {
-																_this2.upload_size += parseInt(item.size);
-												});
+			this.upload_size = 0; // Reset to beginningƒ
+			this.filenames.map(function (item) {
+				_this2.upload_size += parseInt(item.size);
+			});
 
-												this.upload_size = Number(this.upload_size.toFixed(1));
-												this.$forceUpdate();
-								},
-								prepareFields: function prepareFields() {
-												//mempersiapakan data data yang akan diupload ke server
-												if (!this.validate()) {
-																return false;
-												}
-												if (this.filenames.length > 0) {
-																for (var i = 0; i < this.filenames.length; i++) {
-																				var filename = this.filenames[i];
-																				this.data.append('filename[]', filename);
-																}
-												}
-												this.data.append('name', this.item.name);
-												this.data.append('slug', this.item.slug);
-												this.data.append('stock', this.item.stock);
-												this.data.append('merk', this.item.merk);
-												this.data.append('type', this.item.type);
-												this.data.append('price', this.item.price);
-												this.data.append('description', this.item.description);
-												this.data.append('category_id', this.item.category_id);
-												this.data.append('weight', this.item.weight);
-												return true;
-								},
-								removefilename: function removefilename(filename) {
-												//menghapus file yang sudah diupload
+			this.upload_size = Number(this.upload_size.toFixed(1));
+			this.$forceUpdate();
+		},
+		prepareFields: function prepareFields() {
+			//mempersiapakan data data yang akan diupload ke server
+			if (!this.validate()) {
+				return false;
+			}
+			if (this.filenames.length > 0) {
+				for (var i = 0; i < this.filenames.length; i++) {
+					var filename = this.filenames[i];
+					this.data.append('filename[]', filename);
+				}
+			}
+			this.data.append('name', this.item.name);
+			this.data.append('slug', this.item.slug);
+			this.data.append('stock', this.item.stock);
+			this.data.append('merk', this.item.merk);
+			this.data.append('type', this.item.type);
+			this.data.append('price', this.item.price);
+			this.data.append('description', this.item.description);
+			this.data.append('category_id', this.item.category_id);
+			this.data.append('weight', this.item.weight);
+			return true;
+		},
+		removefilename: function removefilename(filename) {
+			//menghapus file yang sudah diupload
 
-												this.filenames.splice(this.filenames.indexOf(filename), 1);
+			this.filenames.splice(this.filenames.indexOf(filename), 1);
 
-												this.getfilenameSize();
-								},
-								uploadFieldChange: function uploadFieldChange(e) {
-												//mengupload file ke browser
-												var files = e.target.files || e.dataTransfer.files;
-												if (!files.length) return;
-												for (var i = files.length - 1; i >= 0; i--) {
-																this.filenames.push(files[i]);
-												}
-												document.getElementById("filenames").value = [];
-								},
-								sendData: function sendData() {
-												//mengirim data ke server
-												if (!this.prepareFields()) {
-																return false;
-												}
-												this.percentCompleted = 0;
-												this.load = true;
-												var config = {
-																headers: { 'Content-Type': 'multipart/form-data',
-																				Authorization: 'Bearer ' + localStorage.getItem('token') },
-																onUploadProgress: function (progressEvent) {
-																				this.percentCompleted = Math.round(progressEvent.loaded * 100 / progressEvent.total);
-																				this.$forceUpdate();
-																}.bind(this)
-												};
-												axios.post('/api/item', this.data, config).then(function (response) {
-																this.resetData();
-																this.load = false;
-												}.bind(this)).catch(function (error) {
-																this.load = false;
-												});
-								},
-								resetData: function resetData() {
-												//mengosongkan kembali data yang sudah terisi
-												this.data = new FormData();
-												this.filenames = [];
-												this.item = {
-																name: '',
-																slug: '',
-																category: 'Category',
-																category_id: '',
-																stock: null,
-																price: null,
-																type: 'Digital',
-																merk: 'Daniel Wellington',
-																weight: null,
-																description: ''
-												};
-								},
-								previewBarang: function previewBarang(index) {
-												//menampilkan data yang diupload ke browser sebelum dikirimkan ke server
-												return URL.createObjectURL(this.filenames[index]);
-								}
-				},
-				computed: {}
+			this.getfilenameSize();
+		},
+		uploadFieldChange: function uploadFieldChange(e) {
+			//mengupload file ke browser
+			var files = e.target.files || e.dataTransfer.files;
+			if (!files.length) return;
+			for (var i = files.length - 1; i >= 0; i--) {
+				this.filenames.push(files[i]);
+			}
+			document.getElementById("filenames").value = [];
+		},
+		sendData: function sendData() {
+			//mengirim data ke server
+			if (!this.prepareFields()) {
+				return false;
+			}
+			this.percentCompleted = 0;
+			this.load = true;
+			var config = {
+				headers: { 'Content-Type': 'multipart/form-data',
+					Authorization: 'Bearer ' + localStorage.getItem('token') },
+				onUploadProgress: function (progressEvent) {
+					this.percentCompleted = Math.round(progressEvent.loaded * 100 / progressEvent.total);
+					this.$forceUpdate();
+				}.bind(this)
+			};
+			axios.post('/api/item', this.data, config).then(function (response) {
+				this.resetData();
+				this.load = false;
+			}.bind(this)).catch(function (error) {
+				this.load = false;
+			});
+		},
+		resetData: function resetData() {
+			//mengosongkan kembali data yang sudah terisi
+			this.data = new FormData();
+			this.filenames = [];
+			this.item = {
+				name: '',
+				slug: '',
+				category: 'Category',
+				category_id: '',
+				stock: null,
+				price: null,
+				type: 'Digital',
+				merk: 'Daniel Wellington',
+				weight: null,
+				description: ''
+			};
+		},
+		previewBarang: function previewBarang(index) {
+			//menampilkan data yang diupload ke browser sebelum dikirimkan ke server
+			return URL.createObjectURL(this.filenames[index]);
+		}
+	},
+	computed: {}
 });
 
 /***/ }),
@@ -30108,7 +30111,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				this.msg = this.msg + ' Please fill the blank field';
 			}
 			if (this.item.stock < 1) {
-				this.msg = this.msg + ' Stock must be one or more';
+				this.msg = this.msg + ' Stock must be one or more,';
 			}
 			if (this.item.price <= 99999) {
 				this.msg = this.msg + ' Price minimum 100000';
@@ -30119,10 +30122,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			if (this.item.weight <= 9) {
 				this.msg = this.msg + ' Weight minimum 10';
 			}
-			if (this.item.weight > 999) {
-				this.msg = this.msg + ' Weight cant more than 999';
+			if (this.item.weight > 99) {
+				this.msg = this.msg + ' Weight cant more than 99';
 			}
-
+			if (this.item.stock > 9999) {
+				this.msg = this.msg + ' Weight cant more than 9999';
+			}
 			if (isNaN(this.item.stock)) {
 				this.msg = this.msg + ' Stock must be number';
 			}

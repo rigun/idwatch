@@ -197,8 +197,11 @@ export default {
 			if(this.item.weight <= 9){
 				this.msg = this.msg + ' Weight minimum 10'
 			}
-			if(this.item.weight > 999){
-				this.msg = this.msg + ' Weight cant more than 999'
+			if(this.item.weight > 99){
+				this.msg = this.msg + ' Weight cant more than 99'
+			}
+			if(this.item.stock > 9999){
+				this.msg = this.msg + ' Weight cant more than 9999'
 			}
 			if(isNaN(this.item.stock)){
 				this.msg = this.msg + ' Stock must be number,'

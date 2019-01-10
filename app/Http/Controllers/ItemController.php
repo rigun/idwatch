@@ -24,11 +24,11 @@ class ItemController extends Controller
      */
     public function index()
     {
-        return response()->json(Item::with('picture','category')->get());
+        return response()->json(Item::where('status',1)->with('picture','category')->get());
     }
     public function showAll()
     {
-        return response()->json(Item::with('picture','category')->get());
+        return response()->json(Item::where('status',1)->with('picture','category')->get());
     }
 
     public function trash(){
@@ -45,7 +45,7 @@ class ItemController extends Controller
         return "Success";
     }
     public function search($search){
-            return response()->json(Item::where('name','LIKE','%'.$search.'%')->orWhere('merk','LIKE','%'.$search.'%')->with('picture','category')->get());
+            return response()->json(Item::where([['name','LIKE','%'.$search.'%'],['status',1]])->orWhere([['merk','LIKE','%'.$search.'%'],['status',1]])->with('picture','category')->get());
     }
   
     /**
@@ -122,20 +122,20 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        return Item::where('id',$id)->with('picture','category')->first();
+        return Item::where([['id',$id],['status',1]])->with('picture','category')->first();
     }
     public function showByCategory($type, $cat)
     {
         if($cat == 'All' && $type == 'All'){
-            return response()->json(Item::with('picture','category')->get());
+            return response()->json(Item::where('status',1)->with('picture','category')->get());
         }else if( $cat == 'All' && $type != 'All'){
-            return response()->json(Item::where('type', $type)->with('picture','category')->get());
+            return response()->json(Item::where([['type', $type],['status',1]])->with('picture','category')->get());
         }
         $cat_id = Category::where('name',$cat)->first()->id;
         if($type == 'All'){
-            return response()->json(Item::where([['category_id',$cat_id]])->with('picture','category')->get());
+            return response()->json(Item::where([['category_id',$cat_id],['status',1]])->with('picture','category')->get());
         }else{
-            return response()->json(Item::where([['category_id',$cat_id],['type',$type]])->with('picture','category')->get());
+            return response()->json(Item::where([['category_id',$cat_id],['type',$type],['status',1]])->with('picture','category')->get());
         }
     }
     public function showBySlug($slug)
@@ -222,7 +222,8 @@ class ItemController extends Controller
             return response()->json(['message' => 'Sorry file does not exist'], 400);
         }
 
-        $item->delete();
+        $item->status = 0;
+        $item->save();
 
         return "Terhapus";
     }

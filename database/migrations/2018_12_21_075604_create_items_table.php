@@ -23,6 +23,7 @@ class CreateItemsTable extends Migration
             $table->double('price');
             $table->double('weight');
             $table->text('description');
+            $table->integer('status')->default(1);
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')
                   ->references('id')->on('categories')

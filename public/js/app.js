@@ -28613,7 +28613,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //menghitung total belanja
             var sum = 0;
             for (var i = 0; i < this.reports.length; i++) {
-                sum = sum + this.reports[i].total;
+                if (this.reports[i].status > 2) {
+                    sum = parseInt(sum) + parseInt(this.reports[i].total);
+                }
             }
             return sum;
         }

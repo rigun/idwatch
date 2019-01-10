@@ -28978,6 +28978,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -29076,9 +29093,53 @@ var render = function() {
                           },
                           _vm._l(confirm.detail, function(item) {
                             return _c("tr", { key: item.id }, [
-                              _c("td", [_vm._v(_vm._s(item.cart.item.name))]),
-                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(item.cart.item.name))])
+                            ])
+                          })
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "cell-title" }, [
+                      _c("div", [
+                        _c(
+                          "table",
+                          {
+                            staticClass: "inner-table",
+                            staticStyle: { border: "none" },
+                            attrs: { width: "100%" }
+                          },
+                          _vm._l(confirm.detail, function(item) {
+                            return _c("tr", { key: item.id }, [
                               _c("td", [_vm._v(_vm._s(item.cart.quantity))])
+                            ])
+                          })
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "cell-title" }, [
+                      _c("div", [
+                        _c(
+                          "table",
+                          {
+                            staticClass: "inner-table",
+                            staticStyle: { border: "none" },
+                            attrs: { width: "100%" }
+                          },
+                          _vm._l(confirm.detail, function(item) {
+                            return _c("tr", { key: item.id }, [
+                              _c("td", [
+                                _c("img", {
+                                  attrs: {
+                                    src:
+                                      "../../itemImages/" +
+                                      item.cart.item.picture[0].filename,
+                                    width: "40px",
+                                    alt: "images"
+                                  }
+                                })
+                              ])
                             ])
                           })
                         )
@@ -29189,11 +29250,13 @@ var staticRenderFns = [
     return _c("tr", { staticClass: "heading" }, [
       _c("td", { staticClass: "cell-icon" }),
       _vm._v(" "),
-      _c("td", { staticClass: "cell-title" }, [
-        _vm._v("List Barang & jumlahnya")
-      ]),
+      _c("td", { staticClass: "cell-title" }, [_vm._v("List Barang")]),
       _vm._v(" "),
-      _c("td", {}, [_vm._v("nama User")]),
+      _c("td", { staticClass: "cell-title" }, [_vm._v("Jumlahnya")]),
+      _vm._v(" "),
+      _c("td", { staticClass: "cell-title" }, [_vm._v("Gambar")]),
+      _vm._v(" "),
+      _c("td", {}, [_vm._v("Nama User")]),
       _vm._v(" "),
       _c("td", {}, [_vm._v("Alamat")]),
       _vm._v(" "),

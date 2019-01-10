@@ -15,7 +15,10 @@
                                                     Id Transaksi
                                                 </th>
                                                 <th>
-                                                    List Barang & jumlah
+                                                    List Barang
+                                                </th>
+                                                <th>
+                                                    jumlah
                                                 </th>
                                                 <th>
                                                     Total*
@@ -40,6 +43,12 @@
                                                     <table width="100%" style="border: none" class="inner-table">
                                                         <tr v-for="item in report.detail" :key="item.id">
                                                             <td>{{item.cart.item.name}}</td>
+                                                        </tr>
+                                                    </table>	
+                                                </td>
+                                                <td>
+                                                    <table width="100%" style="border: none" class="inner-table">
+                                                        <tr v-for="item in report.detail" :key="item.id">
                                                             <td>{{item.cart.quantity}}</td>
                                                         </tr>
                                                     </table>	

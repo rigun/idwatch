@@ -28588,6 +28588,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -28728,8 +28737,22 @@ var render = function() {
                         },
                         _vm._l(report.detail, function(item) {
                           return _c("tr", { key: item.id }, [
-                            _c("td", [_vm._v(_vm._s(item.cart.item.name))]),
-                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(item.cart.item.name))])
+                          ])
+                        })
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "table",
+                        {
+                          staticClass: "inner-table",
+                          staticStyle: { border: "none" },
+                          attrs: { width: "100%" }
+                        },
+                        _vm._l(report.detail, function(item) {
+                          return _c("tr", { key: item.id }, [
                             _c("td", [_vm._v(_vm._s(item.cart.quantity))])
                           ])
                         })
@@ -28806,7 +28829,13 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [
           _vm._v(
-            "\n                                                List Barang & jumlah\n                                            "
+            "\n                                                List Barang\n                                            "
+          )
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v(
+            "\n                                                jumlah\n                                            "
           )
         ]),
         _vm._v(" "),

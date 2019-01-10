@@ -28797,7 +28797,7 @@ var render = function() {
                   "td",
                   {
                     staticStyle: { "text-align": "right" },
-                    attrs: { colspan: "4" }
+                    attrs: { colspan: "5" }
                   },
                   [_vm._v("Total :")]
                 ),

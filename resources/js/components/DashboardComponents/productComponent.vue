@@ -123,7 +123,7 @@
                                                  <router-link :to="{name: 'DetailContent',  params: { id: item.id } }" class="btn btn-sm btn-primary" >
                                                      Detail
                                             </router-link>
-                                                <a class="btn btn-sm btn-danger" @click.prevent="dialog = true"><div class="loader" v-if="load == item.id"></div> <span v-else>Hapus</span> </a>
+                                                <a class="btn btn-sm btn-danger" @click.prevent="deleteData(item.id)"><div class="loader" v-if="load == item.id"></div> <span v-else>Hapus</span> </a>
 
                                             </td>
                                         </tr>
@@ -133,31 +133,6 @@
                         </div>
                         <!--/.module-->
 
-                        <v-dialog  v-model="dialog" width="500">
-                                    <v-card>
-                                        <v-card-title class="headline grey lighten-2" primary-title >
-                                        Delete Item.
-                                        </v-card-title>
-                                        <v-card-text>
-                                        Are you sure to delete this item ?
-                                        </v-card-text>
-                                        <v-divider></v-divider>
-                                        <v-card-actions>
-                                        <v-spacer></v-spacer>
-                                        <a
-                                            @click="dialog = false"
-                                        >
-                                            Cancel
-                                        </a>
-                                        
-                                        <a
-                                            @click="deleteData(item.id)"
-                                        >
-                                            Delete
-                                        </a>
-                                        </v-card-actions>
-                                    </v-card>
-                                    </v-dialog>
     </div>
 </template>
 <script>
@@ -168,7 +143,6 @@ export default {
             load: -1,
             search: '',
             merk: '-',
-            dialog: false,
         }
     },
     mounted(){
@@ -197,6 +171,10 @@ export default {
             
         },
         deleteData(id){ //menghapus data
+
+            if (!confirm("Are you sure you want to delete this item ?")) {
+               return;
+            } 
             this.load = id;
             let uri = '/api/item/'+id;
               axios.delete(uri,{
@@ -205,12 +183,10 @@ export default {
                   }
               }).then((response) => {
                   this.load = -1;
-                  this.dialog = false;
 
                 this.getData();
               }).catch(error => {
                   this.load = -1;
-                  this.dialog = false;
                 this.getData();
               })
         

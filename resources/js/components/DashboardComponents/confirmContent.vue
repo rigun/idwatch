@@ -43,7 +43,7 @@
                                     <table width="100%" style="border: none" class="inner-table">
                                                         <tr v-for="item in confirm.detail" :key="item.id">
                                                             <td>
-                                                <img :src="'../itemImages/' + item.cart.item.picture[0].filename" width="40px" alt="images">
+                                                <img :src="'../../itemImages/' + item.cart.item.picture[0].filename" width="40px" alt="images">
                                                             </td>
                                                         </tr>
                                                     </table>

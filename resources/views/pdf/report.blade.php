@@ -24,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-    @foreach ($reports as $report)
+    @foreach ($data as $report)
         <tr>
             <td>
                 {{$report->id}}

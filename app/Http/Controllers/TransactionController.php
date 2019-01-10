@@ -36,8 +36,8 @@ class TransactionController extends Controller
     public function export() 
     {
         // return Excel::download(new ReportItem(1), 'report.pdf');
-        $reports = Transaction::with(['detail','user'])->get();
-        $pdf = PDF::loadView('pdf.report', $reports);
+        $data = Transaction::with(['detail','user'])->get();
+        $pdf = PDF::loadView('pdf.report', $data);
         return $pdf->download('report.pdf');
     }
 

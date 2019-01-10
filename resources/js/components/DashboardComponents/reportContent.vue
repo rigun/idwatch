@@ -32,7 +32,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="odd gradeX" v-for="report in reports" :key="report.id">
+                                            <tr class="odd gradeX" v-for="report in reports" :key="report.id" :class="{'hidden' : report.status < 3}">
                                                 <td>
                                                     {{report.id}}
                                                 </td>
@@ -73,6 +73,9 @@
 <style>
 .inner-table tr > td{
     border: none;
+}
+.hidden{
+    display: none;
 }
 </style>
 

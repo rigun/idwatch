@@ -28594,12 +28594,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             reports: []
         };
+    },
+
+    computed: {
+        countTotal: function countTotal() {
+            //menghitung total belanja
+            var sum = 0;
+            for (var i = 0; i < this.reports.length; i++) {
+                sum = sum + this.reports[i].total;
+            }
+            return sum;
+        }
     },
     mounted: function mounted() {
         this.getReport(); //menampilkan data transaksi
@@ -28732,11 +28749,7 @@ var render = function() {
                     _c("td", [
                       _vm._v(
                         "\n                                                Rp " +
-                          _vm._s(
-                            parseInt(report.total) +
-                              parseInt(report.shipping) -
-                              parseInt(report.diskon)
-                          ) +
+                          _vm._s(parseInt(report.total)) +
                           "\n                                            "
                       )
                     ]),
@@ -28759,17 +28772,19 @@ var render = function() {
                           _vm._s(report.created_at) +
                           "\n                                            "
                       )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "center" }, [
-                      report.status < 3
-                        ? _c("span", [_vm._v("Belum terverfikiasi")])
-                        : _c("span", [_vm._v("Terverfikiasi")])
                     ])
                   ]
                 )
               })
-            )
+            ),
+            _vm._v(" "),
+            _c("tfoot", [
+              _c("tr", [
+                _c("td", { attrs: { colspan: "4" } }, [_vm._v("Total :")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.countTotal))])
+              ])
+            ])
           ]
         )
       ])
@@ -28788,7 +28803,7 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [
           _vm._v(
-            "\n                                                ZZZ\n                                            "
+            "\n                                                Id Transaksi\n                                            "
           )
         ]),
         _vm._v(" "),
@@ -28813,12 +28828,6 @@ var staticRenderFns = [
         _c("th", [
           _vm._v(
             "\n                                                Tanggal Transaksi\n                                            "
-          )
-        ]),
-        _vm._v(" "),
-        _c("th", [
-          _vm._v(
-            "\n                                                Status\n                                            "
           )
         ])
       ])

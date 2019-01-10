@@ -12,7 +12,7 @@
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    ZZZ
+                                                    Id Transaksi
                                                 </th>
                                                 <th>
                                                     List Barang & jumlah
@@ -26,9 +26,9 @@
                                                 <th>
                                                     Tanggal Transaksi
                                                 </th>
-                                                <th>
+                                                <!-- <th>
                                                     Status
-                                                </th>
+                                                </th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -45,7 +45,7 @@
                                                     </table>	
                                                 </td>
                                                 <td>
-                                                    Rp {{parseInt(report.total) + parseInt(report.shipping) - parseInt(report.diskon)}}
+                                                    Rp {{parseInt(report.total)}}
                                                 </td>
                                                 <td class="center">
                                                     <span v-if="report.status == 0">-</span>
@@ -55,13 +55,19 @@
                                                 <td class="center">
                                                     {{report.created_at}}
                                                 </td>
-                                                <td class="center">
+                                                <!-- <td class="center">
                                                     <span v-if="report.status < 3">Belum terverfikiasi</span>
                                                     <span v-else>Terverfikiasi</span>
-                                                </td>
+                                                </td> -->
                                             </tr>
                                             
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="4">Total :</td>
+                                                <td >{{countTotal}}</td>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
@@ -85,6 +91,15 @@ export default {
         return{
             reports: [],
         }
+    },
+    computed:{
+        countTotal(){ //menghitung total belanja
+            var sum=0;
+            for(let i=0;i< this.reports.length;i++){
+                sum = sum + this.reports[i].total
+            }
+            return sum;
+        },
     },
     mounted(){
         this.getReport(); //menampilkan data transaksi

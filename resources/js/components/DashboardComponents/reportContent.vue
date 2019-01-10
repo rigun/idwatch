@@ -64,8 +64,8 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <td colspan="4">Total :</td>
-                                                <td >{{countTotal}}</td>
+                                                <td colspan="4" style="text-align: right">Total :</td>
+                                                <td >Rp. {{countTotal}}</td>
                                             </tr>
                                         </tfoot>
                                     </table>

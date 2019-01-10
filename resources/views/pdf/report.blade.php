@@ -38,7 +38,7 @@
                     @endforeach
             </td>
             <td>
-                Rp {{$report->total + $report->shipping - $report->diskon}}
+                Rp {{$report->total}}
             </td>
             <td class="center">
             @if ($report->status == 0)
@@ -52,16 +52,15 @@
             <td class="center">
                 {{$report->created_at}}
             </td>
-            <td class="center">
-            @if ($report->status < 3)
-                <span>Belum terverfikiasi</span>
-            @else
-                <span>Terverfikiasi</span>
-            @endif
-            </td>
         </tr>
         @endforeach
     </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4" style="text-align: right">Total :</td>
+            <td >Rp. {{$countTotal}}</td>
+        </tr>
+    </tfoot>
 </table>
     </body>
 </html>

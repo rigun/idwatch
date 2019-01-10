@@ -28782,9 +28782,16 @@ var render = function() {
             _vm._v(" "),
             _c("tfoot", [
               _c("tr", [
-                _c("td", { attrs: { colspan: "4" } }, [_vm._v("Total :")]),
+                _c(
+                  "td",
+                  {
+                    staticStyle: { "text-align": "right" },
+                    attrs: { colspan: "4" }
+                  },
+                  [_vm._v("Total :")]
+                ),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.countTotal))])
+                _c("td", [_vm._v("Rp. " + _vm._s(_vm.countTotal))])
               ])
             ])
           ]

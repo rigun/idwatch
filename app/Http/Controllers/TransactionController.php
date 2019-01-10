@@ -37,7 +37,9 @@ class TransactionController extends Controller
     {
         // return Excel::download(new ReportItem(1), 'report.pdf');
         $data = Transaction::where('status','>=',3)->with(['detail','user'])->get();
-        view()->share('data',$data);
+        $countTotal = Transaction::where('status','>=',3)->with(['detail','user'])->sum('total');
+        
+        view()->share(['data' => $data,'countTotal' => $countTotal]);
         $pdf = PDF::loadView('pdf.report');
         return $pdf->download('report.pdf');
     }

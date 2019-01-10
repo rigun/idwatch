@@ -17315,7 +17315,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -17416,8 +17415,6 @@ var render = function() {
                   [
                     _vm.token != null
                       ? _c("ul", { staticClass: "nav pull-right" }, [
-                          _vm._m(2),
-                          _vm._v(" "),
                           _c(
                             "li",
                             {
@@ -17430,7 +17427,7 @@ var render = function() {
                               }
                             },
                             [
-                              _vm._m(3),
+                              _vm._m(2),
                               _vm._v(" "),
                               _c(
                                 "ul",
@@ -17543,17 +17540,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Admin ")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("a", { staticClass: "dropdown-toggle" }, [
-      _c("img", {
-        staticClass: "nav-avatar",
-        attrs: { src: "http://127.0.0.1:8000/images/user.png" }
-      }),
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Admin ")]),
       _vm._v(" "),
       _c("b", { staticClass: "caret" })
     ])
@@ -29117,13 +29105,7 @@ var render = function() {
                               "a",
                               {
                                 staticClass: "btn btn-primary",
-                                attrs: { href: "#" },
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    _vm.verifikasi(confirm.id, confirm.status)
-                                  }
-                                }
+                                attrs: { href: "#" }
                               },
                               [_vm._v("Sudah Dikonfirmasi")]
                             )

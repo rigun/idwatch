@@ -18,9 +18,6 @@
             <th>
                 Tanggal Transaksi
             </th>
-            <th>
-                Status
-            </th>
         </tr>
     </thead>
     <tbody>

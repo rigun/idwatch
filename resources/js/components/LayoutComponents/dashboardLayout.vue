@@ -14,9 +14,8 @@
 
                    
                     <ul class="nav pull-right" v-if="token != null" >
-                        <li><a href="#">Admin </a></li>
                         <li class="nav-user dropdown" @click.prevent="togDrop()"><a class="dropdown-toggle" >
-                                <img src="http://127.0.0.1:8000/images/user.png" class="nav-avatar" />
+                            <a href="#">Admin </a>
                                 <b class="caret"></b></a>
                             <ul class="dropdown-menu" :class="{'showDropdown': dropdown}">
                                 <li> <router-link :to="{name: 'ChangePassword'}">

@@ -13,8 +13,10 @@
                         <tbody>
                             <tr class="heading">
                                 <td class="cell-icon"></td>
-                                <td class="cell-title">List Barang & jumlahnya</td>
-                                <td class="">nama User</td>
+                                <td class="cell-title">List Barang</td>
+                                <td class="cell-title">Jumlahnya</td>
+                                <td class="cell-title">Gambar</td>
+                                <td class="">Nama User</td>
                                 <td class="">Alamat</td>
                                 <td class="cell-time ">Total*</td>
                                 <td class="cell-time ">Download Bukti</td>
@@ -27,7 +29,22 @@
                                     <table width="100%" style="border: none" class="inner-table">
                                                         <tr v-for="item in confirm.detail" :key="item.id">
                                                             <td>{{item.cart.item.name}}</td>
+                                                        </tr>
+                                                    </table>
+                                                    </div></td>
+                                <td class="cell-title"><div>
+                                    <table width="100%" style="border: none" class="inner-table">
+                                                        <tr v-for="item in confirm.detail" :key="item.id">
                                                             <td>{{item.cart.quantity}}</td>
+                                                        </tr>
+                                                    </table>
+                                                    </div></td>
+                                <td class="cell-title"><div>
+                                    <table width="100%" style="border: none" class="inner-table">
+                                                        <tr v-for="item in confirm.detail" :key="item.id">
+                                                            <td>
+                                                <img :src="'../itemImages/' + item.cart.item.picture[0].filename" width="40px" alt="images">
+                                                            </td>
                                                         </tr>
                                                     </table>
                                                     </div></td>

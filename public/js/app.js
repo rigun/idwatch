@@ -27668,7 +27668,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				this.msg = this.msg + ' Weight cant more than 99';
 			}
 			if (this.item.stock > 9999) {
-				this.msg = this.msg + ' Weight cant more than 9999';
+				this.msg = this.msg + ' Stock cant more than 9999';
 			}
 			if (isNaN(this.item.stock)) {
 				this.msg = this.msg + ' Stock must be number,';
@@ -30126,7 +30126,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				this.msg = this.msg + ' Weight cant more than 99';
 			}
 			if (this.item.stock > 9999) {
-				this.msg = this.msg + ' Weight cant more than 9999';
+				this.msg = this.msg + ' Stock cant more than 9999';
 			}
 			if (isNaN(this.item.stock)) {
 				this.msg = this.msg + ' Stock must be number';

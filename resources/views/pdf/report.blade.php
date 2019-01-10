@@ -7,7 +7,10 @@
                 Id Transaksi
             </th>
             <th>
-                List Barang dan jumlah
+                List Barang 
+            </th>
+            <th>
+                Jumlah
             </th>
             <th>
                 Total*
@@ -28,7 +31,15 @@
             </td>
             <td>
                     @foreach ($report->detail as $item)
-                    {{$item->cart->item->name}} ({{$item->cart->quantity}}) 
+                    {{$item->cart->item->name}}
+                        @if(!$loop->last) 
+                            <br>
+                        @endif
+                    @endforeach
+            </td>
+            <td>
+                    @foreach ($report->detail as $item)
+                    {{$item->cart->quantity}}
                         @if(!$loop->last) 
                             <br>
                         @endif
@@ -54,7 +65,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="4" style="text-align: right">Total :</td>
+            <td colspan="5" style="text-align: right">Total :</td>
             <td >Rp. {{$countTotal}}</td>
         </tr>
     </tfoot>

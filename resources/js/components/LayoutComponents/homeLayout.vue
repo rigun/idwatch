@@ -142,6 +142,66 @@
                         </ul>
                     </div>
                 </nav>
+                <div class="loginareamobile">
+                            <ul class="navbar-nav justify-content-end">
+                            <li class="cart_cart" v-if="token != null" >
+                                 <router-link :to="{name: 'Cart'}" class="nav-link" >
+                                   <i class="icon-handbag icons"></i>
+                                <span>{{count}}</span>
+
+                                </router-link>
+                            </li>
+                            <li class="user_icon" v-if="token == null">
+                                <router-link :to="{name: 'LoginUser'}" class="nav-link"  >
+                                    <i class="icon-login icons"></i>
+                                </router-link>
+                                </li>
+                            <li class="user_icon" v-if="token != null">
+
+                                <v-dialog
+                                    v-model="dialog"
+                                    width="500"
+                                    >
+
+                                        <a slot="activator" class="nav-link" >
+                                            <i class="icon-logout icons"></i>
+                                        </a>
+
+
+                                    <v-card>
+                                        <v-card-title
+                                        class="headline grey lighten-2"
+                                        primary-title
+                                        >
+                                        Keluar
+                                        </v-card-title>
+
+                                        <v-card-text>
+                                        Apakah anda yakin ingin keluar ?
+                                        </v-card-text>
+
+                                        <v-divider></v-divider>
+
+                                        <v-card-actions>
+                                        <v-spacer></v-spacer>
+                                        <a
+                                            @click="dialog = false"
+                                        >
+                                            Batal
+                                        </a>
+
+                                            <router-link :to="{name: 'Logout'}"   >
+                                                    Keluar
+                                            </router-link>
+                                        </v-card-actions>
+                                    </v-card>
+                                    </v-dialog>
+                                
+                                </li>
+
+                        </ul>
+                                
+                </div>
                 <div class="advanced_search_area">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" aria-label="Search" v-model="search">
@@ -249,6 +309,31 @@
     
 </template>
 <style scoped>
+.loginareamobile .nav-link{
+    width: 51px;
+    height: 46px;
+    border: solid 1px;
+    text-align: center;
+    font-size: 20px;
+}
+.loginareamobile ul{
+    display: inline-block;
+}
+.loginareamobile ul > li{
+    display: inline-block;
+}
+.loginareamobile{
+    display: none
+}
+.loginareamobile .navbar-nav{
+    margin-left: auto;
+}
+
+@media (max-width: 991px){
+.loginareamobile{
+    display: flex;
+}
+}
 .dropActive{
     color: #d91522 !important;
 }

@@ -16056,7 +16056,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.dropActive[data-v-2f23b55d]{\r\n    color: #d91522 !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.loginareamobile .nav-link[data-v-2f23b55d]{\r\n    width: 51px;\r\n    height: 46px;\r\n    border: solid 1px;\r\n    text-align: center;\r\n    font-size: 20px;\n}\n.loginareamobile ul[data-v-2f23b55d]{\r\n    display: inline-block;\n}\n.loginareamobile ul > li[data-v-2f23b55d]{\r\n    display: inline-block;\n}\n.loginareamobile[data-v-2f23b55d]{\r\n    display: none\n}\n.loginareamobile .navbar-nav[data-v-2f23b55d]{\r\n    margin-left: auto;\n}\n@media (max-width: 991px){\n.loginareamobile[data-v-2f23b55d]{\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\n}\n}\n.dropActive[data-v-2f23b55d]{\r\n    color: #d91522 !important;\n}\r\n", ""]);
 
 // exports
 
@@ -16100,6 +16100,91 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -16826,6 +16911,146 @@ var render = function() {
               )
             ]
           ),
+          _vm._v(" "),
+          _c("div", { staticClass: "loginareamobile" }, [
+            _c("ul", { staticClass: "navbar-nav justify-content-end" }, [
+              _vm.token != null
+                ? _c(
+                    "li",
+                    { staticClass: "cart_cart" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: "Cart" } }
+                        },
+                        [
+                          _c("i", { staticClass: "icon-handbag icons" }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v(_vm._s(_vm.count))])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.token == null
+                ? _c(
+                    "li",
+                    { staticClass: "user_icon" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: "LoginUser" } }
+                        },
+                        [_c("i", { staticClass: "icon-login icons" })]
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.token != null
+                ? _c(
+                    "li",
+                    { staticClass: "user_icon" },
+                    [
+                      _c(
+                        "v-dialog",
+                        {
+                          attrs: { width: "500" },
+                          model: {
+                            value: _vm.dialog,
+                            callback: function($$v) {
+                              _vm.dialog = $$v
+                            },
+                            expression: "dialog"
+                          }
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "nav-link",
+                              attrs: { slot: "activator" },
+                              slot: "activator"
+                            },
+                            [_c("i", { staticClass: "icon-logout icons" })]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-card",
+                            [
+                              _c(
+                                "v-card-title",
+                                {
+                                  staticClass: "headline grey lighten-2",
+                                  attrs: { "primary-title": "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                      Keluar\n                                      "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("v-card-text", [
+                                _vm._v(
+                                  "\n                                      Apakah anda yakin ingin keluar ?\n                                      "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("v-divider"),
+                              _vm._v(" "),
+                              _c(
+                                "v-card-actions",
+                                [
+                                  _c("v-spacer"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      on: {
+                                        click: function($event) {
+                                          _vm.dialog = false
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                          Batal\n                                      "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "router-link",
+                                    { attrs: { to: { name: "Logout" } } },
+                                    [
+                                      _vm._v(
+                                        "\n                                                  Keluar\n                                          "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e()
+            ])
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "advanced_search_area" }, [
             _c("div", { staticClass: "input-group" }, [

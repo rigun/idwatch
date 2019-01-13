@@ -21944,6 +21944,12 @@ i:before {
 }
 
 @media (max-width: 575px) {
+  .top_header_middle a {
+    display: block;
+    line-height: 26px;
+    display: none;
+  }
+
   .top_right_header {
     display: none;
   }
@@ -21969,6 +21975,10 @@ i:before {
     padding-left: 18px;
     padding-top: 25px;
     padding-bottom: 25px;
+  }
+
+  .carousel_top_header {
+    display: none;
   }
 
   .from_blog_item {

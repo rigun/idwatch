@@ -20112,6 +20112,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -20536,7 +20539,10 @@ var render = function() {
                     _c("div", { staticClass: "calculate_shop_inner" }, [
                       _c(
                         "div",
-                        { staticClass: "form-group col-lg-6 select-custom" },
+                        {
+                          staticClass: "form-group col-lg-6 select-custom",
+                          staticStyle: { display: "flex" }
+                        },
                         [
                           _c(
                             "select",
@@ -20589,6 +20595,21 @@ var render = function() {
                               })
                             ],
                             2
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-info",
+                              staticStyle: { "margin-left": "auto" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.getCity()
+                                }
+                              }
+                            },
+                            [_vm._v("City")]
                           )
                         ]
                       ),
@@ -20597,7 +20618,8 @@ var render = function() {
                         ? _c(
                             "div",
                             {
-                              staticClass: "form-group col-lg-6 select-custom"
+                              staticClass: "form-group col-lg-6 select-custom",
+                              staticStyle: { display: "flex" }
                             },
                             [
                               _c(
@@ -20659,6 +20681,21 @@ var render = function() {
                                   })
                                 ],
                                 2
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-info",
+                                  staticStyle: { "margin-left": "auto" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      _vm.getCost()
+                                    }
+                                  }
+                                },
+                                [_vm._v("Cost")]
                               )
                             ]
                           )

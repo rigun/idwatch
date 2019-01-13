@@ -60,17 +60,20 @@
                         <div class="calculate_shoping_area">
                             <h3 class="cart_single_title">Hitung biaya pengiriman anda<span><i class="icon_minus-06"></i></span></h3>
                             <div class="calculate_shop_inner">
-                                    <div class="form-group col-lg-6 select-custom">
+                                    <div class="form-group col-lg-6 select-custom" style="display:flex">
                                         <select v-model="provinsiTemp">
                                             <option :value="null">Pilih Provinsi Anda</option>
                                             <option v-for="provinsi in provinsis" :key="provinsi.province_id" :value="provinsi" @click.prevent="getCity()">{{provinsi.province}}</option>
                                         </select>
+                                        <button class="btn btn-info" style="margin-left: auto" @click.prevent="getCity()">City</button>
                                     </div>
-                                    <div class="form-group col-lg-6 select-custom" v-if="kotas.length > 0">
+
+                                    <div class="form-group col-lg-6 select-custom" v-if="kotas.length > 0"  style="display:flex">
                                         <select v-model="kotaTemp">
                                             <option :value="null">Pilih Kota Anda</option>
                                             <option v-for="kota in kotas" :key="kota.city_id" :value="kota" @click.prevent="getCost()">{{kota.type}} {{kota.city_name}}</option>
                                         </select>
+                                        <button class="btn btn-info" style="margin-left: auto" @click.prevent="getCost()">Cost</button>
                                     </div>
                                     <div class="form-group col-lg-12" v-if="jne.length > 0">
                                         Silahkan pilih biaya pengiriman yang diinginkan

@@ -85,9 +85,7 @@ export default {
         if(this.$route.params.type == null || this.$route.params.category == null){ //apabila type dan kategori pada parameter akses
             this.$router.push({name: 'Shop', params:{type : 'All', category : 'All'}}) //akan diset default dengan type nya adalah All dan kategorinya adalah Jam Tangan Pria
         }
-          if(localStorage.getItem('token') != null){
-                this.$parent.refresh();  //memanggil fungsi refresh pada parent
-        }
+       
         this.getData(); //mengambil data
 
     },

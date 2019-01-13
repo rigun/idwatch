@@ -72,9 +72,7 @@ export default {
     },
     mounted(){
         this.getData(); //mengambil data
-  if(localStorage.getItem('token') != null){
-                this.$parent.refresh();  //memanggil fungsi refresh pada parent
-        }
+ 
     },
     destroyed(){
     },

@@ -14687,6 +14687,7 @@ var DetailContent = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Detai
 var Discount = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Discount', __webpack_require__(134));
 var ChangePassword = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Discount', __webpack_require__(139));
 var Product = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Product', __webpack_require__(142));
+var Brand = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Brand', __webpack_require__(192));
 var routes = [{
     path: '/',
     component: HomeLayout,
@@ -14802,6 +14803,10 @@ var routes = [{
             name: 'Product',
             path: 'product',
             component: Product
+        }, {
+            name: 'Brand',
+            path: 'brand',
+            component: Brand
         }]
     }, {
         name: 'LoginAdmin',
@@ -17839,10 +17844,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get(uri).then(function (response) {
                 var items = response.data;
                 _this2.items = _.orderBy(items, ['created_at'], ['desc']);
-                _this2.$nextTick(function () {
-                    //memanggil method ketika konten selesai dirender
-                    this.$parent.refresh(); //memanggil fungsi refresh pada parent
-                });
             });
         },
         getSlider: function getSlider() {
@@ -19013,11 +19014,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             message: null
         };
     },
-    mounted: function mounted() {
-        if (localStorage.getItem('token') != null) {
-            this.$parent.refresh(); //memanggil fungsi refresh pada parent
-        }
-    },
+    mounted: function mounted() {},
 
     methods: {
         sendEmail: function sendEmail() {
@@ -19523,10 +19520,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var uri = '/api/category';
             axios.get(uri).then(function (response) {
                 _this.categories = response.data;
-                _this.$nextTick(function () {
-                    //memanggil method ketika konten selesai dirender
-                    this.$parent.refresh(); //memanggil fungsi refresh pada parent
-                });
             });
         }
     }
@@ -20336,10 +20329,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
             }).then(function (response) {
                 _this8.cart = response.data;
-                _this8.$nextTick(function () {
-                    //memanggil method ketika konten selesai dirender
-                    this.$parent.refresh(); //memanggil fungsi refresh pada parent
-                });
             });
         },
         showModal: function showModal(item) {
@@ -21723,7 +21712,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     this.getList();
                     this.getSlider();
                     this.getComment();
-                    this.$parent.refresh(); //memanggil fungsi refresh pada parent
                 });
             });
         },
@@ -22502,9 +22490,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {},
     mounted: function mounted() {
         this.getData(); //mengambil data
-        if (localStorage.getItem('token') != null) {
-            this.$parent.refresh(); //memanggil fungsi refresh pada parent
-        }
     },
     destroyed: function destroyed() {},
 
@@ -22954,9 +22939,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //apabila type dan kategori pada parameter akses
             this.$router.push({ name: 'Shop', params: { type: 'All', category: 'All' } }); //akan diset default dengan type nya adalah All dan kategorinya adalah Jam Tangan Pria
         }
-        if (localStorage.getItem('token') != null) {
-            this.$parent.refresh(); //memanggil fungsi refresh pada parent
-        }
+
         this.getData(); //mengambil data
     },
     destroyed: function destroyed() {},
@@ -23444,9 +23427,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {},
     mounted: function mounted() {
         this.getData(); //mengambil data
-        if (localStorage.getItem('token') != null) {
-            this.$parent.refresh(); //memanggil fungsi refresh pada parent
-        }
     },
     destroyed: function destroyed() {},
 
@@ -23989,10 +23969,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this.kota = _this.transaction.user.detail.kota;
                     _this.address = _this.transaction.user.detail.alamat;
                 }
-                _this.$nextTick(function () {
-                    //memanggil method ketika konten selesai dirender
-                    this.$parent.refresh(); //memanggil fungsi refresh pada parent
-                });
             });
         },
         placeOrder: function placeOrder() {
@@ -24981,10 +24957,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.id = response.data.id;
                 _this.file = response.data.file;
                 _this.diskon = response.data.diskon;
-                _this.$nextTick(function () {
-                    //memanggil method ketika konten selesai dirender
-                    this.$parent.refresh(); //memanggil fungsi refresh pada parent
-                });
             });
         },
         uploadFieldChange: function uploadFieldChange(e) {
@@ -25556,11 +25528,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        if (localStorage.getItem('token') != null) {
-            this.$parent.refresh(); //memanggil fungsi refresh pada parent
-        }
-    }
+   mounted: function mounted() {}
 });
 
 /***/ }),
@@ -26475,6 +26443,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -26487,9 +26456,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        refresh: function refresh() {
-            this.$parent.refresh();
-        },
         unconfirmCount: function unconfirmCount() {
             var _this = this;
 
@@ -26572,6 +26538,17 @@ var render = function() {
                         ])
                       ]
                     )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  [
+                    _c("router-link", { attrs: { to: { name: "Brand" } } }, [
+                      _c("i", { staticClass: "menu-icon icon-tasks" }),
+                      _vm._v("Brand ")
+                    ])
                   ],
                   1
                 )
@@ -27232,10 +27209,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }).then(function (response) {
                 _this.item = response.data;
-                _this.$nextTick(function () {
-                    //memanggil method ketika konten selesai dirender
-                    this.$parent.refresh(); //memanggil fungsi refresh pada parent
-                });
             });
         }
     }
@@ -27584,15 +27557,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -27605,7 +27569,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				stock: null,
 				price: null,
 				type: 'Digital',
-				merk: 'Daniel Wellington',
+				merk: '-',
 				description: '',
 				weight: null
 			},
@@ -27615,14 +27579,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			percentCompleted: 0,
 			msg: '',
 			snackbar: false,
-			load: false
+			load: false,
+			brands: []
 		};
 	},
 	mounted: function mounted() {
 		this.getCategory(); //mengambil kategori
+		this.read(); //mengambil data brand;
 	},
 
 	methods: {
+		read: function read() {
+			var _this = this;
+
+			var uri = '/api/brand';
+			var config = {
+				headers: {
+					Authorization: 'Bearer ' + localStorage.getItem('token') }
+			};
+			axios.get(uri, config).then(function (response) {
+				_this.brands = response.data;
+			}).catch(function (error) {});
+		},
+
 		updateSlug: function updateSlug(val) {
 			//memperbaharui slug
 			this.item.slug = val;
@@ -27632,16 +27611,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			notifications.toast(msg, { type: 'is-' + type });
 		},
 		getCategory: function getCategory() {
-			var _this = this;
+			var _this2 = this;
 
 			//mengambil kategori
 			var uri = '/api/category';
 			axios.get(uri).then(function (response) {
-				_this.categories = response.data;
-				_this.$nextTick(function () {
-					//memanggil method ketika konten selesai dirender
-					this.$parent.refresh(); //memanggil fungsi refresh pada parent
-				});
+				_this2.categories = response.data;
 			});
 		},
 		validate: function validate() {
@@ -27689,13 +27664,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 		//picture
 		getfilenameSize: function getfilenameSize() {
-			var _this2 = this;
+			var _this3 = this;
 
 			// mengambil ukuran dari file yang diupload
 
 			this.upload_size = 0; // Reset to beginningƒ
 			this.filenames.map(function (item) {
-				_this2.upload_size += parseInt(item.size);
+				_this3.upload_size += parseInt(item.size);
 			});
 
 			this.upload_size = Number(this.upload_size.toFixed(1));
@@ -27773,7 +27748,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				stock: null,
 				price: null,
 				type: 'Digital',
-				merk: 'Daniel Wellington',
+				merk: '-',
 				weight: null,
 				description: ''
 			};
@@ -28062,27 +28037,13 @@ var render = function() {
                       }
                     }
                   },
-                  [
-                    _c("option", [_vm._v("Daniel Wellington ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Fossil ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Alexandre Christie ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Casio ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Expedition ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Fossil ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Quicksilver ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Seiko ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Alba ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Olivia Burton ")])
-                  ]
+                  _vm._l(_vm.brands, function(br) {
+                    return _c(
+                      "option",
+                      { key: br.id, domProps: { value: br.brand } },
+                      [_vm._v(_vm._s(br.brand) + " ")]
+                    )
+                  })
                 )
               ])
             ]),
@@ -28635,11 +28596,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
             }).then(function (response) {
                 _this.reports = response.data;
-
-                _this.$nextTick(function () {
-                    //memanggil method ketika konten selesai dirender
-                    this.$parent.refresh(); //memanggil fungsi refresh pada parent
-                });
             });
         },
         download: function download() {
@@ -29043,10 +28999,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
             }).then(function (response) {
                 _this.confirms = response.data;
-                _this.$nextTick(function () {
-                    //memanggil method ketika konten selesai dirender
-                    this.$parent.refresh(); //memanggil fungsi refresh pada parent
-                });
             });
         }
     }
@@ -29481,10 +29433,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }).then(function (response) {
                 _this.items = response.data;
-                _this.$nextTick(function () {
-                    //memanggil method ketika konten selesai dirender
-                    this.$parent.refresh(); //memanggil fungsi refresh pada parent
-                });
             });
         },
         deleteData: function deleteData(id) {
@@ -30104,15 +30052,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -30126,7 +30065,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				price: null,
 				weight: null,
 				type: 'Digital',
-				merk: 'Daniel Wellington',
+				merk: '-',
 				description: ''
 			},
 			categories: [],
@@ -30139,15 +30078,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			load: false,
 			modal: false,
 			idPicture: -1,
-			loadRemove: -1
+			loadRemove: -1,
+			brands: []
 		};
 	},
 	mounted: function mounted() {
 		this.getData(); //mengambil data detail dari konten yang dipilih
 		this.getCategory(); //mengambil kategori
+		this.read(); //mengambil brand
 	},
 
 	methods: {
+		read: function read() {
+			var _this = this;
+
+			var uri = '/api/brand';
+			var config = {
+				headers: {
+					Authorization: 'Bearer ' + localStorage.getItem('token') }
+			};
+			axios.get(uri, config).then(function (response) {
+				_this.brands = response.data;
+			}).catch(function (error) {});
+		},
+
 		updateSlug: function updateSlug(val) {
 			//memperbaharui slug berdasarkan nama dari item
 			this.item.slug = val;
@@ -30157,12 +30111,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			notifications.toast(msg, { type: 'is-' + type });
 		},
 		getCategory: function getCategory() {
-			var _this = this;
+			var _this2 = this;
 
 			//mengambil kategori
 			var uri = '/api/category';
 			axios.get(uri).then(function (response) {
-				_this.categories = response.data;
+				_this2.categories = response.data;
 			});
 		},
 		validate: function validate() {
@@ -30210,13 +30164,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 		//picture
 		getfilenameSize: function getfilenameSize() {
-			var _this2 = this;
+			var _this3 = this;
 
 			//mengambil ukuran dari file yang diupload ke browser
 
 			this.upload_size = 0; // Reset to beginningƒ
 			this.filenames.map(function (item) {
-				_this2.upload_size += parseInt(item.size);
+				_this3.upload_size += parseInt(item.size);
 			});
 
 			this.upload_size = Number(this.upload_size.toFixed(1));
@@ -30326,18 +30280,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			return URL.createObjectURL(this.filenames[index]);
 		},
 		getData: function getData() {
-			var _this3 = this;
+			var _this4 = this;
 
 			//mengambil data item berdsarkan id
 			var uri = '/api/item/' + this.$route.params.id;
 			axios.get(uri).then(function (response) {
-				_this3.item = response.data;
-				_this3.originalFile = response.data.picture;
-				_this3.item.category = response.data.category.name;
+				_this4.item = response.data;
+				_this4.originalFile = response.data.picture;
+				_this4.item.category = response.data.category.name;
 			});
 		},
 		getPicture: function getPicture() {
-			var _this4 = this;
+			var _this5 = this;
 
 			//mengambil gambar berdsarkan id item
 			var uri = '/api/picture/' + this.$route.params.id;
@@ -30346,11 +30300,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					Authorization: 'Bearer ' + localStorage.getItem('token')
 				}
 			}).then(function (response) {
-				_this4.originalFile = response.data;
+				_this5.originalFile = response.data;
 			});
 		},
 		deletePicture: function deletePicture() {
-			var _this5 = this;
+			var _this6 = this;
 
 			//menghapus gambar yang diupload ke server
 
@@ -30361,13 +30315,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					Authorization: 'Bearer ' + localStorage.getItem('token')
 				}
 			}).then(function (response) {
-				_this5.loadRemove = -1;
-				_this5.modal = false;
-				_this5.getPicture();
+				_this6.loadRemove = -1;
+				_this6.modal = false;
+				_this6.getPicture();
 			}).catch(function (error) {
-				_this5.loadRemove = -1;
-				_this5.modal = false;
-				_this5.getPicture();
+				_this6.loadRemove = -1;
+				_this6.modal = false;
+				_this6.getPicture();
 			});
 		},
 		removeOriginal: function removeOriginal(id) {
@@ -30654,27 +30608,13 @@ var render = function() {
                       }
                     }
                   },
-                  [
-                    _c("option", [_vm._v("Daniel Wellington ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Fossil ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Alexandre Christie ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Casio ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Expedition ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Fossil ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Quicksilver ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Seiko ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Alba ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Olivia Burton ")])
-                  ]
+                  _vm._l(_vm.brands, function(br) {
+                    return _c(
+                      "option",
+                      { key: br.id, domProps: { value: br.brand } },
+                      [_vm._v(_vm._s(br.brand) + " ")]
+                    )
+                  })
                 )
               ])
             ]),
@@ -31259,94 +31199,90 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            discounts: [],
-            load: false,
-            modal: false,
-            expire: 0,
-            price: null,
-            type: 'new',
-            editData: null
-        };
-    },
-    mounted: function mounted() {
-        //mengambil diskon yang sudah dibuat
-        this.getdiscount();
-    },
-
-    methods: {
-        getdiscount: function getdiscount() {
-            var _this = this;
-
-            //mengambil kupon diskon yang sudah dibuat
-            var uri = '/api/cupon/';
-            axios.get(uri, {
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('token') }
-            }).then(function (response) {
-                _this.discounts = response.data;
-                _this.$nextTick(function () {
-                    //memanggil method ketika konten selesai dirender
-                    this.$parent.refresh(); //memanggil fungsi refresh pada parent
-                });
-            });
+        data: function data() {
+                return {
+                        discounts: [],
+                        load: false,
+                        modal: false,
+                        expire: 0,
+                        price: null,
+                        type: 'new',
+                        editData: null
+                };
         },
-        addCupon: function addCupon() {
-            //menambahkan kupon diskon
-            if (this.price == '' || this.price == null || this.price == 0) {
-                alert('Kupon tidak boleh kosong');
-                return;
-            }
-            this.load = true;
-            var config = {
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('token') }
-            };
-            axios.post('/api/cupon', { 'price': this.price, 'expire': this.expire }, config).then(function (response) {
+        mounted: function mounted() {
+                //mengambil diskon yang sudah dibuat
                 this.getdiscount();
-                this.load = false;
-                this.modal = false;
-            }.bind(this)).catch(function (error) {
-                this.load = false;
-                this.modal = false;
-            });
         },
-        editCupon: function editCupon() {
-            //memperbaharui kupon yang telah dibuat
-            if (this.editData.price == '' || this.editData.price == null || this.editData.price == 0) {
-                alert('Kupon tidak boleh kosong');
-                return;
-            }
-            this.load = true;
-            var config = {
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('token') }
-            };
 
-            axios.patch('/api/cupon/' + this.editData.id, { 'price': this.editData.price, 'expire': this.editData.expire }, config).then(function (response) {
-                this.getdiscount();
-                this.load = false;
-                this.modal = false;
-            }).catch(function (error) {
-                this.load = false;
-                this.modal = false;
-            });
-        },
-        hapusCupon: function hapusCupon() {
-            //menghapus kupon yang sudah dibuat
-            var config = {
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('token') }
-            };
-            axios.delete('/api/cupon/' + this.editData.id, config).then(function (response) {
-                this.getdiscount();
-                this.modal = false;
-            }.bind(this)).catch(function (error) {
-                this.modal = false;
-            });
+        methods: {
+                getdiscount: function getdiscount() {
+                        var _this = this;
+
+                        //mengambil kupon diskon yang sudah dibuat
+                        var uri = '/api/cupon/';
+                        axios.get(uri, {
+                                headers: {
+                                        Authorization: 'Bearer ' + localStorage.getItem('token') }
+                        }).then(function (response) {
+                                _this.discounts = response.data;
+                        });
+                },
+                addCupon: function addCupon() {
+                        //menambahkan kupon diskon
+                        if (this.price == '' || this.price == null || this.price == 0) {
+                                alert('Kupon tidak boleh kosong');
+                                return;
+                        }
+                        this.load = true;
+                        var config = {
+                                headers: {
+                                        Authorization: 'Bearer ' + localStorage.getItem('token') }
+                        };
+                        axios.post('/api/cupon', { 'price': this.price, 'expire': this.expire }, config).then(function (response) {
+                                this.getdiscount();
+                                this.load = false;
+                                this.modal = false;
+                        }.bind(this)).catch(function (error) {
+                                this.load = false;
+                                this.modal = false;
+                        });
+                },
+                editCupon: function editCupon() {
+                        //memperbaharui kupon yang telah dibuat
+                        if (this.editData.price == '' || this.editData.price == null || this.editData.price == 0) {
+                                alert('Kupon tidak boleh kosong');
+                                return;
+                        }
+                        this.load = true;
+                        var config = {
+                                headers: {
+                                        Authorization: 'Bearer ' + localStorage.getItem('token') }
+                        };
+
+                        axios.patch('/api/cupon/' + this.editData.id, { 'price': this.editData.price, 'expire': this.editData.expire }, config).then(function (response) {
+                                this.getdiscount();
+                                this.load = false;
+                                this.modal = false;
+                        }).catch(function (error) {
+                                this.load = false;
+                                this.modal = false;
+                        });
+                },
+                hapusCupon: function hapusCupon() {
+                        //menghapus kupon yang sudah dibuat
+                        var config = {
+                                headers: {
+                                        Authorization: 'Bearer ' + localStorage.getItem('token') }
+                        };
+                        axios.delete('/api/cupon/' + this.editData.id, config).then(function (response) {
+                                this.getdiscount();
+                                this.modal = false;
+                        }.bind(this)).catch(function (error) {
+                                this.modal = false;
+                        });
+                }
         }
-    }
 });
 
 /***/ }),
@@ -31890,10 +31826,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
             }).then(function (response) {
-                _this.$nextTick(function () {
-                    //memanggil method ketika konten selesai dirender
-                    this.$parent.refresh(); //memanggil fungsi refresh pada parent
-                });
+
                 alert(response.data.msg);
                 location.reload();
                 _this.load = false;
@@ -32266,15 +32199,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -32282,11 +32206,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             items: [],
             load: -1,
             search: '',
-            merk: '-'
+            merk: '-',
+            brands: []
         };
     },
     mounted: function mounted() {
         this.getData(); //mengambil data item
+        this.read(); //mengambil data brand;
     },
 
     computed: {
@@ -32304,21 +32230,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
-        getData: function getData() {
+        read: function read() {
             var _this2 = this;
+
+            var uri = '/api/brand';
+            var config = {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token') }
+            };
+            axios.get(uri, config).then(function (response) {
+                _this2.brands = response.data;
+            }).catch(function (error) {});
+        },
+        getData: function getData() {
+            var _this3 = this;
 
             //mengambil data
             var uri = '/api/itemAll';
             axios.get(uri).then(function (response) {
-                _this2.items = response.data;
-                _this2.$nextTick(function () {
-                    //memanggil method ketika konten selesai dirender
-                    this.$parent.refresh(); //memanggil fungsi refresh pada parent
-                });
+                _this3.items = response.data;
             });
         },
         deleteData: function deleteData(id) {
-            var _this3 = this;
+            var _this4 = this;
 
             //menghapus data
 
@@ -32332,12 +32266,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 }
             }).then(function (response) {
-                _this3.load = -1;
+                _this4.load = -1;
 
-                _this3.getData();
+                _this4.getData();
             }).catch(function (error) {
-                _this3.load = -1;
-                _this3.getData();
+                _this4.load = -1;
+                _this4.getData();
             });
         }
     }
@@ -32450,26 +32384,15 @@ var render = function() {
                   [
                     _c("option", { attrs: { value: "-" } }, [_vm._v("Merk ")]),
                     _vm._v(" "),
-                    _c("option", [_vm._v("Daniel Wellington ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Fossil ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Alexandre Christie ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Casio ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Expedition ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Fossil ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Quicksilver ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Seiko ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Alba ")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Olivia Burton ")])
-                  ]
+                    _vm._l(_vm.brands, function(br) {
+                      return _c(
+                        "option",
+                        { key: br.id, domProps: { value: br.brand } },
+                        [_vm._v(_vm._s(br.brand) + " ")]
+                      )
+                    })
+                  ],
+                  2
                 )
               ])
             ]
@@ -57370,6 +57293,486 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(195)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(193)
+/* template */
+var __vue_template__ = __webpack_require__(194)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/DashboardComponents/brandComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5ee6cb46", Component.options)
+  } else {
+    hotAPI.reload("data-v-5ee6cb46", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 193 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			load: false,
+			editload: -1,
+			deleteload: -1,
+			brands: [],
+			brand: '',
+			edit: -1,
+			editBrand: ''
+		};
+	},
+	mounted: function mounted() {
+		this.read(); //mengambil kategori
+	},
+
+	methods: {
+		create: function create() {
+			var _this = this;
+
+			this.load = true;
+			var uri = '/api/brand';
+			var config = {
+				headers: {
+					Authorization: 'Bearer ' + localStorage.getItem('token') }
+			};
+			axios.post(uri, { brand: this.brand }, config).then(function (response) {
+				_this.read();
+			}).catch(function (error) {
+				_this.read();
+				alert('coba lagi');
+			});
+		},
+		read: function read() {
+			var _this2 = this;
+
+			this.load = false;
+			this.editload = -1;
+			this.deleteload = -1;
+
+			var uri = '/api/brand';
+
+			var config = {
+				headers: {
+					Authorization: 'Bearer ' + localStorage.getItem('token') }
+			};
+			axios.get(uri, config).then(function (response) {
+				_this2.brands = response.data;
+			}).catch(function (error) {});
+		},
+		update: function update(id) {
+			var _this3 = this;
+
+			this.editload = id;
+			var uri = '/api/brand/' + id;
+
+			var config = {
+				headers: {
+					Authorization: 'Bearer ' + localStorage.getItem('token') }
+			};
+			axios.patch(uri, { brand: this.editBrand }, config).then(function (response) {
+				_this3.edit = -1;
+				_this3.editBrand = '';
+				_this3.read();
+			}).catch(function (error) {
+				alert('coba lagi');
+			});
+		},
+		deleteData: function deleteData(id) {
+			var _this4 = this;
+
+			if (!confirm("Are you sure you want to delete this item ?")) {
+				return;
+			}
+			this.deleteload = id;
+			var uri = '/api/brand/' + id;
+
+			var config = {
+				headers: {
+					Authorization: 'Bearer ' + localStorage.getItem('token') }
+			};
+			axios.delete(uri, config).then(function (response) {
+				_this4.edit = -1;
+				_this4.editBrand = '';
+				_this4.read();
+			}).catch(function (error) {
+				alert('coba lagi');
+			});
+		}
+	}
+});
+
+/***/ }),
+/* 194 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "module" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "module-body" }, [
+        _c(
+          "table",
+          [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.brand,
+                      expression: "brand"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.brand },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.brand = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.create()
+                      }
+                    }
+                  },
+                  [
+                    _vm.load
+                      ? _c("div", { staticClass: "loader" })
+                      : _c("span", [_vm._v("Add")])
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.brands, function(br) {
+              return _c("tr", { key: br.id }, [
+                _c("td", [
+                  _vm.edit != br.id
+                    ? _c("span", [_vm._v(_vm._s(br.brand))])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.edit == br.id
+                    ? _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.editBrand,
+                            expression: "editBrand"
+                          }
+                        ],
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.editBrand },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.editBrand = $event.target.value
+                          }
+                        }
+                      })
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm.edit != br.id
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-info",
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              _vm.edit = br.id
+                              _vm.editBrand = br.brand
+                            }
+                          }
+                        },
+                        [_vm._v("Edit")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.edit == br.id
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-warning",
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              _vm.update(br.id)
+                            }
+                          }
+                        },
+                        [
+                          _vm.editload == br.id
+                            ? _c("div", { staticClass: "loader" })
+                            : _c("span", [_vm._v("Update")])
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.edit == br.id
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              _vm.edit = -1
+                              _vm.editBrand = ""
+                            }
+                          }
+                        },
+                        [_vm._v("Cancel")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.edit != br.id
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              _vm.deleteData(br.id)
+                            }
+                          }
+                        },
+                        [
+                          _vm.deleteload == br.id
+                            ? _c("div", { staticClass: "loader" })
+                            : _c("span", [_vm._v("Delete")])
+                        ]
+                      )
+                    : _vm._e()
+                ])
+              ])
+            })
+          ],
+          2
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "module-head" }, [
+      _c("h3", [_vm._v("Pengisian Barang")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", [_vm._v("Nama Brand")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("Pengaturan")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5ee6cb46", module.exports)
+  }
+}
+
+/***/ }),
+/* 195 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(196);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("576f7a52", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5ee6cb46\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./brandComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5ee6cb46\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./brandComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 196 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\ntable,tr,td{\r\n\tborder: solid 1px black;\n}\ntable{\r\n\tborder-collapse: collapse;\r\n\twidth: 100%;\n}\ntr,td{\r\n\tpadding: 10px;\n}\r\n\r\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

@@ -68,9 +68,7 @@ export default {
                 headers: { 
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
             }).then(response=>{
-                this.$nextTick(function () { //memanggil method ketika konten selesai dirender
-                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
-                })
+          
                 alert(response.data.msg);
                location.reload();
             this.load = false;

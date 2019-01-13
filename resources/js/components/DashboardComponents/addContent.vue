@@ -57,16 +57,7 @@
 												<label class="control-label" for="basicinput">Merk</label>
 												<div class="controls">
 													<select name="" id="" v-model="item.merk">
-															<option>Daniel Wellington </option> 
-															<option>Fossil </option> 
-															<option>Alexandre Christie </option> 
-															<option>Casio </option> 
-															<option>Expedition </option> 
-															<option>Fossil </option> 
-															<option>Quicksilver </option> 
-															<option>Seiko </option> 
-															<option>Alba </option> 
-															<option>Olivia Burton </option> 
+                                                			<option v-for="br in brands" :key="br.id" :value="br.brand">{{br.brand}} </option> 
 													</select>
 												</div>
 											</div>
@@ -146,7 +137,7 @@ export default {
 				stock: null,
 				price: null,
 				type: 'Digital',
-				merk: 'Daniel Wellington',
+				merk: '-',
 				description: '',
 				weight: null,
             },
@@ -157,12 +148,26 @@ export default {
 			 msg: '',
 			 snackbar: false,
 			 load: false,
+			 brands: [],
         }
     },
     mounted(){
-        this.getCategory(); //mengambil kategori
+		this.getCategory(); //mengambil kategori
+        this.read(); //mengambil data brand;
+		
     },
     methods:{
+		 read(){
+			var uri = '/api/brand'
+			var config = {
+                headers: { 
+                    Authorization: 'Bearer ' + localStorage.getItem('token') }
+			}
+			axios.get(uri,config).then(response=>{
+				this.brands = response.data;
+            }).catch(error =>{
+            })
+		},
         updateSlug: function(val) { //memperbaharui slug
              this.item.slug = val;
             },
@@ -173,9 +178,7 @@ export default {
             let uri = '/api/category';
             axios.get(uri).then((response) => {
 				this.categories = response.data;
-				    this.$nextTick(function () { //memanggil method ketika konten selesai dirender
-                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
-                })
+		
             });
 		},
 		validate(){ //validasi inputan
@@ -298,7 +301,7 @@ export default {
 							stock: null,
 							price: null,
 							type: 'Digital',
-							merk: 'Daniel Wellington',
+							merk: '-',
 							weight: null,
 							description: '',
 						}

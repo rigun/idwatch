@@ -148,9 +148,7 @@ export default {
                   }
               }).then((response) => {
                 this.item = response.data;
-                this.$nextTick(function () { //memanggil method ketika konten selesai dirender
-                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
-                })
+              
             })
             
         },

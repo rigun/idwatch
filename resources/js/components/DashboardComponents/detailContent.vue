@@ -57,16 +57,7 @@
 												<label class="control-label" for="basicinput">Merk</label>
 												<div class="controls">
 													<select name="" id="" v-model="item.merk">
-															<option>Daniel Wellington </option> 
-															<option>Fossil </option> 
-															<option>Alexandre Christie </option> 
-															<option>Casio </option> 
-															<option>Expedition </option> 
-															<option>Fossil </option> 
-															<option>Quicksilver </option> 
-															<option>Seiko </option> 
-															<option>Alba </option> 
-															<option>Olivia Burton </option> 
+                                                			<option v-for="br in brands" :key="br.id" :value="br.brand">{{br.brand}} </option> 
 													</select>
 												</div>
 											
@@ -174,7 +165,7 @@ export default {
 				price: null,
 				weight: null,
 				type: 'Digital',
-				merk: 'Daniel Wellington',
+				merk: '-',
 				description: '',
             },
 			categories: [],
@@ -188,13 +179,26 @@ export default {
 			 modal: false,
 			 idPicture: -1,
 			 loadRemove: -1,
+			 brands: [],
         }
     },
     mounted(){
         this.getData(); //mengambil data detail dari konten yang dipilih
         this.getCategory(); //mengambil kategori
+        this.read(); //mengambil brand
     },
     methods:{
+			 read(){
+			var uri = '/api/brand'
+			var config = {
+                headers: { 
+                    Authorization: 'Bearer ' + localStorage.getItem('token') }
+			}
+			axios.get(uri,config).then(response=>{
+				this.brands = response.data;
+            }).catch(error =>{
+            })
+		},
         updateSlug: function(val) { //memperbaharui slug berdasarkan nama dari item
              this.item.slug = val;
             },

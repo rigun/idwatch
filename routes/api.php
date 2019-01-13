@@ -59,6 +59,10 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::post('/comment','CommentController@store');
     Route::delete('/comment/{id}','CommentController@destroy');
 
+    Route::get('/brand','BrandController@index');
+    Route::post('/brand','BrandController@store');
+    Route::patch('/brand/{id}','BrandController@update');
+    Route::delete('/brand/{id}','BrandController@destroy');
 
 });
 Route::get('/report/download','TransactionController@export');

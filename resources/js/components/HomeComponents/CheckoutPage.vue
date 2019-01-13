@@ -168,9 +168,7 @@ export default {
                     this.kota = this.transaction.user.detail.kota;
                     this.address = this.transaction.user.detail.alamat;
                 }
-                    this.$nextTick(function () { //memanggil method ketika konten selesai dirender
-                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
-                })
+              
             })
         },
         placeOrder(){ //melakukan pemesanan

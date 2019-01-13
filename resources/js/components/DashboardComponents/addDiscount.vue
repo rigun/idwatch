@@ -102,9 +102,7 @@ export default {
                     Authorization: 'Bearer ' + localStorage.getItem('token') } 
                 }).then((response) => {
                 this.discounts = response.data;
-                  this.$nextTick(function () { //memanggil method ketika konten selesai dirender
-                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
-                })
+           
             })
         },
         addCupon(){ //menambahkan kupon diskon

@@ -176,9 +176,7 @@ export default {
             axios.get(uri).then((response) => {
                 var items = response.data;
                 this.items = _.orderBy(items, ['created_at'],['desc']);
-                this.$nextTick(function () { //memanggil method ketika konten selesai dirender
-                     this.$parent.refresh(); //memanggil fungsi refresh pada parent
-                })
+              
             })
             
         },

@@ -410,9 +410,7 @@ export default {
                     Authorization: 'Bearer ' + localStorage.getItem('token') } 
                 }).then((response) => {
                 this.cart = response.data;
-                  this.$nextTick(function () { //memanggil method ketika konten selesai dirender
-                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
-                })
+                
             })
             
         },

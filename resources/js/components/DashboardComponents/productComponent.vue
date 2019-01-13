@@ -18,16 +18,7 @@
                                     <div class="controls">
                                         <select name="" id="" v-model="merk">
                                                 <option value="-">Merk </option> 
-                                                <option>Daniel Wellington </option> 
-                                                <option>Fossil </option> 
-                                                <option>Alexandre Christie </option> 
-                                                <option>Casio </option> 
-                                                <option>Expedition </option> 
-                                                <option>Fossil </option> 
-                                                <option>Quicksilver </option> 
-                                                <option>Seiko </option> 
-                                                <option>Alba </option> 
-                                                <option>Olivia Burton </option> 
+                                                <option v-for="br in brands" :key="br.id" :value="br.brand">{{br.brand}} </option> 
                                         </select>
                                     </div>
                                 </div>
@@ -143,10 +134,12 @@ export default {
             load: -1,
             search: '',
             merk: '-',
+            brands: [],
         }
     },
     mounted(){
         this.getData(); //mengambil data item
+        this.read(); //mengambil data brand;
     },
     computed: {
             filterItem: function(){ //filter data yang akan ditampilkan
@@ -160,13 +153,22 @@ export default {
             }
         },
     methods:{
+        read(){
+			var uri = '/api/brand'
+			var config = {
+                headers: { 
+                    Authorization: 'Bearer ' + localStorage.getItem('token') }
+			}
+			axios.get(uri,config).then(response=>{
+				this.brands = response.data;
+            }).catch(error =>{
+            })
+		},
         getData(){ //mengambil data
             let uri = '/api/itemAll';
             axios.get(uri).then((response) => {
                 this.items = response.data;
-                  this.$nextTick(function () { //memanggil method ketika konten selesai dirender
-                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
-                })
+                
             })
             
         },

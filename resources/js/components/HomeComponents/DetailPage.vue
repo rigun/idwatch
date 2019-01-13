@@ -372,7 +372,6 @@ export default {
                     this.getList();
                     this.getSlider();
                     this.getComment();
-                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
                 })
             })
             

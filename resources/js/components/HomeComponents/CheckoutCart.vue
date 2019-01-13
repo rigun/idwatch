@@ -171,9 +171,7 @@ export default {
                 this.id = response.data.id;
                 this.file = response.data.file;
                 this.diskon = response.data.diskon;
-                    this.$nextTick(function () { //memanggil method ketika konten selesai dirender
-                      this.$parent.refresh();  //memanggil fungsi refresh pada parent
-                })
+                 
             })
             
         },

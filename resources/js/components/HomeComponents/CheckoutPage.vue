@@ -1,16 +1,6 @@
 <template>
     <div>
-        <section class="solid_banner_area">
-            <div class="container">
-                <div class="solid_banner_inner">
-                    <h3>Halaman Pemesanan</h3>
-                    <ul>
-                        <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
-                        <li><a @click.prevent="getTransaction()">Halaman Pemesanan</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+        
         <section class="register_area p_100">
             <div class="container">
                 <div class="register_inner">
@@ -79,10 +69,10 @@
                                 <h2 class="reg_title">Pesanan Anda</h2>
                                 <div class="payment_list">
                                     <div class="price_single_cost">
-                                        <h5 v-for="item in transaction.detail" :key="item.id">{{item.cart.item.name}} <span>Rp {{item.cart.item.price * item.cart.quantity}}</span></h5>
-                                        <h4>Biaya Pengiriman <span>Rp {{transaction.shipping}}</span></h4>
-                                        <h4 v-if="transaction.diskon > 0">Diskon <span>Rp {{transaction.diskon}}</span></h4>
-                                        <h3><span class="normal_text">Total Pesanan</span> <span>Rp {{parseInt(transaction.total) + parseInt(transaction.shipping) - parseInt(transaction.diskon)}}</span></h3>
+                                        <h5 v-for="item in transaction.detail" :key="item.id">{{item.cart.item.name}} <span>{{price(item.cart.item.price * item.cart.quantity)}}</span></h5>
+                                        <h4>Biaya Pengiriman <span>{{price(transaction.shipping)}}</span></h4>
+                                        <h4 v-if="transaction.diskon > 0">Diskon <span>{{price(transaction.diskon)}}</span></h4>
+                                        <h3><span class="normal_text">Total Pesanan</span> <span>{{price(parseInt(transaction.total) + parseInt(transaction.shipping) - parseInt(transaction.diskon))}}</span></h3>
                                     </div>
                                     <div id="accordion" role="tablist" class="price_method">
                                         <div class="card">
@@ -155,6 +145,14 @@ export default {
         this.getTransaction(); //mengambil data transaksi yang sudah dibuat sebelumnya.
     },
     methods:{
+        price(value){
+            const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 2
+            })
+            return formatter.format(value) ;
+        },
         getTransaction(){ //mengambil data transaksi yang sudah dibuat sebelumnya.
                 let uri = '/api/mytransaction/'+this.$route.params.token;
             axios.get(uri,{

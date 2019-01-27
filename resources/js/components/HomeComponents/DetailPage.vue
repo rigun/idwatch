@@ -29,7 +29,7 @@
                                 <a href="#">Tambahkan Review Anda</a>
                             </div> -->
                             <h6>Stok Barang Tersedia</h6>
-                            <h4>Rp {{item.price}}</h4>
+                            <h4>{{price(item.price)}}</h4>
                             <p>{{item.description}}</p>
                             <form @submit.prevent="sendData()">
                                 
@@ -39,7 +39,8 @@
                                         <input type="text" name="qty" id="sst" maxlength="12" title="Quantity:" class="input-text qty" style="text-align: center" v-model="cart.quantity">
                                         <button @click.prevent="increment()" class="increase items-count" type="button"><i class="icon_plus"></i></button>
                                     </div>
-                                    <button type="submit" class="add_cart_btn" ><div class="loader" v-if="load"></div> <span v-else>Tambahkan Ke Keranjang</span> </button>
+                                    <button type="submit" class="add_cart_btn" v-if="$parent.token != null" ><div class="loader" v-if="load"></div> <span v-else>Tambahkan Ke Keranjang</span> </button>
+                                    <button type="submit" class="add_cart_btn" v-if="$parent.token == null" @click.prevent="addToCart()"> <span>Tambahkan Ke Keranjang</span> </button>
                                 </div>
                             </form>
                             
@@ -141,7 +142,7 @@
                                             <a class="add_cart_btn" style="background-color: red" v-else>Stok Kosong</a></li>
                                 </ul>
                                 <h4>{{item.name}}</h4>
-                                <h5><del></del>Rp. {{item.price}}</h5>
+                                <h5><del></del>{{price(item.price)}}</h5>
                             </div>
                         </div>
                         </div>
@@ -245,6 +246,20 @@ export default {
         }
     },
     methods:{
+        price(value){
+            const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 2
+            })
+            return formatter.format(value) ;
+        },
+        addToCart(){
+            if (!confirm("Untuk dapat memesan barang ini, anda harus login terlebih dahulu")) {
+               return;
+            } 
+            this.$router.push({name: 'LoginUser'});
+        },
         deleteComment(id){ //menghapus komentar
             var config = {
                 headers: { 

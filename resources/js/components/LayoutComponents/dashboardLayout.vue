@@ -8,7 +8,7 @@
         <div class="navbar-inner">
             <div class="container">
                 <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                    <i class="icon-reorder shaded"></i></a> <a class="brand" href="http://127.0.0.1:8000/"><img src="http://127.0.0.1:8000/images/img.jpg"
+                    <i class="icon-reorder shaded"></i></a> <a class="brand" href="/"><img src="/images/img.jpg"
                         alt=""> </a>
                 <div class="nav-collapse collapse navbar-inverse-collapse">
 
@@ -66,7 +66,7 @@ export default {
     },
     mounted(){
         if(localStorage.getItem('roles') == 'user'){ //apabila role pengguna adalah user
-            window.location = "http://127.0.0.1:8000"; //akan diarahkan ke alamat yang ditentukan.
+            window.location = "/"; //akan diarahkan ke alamat yang ditentukan.
         }else{
             this.admin= true;
               this.getUser(); // mengambil data pengguna

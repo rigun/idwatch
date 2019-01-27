@@ -1,16 +1,6 @@
 <template>
     <div>
-        <section class="solid_banner_area">
-            <div class="container">
-                <div class="solid_banner_inner">
-                    <h3>Tentang Kami</h3>
-                    <ul>
-                        <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
-                        <li><a href="#">Tentang Kami</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+      
         <section class="contact_area p_100">
             <div class="container">
                 <div class="contact_title">

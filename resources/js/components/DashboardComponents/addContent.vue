@@ -157,6 +157,9 @@ export default {
 		
     },
     methods:{
+		countDigit(number){
+			return number.toString().length; 
+		},
 		 read(){
 			var uri = '/api/brand'
 			var config = {
@@ -188,21 +191,25 @@ export default {
 			if(this.item.name == '' || this.item.category_id == '' ||this.item.stock == null || this.item.price == null || this.item.weight == null || this.item.merk == '' || this.item.description == ''){
 				this.msg = this.msg + ' Please fill the blank field,'
 			}
-			if(this.item.stock < 1){
-				this.msg = this.msg + ' Stock must be one or more,'
+			if(this.countDigit(this.item.stock) < 2){
+				this.msg = this.msg + 'Stock minimum 2 digit'
 			}
-			if(this.item.price <= 99999){
-				this.msg = this.msg + ' Price minimum 100000'
+			if(this.countDigit(this.item.stock) > 3){
+				this.msg = this.msg + 'Stock maximum 3 digit'
 			}
-			if(this.item.price > 99999999){
-				this.msg = this.msg + ' Price cant more than 99999999'
+			if(this.countDigit(this.item.price) < 6){
+				this.msg = this.msg + 'Price minimum 6 digit'
 			}
-			if(this.item.weight <= 9){
-				this.msg = this.msg + ' Weight minimum 10'
+			if(this.countDigit(this.item.price) > 8){
+				this.msg = this.msg + 'Price maximum 8 digit'
 			}
-			if(this.item.weight > 99){
-				this.msg = this.msg + ' Weight cant more than 99'
+			if(this.countDigit(this.item.weight) < 2){
+				this.msg = this.msg + 'Weight minimum 2 digit'
 			}
+			if(this.countDigit(this.item.weight) > 4){
+				this.msg = this.msg + 'Weight maximum 4 digit'
+			}
+
 			if(this.item.stock > 9999){
 				this.msg = this.msg + ' Stock cant more than 9999'
 			}

@@ -1,17 +1,6 @@
 <template>
     <div>
-        <section class="categories_banner_area">
-        <div class="container">
-            <div class="c_banner_inner">
-                <h3>Kamu Bisa memilih semua barang yang kamu suka disini</h3>
-                <ul>
-                    <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
-                    <li><a href="#">Shop</a></li>
-                    <li class="current"><a href="#">Buat harimu jadi makin asyik dengan belanja disini</a></li>
-                </ul>
-            </div>
-        </div>
-    </section>
+   
 
     <section class="no_sidebar_2column_area">
         <div class="container">
@@ -50,7 +39,7 @@
                                             <a class="add_cart_btn" style="background-color: red" v-else>Stok Kosong</a></li>
                                 </ul>
                                 <h4>{{item.name}}</h4>
-                                <h5><del></del>Rp. {{item.price}}</h5>
+                                <h5><del></del>{{price(item.price)}}</h5>
                             </div>
                         </div>
                     </div>
@@ -112,6 +101,14 @@ export default {
         }
     },
     methods:{
+        price(value){
+            const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 2
+            })
+            return formatter.format(value) ;
+        },
          getData(){ //mengambil data berdasarkan kategori
             let uri = '/api/item/'+this.$route.params.type+'/All';
             axios.get(uri).then((response) => {

@@ -1,17 +1,6 @@
 <template>
 <div>
     <div v-if="cart.length > 0">
-    <section class="solid_banner_area">
-            <div class="container">
-                <div class="solid_banner_inner">
-                    <h3>Keranjang Checkout</h3>
-                    <ul>
-                        <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
-                        <li><a @click.prevent="getCart()">Keranjang Checkout</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
         <section class="shopping_cart_area p_100">
             <div class="container">
                 <div class="row">
@@ -40,9 +29,9 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td><p>Rp {{item.item.price}}</p></td>
+                                            <td><p>{{price(item.item.price)}}</p></td>
                                             <td><input type="text" :value="item.quantity" disabled></td>
-                                            <td><p>Rp {{item.item.price * item.quantity}}</p></td>
+                                            <td><p>{{price(item.item.price * item.quantity)}}</p></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -68,10 +57,10 @@
                                 <h3 class="cart_single_title">Silahkan melakukan pembayaran sejumlah</h3>
                                 <div class="cart_total_inner">
                                     <ul>
-                                        <li><a href="#"><span>Subtotal Keranjang</span> Rp {{total}}</a></li>
-                                        <li><a href="#"><span>Biaya Pengiriman</span> Rp {{shipping}}</a></li>
-                                        <li><a href="#" v-if="diskon > 0"><span>Diskon</span> Rp {{diskon}}</a></li>
-                                        <li><a href="#"><span>Total Bayar</span> Rp {{parseInt(total) + parseInt(shipping) - parseInt(diskon)}}</a></li>
+                                        <li><a href="#"><span>Subtotal Keranjang</span>{{price(total)}}</a></li>
+                                        <li><a href="#"><span>Biaya Pengiriman</span>{{price(shipping)}}</a></li>
+                                        <li><a href="#" v-if="diskon > 0"><span>Diskon</span>{{price(diskon)}}</a></li>
+                                        <li><a href="#"><span>Total Bayar</span>{{price(parseInt(total) + parseInt(shipping) - parseInt(diskon))}}</a></li>
                                     </ul>
                                 </div>
                                 <h3 class="cart_single_title" style="text-align: center">Apabila dalam 1 x 24 jam tidak melakukan pembayaran, maka transaksi akan dibatalkan</h3>                                
@@ -83,17 +72,7 @@
         </section>
 </div>
     <div v-else>
-        <section class="solid_banner_area">
-            <div class="container">
-                <div class="solid_banner_inner">
-                    <h3>Keranjang Checkout Kosong</h3>
-                    <ul>
-                        <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
-                        <li><a @click.prevent="getCart()">Keranjang Checkout</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+       
         <section class="emty_cart_area p_100">
             <div class="container">
                 <div class="emty_cart_inner">
@@ -160,7 +139,14 @@ export default {
         }
     },
     methods:{
-        
+        price(value){
+            const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 2
+            })
+            return formatter.format(value) ;
+        },
         getCart(){ // mengambil barang keranjang
             let uri = '/api/mycheckoutcart';
             axios.get(uri,{

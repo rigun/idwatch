@@ -1,13 +1,6 @@
 <template>
     <div>
-        <section class="solid_banner_area">
-            <div class="container">
-                <div class="solid_banner_inner">
-                    <h3>Login</h3>
-                    
-                </div>
-            </div>
-        </section>
+     
         <section class="login_area p_100">
             <div class="container">
                 <div class="login_inner">
@@ -174,6 +167,7 @@ export default {
                     localStorage.setItem('email', this.login.email)
                     localStorage.setItem('remember', this.login.remember)
                 }
+                this.$parent.getUser();
                 this.$router.push({ name: 'Cart' })
             }).catch(error => {
                 this.snackbar = true;

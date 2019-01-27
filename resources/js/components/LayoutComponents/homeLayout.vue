@@ -15,8 +15,8 @@
                                     <i class="icon-login icons"></i> <span>Login atau Daftar</span>
                                 </router-link>
                                 
-                                         <a slot="activator"  v-if="token != null" @click="dialog = true">
-                                            <i class="icon-logout icons"></i> <span>Keluar</span>
+                                         <a style="cursor:pointer" v-if="token != null" @click="dialog = true">
+                                            <i class="icon-logout icons"></i> <span>Logout</span>
                                         </a>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
         <div class="carousel_menu_inner">
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="http://127.0.0.1:8000"><img src="http://127.0.0.1:8000/img/logo.png" alt=""></a>
+                    <a class="navbar-brand" href="/"><img src="/img/logo.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -91,12 +91,46 @@
 
                                 </router-link>
                             </li>
-                            <li class="user_icon" v-if="token == null">
+                            <li>
+                                 <v-dialog
+                                    v-model="dialog"
+                                    width="500"
+                                    >
+                                    <v-card>
+                                        <v-card-title
+                                        class="headline grey lighten-2"
+                                        primary-title
+                                        >
+                                        Keluar
+                                        </v-card-title>
+
+                                        <v-card-text>
+                                        Apakah anda yakin ingin keluar ?
+                                        </v-card-text>
+
+                                        <v-divider></v-divider>
+
+                                        <v-card-actions>
+                                        <v-spacer></v-spacer>
+                                        <a style="cursor:pointer"
+                                            @click="dialog = false"
+                                        >
+                                            Batal
+                                        </a>
+
+                                            <router-link :to="{name: 'Logout'}"  >
+                                                    Keluar
+                                            </router-link>
+                                        </v-card-actions>
+                                    </v-card>
+                                    </v-dialog>
+                            </li>
+                            <!-- <li class="user_icon" v-if="token == null">
                                 <router-link :to="{name: 'LoginUser'}" >
                                     <i class="icon-login icons"></i>
                                 </router-link>
-                                </li>
-                            <li class="user_icon" v-if="token != null">
+                                </li> -->
+                            <!-- <li class="user_icon" v-if="token != null">
 
                                 <v-dialog
                                     v-model="dialog"
@@ -137,7 +171,7 @@
                                     </v-card>
                                     </v-dialog>
                                 
-                                </li>
+                                </li> -->
 
                         </ul>
                     </div>
@@ -202,6 +236,7 @@
                         </ul>
                                 
                 </div>
+                
                 <div class="advanced_search_area">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" aria-label="Search" v-model="search">
@@ -236,7 +271,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-6">
                         <aside class="f_widget f_about_widget">
-                            <img src="http://127.0.0.1:8000/img/logo.png" alt="">
+                            <img src="/img/logo.png" alt="">
                             <p>ID - JAMTANGAN Merupakan Toko online jam tangan yang menjamin kepuasan pelanggan
                                 dengan mengedepankan pelayanan
                             </p>
@@ -250,20 +285,17 @@
                             </ul>
                         </aside>
                     </div>
-                    <div class="col-lg-2 col-md-4 col-6">
+                    <div class="col-md-4 col-6">
                         <aside class="f_widget link_widget f_info_widget">
                             <div class="f_w_title">
                                 <h3>Informasi</h3>
                             </div>
                             <ul>
                                 <li><a href="#">Tentang Kami</a></li>
-                                <li><a href="#">Delivery information</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
-                                <li><a href="#">Help Center</a></li>
                             </ul>
                         </aside>
                     </div>
-                    <div class="col-lg-2 col-md-4 col-6">
+                    <div class="col-md-4 col-6">
                         <aside class="f_widget link_widget f_service_widget">
                             <div class="f_w_title">
                                 <h3>Pelayanan Pelanggan</h3>
@@ -274,37 +306,14 @@
                             </ul>
                         </aside>
                     </div>
-                    <div class="col-lg-2 col-md-4 col-6">
-                        <aside class="f_widget link_widget f_extra_widget">
-                            <div class="f_w_title">
-                                <h3>Kontak</h3>
-                            </div>
-                            <ul>
-                                <li><a href="#">xxxxxxxxxx</a></li>
-                                <li><a href="#">xxxxxxxxxx</a></li>
-                                <li><a href="#">xxxxxxxxxx</a></li>
-                                <li><a href="#">xxxxxxxxxx</a></li>
-                            </ul>
-                        </aside>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-6">
-                        <aside class="f_widget link_widget f_account_widget">
-                            <div class="f_w_title">
-                                <h3>Pesan</h3>
-                            </div>
-                            <ul>
-                                <li><a href="#">xxxxxxxxxx</a></li>
-                                <li><a href="#">xxxxxxxxxx</a></li>
-                                <li><a href="#">xxxxxxxxxx</a></li>
-                                <li><a href="#">xxxxxxxxxx</a></li>
-                            </ul>
-                        </aside>
-                    </div>
+                  
                 </div>
             </div>
 
         </div>
     </footer>
+
+                                   
     </div>
     
 </template>

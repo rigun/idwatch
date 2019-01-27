@@ -51,7 +51,7 @@
                         <div class="card">
                             <div class="card-content">
                                 <p class="title">Pendapatan (Hari Ini) </p> <br/>
-                                <p class="number">Rp. {{item.P_today}}</p>
+                                <p class="number">{{price(item.P_today)}}</p>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                         <div class="card">
                             <div class="card-content">
                                 <p class="title">Pendapatan (Bulan Ini) </p> <br/>
-                                <p class="number">Rp. {{item.P_month}}</p>
+                                <p class="number">{{price(item.P_month)}}</p>
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                         <div class="card">
                             <div class="card-content">
                                 <p class="title">Pendapatan (Tahun Ini) </p> <br/>
-                                <p class="number">Rp. {{item.P_year}}</p>
+                                <p class="number">{{price(item.P_year)}}</p>
                             </div>
                         </div>
                     </div>
@@ -140,6 +140,14 @@ export default {
          
     },
     methods:{
+        price(value){
+            const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 2
+            })
+            return formatter.format(value) ;
+        },
         getData(){ //mengambil data 
             let uri = '/api/dashboard/graph';
             axios.get(uri,{

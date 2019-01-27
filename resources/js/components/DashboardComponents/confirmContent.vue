@@ -50,7 +50,7 @@
                                                     </div></td>
                                 <td class="cell-title"><div>{{confirm.user.name}}</div></td>
                                 <td class="cell-title"><div>{{confirm.address}},{{confirm.user.detail.provinsi}},{{confirm.user.detail.kota}}</div></td>
-                                <td class="cell-time ">Rp {{parseInt(confirm.total) + parseInt(confirm.shipping) - parseInt(confirm.diskon)}}</td>
+                                <td class="cell-time ">{{price(parseInt(confirm.total) + parseInt(confirm.shipping) - parseInt(confirm.diskon))}}</td>
                                 <td class="cell-time "><span v-if="confirm.evidence == null">-</span><span v-else><a :href="'../../itemImages/'+confirm.evidence">Download</a></span></td>
                                 <td class="cell-status hidden-phone hidden-tablet"><a href="#" class="btn btn-primary" v-if="confirm.status > 2" >Sudah Dikonfirmasi</a><b class="due" v-else @click.prevent="verifikasi(confirm.id,confirm.status)">Belum Terkonfirmasi</b></td>
                             </tr>
@@ -79,7 +79,18 @@ export default {
         this.getConfirm(); //mengambil data yang perlu dikonfirmasi
     },
     methods:{
+        price(value){
+            const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 2
+            })
+            return formatter.format(value) ;
+        },
         verifikasi(id,status){ //kondisi verifikasi 
+            if (!confirm("Are you sure you want to confirm this payment ?")) {
+               return;
+            } 
             var temp;
             if(status == 1){
                 temp = 3; //transaksi dipesan dengan metode transfer tunai dan sudah dikonfirmasi

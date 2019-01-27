@@ -54,7 +54,7 @@
                                                     </table>	
                                                 </td>
                                                 <td>
-                                                    Rp {{parseInt(report.total)}}
+                                                    {{price(parseInt(report.total))}}
                                                 </td>
                                                 <td class="center">
                                                     <span v-if="report.status == 0">-</span>
@@ -74,7 +74,7 @@
                                         <tfoot>
                                             <tr>
                                                 <td colspan="5" style="text-align: right">Total :</td>
-                                                <td >Rp. {{countTotal}}</td>
+                                                <td >{{price(countTotal)}}</td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -116,6 +116,14 @@ export default {
         this.getReport(); //menampilkan data transaksi
     },
     methods:{
+        price(value){
+            const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 2
+            })
+            return formatter.format(value) ;
+        },
           getReport(){ //mengambil data transaksi
             let uri = '/api/report';
             axios.get(uri,{

@@ -91,7 +91,7 @@
                                             </td>
                                             <td>
                                                 <center>
-                                                Rp {{item.price}}
+                                                {{price(item.price)}}
                                             </center>
                                             </td>
                                             <td>
@@ -153,6 +153,14 @@ export default {
             }
         },
     methods:{
+        price(value){
+            const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 2
+            })
+            return formatter.format(value) ;
+        },
         read(){
 			var uri = '/api/brand'
 			var config = {

@@ -1,17 +1,6 @@
 <template>
 <div>
     <div v-if="cart.length > 0">
-    <section class="solid_banner_area">
-            <div class="container">
-                <div class="solid_banner_inner">
-                    <h3>Keranjang Belanjaan</h3>
-                    <ul>
-                        <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
-                        <li><a @click.prevent="getCart()">Keranjang Belanjaan</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
         <section class="shopping_cart_area p_100">
             <div class="container">
                 <div class="row">
@@ -44,14 +33,14 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td><p>Rp {{item.item.price}}</p></td>
+                                            <td><p> {{price(item.item.price)}}</p></td>
                                             <td>
                                                     <button @click.prevent="decrement(item)" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
                                                     <input type="text" name="qty" id="sst" maxlength="12" title="Quantity:" class="input-text qty" style="text-align: center" v-model="item.quantity" disabled>
                                                     <button @click.prevent="increment(item)" class="increase items-count" type="button"><i class="icon_plus"></i></button>
                                        
                                                 </td>
-                                            <td><p>Rp {{item.item.price * item.quantity}}</p></td>
+                                            <td><p>{{price(item.item.price * item.quantity)}}</p></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -89,21 +78,21 @@
                                                 <td><input type="radio" :value="{jc,'code' : 'JNE'}" v-model="shippingTemp" name="cost" ></td>
                                                 <td>JNE</td>
                                                 <td>{{jc.service}}</td>
-                                                <td>Rp {{jc.cost[0].value}}</td>
+                                                <td>{{price(jc.cost[0].value)}}</td>
                                                 <td>{{jc.cost[0].etd}} HARI</td>
                                             </tr>
                                             <tr v-for="(jc,index) in tiki[0].costs" :key="index+20">
                                                 <td><input type="radio" :value="{jc,'code' : 'TIKI'}" v-model="shippingTemp" name="cost" ></td>
                                                 <td>TIKI</td>
                                                 <td>{{jc.service}}</td>
-                                                <td>Rp {{jc.cost[0].value}}</td>
+                                                <td>{{price(jc.cost[0].value)}}</td>
                                                 <td>{{jc.cost[0].etd}} HARI</td>
                                             </tr>
                                             <tr v-for="(jc,index) in pos[0].costs" :key="index+30">
                                                 <td><input type="radio" :value="{jc,'code' : 'POS'}" v-model="shippingTemp" name="cost" ></td>
                                                 <td>POS</td>
                                                 <td>{{jc.service}}</td>
-                                                <td>Rp {{jc.cost[0].value}}</td>
+                                                <td>{{price(jc.cost[0].value)}}</td>
                                                 <td>{{jc.cost[0].etd}}</td>
                                             </tr>
                                             
@@ -119,10 +108,10 @@
                                 <h3 class="cart_single_title">Total belanjaan</h3>
                                 <div class="cart_total_inner">
                                     <ul>
-                                        <li><a href="#"><span>Subtotal keranjang</span> Rp {{total}}</a></li>
-                                        <li><a href="#"><span>Biaya Pengiriman</span> Rp {{shipping}}</a></li>
-                                        <li v-if="diskon != 0"><a href="#"><span>Diskon</span> Rp {{diskon}}</a></li>
-                                        <li><a href="#"><span>Total Bayar</span> Rp {{parseInt(total) + parseInt(shipping) - parseInt(diskon)}}</a></li>
+                                        <li><a href="#"><span>Subtotal keranjang</span> <br> {{price(total)}}</a></li>
+                                        <li><a href="#"><span>Biaya Pengiriman</span> <br> {{price(shipping)}}</a></li>
+                                        <li v-if="diskon != 0"><a href="#"><span>Diskon</span> <br> {{price(diskon)}}</a></li>
+                                        <li><a href="#"><span>Total Bayar</span> <br> {{price(parseInt(total) + parseInt(shipping) - parseInt(diskon))}}</a></li>
                                     </ul>
                                 </div>
                                 <a class="btn btn-primary checkout_btn" @click.prevent="checkout()"><div class="loader" v-if="load ==  'Checkout'"></div> <span v-else>Lanjutkan ke pembayaran</span></a>
@@ -134,17 +123,6 @@
         </section>
 </div>
     <div v-else>
-        <section class="solid_banner_area">
-            <div class="container">
-                <div class="solid_banner_inner">
-                    <h3>Keranjang Kosong</h3>
-                    <ul>
-                        <li><router-link :to="{name: 'Landing'}">Beranda</router-link></li>
-                        <li><a @click.prevent="getCart()">Keranjang Belanjaan</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
         <section class="emty_cart_area p_100">
             <div class="container">
                 <div class="emty_cart_inner">
@@ -273,6 +251,14 @@ export default {
         }
     },
     methods:{
+        price(value){
+            const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 2
+            })
+            return formatter.format(value) ;
+        },
         useCupon(){
             let uri = '/api/cupon/'+this.cupon;
               axios.get(uri,{

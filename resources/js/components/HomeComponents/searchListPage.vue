@@ -39,7 +39,7 @@
                                             <a class="add_cart_btn" style="background-color: red" v-else>Stok Kosong</a></li>
                                 </ul>
                                 <h4>{{item.name}}</h4>
-                                <h5><del></del>Rp. {{item.price}}</h5>
+                                <h5><del></del>{{price(item.price)}}</h5>
                             </div>
                         </div>
                     </div>
@@ -97,6 +97,14 @@ export default {
         }
     },
     methods:{
+        price(value){
+            const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 2
+            })
+            return formatter.format(value) ;
+        },
          getData(){ //mengambil data yang dicari
             let uri = '/api/search/'+this.$route.params.search;
             axios.get(uri).then((response) => {

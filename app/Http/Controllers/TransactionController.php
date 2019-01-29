@@ -33,6 +33,10 @@ class TransactionController extends Controller
     {
         return Transaction::with(['detail','user'])->get();
     }
+    public function myhistory()
+    {
+        return Transaction::where('user_id',JWTAuth::parseToken()->authenticate()->id)->with(['detail','user'])->get();
+    }
     public function export() 
     {
         // return Excel::download(new ReportItem(1), 'report.pdf');

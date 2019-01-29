@@ -67,11 +67,11 @@
                             </li> -->
                            
                       
-                             <li class="nav-item">
+                             <!-- <li class="nav-item">
                                 <router-link :to="{name: 'Order'}" class="nav-link">
                                     CARA ORDER
                                 </router-link>
-                            </li>
+                            </li> -->
                              <li class="nav-item">
                                 <router-link :to="{name: 'AboutUs'}" class="nav-link">
                                     TENTANG KAMI
@@ -291,7 +291,11 @@
                                 <h3>Informasi</h3>
                             </div>
                             <ul>
-                                <li><a href="#">Tentang Kami</a></li>
+                                <li>
+                                     <router-link :to="{name: 'AboutUs'}" class="nav-link">
+                                    Tentang Kami
+                                </router-link>
+                                </li>
                             </ul>
                         </aside>
                     </div>
@@ -301,8 +305,9 @@
                                 <h3>Pelayanan Pelanggan</h3>
                             </div>
                             <ul>
-                                <li><a href="#">Akun Saya</a></li>
-                                <li><a href="#">Riwayat Belanja</a></li>
+                                <li>
+                                    <router-link :to="{name: 'orderHistory'}">Riwayat Belanja</router-link>
+                                </li>
                             </ul>
                         </aside>
                     </div>

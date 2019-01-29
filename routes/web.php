@@ -33,6 +33,7 @@ Route::get('/list/{type}/{category}', function () {return view('app');});
 Route::get('/search/{search}', function () {return view('app');});
 Route::get('/checkout/{token}', function () {return view('app');});
 Route::get('/confirm', function () {return view('app');});
+Route::get('/history', function () {return view('app');});
 Route::get('/checkoutcart', function () {return view('app');});
 Route::get('/tentangkami', function () {return view('app');});
 Route::get('/caraorder', function () {return view('app');});

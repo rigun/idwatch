@@ -29,7 +29,7 @@ const Checkout = Vue.component('Checkout', require('./components/HomeComponents/
 const ConfirmOrder = Vue.component('ConfirmOrder', require('./components/HomeComponents/ConfirmOrderPage.vue'))
 const CheckoutCart = Vue.component('CheckoutCart', require('./components/HomeComponents/CheckoutCart.vue'))
 const AboutUs = Vue.component('AboutUs', require('./components/HomeComponents/AboutUs.vue'))
-const Order = Vue.component('Order', require('./components/HomeComponents/Order.vue'))
+const orderHistory = Vue.component('orderHistory', require('./components/HomeComponents/Order.vue'))
 const Forget = Vue.component('Forget', require('./components/HomeComponents/ForgetPassword.vue'))
 const ChangeForget = Vue.component('ChangeForget', require('./components/HomeComponents/ChangePassword.vue'))
 
@@ -77,9 +77,9 @@ const routes = [
                 component: Contact
             },
             {
-                name: 'Order',
-                path: 'caraorder',
-                component: Order
+                name: 'orderHistory',
+                path: 'history',
+                component: orderHistory
             },
             {
                 name: 'CheckoutCart',

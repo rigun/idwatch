@@ -25726,8 +25726,7 @@ var render = function() {
                           _vm._s(
                             _vm.price(
                               parseInt(confirm.total) +
-                                parseInt(confirm.shipping) -
-                                parseInt(confirm.diskon)
+                                parseInt(confirm.shipping)
                             )
                           )
                         )
@@ -25740,16 +25739,11 @@ var render = function() {
                         },
                         [
                           confirm.status > 2
-                            ? _c(
-                                "a",
-                                {
-                                  staticClass: "btn btn-primary",
-                                  attrs: { href: "#" }
-                                },
-                                [_vm._v("Sudah Dikonfirmasi")]
-                              )
-                            : _c("b", { staticClass: "due" }, [
-                                _vm._v("Belum Terkonfirmasi")
+                            ? _c("a", { staticClass: "btn btn-primary" }, [
+                                _vm._v("Sudah Dikonfirmasi")
+                              ])
+                            : _c("b", { staticClass: "btn due" }, [
+                                _vm._v("Belum Di konfirmasi")
                               ])
                         ]
                       )
@@ -25765,7 +25759,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "module-foot" }, [
         _vm._v(
-          "\n                *Total berasal dari Biaya Barang + Biaya Pengiriman - Diskon.\n            "
+          "\n                *Total berasal dari Biaya Barang + Biaya Pengiriman.\n            "
         )
       ])
     ])

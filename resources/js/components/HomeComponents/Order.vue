@@ -43,8 +43,8 @@
                                                         </tr>
                                                     </table>
                                                     </div></td>
-                                <td class="cell-time ">{{price(parseInt(confirm.total) + parseInt(confirm.shipping) - parseInt(confirm.diskon))}}</td>
-                                <td class="cell-status hidden-phone hidden-tablet"><a href="#" class="btn btn-primary" v-if="confirm.status > 2" >Sudah Dikonfirmasi</a><b class="due" v-else >Belum Terkonfirmasi</b></td>
+                                <td class="cell-time ">{{price(parseInt(confirm.total) + parseInt(confirm.shipping))}}</td>
+                                <td class="cell-status hidden-phone hidden-tablet"><a class="btn btn-primary" v-if="confirm.status > 2" >Sudah Dikonfirmasi</a><b class="btn due" v-else >Belum Di konfirmasi</b></td>
                             </tr>
                             
                             
@@ -54,7 +54,7 @@
 
                 </div>
                 <div class="module-foot">
-                    *Total berasal dari Biaya Barang + Biaya Pengiriman - Diskon.
+                    *Total berasal dari Biaya Barang + Biaya Pengiriman.
                 </div>
             </div>
 						

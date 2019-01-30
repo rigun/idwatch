@@ -237,7 +237,7 @@
                                 
                 </div>
                 
-                <div class="advanced_search_area">
+                <div class="advanced_search_area" style="width: 75%; margin-left: auto;">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" aria-label="Search" v-model="search">
                         <span class="input-group-btn" v-if="search == ''">

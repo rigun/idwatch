@@ -17015,61 +17015,68 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "advanced_search_area" }, [
-            _c("div", { staticClass: "input-group" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.search,
-                    expression: "search"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  placeholder: "Search",
-                  "aria-label": "Search"
-                },
-                domProps: { value: _vm.search },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+          _c(
+            "div",
+            {
+              staticClass: "advanced_search_area",
+              staticStyle: { width: "75%", "margin-left": "auto" }
+            },
+            [
+              _c("div", { staticClass: "input-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
                     }
-                    _vm.search = $event.target.value
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Search",
+                    "aria-label": "Search"
+                  },
+                  domProps: { value: _vm.search },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
                   }
-                }
-              }),
-              _vm._v(" "),
-              _vm.search == ""
-                ? _c("span", { staticClass: "input-group-btn" }, [_vm._m(4)])
-                : _c(
-                    "span",
-                    { staticClass: "input-group-btn" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            to: {
-                              name: "SearchList",
-                              params: { search: _vm.search }
+                }),
+                _vm._v(" "),
+                _vm.search == ""
+                  ? _c("span", { staticClass: "input-group-btn" }, [_vm._m(4)])
+                  : _c(
+                      "span",
+                      { staticClass: "input-group-btn" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "SearchList",
+                                params: { search: _vm.search }
+                              }
                             }
-                          }
-                        },
-                        [
-                          _c("button", { staticClass: "btn btn-secondary" }, [
-                            _c("i", { staticClass: "icon-magnifier icons" })
-                          ])
-                        ]
-                      )
-                    ],
-                    1
-                  )
-            ])
-          ])
+                          },
+                          [
+                            _c("button", { staticClass: "btn btn-secondary" }, [
+                              _c("i", { staticClass: "icon-magnifier icons" })
+                            ])
+                          ]
+                        )
+                      ],
+                      1
+                    )
+              ])
+            ]
+          )
         ])
       ])
     ]),

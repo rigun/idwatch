@@ -1,6 +1,6 @@
 <template>
     <div>
- <section class="home_carousel_area">
+ <!-- <section class="home_carousel_area">
         <div class="home_carousel_slider owl-carousel">
             <div class="item">
                 <div class="h_carousel_item">
@@ -58,7 +58,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- <section class="fillter_latest_product">
         <div class="container">

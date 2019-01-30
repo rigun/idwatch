@@ -18028,8 +18028,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
     _c("section", { staticClass: "no_sidebar_2column_area" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "two_column_product" }, [
@@ -18124,126 +18122,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "home_carousel_area" }, [
-      _c("div", { staticClass: "home_carousel_slider owl-carousel" }, [
-        _c("div", { staticClass: "item" }, [
-          _c("div", { staticClass: "h_carousel_item" }, [
-            _c("img", {
-              attrs: { src: "img/home-carousel/home-c-1.jpg", alt: "" }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "carousel_hover" }, [
-              _c("h3", [_vm._v("Jam Tangan")]),
-              _vm._v(" "),
-              _c("h4", [_vm._v("Kami Menyediakan Jam Tangan Terbaik")]),
-              _vm._v(" "),
-              _c("h5", [_vm._v("Termasuk:")]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Adidas, Century, Everlast, Fairtex, Fighting Sports, WaveMaster, Twins, Rival"
-                )
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "item" }, [
-          _c("div", { staticClass: "h_carousel_item" }, [
-            _c("img", {
-              attrs: { src: "img/home-carousel/home-c-2.jpg", alt: "" }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "carousel_hover" }, [
-              _c("h3", [_vm._v("Jam Tangan")]),
-              _vm._v(" "),
-              _c("h4", [_vm._v("Kami Menyediakan Jam Tangan Terbaik")]),
-              _vm._v(" "),
-              _c("h5", [_vm._v("Termasuk:")]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Adidas, Century, Everlast, Fairtex, Fighting Sports, WaveMaster, Twins, Rival"
-                )
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "item" }, [
-          _c("div", { staticClass: "h_carousel_item" }, [
-            _c("img", {
-              attrs: { src: "img/home-carousel/home-c-3.jpg", alt: "" }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "carousel_hover" }, [
-              _c("h3", [_vm._v("Jam Tangan")]),
-              _vm._v(" "),
-              _c("h4", [_vm._v("Kami Menyediakan Jam Tangan Terbaik")]),
-              _vm._v(" "),
-              _c("h5", [_vm._v("Termasuk:")]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Adidas, Century, Everlast, Fairtex, Fighting Sports, WaveMaster, Twins, Rival"
-                )
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "item" }, [
-          _c("div", { staticClass: "h_carousel_item" }, [
-            _c("img", {
-              attrs: { src: "img/home-carousel/home-c-4.jpg", alt: "" }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "carousel_hover" }, [
-              _c("h3", [_vm._v("Jam Tangan")]),
-              _vm._v(" "),
-              _c("h4", [_vm._v("Kami Menyediakan Jam Tangan Terbaik")]),
-              _vm._v(" "),
-              _c("h5", [_vm._v("Termasuk:")]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Adidas, Century, Everlast, Fairtex, Fighting Sports, WaveMaster, Twins, Rival"
-                )
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "item" }, [
-          _c("div", { staticClass: "h_carousel_item" }, [
-            _c("img", {
-              attrs: { src: "img/home-carousel/home-c-5.jpg", alt: "" }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "carousel_hover" }, [
-              _c("h3", [_vm._v("Jam Tangan")]),
-              _vm._v(" "),
-              _c("h4", [_vm._v("Kami Menyediakan Jam Tangan Terbaik")]),
-              _vm._v(" "),
-              _c("h5", [_vm._v("Termasuk:")]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Adidas, Century, Everlast, Fairtex, Fighting Sports, WaveMaster, Twins, Rival"
-                )
-              ])
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

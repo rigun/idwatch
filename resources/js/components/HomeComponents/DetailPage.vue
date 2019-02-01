@@ -39,7 +39,7 @@
                                         <input type="text" name="qty" id="sst" maxlength="12" title="Quantity:" class="input-text qty" style="text-align: center" v-model="cart.quantity">
                                         <button @click.prevent="increment()" class="increase items-count" type="button"><i class="icon_plus"></i></button>
                                     </div> <br>
-                                    Stok Barang : {{item.stock}}
+                                    Stok Barang : {{item.stock}} <br>
                                     <button type="submit" class="add_cart_btn" v-if="$parent.token != null" ><div class="loader" v-if="load"></div> <span v-else>Tambahkan Ke Keranjang</span> </button>
                                     <button type="submit" class="add_cart_btn" v-if="$parent.token == null" @click.prevent="addToCart()"> <span>Tambahkan Ke Keranjang</span> </button>
                                 </div>

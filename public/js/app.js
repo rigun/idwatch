@@ -22526,8 +22526,10 @@ var render = function() {
                     _vm._v(
                       "\n                                    Stok Barang : " +
                         _vm._s(_vm.item.stock) +
-                        "\n                                    "
+                        " "
                     ),
+                    _c("br"),
+                    _vm._v(" "),
                     _vm.$parent.token != null
                       ? _c(
                           "button",

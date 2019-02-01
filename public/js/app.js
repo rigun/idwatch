@@ -29596,6 +29596,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -29781,14 +29783,16 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", { staticClass: "cell-title" }, [
                         _c("div", [
-                          _vm._v(
-                            _vm._s(confirm.address) +
-                              "," +
-                              _vm._s(confirm.user.detail.provinsi) +
-                              "," +
-                              _vm._s(confirm.user.detail.kota)
-                          )
+                          _vm._v(_vm._s(confirm.address) + " "),
+                          _c("br"),
+                          _vm._v(_vm._s(confirm.user.detail.provinsi)),
+                          _c("br"),
+                          _vm._v(_vm._s(confirm.user.detail.kota))
                         ])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "cell-title" }, [
+                        _c("div", [_vm._v(_vm._s(confirm.created_at))])
                       ]),
                       _vm._v(" "),
                       _c("td", { staticClass: "cell-time " }, [
@@ -29898,6 +29902,8 @@ var staticRenderFns = [
       _c("td", {}, [_vm._v("Nama User")]),
       _vm._v(" "),
       _c("td", {}, [_vm._v("Alamat")]),
+      _vm._v(" "),
+      _c("td", {}, [_vm._v("Tanggal transaksi")]),
       _vm._v(" "),
       _c("td", { staticClass: "cell-time " }, [_vm._v("Total*")]),
       _vm._v(" "),

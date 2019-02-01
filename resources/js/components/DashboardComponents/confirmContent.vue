@@ -18,6 +18,7 @@
                                 <td class="cell-title">Gambar</td>
                                 <td class="">Nama User</td>
                                 <td class="">Alamat</td>
+                                <td class="">Tanggal transaksi</td>
                                 <td class="cell-time ">Total*</td>
                                 <td class="cell-time ">Download Bukti</td>
                                 <td class="cell-status">Status</td>
@@ -50,7 +51,8 @@
                                                     </table>
                                                     </div></td>
                                 <td class="cell-title"><div>{{confirm.user.name}}</div></td>
-                                <td class="cell-title"><div>{{confirm.address}},{{confirm.user.detail.provinsi}},{{confirm.user.detail.kota}}</div></td>
+                                <td class="cell-title"><div>{{confirm.address}} <br>{{confirm.user.detail.provinsi}}<br>{{confirm.user.detail.kota}}</div></td>
+                                <td class="cell-title"><div>{{confirm.created_at}}</div></td>
                                 <td class="cell-time ">{{price(parseInt(confirm.total) + parseInt(confirm.shipping) - parseInt(confirm.diskon))}}</td>
                                 <td class="cell-time "><span v-if="confirm.evidence == null">-</span><span v-else><a :href="'../../itemImages/'+confirm.evidence">Download</a></span></td>
                                 <td class="cell-status"><p v-if="confirm.status > 2" >Sudah Dikonfirmasi</p><b class="due" v-else @click.prevent="verifikasi(confirm.id,confirm.status)">Belum Terkonfirmasi</b></td>

@@ -71,7 +71,7 @@
                                     <div class="price_single_cost">
                                         <h5 v-for="item in transaction.detail" :key="item.id">{{item.cart.item.name}} <span>{{price(item.cart.item.price * item.cart.quantity)}}</span></h5>
                                         <h4>Biaya Pengiriman <span>{{price(transaction.shipping)}}</span></h4>
-                                        <h4 v-if="transaction.diskon > 0">Diskon <span>{{price(transaction.diskon)}}</span></h4>
+                                        <h4>Kode Unik <span>{{unik(transaction.total)}}</span></h4>
                                         <h3><span class="normal_text">Total Pesanan</span> <span>{{price(parseInt(transaction.total) + parseInt(transaction.shipping) - parseInt(transaction.diskon))}}</span></h3>
                                     </div>
                                     <div id="accordion" role="tablist" class="price_method">
@@ -168,6 +168,9 @@ export default {
                 }
               
             })
+        },
+        unik(total){
+            return total.slice(-2)
         },
         placeOrder(){ //melakukan pemesanan
             if(this.phone == '' || this.address == '' || this.notes == ''){

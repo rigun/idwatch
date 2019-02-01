@@ -112,7 +112,7 @@
                                         <li><a href="#"><span>Kode unik</span> <br> {{unik}}</a></li>
                                         <li><a href="#"><span>Biaya Pengiriman</span> <br> {{price(shipping)}}</a></li>
                                         <li v-if="diskon != 0"><a href="#"><span>Diskon</span> <br> {{price(diskon)}}</a></li>
-                                        <li><a href="#"><span>Total Bayar *</span> <br> {{price(parseInt(total) + parseInt(shipping) - parseInt(diskon))}}</a></li>
+                                        <li><a href="#"><span>Total Bayar *</span> <br> {{price(parseInt(total) + parseInt(shipping) + parseInt(unik))}}</a></li>
                                     </ul>
                                 </div>
                                 <a class="btn btn-primary checkout_btn" @click.prevent="checkout()"><div class="loader" v-if="load ==  'Checkout'"></div> <span v-else>Lanjutkan ke pembayaran</span></a>

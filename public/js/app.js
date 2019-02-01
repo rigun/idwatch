@@ -20846,8 +20846,8 @@ var render = function() {
                                   _vm._s(
                                     _vm.price(
                                       parseInt(_vm.total) +
-                                        parseInt(_vm.shipping) -
-                                        parseInt(_vm.diskon)
+                                        parseInt(_vm.shipping) +
+                                        parseInt(_vm.unik)
                                     )
                                   )
                               )
@@ -24482,6 +24482,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             });
         },
+        unik: function unik(total) {
+            return total.slice(-2);
+        },
         placeOrder: function placeOrder() {
             var _this2 = this;
 
@@ -24799,14 +24802,12 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm.transaction.diskon > 0
-                        ? _c("h4", [
-                            _vm._v("Diskon "),
-                            _c("span", [
-                              _vm._v(_vm._s(_vm.price(_vm.transaction.diskon)))
-                            ])
-                          ])
-                        : _vm._e(),
+                      _c("h4", [
+                        _vm._v("Kode Unik "),
+                        _c("span", [
+                          _vm._v(_vm._s(_vm.unik(_vm.transaction.total)))
+                        ])
+                      ]),
                       _vm._v(" "),
                       _c("h3", [
                         _c("span", { staticClass: "normal_text" }, [

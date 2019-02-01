@@ -21461,6 +21461,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -22442,7 +22443,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("h6", [_vm._v("Stok Barang : " + _vm._s(_vm.item.stock))]),
+              _c("h6", [_vm._v("Stok Barang Tersedia")]),
               _vm._v(" "),
               _c("h4", [_vm._v(_vm._s(_vm.price(_vm.item.price)))]),
               _vm._v(" "),
@@ -22521,6 +22522,12 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
+                    _c("br"),
+                    _vm._v(
+                      "\n                                    Stok Barang : " +
+                        _vm._s(_vm.item.stock) +
+                        "\n                                    "
+                    ),
                     _vm.$parent.token != null
                       ? _c(
                           "button",

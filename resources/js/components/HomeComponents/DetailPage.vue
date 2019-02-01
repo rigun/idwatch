@@ -28,7 +28,7 @@
                                 <a href="#">5 Reviews</a>
                                 <a href="#">Tambahkan Review Anda</a>
                             </div> -->
-                            <h6>Stok Barang : {{item.stock}}</h6>
+                            <h6>Stok Barang Tersedia</h6>
                             <h4>{{price(item.price)}}</h4>
                             <p>{{item.description}}</p>
                             <form @submit.prevent="sendData()">
@@ -38,7 +38,8 @@
                                         <button @click.prevent="decrement()" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
                                         <input type="text" name="qty" id="sst" maxlength="12" title="Quantity:" class="input-text qty" style="text-align: center" v-model="cart.quantity">
                                         <button @click.prevent="increment()" class="increase items-count" type="button"><i class="icon_plus"></i></button>
-                                    </div>
+                                    </div> <br>
+                                    Stok Barang : {{item.stock}}
                                     <button type="submit" class="add_cart_btn" v-if="$parent.token != null" ><div class="loader" v-if="load"></div> <span v-else>Tambahkan Ke Keranjang</span> </button>
                                     <button type="submit" class="add_cart_btn" v-if="$parent.token == null" @click.prevent="addToCart()"> <span>Tambahkan Ke Keranjang</span> </button>
                                 </div>

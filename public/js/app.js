@@ -21646,7 +21646,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             if (!this.validate()) {
                 return false;
             }
-            if (this.cart.quantity > this.item.stock) {
+            if (parseInt(this.cart.quantity) > parseInt(this.item.stock)) {
                 alert('Stok tidak mencukupi pemesanan');
                 return false;
             }
@@ -21660,9 +21660,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             if (!this.prepareFields()) {
                 return false;
             }
-            console.log(this.cart.quantity);
-            console.log(this.item.stock);
-            return;
             this.percentCompleted = 0;
             this.load = true;
             var config = {

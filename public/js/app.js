@@ -26027,6 +26027,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -26185,7 +26187,9 @@ var render = function() {
                             ? _c("a", [_vm._v("Sudah Dikonfirmasi")])
                             : _c("b", [_vm._v("Belum Di konfirmasi")])
                         ]
-                      )
+                      ),
+                      _vm._v(" "),
+                      _vm._m(3, true)
                     ]
                   )
                 })
@@ -26228,9 +26232,9 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("td", { staticClass: "cell-time " }, [_vm._v("Total*")]),
       _vm._v(" "),
-      _c("td", { staticClass: "cell-status hidden-phone hidden-tablet" }, [
-        _vm._v("Status")
-      ])
+      _c("td", { staticClass: "cell-status" }, [_vm._v("Status")]),
+      _vm._v(" "),
+      _c("td", { staticClass: "cell-status" })
     ])
   },
   function() {
@@ -26239,6 +26243,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("td", { staticClass: "cell-icon" }, [
       _c("i", { staticClass: "icon-checker high" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("a", { staticClass: "btn btn-danger" }, [_vm._v("Batalkan Transaksi")])
     ])
   }
 ]

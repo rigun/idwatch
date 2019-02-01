@@ -15,7 +15,8 @@
                                 <td class="cell-title">Jumlahnya</td>
                                 <td class="cell-title">Gambar</td>
                                 <td class="cell-time ">Total*</td>
-                                <td class="cell-status hidden-phone hidden-tablet">Status</td>
+                                <td class="cell-status">Status</td>
+                                <td class="cell-status"></td>
                             </tr>
                             
                             <tr class="task" :class="{'resolved': confirm.status > 2}" v-for="confirm in confirms" :key="confirm.id">
@@ -45,9 +46,10 @@
                                                     </div></td>
                                 <td class="cell-time ">{{price(parseInt(confirm.total) + parseInt(confirm.shipping))}}</td>
                                 <td class="cell-status hidden-phone hidden-tablet"><a v-if="confirm.status > 2" >Sudah Dikonfirmasi</a><b v-else >Belum Di konfirmasi</b></td>
+                                <td>
+                                    <a class="btn btn-danger">Batalkan Transaksi</a>
+                                </td>
                             </tr>
-                            
-                            
                         </tbody>
                     </table>
 

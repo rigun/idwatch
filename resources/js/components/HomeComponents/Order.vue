@@ -44,7 +44,7 @@
                                                     </table>
                                                     </div></td>
                                 <td class="cell-time ">{{price(parseInt(confirm.total) + parseInt(confirm.shipping))}}</td>
-                                <td class="cell-status hidden-phone hidden-tablet"><a class="btn btn-primary" v-if="confirm.status > 2" >Sudah Dikonfirmasi</a><b class="btn due" v-else >Belum Di konfirmasi</b></td>
+                                <td class="cell-status hidden-phone hidden-tablet"><a v-if="confirm.status > 2" >Sudah Dikonfirmasi</a><b v-else >Belum Di konfirmasi</b></td>
                             </tr>
                             
                             

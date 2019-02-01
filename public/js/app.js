@@ -18415,7 +18415,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     localStorage.setItem('remember', _this3.login.remember);
                 }
                 _this3.$parent.getUser();
-                _this3.$router.push({ name: 'Cart' });
+                _this3.$router.push({ name: 'Landing' });
             }).catch(function (error) {
                 _this3.snackbar = true;
                 _this3.text = "Incorrect Username or Password";
@@ -20365,71 +20365,80 @@ var render = function() {
                                 ])
                               ]),
                               _vm._v(" "),
-                              _c("td", [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "reduced items-count",
-                                    attrs: { type: "button" },
-                                    on: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        _vm.decrement(item)
-                                      }
-                                    }
-                                  },
-                                  [_c("i", { staticClass: "icon_minus-06" })]
-                                ),
-                                _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: item.quantity,
-                                      expression: "item.quantity"
-                                    }
-                                  ],
-                                  staticClass: "input-text qty",
-                                  staticStyle: { "text-align": "center" },
-                                  attrs: {
-                                    type: "text",
-                                    name: "qty",
-                                    id: "sst",
-                                    maxlength: "12",
-                                    title: "Quantity:",
-                                    disabled: ""
-                                  },
-                                  domProps: { value: item.quantity },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        item,
-                                        "quantity",
-                                        $event.target.value
-                                      )
-                                    }
+                              _c(
+                                "td",
+                                {
+                                  staticStyle: {
+                                    display: "flex",
+                                    width: "115px"
                                   }
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "increase items-count",
-                                    attrs: { type: "button" },
+                                },
+                                [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "reduced items-count",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          _vm.decrement(item)
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "icon_minus-06" })]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: item.quantity,
+                                        expression: "item.quantity"
+                                      }
+                                    ],
+                                    staticClass: "input-text qty",
+                                    staticStyle: { "text-align": "center" },
+                                    attrs: {
+                                      type: "text",
+                                      name: "qty",
+                                      id: "sst",
+                                      maxlength: "12",
+                                      title: "Quantity:",
+                                      disabled: ""
+                                    },
+                                    domProps: { value: item.quantity },
                                     on: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        _vm.increment(item)
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          item,
+                                          "quantity",
+                                          $event.target.value
+                                        )
                                       }
                                     }
-                                  },
-                                  [_c("i", { staticClass: "icon_plus" })]
-                                )
-                              ]),
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "increase items-count",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          _vm.increment(item)
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "icon_plus" })]
+                                  )
+                                ]
+                              ),
                               _vm._v(" "),
                               _c("td", [
                                 _c("p", [
@@ -26173,12 +26182,8 @@ var render = function() {
                         },
                         [
                           confirm.status > 2
-                            ? _c("a", { staticClass: "btn btn-primary" }, [
-                                _vm._v("Sudah Dikonfirmasi")
-                              ])
-                            : _c("b", { staticClass: "btn due" }, [
-                                _vm._v("Belum Di konfirmasi")
-                              ])
+                            ? _c("a", [_vm._v("Sudah Dikonfirmasi")])
+                            : _c("b", [_vm._v("Belum Di konfirmasi")])
                         ]
                       )
                     ]

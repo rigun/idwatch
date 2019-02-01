@@ -168,7 +168,7 @@ export default {
                     localStorage.setItem('remember', this.login.remember)
                 }
                 this.$parent.getUser();
-                this.$router.push({ name: 'Cart' })
+                this.$router.push({ name: 'Landing' })
             }).catch(error => {
                 this.snackbar = true;
                 this.text = "Incorrect Username or Password"

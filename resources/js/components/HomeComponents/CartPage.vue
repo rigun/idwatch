@@ -34,7 +34,7 @@
                                                 </div>
                                             </td>
                                             <td><p> {{price(item.item.price)}}</p></td>
-                                            <td>
+                                            <td style="display: flex;width: 115px;">
                                                     <button @click.prevent="decrement(item)" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
                                                     <input type="text" name="qty" id="sst" maxlength="12" title="Quantity:" class="input-text qty" style="text-align: center" v-model="item.quantity" disabled>
                                                     <button @click.prevent="increment(item)" class="increase items-count" type="button"><i class="icon_plus"></i></button>

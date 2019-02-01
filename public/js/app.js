@@ -20094,7 +20094,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         unik: function unik() {
-            return Math.random() * 99;
+            return parseInt(Math.random() * 99);
         },
         total: function total() {
             //menghitung total belanja

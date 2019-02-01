@@ -230,7 +230,7 @@ export default {
     },
     computed:{
         unik(){
-            return Math.random() * (99) ;
+            return parseInt(Math.random() * (99)) ;
         },
         total(){ //menghitung total belanja
             var sum=0;

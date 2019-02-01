@@ -21646,6 +21646,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             if (!this.validate()) {
                 return false;
             }
+            if (this.cart.quantity > this.item.stock) {
+                alert('Stok tidak mencukupi pemesanan');
+                return false;
+            }
             this.cart.item_id = this.item.id;
             return true;
         },
@@ -21656,10 +21660,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             if (!this.prepareFields()) {
                 return false;
             }
-            if (this.cart.quantity > this.item.stock) {
-                alert('Stok tidak mencukupi pemesanan');
-                return;
-            }
+
             this.percentCompleted = 0;
             this.load = true;
             var config = {

@@ -21660,7 +21660,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             if (!this.prepareFields()) {
                 return false;
             }
-
+            console.log(this.cart.quantity > this.item.stock);
+            return;
             this.percentCompleted = 0;
             this.load = true;
             var config = {

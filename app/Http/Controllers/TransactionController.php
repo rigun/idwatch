@@ -271,7 +271,7 @@ class TransactionController extends Controller
     public function destroy($id)
     {
         $transaction = Transaction::where([['id',$id]])->first();
-        if($detail = TransactionDetail::where([['transaction_id', $item->id]])->get()){
+        if($detail = TransactionDetail::where([['transaction_id', $transaction->id]])->get()){
             foreach($detail as $dt)
             {
                 $cart = Cart::where('id',$dt->cart_id)->first();

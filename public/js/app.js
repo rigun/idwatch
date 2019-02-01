@@ -25362,7 +25362,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     computed: {
-        total: function total() {
+        totalCart: function totalCart() {
             //menghitung total belanja
             var sum = 0;
             for (var i = 0; i < this.cart.length; i++) {
@@ -25617,28 +25617,34 @@ var render = function() {
                           _c("li", [
                             _c("a", { attrs: { href: "#" } }, [
                               _c("span", [_vm._v("Subtotal Keranjang")]),
-                              _vm._v(_vm._s(_vm.price(_vm.total)))
+                              _c("br"),
+                              _vm._v(" " + _vm._s(_vm.price(_vm.totalCart)))
                             ])
                           ]),
                           _vm._v(" "),
                           _c("li", [
                             _c("a", { attrs: { href: "#" } }, [
                               _c("span", [_vm._v("Biaya Pengiriman")]),
-                              _vm._v(_vm._s(_vm.price(_vm.shipping)))
+                              _c("br"),
+                              _vm._v(" " + _vm._s(_vm.price(_vm.shipping)))
                             ])
                           ]),
                           _vm._v(" "),
                           _c("li", [
                             _c("a", { attrs: { href: "#" } }, [
                               _c("span", [_vm._v("Kode Unik")]),
-                              _vm._v(_vm._s(_vm.unik(_vm.total)))
+                              _c("br"),
+                              _vm._v(
+                                " " + _vm._s(_vm.price(_vm.unik(_vm.total)))
+                              )
                             ])
                           ]),
                           _vm._v(" "),
                           _c("li", [
                             _c("a", { attrs: { href: "#" } }, [
                               _c("span", [_vm._v("Total Bayar")]),
-                              _vm._v(_vm._s(_vm.total))
+                              _c("br"),
+                              _vm._v(" " + _vm._s(_vm.price(_vm.total)))
                             ])
                           ])
                         ])

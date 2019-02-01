@@ -57,10 +57,10 @@
                                 <h3 class="cart_single_title">Silahkan melakukan pembayaran sejumlah</h3>
                                 <div class="cart_total_inner">
                                     <ul>
-                                        <li><a href="#"><span>Subtotal Keranjang</span>{{price(total)}}</a></li>
-                                        <li><a href="#"><span>Biaya Pengiriman</span>{{price(shipping)}}</a></li>
-                                        <li><a href="#" ><span>Kode Unik</span>{{unik(total)}}</a></li>
-                                        <li><a href="#"><span>Total Bayar</span>{{total}}</a></li>
+                                        <li><a href="#"><span>Subtotal Keranjang</span><br/> {{price(totalCart)}}</a></li>
+                                        <li><a href="#"><span>Biaya Pengiriman</span><br/> {{price(shipping)}}</a></li>
+                                        <li><a href="#" ><span>Kode Unik</span><br/> {{price(unik(total))}}</a></li>
+                                        <li><a href="#"><span>Total Bayar</span><br/> {{price(total)}}</a></li>
                                     </ul>
                                 </div>
                                 <h3 class="cart_single_title" style="text-align: center">Apabila dalam 1 x 24 jam tidak melakukan pembayaran, maka transaksi akan dibatalkan</h3>                                
@@ -130,7 +130,7 @@ export default {
         // this.getCity();
     },
     computed:{
-        total(){ //menghitung total belanja
+        totalCart(){ //menghitung total belanja
             var sum=0;
             for(let i=0;i< this.cart.length;i++){
                 sum = sum + (this.cart[i].item.price * this.cart[i].quantity)

@@ -20055,6 +20055,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -20092,6 +20093,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     computed: {
+        unik: function unik() {
+            return Math.random() * 99;
+        },
         total: function total() {
             //menghitung total belanja
             var sum = 0;
@@ -20154,7 +20158,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return;
             }
             var uri = '/api/mytransaction';
-            axios.post(uri, { 'shipping': this.shippingTemp.jc.cost[0].value, 'total': this.total, 'diskon': this.diskon,
+            axios.post(uri, { 'shipping': this.shippingTemp.jc.cost[0].value, 'total': this.total + this.unik, 'diskon': this.diskon,
                 'type_shipping': this.shippingTemp.code,
                 'service_shipping': this.shippingTemp.jc.service,
                 'estimate_shipping': this.shippingTemp.jc.cost[0].etd,
@@ -20805,6 +20809,15 @@ var render = function() {
                           _vm._v(" "),
                           _c("li", [
                             _c("a", { attrs: { href: "#" } }, [
+                              _c("span", [_vm._v("Kode unik")]),
+                              _vm._v(" "),
+                              _c("br"),
+                              _vm._v(" " + _vm._s(_vm.unik))
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("li", [
+                            _c("a", { attrs: { href: "#" } }, [
                               _c("span", [_vm._v("Biaya Pengiriman")]),
                               _vm._v(" "),
                               _c("br"),
@@ -20825,7 +20838,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("li", [
                             _c("a", { attrs: { href: "#" } }, [
-                              _c("span", [_vm._v("Total Bayar")]),
+                              _c("span", [_vm._v("Total Bayar *")]),
                               _vm._v(" "),
                               _c("br"),
                               _vm._v(
@@ -26029,6 +26042,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -26192,6 +26207,10 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
+                      _c("td", { staticClass: "cell-title" }, [
+                        _c("div", [_vm._v(_vm._s(confirm.created_at))])
+                      ]),
+                      _vm._v(" "),
                       _c(
                         "td",
                         {
@@ -26263,6 +26282,8 @@ var staticRenderFns = [
       _c("td", { staticClass: "cell-title" }, [_vm._v("Gambar")]),
       _vm._v(" "),
       _c("td", { staticClass: "cell-time " }, [_vm._v("Total*")]),
+      _vm._v(" "),
+      _c("td", { staticClass: "cell-status" }, [_vm._v("Tanggal Transaksi")]),
       _vm._v(" "),
       _c("td", { staticClass: "cell-status" }, [_vm._v("Status")]),
       _vm._v(" "),

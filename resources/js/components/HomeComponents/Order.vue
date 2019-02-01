@@ -15,6 +15,7 @@
                                 <td class="cell-title">Jumlahnya</td>
                                 <td class="cell-title">Gambar</td>
                                 <td class="cell-time ">Total*</td>
+                                <td class="cell-status">Tanggal Transaksi</td>
                                 <td class="cell-status">Status</td>
                                 <td class="cell-status"></td>
                             </tr>
@@ -45,6 +46,7 @@
                                                     </table>
                                                     </div></td>
                                 <td class="cell-time ">{{price(parseInt(confirm.total) + parseInt(confirm.shipping))}}</td>
+                                <td class="cell-title"><div>{{confirm.created_at}}</div></td>
                                 <td class="cell-status hidden-phone hidden-tablet"><a v-if="confirm.status > 2" >Sudah Dikonfirmasi</a><b v-else >Belum Di konfirmasi</b></td>
                                 <td>
                                     <a class="btn btn-danger" style="color:white" @click.prevent="deleteTransaksi(confirm.id)" v-if="confirm.status < 2">Batalkan Transaksi</a>

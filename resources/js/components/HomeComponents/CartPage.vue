@@ -109,9 +109,10 @@
                                 <div class="cart_total_inner">
                                     <ul>
                                         <li><a href="#"><span>Subtotal keranjang</span> <br> {{price(total)}}</a></li>
+                                        <li><a href="#"><span>Kode unik</span> <br> {{unik}}</a></li>
                                         <li><a href="#"><span>Biaya Pengiriman</span> <br> {{price(shipping)}}</a></li>
                                         <li v-if="diskon != 0"><a href="#"><span>Diskon</span> <br> {{price(diskon)}}</a></li>
-                                        <li><a href="#"><span>Total Bayar</span> <br> {{price(parseInt(total) + parseInt(shipping) - parseInt(diskon))}}</a></li>
+                                        <li><a href="#"><span>Total Bayar *</span> <br> {{price(parseInt(total) + parseInt(shipping) - parseInt(diskon))}}</a></li>
                                     </ul>
                                 </div>
                                 <a class="btn btn-primary checkout_btn" @click.prevent="checkout()"><div class="loader" v-if="load ==  'Checkout'"></div> <span v-else>Lanjutkan ke pembayaran</span></a>
@@ -228,6 +229,9 @@ export default {
         this.getProvince();
     },
     computed:{
+        unik(){
+            return Math.random() * (99) ;
+        },
         total(){ //menghitung total belanja
             var sum=0;
             for(let i=0;i< this.cart.length;i++){
@@ -285,7 +289,7 @@ export default {
                 return;
             }
             let uri = '/api/mytransaction';
-              axios.post(uri,{'shipping': this.shippingTemp.jc.cost[0].value,'total':this.total, 'diskon': this.diskon,
+              axios.post(uri,{'shipping': this.shippingTemp.jc.cost[0].value,'total':this.total+this.unik, 'diskon': this.diskon,
                 'type_shipping' : this.shippingTemp.code,
                 'service_shipping' : this.shippingTemp.jc.service,
                 'estimate_shipping': this.shippingTemp.jc.cost[0].etd,

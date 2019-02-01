@@ -29687,176 +29687,183 @@ var render = function() {
     _c("div", { staticClass: "module message" }, [
       _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "module-body table" }, [
-        _c("table", { staticClass: "table table-message" }, [
-          _c(
-            "tbody",
-            [
-              _vm._m(1),
-              _vm._v(" "),
-              _vm._l(_vm.confirms, function(confirm) {
-                return _c(
-                  "tr",
-                  {
-                    key: confirm.id,
-                    staticClass: "task",
-                    class: { resolved: confirm.status > 2 }
-                  },
-                  [
-                    _vm._m(2, true),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "cell-title" }, [
-                      _c("div", [
-                        _c(
-                          "table",
-                          {
-                            staticClass: "inner-table",
-                            staticStyle: { border: "none" },
-                            attrs: { width: "100%" }
-                          },
-                          _vm._l(confirm.detail, function(item) {
-                            return _c("tr", { key: item.id }, [
-                              _c("td", [_vm._v(_vm._s(item.cart.item.name))])
-                            ])
-                          })
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "cell-title" }, [
-                      _c("div", [
-                        _c(
-                          "table",
-                          {
-                            staticClass: "inner-table",
-                            staticStyle: { border: "none" },
-                            attrs: { width: "100%" }
-                          },
-                          _vm._l(confirm.detail, function(item) {
-                            return _c("tr", { key: item.id }, [
-                              _c("td", [_vm._v(_vm._s(item.cart.quantity))])
-                            ])
-                          })
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "cell-title" }, [
-                      _c("div", [
-                        _c(
-                          "table",
-                          {
-                            staticClass: "inner-table",
-                            staticStyle: { border: "none" },
-                            attrs: { width: "100%" }
-                          },
-                          _vm._l(confirm.detail, function(item) {
-                            return _c("tr", { key: item.id }, [
-                              _c("td", [
-                                _c("img", {
-                                  attrs: {
-                                    src:
-                                      "../../itemImages/" +
-                                      item.cart.item.picture[0].filename,
-                                    width: "40px",
-                                    alt: "images"
-                                  }
-                                })
+      _c(
+        "div",
+        {
+          staticClass: "module-body table",
+          staticStyle: { "overflow-x": "scroll" }
+        },
+        [
+          _c("table", { staticClass: "table table-message" }, [
+            _c(
+              "tbody",
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._l(_vm.confirms, function(confirm) {
+                  return _c(
+                    "tr",
+                    {
+                      key: confirm.id,
+                      staticClass: "task",
+                      class: { resolved: confirm.status > 2 }
+                    },
+                    [
+                      _vm._m(2, true),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "cell-title" }, [
+                        _c("div", [
+                          _c(
+                            "table",
+                            {
+                              staticClass: "inner-table",
+                              staticStyle: { border: "none" },
+                              attrs: { width: "100%" }
+                            },
+                            _vm._l(confirm.detail, function(item) {
+                              return _c("tr", { key: item.id }, [
+                                _c("td", [_vm._v(_vm._s(item.cart.item.name))])
                               ])
-                            ])
-                          })
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "cell-title" }, [
-                      _c("div", [_vm._v(_vm._s(confirm.user.name))])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "cell-title" }, [
-                      _c("div", [
+                            })
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "cell-title" }, [
+                        _c("div", [
+                          _c(
+                            "table",
+                            {
+                              staticClass: "inner-table",
+                              staticStyle: { border: "none" },
+                              attrs: { width: "100%" }
+                            },
+                            _vm._l(confirm.detail, function(item) {
+                              return _c("tr", { key: item.id }, [
+                                _c("td", [_vm._v(_vm._s(item.cart.quantity))])
+                              ])
+                            })
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "cell-title" }, [
+                        _c("div", [
+                          _c(
+                            "table",
+                            {
+                              staticClass: "inner-table",
+                              staticStyle: { border: "none" },
+                              attrs: { width: "100%" }
+                            },
+                            _vm._l(confirm.detail, function(item) {
+                              return _c("tr", { key: item.id }, [
+                                _c("td", [
+                                  _c("img", {
+                                    attrs: {
+                                      src:
+                                        "../../itemImages/" +
+                                        item.cart.item.picture[0].filename,
+                                      width: "40px",
+                                      alt: "images"
+                                    }
+                                  })
+                                ])
+                              ])
+                            })
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "cell-title" }, [
+                        _c("div", [_vm._v(_vm._s(confirm.user.name))])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "cell-title" }, [
+                        _c("div", [
+                          _vm._v(
+                            _vm._s(confirm.address) +
+                              "," +
+                              _vm._s(confirm.user.detail.provinsi) +
+                              "," +
+                              _vm._s(confirm.user.detail.kota)
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "cell-time " }, [
                         _vm._v(
-                          _vm._s(confirm.address) +
-                            "," +
-                            _vm._s(confirm.user.detail.provinsi) +
-                            "," +
-                            _vm._s(confirm.user.detail.kota)
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "cell-time " }, [
-                      _vm._v(
-                        _vm._s(
-                          _vm.price(
-                            parseInt(confirm.total) +
-                              parseInt(confirm.shipping) -
-                              parseInt(confirm.diskon)
+                          _vm._s(
+                            _vm.price(
+                              parseInt(confirm.total) +
+                                parseInt(confirm.shipping) -
+                                parseInt(confirm.diskon)
+                            )
                           )
                         )
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "cell-time " }, [
-                      confirm.evidence == null
-                        ? _c("span", [_vm._v("-")])
-                        : _c("span", [
-                            _c(
-                              "a",
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "cell-time " }, [
+                        confirm.evidence == null
+                          ? _c("span", [_vm._v("-")])
+                          : _c("span", [
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: "../../itemImages/" + confirm.evidence
+                                  }
+                                },
+                                [_vm._v("Download")]
+                              )
+                            ])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "cell-status" }, [
+                        confirm.status > 2
+                          ? _c("p", [_vm._v("Sudah Dikonfirmasi")])
+                          : _c(
+                              "b",
                               {
-                                attrs: {
-                                  href: "../../itemImages/" + confirm.evidence
+                                staticClass: "due",
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    _vm.verifikasi(confirm.id, confirm.status)
+                                  }
                                 }
                               },
-                              [_vm._v("Download")]
+                              [_vm._v("Belum Terkonfirmasi")]
                             )
-                          ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "cell-status" }, [
-                      confirm.status > 2
-                        ? _c("p", [_vm._v("Sudah Dikonfirmasi")])
-                        : _c(
-                            "b",
-                            {
-                              staticClass: "due",
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  _vm.verifikasi(confirm.id, confirm.status)
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "cell-status" }, [
+                        confirm.status < 2
+                          ? _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-danger",
+                                staticStyle: { color: "white" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    _vm.deleteTransaksi(confirm.id)
+                                  }
                                 }
-                              }
-                            },
-                            [_vm._v("Belum Terkonfirmasi")]
-                          )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "cell-status" }, [
-                      confirm.status < 2
-                        ? _c(
-                            "a",
-                            {
-                              staticClass: "btn btn-danger",
-                              staticStyle: { color: "white" },
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  _vm.deleteTransaksi(confirm.id)
-                                }
-                              }
-                            },
-                            [_vm._v("Batalkan Transaksi")]
-                          )
-                        : _vm._e()
-                    ])
-                  ]
-                )
-              })
-            ],
-            2
-          )
-        ])
-      ]),
+                              },
+                              [_vm._v("Batalkan Transaksi")]
+                            )
+                          : _vm._e()
+                      ])
+                    ]
+                  )
+                })
+              ],
+              2
+            )
+          ])
+        ]
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "module-foot" }, [
         _vm._v(

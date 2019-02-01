@@ -7,7 +7,7 @@
                     <h3>Konfirmasi Barang</h3>
                 </div>
     
-                <div class="module-body table">								
+                <div class="module-body table" style="overflow-x: scroll;">								
 
                     <table class="table table-message">
                         <tbody>

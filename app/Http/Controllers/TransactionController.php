@@ -274,7 +274,7 @@ class TransactionController extends Controller
         if($detail = TransactionDetail::where([['transaction_id', $item->id]])->get()){
             foreach($detail as $dt)
             {
-                $cart = Cart::where('id',$detail->cart_id)->first();
+                $cart = Cart::where('id',$dt->cart_id)->first();
                 $item = Item::where('id',$cart->item_id)->first();
                 $item->stock += $cart->quantity;
                 $item->save();

@@ -365,6 +365,10 @@ export default {
             if(!this.prepareFields()){
                 return false;
             }
+            if(this.cart.quantity > this.item.stock){
+                alert('Stok tidak mencukupi pemesanan');
+                return;
+            }
             this.percentCompleted =0;
             this.load = true;
             var config = {

@@ -26205,20 +26205,22 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("td", [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "btn btn-danger",
-                            staticStyle: { color: "white" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                _vm.deleteTransaksi(confirm.id)
-                              }
-                            }
-                          },
-                          [_vm._v("Batalkan Transaksi")]
-                        )
+                        confirm.status < 2
+                          ? _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-danger",
+                                staticStyle: { color: "white" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    _vm.deleteTransaksi(confirm.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Batalkan Transaksi")]
+                            )
+                          : _vm._e()
                       ])
                     ]
                   )
@@ -29590,6 +29592,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -29649,6 +29655,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     Authorization: 'Bearer ' + localStorage.getItem('token') }
             }).then(function (response) {
                 _this.confirms = response.data;
+            });
+        },
+        deleteTransaksi: function deleteTransaksi(id) {
+            var _this2 = this;
+
+            if (!confirm('Apakah anda yakin ingin membatalkan transaksi ini ?')) {
+                return;
+            }
+            var uri = '/api/report/' + id;
+            axios.delete(uri, {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token') }
+            }).then(function (response) {
+                alert('transaksi berhasil dihapus');
+                _this2.getConfirm();
             });
         }
     }
@@ -29819,7 +29840,26 @@ var render = function() {
                               [_vm._v("Belum Terkonfirmasi")]
                             )
                       ]
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("td", [
+                      confirm.status < 2
+                        ? _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-danger",
+                              staticStyle: { color: "white" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.deleteTransaksi(confirm.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Batalkan Transaksi")]
+                          )
+                        : _vm._e()
+                    ])
                   ]
                 )
               })
@@ -29831,7 +29871,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "module-foot" }, [
         _vm._v(
-          "\n                *Total berasal dari Biaya Barang + Biaya Pengiriman - Diskon.\n            "
+          "\n                *Total berasal dari Biaya Barang + Biaya Pengiriman.\n            "
         )
       ])
     ])
@@ -29867,9 +29907,9 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("td", { staticClass: "cell-time " }, [_vm._v("Download Bukti")]),
       _vm._v(" "),
-      _c("td", { staticClass: "cell-status hidden-phone hidden-tablet" }, [
-        _vm._v("Status")
-      ])
+      _c("td", { staticClass: "cell-status" }, [_vm._v("Status")]),
+      _vm._v(" "),
+      _c("td", { staticClass: "cell-status" })
     ])
   },
   function() {

@@ -20,7 +20,8 @@
                                 <td class="">Alamat</td>
                                 <td class="cell-time ">Total*</td>
                                 <td class="cell-time ">Download Bukti</td>
-                                <td class="cell-status hidden-phone hidden-tablet">Status</td>
+                                <td class="cell-status">Status</td>
+                                <td class="cell-status"></td>
                             </tr>
                             
                             <tr class="task" :class="{'resolved': confirm.status > 2}" v-for="confirm in confirms" :key="confirm.id">
@@ -53,6 +54,9 @@
                                 <td class="cell-time ">{{price(parseInt(confirm.total) + parseInt(confirm.shipping) - parseInt(confirm.diskon))}}</td>
                                 <td class="cell-time "><span v-if="confirm.evidence == null">-</span><span v-else><a :href="'../../itemImages/'+confirm.evidence">Download</a></span></td>
                                 <td class="cell-status hidden-phone hidden-tablet"><a href="#" class="btn btn-primary" v-if="confirm.status > 2" >Sudah Dikonfirmasi</a><b class="due" v-else @click.prevent="verifikasi(confirm.id,confirm.status)">Belum Terkonfirmasi</b></td>
+                                <td>
+                                    <a class="btn btn-danger" style="color:white" @click.prevent="deleteTransaksi(confirm.id)" v-if="confirm.status < 2">Batalkan Transaksi</a>
+                                </td>
                             </tr>
                             
                             
@@ -62,7 +66,7 @@
 
                 </div>
                 <div class="module-foot">
-                    *Total berasal dari Biaya Barang + Biaya Pengiriman - Diskon.
+                    *Total berasal dari Biaya Barang + Biaya Pengiriman.
                 </div>
             </div>
 						
@@ -127,6 +131,19 @@ export default {
             
             })
         },
+        deleteTransaksi(id){
+            if(!confirm('Apakah anda yakin ingin membatalkan transaksi ini ?')){
+                return;
+            }
+             let uri = '/api/report/'+id;
+            axios.delete(uri,{
+                    headers: { 
+                    Authorization: 'Bearer ' + localStorage.getItem('token') } 
+                }).then((response) => {
+                    alert('transaksi berhasil dihapus');
+                    this.getConfirm();            
+            })
+        }
         
     }
 }

@@ -47,7 +47,7 @@
                                 <td class="cell-time ">{{price(parseInt(confirm.total) + parseInt(confirm.shipping))}}</td>
                                 <td class="cell-status hidden-phone hidden-tablet"><a v-if="confirm.status > 2" >Sudah Dikonfirmasi</a><b v-else >Belum Di konfirmasi</b></td>
                                 <td>
-                                    <a class="btn btn-danger" style="color:white" @click.prevent="deleteTransaksi(confirm.id)">Batalkan Transaksi</a>
+                                    <a class="btn btn-danger" style="color:white" @click.prevent="deleteTransaksi(confirm.id)" v-if="confirm.status < 2">Batalkan Transaksi</a>
                                 </td>
                             </tr>
                         </tbody>

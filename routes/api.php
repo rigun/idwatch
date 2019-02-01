@@ -47,6 +47,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::post('/mytransaction','TransactionController@store');
     Route::post('/verifikasi/{id}','TransactionController@verifikasi');
     Route::get('/report','TransactionController@index');
+    Route::delete('/report/{id}','TransactionController@destroy');
     Route::get('/confirm','TransactionController@confirm');
     Route::get('/mytransaction/{token}','TransactionController@show');
     Route::post('/order','TransactionController@order');

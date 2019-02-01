@@ -268,6 +268,20 @@ class TransactionController extends Controller
         return 'success';
 
     }
+    public function destroy($id)
+    {
+        $item = Transaction::where([['id',$id]])->first();
+        if($detail = TransactionDetail::where([['transaction_id', $item->id]])->get()){
+            foreach($detail as $dt)
+            {
+                $dt->delete();
+            }
+        }
+       
+        $item->delete();
+        return 'success';
+
+    }
     public function deleteEvidence($id){
         $image = Transaction::findOrFail($id);
 

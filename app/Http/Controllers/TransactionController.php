@@ -256,15 +256,19 @@ class TransactionController extends Controller
      */
     public function destroyHistory($id)
     {
-        $item = Transaction::where([['user_id',JWTAuth::parseToken()->authenticate()->id],['id',$id]])->first();
-        if($detail = TransactionDetail::where([['transaction_id', $item->id]])->get()){
+        $transaction = Transaction::where([['user_id',JWTAuth::parseToken()->authenticate()->id],['id',$id]])->first();
+        if($detail = TransactionDetail::where([['transaction_id', $transaction->id]])->get()){
             foreach($detail as $dt)
             {
+                $cart = Cart::where('id',$dt->cart_id)->first();
+                $item = Item::where('id',$cart->item_id)->first();
+                $item->stock += $cart->quantity;
+                $item->save();
                 $dt->delete();
             }
         }
        
-        $item->delete();
+        $transaction->delete();
         return 'success';
 
     }

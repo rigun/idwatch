@@ -29818,14 +29818,7 @@ var render = function() {
                       { staticClass: "cell-status hidden-phone hidden-tablet" },
                       [
                         confirm.status > 2
-                          ? _c(
-                              "a",
-                              {
-                                staticClass: "btn btn-primary",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("Sudah Dikonfirmasi")]
-                            )
+                          ? _c("a", [_vm._v("Sudah Dikonfirmasi")])
                           : _c(
                               "b",
                               {

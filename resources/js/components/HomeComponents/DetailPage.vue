@@ -28,7 +28,7 @@
                                 <a href="#">5 Reviews</a>
                                 <a href="#">Tambahkan Review Anda</a>
                             </div> -->
-                            <h6>Stok Barang Tersedia</h6>
+                            <h6>Stok Barang : {{item.stock}}</h6>
                             <h4>{{price(item.price)}}</h4>
                             <p>{{item.description}}</p>
                             <form @submit.prevent="sendData()">

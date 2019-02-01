@@ -22442,7 +22442,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("h6", [_vm._v("Stok Barang Tersedia")]),
+              _c("h6", [_vm._v("Stok Barang : " + _vm._s(_vm.item.stock))]),
               _vm._v(" "),
               _c("h4", [_vm._v(_vm._s(_vm.price(_vm.item.price)))]),
               _vm._v(" "),

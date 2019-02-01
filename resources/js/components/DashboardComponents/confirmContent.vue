@@ -53,8 +53,8 @@
                                 <td class="cell-title"><div>{{confirm.address}},{{confirm.user.detail.provinsi}},{{confirm.user.detail.kota}}</div></td>
                                 <td class="cell-time ">{{price(parseInt(confirm.total) + parseInt(confirm.shipping) - parseInt(confirm.diskon))}}</td>
                                 <td class="cell-time "><span v-if="confirm.evidence == null">-</span><span v-else><a :href="'../../itemImages/'+confirm.evidence">Download</a></span></td>
-                                <td class="cell-status hidden-phone hidden-tablet"><a v-if="confirm.status > 2" >Sudah Dikonfirmasi</a><b class="due" v-else @click.prevent="verifikasi(confirm.id,confirm.status)">Belum Terkonfirmasi</b></td>
-                                <td>
+                                <td class="cell-status"><p v-if="confirm.status > 2" >Sudah Dikonfirmasi</p><b class="due" v-else @click.prevent="verifikasi(confirm.id,confirm.status)">Belum Terkonfirmasi</b></td>
+                                <td class="cell-status">
                                     <a class="btn btn-danger" style="color:white" @click.prevent="deleteTransaksi(confirm.id)" v-if="confirm.status < 2">Batalkan Transaksi</a>
                                 </td>
                             </tr>

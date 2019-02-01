@@ -29813,29 +29813,25 @@ var render = function() {
                           ])
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "td",
-                      { staticClass: "cell-status hidden-phone hidden-tablet" },
-                      [
-                        confirm.status > 2
-                          ? _c("a", [_vm._v("Sudah Dikonfirmasi")])
-                          : _c(
-                              "b",
-                              {
-                                staticClass: "due",
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    _vm.verifikasi(confirm.id, confirm.status)
-                                  }
+                    _c("td", { staticClass: "cell-status" }, [
+                      confirm.status > 2
+                        ? _c("p", [_vm._v("Sudah Dikonfirmasi")])
+                        : _c(
+                            "b",
+                            {
+                              staticClass: "due",
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.verifikasi(confirm.id, confirm.status)
                                 }
-                              },
-                              [_vm._v("Belum Terkonfirmasi")]
-                            )
-                      ]
-                    ),
+                              }
+                            },
+                            [_vm._v("Belum Terkonfirmasi")]
+                          )
+                    ]),
                     _vm._v(" "),
-                    _c("td", [
+                    _c("td", { staticClass: "cell-status" }, [
                       confirm.status < 2
                         ? _c(
                             "a",

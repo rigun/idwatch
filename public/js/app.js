@@ -25346,7 +25346,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             cart: [],
             shipping: 25000,
-            diskon: 0,
+            total: 0,
             filenames: [],
             data: new FormData(),
             percentCompleted: 0,
@@ -25392,8 +25392,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.cart = response.data.cart;
                 _this.id = response.data.id;
                 _this.file = response.data.file;
-                _this.diskon = response.data.diskon;
+                _this.total = response.data.total;
             });
+        },
+        unik: function unik(total) {
+            return total.slice(-2);
         },
         uploadFieldChange: function uploadFieldChange(e) {
             //mengupload bukti pembayaran berupa foto
@@ -25626,26 +25629,16 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("li", [
-                            _vm.diskon > 0
-                              ? _c("a", { attrs: { href: "#" } }, [
-                                  _c("span", [_vm._v("Diskon")]),
-                                  _vm._v(_vm._s(_vm.price(_vm.diskon)))
-                                ])
-                              : _vm._e()
+                            _c("a", { attrs: { href: "#" } }, [
+                              _c("span", [_vm._v("Unik")]),
+                              _vm._v(_vm._s(_vm.unik(_vm.total)))
+                            ])
                           ]),
                           _vm._v(" "),
                           _c("li", [
                             _c("a", { attrs: { href: "#" } }, [
                               _c("span", [_vm._v("Total Bayar")]),
-                              _vm._v(
-                                _vm._s(
-                                  _vm.price(
-                                    parseInt(_vm.total) +
-                                      parseInt(_vm.shipping) -
-                                      parseInt(_vm.diskon)
-                                  )
-                                )
-                              )
+                              _vm._v(_vm._s(_vm.total))
                             ])
                           ])
                         ])

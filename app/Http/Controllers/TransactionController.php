@@ -179,7 +179,7 @@ class TransactionController extends Controller
         foreach($transaction->detail as $dt){
             $cart[] = $dt->cart;
         }
-        return response()->json(["cart" => $cart , "id" => $transaction->id, "file" => $transaction->evidence, "diskon" => $transaction->diskon]);
+        return response()->json(["cart" => $cart , "id" => $transaction->id, "file" => $transaction->evidence, "total" => $transaction->total]);
     }
     public function count(){
         return Transaction::where([['status','<',3],['notes','!=',null]])->count();

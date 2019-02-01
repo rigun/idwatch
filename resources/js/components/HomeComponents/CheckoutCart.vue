@@ -59,8 +59,8 @@
                                     <ul>
                                         <li><a href="#"><span>Subtotal Keranjang</span>{{price(total)}}</a></li>
                                         <li><a href="#"><span>Biaya Pengiriman</span>{{price(shipping)}}</a></li>
-                                        <li><a href="#" v-if="diskon > 0"><span>Diskon</span>{{price(diskon)}}</a></li>
-                                        <li><a href="#"><span>Total Bayar</span>{{price(parseInt(total) + parseInt(shipping) - parseInt(diskon))}}</a></li>
+                                        <li><a href="#" ><span>Unik</span>{{unik(total)}}</a></li>
+                                        <li><a href="#"><span>Total Bayar</span>{{total}}</a></li>
                                     </ul>
                                 </div>
                                 <h3 class="cart_single_title" style="text-align: center">Apabila dalam 1 x 24 jam tidak melakukan pembayaran, maka transaksi akan dibatalkan</h3>                                
@@ -115,7 +115,7 @@ export default {
         return{
             cart:[],
             shipping: 25000,
-            diskon: 0,
+            total: 0,
 			 filenames: [],
             data: new FormData(),
              percentCompleted: 0, 
@@ -156,10 +156,13 @@ export default {
                 this.cart = response.data.cart;
                 this.id = response.data.id;
                 this.file = response.data.file;
-                this.diskon = response.data.diskon;
+                this.total = response.data.total;
                  
             })
             
+        },
+         unik(total){
+            return total.slice(-2)
         },
       
 			 uploadFieldChange(e) { //mengupload bukti pembayaran berupa foto

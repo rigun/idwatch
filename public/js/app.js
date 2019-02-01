@@ -25630,7 +25630,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("li", [
                             _c("a", { attrs: { href: "#" } }, [
-                              _c("span", [_vm._v("Unik")]),
+                              _c("span", [_vm._v("Kode Unik")]),
                               _vm._v(_vm._s(_vm.unik(_vm.total)))
                             ])
                           ]),

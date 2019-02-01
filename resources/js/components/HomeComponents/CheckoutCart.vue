@@ -59,7 +59,7 @@
                                     <ul>
                                         <li><a href="#"><span>Subtotal Keranjang</span>{{price(total)}}</a></li>
                                         <li><a href="#"><span>Biaya Pengiriman</span>{{price(shipping)}}</a></li>
-                                        <li><a href="#" ><span>Unik</span>{{unik(total)}}</a></li>
+                                        <li><a href="#" ><span>Kode Unik</span>{{unik(total)}}</a></li>
                                         <li><a href="#"><span>Total Bayar</span>{{total}}</a></li>
                                     </ul>
                                 </div>

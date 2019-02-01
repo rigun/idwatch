@@ -26062,6 +26062,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 _this.confirms = response.data;
             });
+        },
+        deleteTransaksi: function deleteTransaksi(id) {
+            var _this2 = this;
+
+            if (!confirm('Apakah anda yakin ingin membatalkan transaksi ini ?')) {
+                return;
+            }
+            var uri = '/api/myhistory/' + id;
+            axios.delete(uri, {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token') }
+            }).then(function (response) {
+                alert('transaksi berhasil dihapus');
+                _this2.getConfirm();
+            });
         }
     }
 });
@@ -26189,7 +26204,22 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _vm._m(3, true)
+                      _c("td", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-danger",
+                            staticStyle: { color: "white" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.deleteTransaksi(confirm.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Batalkan Transaksi")]
+                        )
+                      ])
                     ]
                   )
                 })
@@ -26243,14 +26273,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("td", { staticClass: "cell-icon" }, [
       _c("i", { staticClass: "icon-checker high" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("a", { staticClass: "btn btn-danger" }, [_vm._v("Batalkan Transaksi")])
     ])
   }
 ]

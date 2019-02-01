@@ -47,7 +47,7 @@
                                 <td class="cell-time ">{{price(parseInt(confirm.total) + parseInt(confirm.shipping))}}</td>
                                 <td class="cell-status hidden-phone hidden-tablet"><a v-if="confirm.status > 2" >Sudah Dikonfirmasi</a><b v-else >Belum Di konfirmasi</b></td>
                                 <td>
-                                    <a class="btn btn-danger">Batalkan Transaksi</a>
+                                    <a class="btn btn-danger" style="color:white" @click.prevent="deleteTransaksi(confirm.id)">Batalkan Transaksi</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -95,7 +95,19 @@ export default {
             
             })
         },
-        
+        deleteTransaksi(id){
+            if(!confirm('Apakah anda yakin ingin membatalkan transaksi ini ?')){
+                return;
+            }
+             let uri = '/api/myhistory/'+id;
+            axios.delete(uri,{
+                    headers: { 
+                    Authorization: 'Bearer ' + localStorage.getItem('token') } 
+                }).then((response) => {
+                    alert('transaksi berhasil dihapus');
+                    this.getConfirm();            
+            })
+        }
     }
 }
 </script>

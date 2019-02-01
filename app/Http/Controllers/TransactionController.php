@@ -254,9 +254,12 @@ class TransactionController extends Controller
      * @param  \App\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Transaction $transaction)
+    public function destroyHistory($id)
     {
-        //
+        $item = Transaction::where([['user_id',JWTAuth::parseToken()->authenticate()->id],['id',$id]])->first();
+        $item->delete();
+        return 'success';
+
     }
     public function deleteEvidence($id){
         $image = Transaction::findOrFail($id);

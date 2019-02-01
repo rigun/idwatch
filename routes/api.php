@@ -43,6 +43,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('/mycheckoutcart','TransactionController@checkoutcartByUser');
 
     Route::get('/myhistory','TransactionController@myhistory');
+    Route::delete('/myhistory/{id}','TransactionController@destroyHistory');
     Route::post('/mytransaction','TransactionController@store');
     Route::post('/verifikasi/{id}','TransactionController@verifikasi');
     Route::get('/report','TransactionController@index');

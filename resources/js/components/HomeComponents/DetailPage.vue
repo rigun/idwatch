@@ -369,7 +369,8 @@ export default {
             if(!this.prepareFields()){
                 return false;
             }
-            console.log(this.cart.quantity > this.item.stock)
+            console.log(this.cart.quantity)
+            console.log(this.item.stock)
             return;
             this.percentCompleted =0;
             this.load = true;

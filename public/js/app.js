@@ -29169,6 +29169,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }
             return sum;
+        },
+        reportsConfirm: function reportsConfirm() {
+            if (this.reports.length > 0) {
+                return this.reports.filter(function (row, index) {
+                    if (row.status < 3) return false;
+                });
+            }
         }
     },
     mounted: function mounted() {
@@ -29267,84 +29274,76 @@ var render = function() {
             _vm._v(" "),
             _c(
               "tbody",
-              _vm._l(_vm.reports, function(report, index) {
-                return _c(
-                  "tr",
-                  {
-                    key: report.id,
-                    staticClass: "odd gradeX",
-                    class: { hidden: report.status < 3 }
-                  },
-                  [
-                    _c("td", [
-                      _vm._v(
-                        "\n                                                " +
-                          _vm._s(index + 1) +
-                          "\n                                            "
-                      )
-                    ]),
+              _vm._l(_vm.reportsConfirm, function(report, index) {
+                return _c("tr", { key: report.id, staticClass: "odd gradeX" }, [
+                  _c("td", [
+                    _vm._v(
+                      "\n                                                " +
+                        _vm._s(index + 1) +
+                        "\n                                            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "table",
+                      {
+                        staticClass: "inner-table",
+                        staticStyle: { border: "none" },
+                        attrs: { width: "100%" }
+                      },
+                      _vm._l(report.detail, function(item) {
+                        return _c("tr", { key: item.id }, [
+                          _c("td", [_vm._v(_vm._s(item.cart.item.name))])
+                        ])
+                      })
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "table",
+                      {
+                        staticClass: "inner-table",
+                        staticStyle: { border: "none" },
+                        attrs: { width: "100%" }
+                      },
+                      _vm._l(report.detail, function(item) {
+                        return _c("tr", { key: item.id }, [
+                          _c("td", [_vm._v(_vm._s(item.cart.quantity))])
+                        ])
+                      })
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                                                " +
+                        _vm._s(_vm.price(parseInt(report.total))) +
+                        "\n                                            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "center" }, [
+                    report.status == 0 ? _c("span", [_vm._v("-")]) : _vm._e(),
                     _vm._v(" "),
-                    _c("td", [
-                      _c(
-                        "table",
-                        {
-                          staticClass: "inner-table",
-                          staticStyle: { border: "none" },
-                          attrs: { width: "100%" }
-                        },
-                        _vm._l(report.detail, function(item) {
-                          return _c("tr", { key: item.id }, [
-                            _c("td", [_vm._v(_vm._s(item.cart.item.name))])
-                          ])
-                        })
-                      )
-                    ]),
+                    report.status == 1 || report.status == 3
+                      ? _c("span", [_vm._v("Transfer Tunai")])
+                      : _vm._e(),
                     _vm._v(" "),
-                    _c("td", [
-                      _c(
-                        "table",
-                        {
-                          staticClass: "inner-table",
-                          staticStyle: { border: "none" },
-                          attrs: { width: "100%" }
-                        },
-                        _vm._l(report.detail, function(item) {
-                          return _c("tr", { key: item.id }, [
-                            _c("td", [_vm._v(_vm._s(item.cart.quantity))])
-                          ])
-                        })
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(
-                        "\n                                                " +
-                          _vm._s(_vm.price(parseInt(report.total))) +
-                          "\n                                            "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "center" }, [
-                      report.status == 0 ? _c("span", [_vm._v("-")]) : _vm._e(),
-                      _vm._v(" "),
-                      report.status == 1 || report.status == 3
-                        ? _c("span", [_vm._v("Transfer Tunai")])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      report.status == 2 || report.status == 4
-                        ? _c("span", [_vm._v("Cash on delivery")])
-                        : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "center" }, [
-                      _vm._v(
-                        "\n                                                " +
-                          _vm._s(report.created_at) +
-                          "\n                                            "
-                      )
-                    ])
-                  ]
-                )
+                    report.status == 2 || report.status == 4
+                      ? _c("span", [_vm._v("Cash on delivery")])
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "center" }, [
+                    _vm._v(
+                      "\n                                                " +
+                        _vm._s(report.created_at) +
+                        "\n                                            "
+                    )
+                  ])
+                ])
               })
             ),
             _vm._v(" "),

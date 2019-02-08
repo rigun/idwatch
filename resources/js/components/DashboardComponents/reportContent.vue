@@ -35,7 +35,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="odd gradeX" v-for="(report,index) in reports" :key="report.id" :class="{'hidden' : report.status < 3}">
+                                            <tr class="odd gradeX" v-for="(report,index) in reportsConfirm" :key="report.id" >
                                                 <td>
                                                     {{index+1}}
                                                 </td>
@@ -108,6 +108,13 @@ export default {
             }
             return sum;
         },
+        reportsConfirm(){
+            if(this.reports.length > 0){
+                return this.reports.filter((row,index)=>{
+                    if(row.status < 3) return false;
+                })
+            }
+        }
     },
     mounted(){
         this.getReport(); //menampilkan data transaksi

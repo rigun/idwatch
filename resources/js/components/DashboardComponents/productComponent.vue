@@ -31,7 +31,7 @@
                                         <tr>
                                             <th>
                                                 <center>
-                                                    Id
+                                                    No
                                                 </center>
                                             </th>
                                             <th>
@@ -72,10 +72,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="gradeU" v-for="item in filterItem" :key="item.id">
+                                        <tr class="gradeU" v-for="(item,index) in filterItem" :key="item.id">
                                             <td>
                                                 <center>
-                                                    {{item.id}}
+                                                    {{index}}
                                                 </center>
                                             </td>
                                             <td>

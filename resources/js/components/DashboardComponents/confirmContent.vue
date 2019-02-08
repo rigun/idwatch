@@ -26,7 +26,7 @@
                                 <td class="cell-status"></td>
                             </tr>
                             
-                            <tr class="task" :class="{'resolved': confirm.status > 2}" v-for="confirm in confirms" :key="confirm.id">
+                            <tr class="task" :class="{'resolved': confirm.status > 2}" v-for="confirm in confirmsList" :key="confirm.id">
                                 <td class="cell-icon"><i class="icon-checker high"></i></td>
                                 <td class="cell-title"><div>
                                     <table width="100%" style="border: none" class="inner-table">
@@ -85,6 +85,15 @@ export default {
     },
     mounted(){
         this.getConfirm(); //mengambil data yang perlu dikonfirmasi
+    },
+    computed:{
+        confirmsList(){
+            if(this.confirms.length > 0){
+                return this.confirms.filter((row,index)=>{
+                    if(row.notes != null) return true;
+                })
+            }
+        }
     },
     methods:{
         price(value){

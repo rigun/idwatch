@@ -29568,6 +29568,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.getConfirm(); //mengambil data yang perlu dikonfirmasi
     },
 
+    computed: {
+        confirmsList: function confirmsList() {
+            if (this.confirms.length > 0) {
+                return this.confirms.filter(function (row, index) {
+                    if (row.notes != null) return true;
+                });
+            }
+        }
+    },
     methods: {
         price: function price(value) {
             var formatter = new Intl.NumberFormat('id-ID', {
@@ -29661,7 +29670,7 @@ var render = function() {
               [
                 _vm._m(1),
                 _vm._v(" "),
-                _vm._l(_vm.confirms, function(confirm) {
+                _vm._l(_vm.confirmsList, function(confirm) {
                   return _c(
                     "tr",
                     {

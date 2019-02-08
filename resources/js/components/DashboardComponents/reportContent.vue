@@ -37,7 +37,7 @@
                                         <tbody>
                                             <tr class="odd gradeX" v-for="(report,index) in reports" :key="report.id" :class="{'hidden' : report.status < 3}">
                                                 <td>
-                                                    {{index}}
+                                                    {{index+1}}
                                                 </td>
                                                 <td>
                                                     <table width="100%" style="border: none" class="inner-table">

@@ -12,7 +12,7 @@
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    Id Transaksi
+                                                    No
                                                 </th>
                                                 <th>
                                                     List Barang
@@ -35,9 +35,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="odd gradeX" v-for="report in reports" :key="report.id" :class="{'hidden' : report.status < 3}">
+                                            <tr class="odd gradeX" v-for="(report,index) in reports" :key="report.id" :class="{'hidden' : report.status < 3}">
                                                 <td>
-                                                    {{report.id}}
+                                                    {{index}}
                                                 </td>
                                                 <td>
                                                     <table width="100%" style="border: none" class="inner-table">

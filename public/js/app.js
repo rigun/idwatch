@@ -29267,7 +29267,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "tbody",
-              _vm._l(_vm.reports, function(report) {
+              _vm._l(_vm.reports, function(report, index) {
                 return _c(
                   "tr",
                   {
@@ -29279,7 +29279,7 @@ var render = function() {
                     _c("td", [
                       _vm._v(
                         "\n                                                " +
-                          _vm._s(report.id) +
+                          _vm._s(index) +
                           "\n                                            "
                       )
                     ]),
@@ -29380,7 +29380,7 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [
           _vm._v(
-            "\n                                                Id Transaksi\n                                            "
+            "\n                                                No\n                                            "
           )
         ]),
         _vm._v(" "),

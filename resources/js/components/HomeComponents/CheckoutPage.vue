@@ -90,20 +90,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card">
-                                            <div class="card-header" role="tab" id="headingThree">
-                                                <h5 class="mb-0">
-                                                    <a class="collapsed" data-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="collapseThree" @click.prevent="status = 2">
-                                                   Bayar saat penerimaan
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                                                <div class="card-body">
-                                                    Khusus Area Yogyakarta 
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <a type="submit" value="submit" class="btn subs_btn form-control" @click.prevent="placeOrder()">Pesan Sekarang</a>

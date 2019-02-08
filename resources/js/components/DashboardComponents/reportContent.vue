@@ -64,10 +64,7 @@
                                                 <td class="center">
                                                     {{report.created_at}}
                                                 </td>
-                                                <!-- <td class="center">
-                                                    <span v-if="report.status < 3">Belum terverfikiasi</span>
-                                                    <span v-else>Terverfikiasi</span>
-                                                </td> -->
+                                              
                                             </tr>
                                             
                                         </tbody>
@@ -80,7 +77,7 @@
                                     </table>
                                 </div>
                             </div>
-                            *Total berasal dari Biaya Barang + Biaya Pengiriman - Diskon.
+                            *Total berasal dari Biaya Barang + Biaya Pengiriman.
                             <!--/.module-->
         
     </div>

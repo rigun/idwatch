@@ -29173,7 +29173,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         reportsConfirm: function reportsConfirm() {
             if (this.reports.length > 0) {
                 return this.reports.filter(function (row, index) {
-                    if (row.status > 2) return true;
+                    return true;
                 });
             }
         }

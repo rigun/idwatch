@@ -111,7 +111,7 @@ export default {
         reportsConfirm(){
             if(this.reports.length > 0){
                 return this.reports.filter((row,index)=>{
-                    if(row.status > 2) return true;
+                   return true;
                 })
             }
         }

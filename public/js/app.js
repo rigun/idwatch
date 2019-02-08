@@ -29565,6 +29565,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
+        this.$parent.unconfirmCount();
         this.getConfirm(); //mengambil data yang perlu dikonfirmasi
     },
 

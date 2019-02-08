@@ -84,6 +84,7 @@ export default {
         }
     },
     mounted(){
+        this.$parent.unconfirmCount();
         this.getConfirm(); //mengambil data yang perlu dikonfirmasi
     },
     computed:{

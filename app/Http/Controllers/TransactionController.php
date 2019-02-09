@@ -66,7 +66,7 @@ class TransactionController extends Controller
         $P_month = 0;
         $P_year = 0;
         $pending = Transaction::where([['status','<',3],['notes','!=',null]])->count();
-        $barang = Item::count();
+        $barang = Item::where('status',1)->count();
         $now = new DateTime();
         foreach($transactions as $transaction){
             if($transaction->created_at->format('Y') == $now->format('Y')){

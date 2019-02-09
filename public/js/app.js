@@ -16473,6 +16473,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         this.getUser(); //mengambil data pengguna
         this.getCategory(); //mengambil kategori
+        this.getCount();
     },
 
     methods: {
@@ -20090,6 +20091,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         this.getCart(); //mengambil data keranjang
         this.getProvince();
+        this.$parent.getCount();
     },
 
     computed: {

@@ -371,7 +371,7 @@ export default {
     mounted(){
           this.getUser(); //mengambil data pengguna
           this.getCategory(); //mengambil kategori
-          
+          this.getCount();
         },
         methods:{
             getCount(){

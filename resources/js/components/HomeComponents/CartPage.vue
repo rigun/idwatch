@@ -227,6 +227,7 @@ export default {
     mounted(){
         this.getCart(); //mengambil data keranjang
         this.getProvince();
+        this.$parent.getCount();
     },
     computed:{
         unik(){

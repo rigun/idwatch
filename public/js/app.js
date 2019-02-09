@@ -20057,6 +20057,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -20793,89 +20794,102 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "col-lg-4" }, [
                   _c("div", { staticClass: "total_amount_area" }, [
-                    _c("div", { staticClass: "cart_totals" }, [
-                      _c("h3", { staticClass: "cart_single_title" }, [
-                        _vm._v("Total belanjaan")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "cart_total_inner" }, [
-                        _c("ul", [
-                          _c("li", [
-                            _c("a", { attrs: { href: "#" } }, [
-                              _c("span", [_vm._v("Subtotal keranjang")]),
-                              _vm._v(" "),
-                              _c("br"),
-                              _vm._v(" " + _vm._s(_vm.price(_vm.total)))
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("a", { attrs: { href: "#" } }, [
-                              _c("span", [_vm._v("Kode unik")]),
-                              _vm._v(" "),
-                              _c("br"),
-                              _vm._v(" " + _vm._s(_vm.unik))
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("a", { attrs: { href: "#" } }, [
-                              _c("span", [_vm._v("Biaya Pengiriman")]),
-                              _vm._v(" "),
-                              _c("br"),
-                              _vm._v(" " + _vm._s(_vm.price(_vm.shipping)))
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _vm.diskon != 0
-                            ? _c("li", [
-                                _c("a", { attrs: { href: "#" } }, [
-                                  _c("span", [_vm._v("Diskon")]),
-                                  _vm._v(" "),
-                                  _c("br"),
-                                  _vm._v(" " + _vm._s(_vm.price(_vm.diskon)))
-                                ])
+                    _c(
+                      "div",
+                      { staticClass: "cart_totals" },
+                      [
+                        _c("h3", { staticClass: "cart_single_title" }, [
+                          _vm._v("Total belanjaan")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "cart_total_inner" }, [
+                          _c("ul", [
+                            _c("li", [
+                              _c("a", { attrs: { href: "#" } }, [
+                                _c("span", [_vm._v("Subtotal keranjang")]),
+                                _vm._v(" "),
+                                _c("br"),
+                                _vm._v(" " + _vm._s(_vm.price(_vm.total)))
                               ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("a", { attrs: { href: "#" } }, [
-                              _c("span", [_vm._v("Total Bayar *")]),
-                              _vm._v(" "),
-                              _c("br"),
-                              _vm._v(
-                                " " +
-                                  _vm._s(
-                                    _vm.price(
-                                      parseInt(_vm.total) +
-                                        parseInt(_vm.shipping) +
-                                        parseInt(_vm.unik)
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("a", { attrs: { href: "#" } }, [
+                                _c("span", [_vm._v("Kode unik")]),
+                                _vm._v(" "),
+                                _c("br"),
+                                _vm._v(" " + _vm._s(_vm.unik))
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("a", { attrs: { href: "#" } }, [
+                                _c("span", [_vm._v("Biaya Pengiriman")]),
+                                _vm._v(" "),
+                                _c("br"),
+                                _vm._v(" " + _vm._s(_vm.price(_vm.shipping)))
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _vm.diskon != 0
+                              ? _c("li", [
+                                  _c("a", { attrs: { href: "#" } }, [
+                                    _c("span", [_vm._v("Diskon")]),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" " + _vm._s(_vm.price(_vm.diskon)))
+                                  ])
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("a", { attrs: { href: "#" } }, [
+                                _c("span", [_vm._v("Total Bayar *")]),
+                                _vm._v(" "),
+                                _c("br"),
+                                _vm._v(
+                                  " " +
+                                    _vm._s(
+                                      _vm.price(
+                                        parseInt(_vm.total) +
+                                          parseInt(_vm.shipping) +
+                                          parseInt(_vm.unik)
+                                      )
                                     )
-                                  )
-                              )
+                                )
+                              ])
                             ])
                           ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "btn btn-primary checkout_btn",
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              _vm.checkout()
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-primary checkout_btn",
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.checkout()
+                              }
                             }
-                          }
-                        },
-                        [
-                          _vm.load == "Checkout"
-                            ? _c("div", { staticClass: "loader" })
-                            : _c("span", [_vm._v("Lanjutkan ke pembayaran")])
-                        ]
-                      )
-                    ])
+                          },
+                          [
+                            _vm.load == "Checkout"
+                              ? _c("div", { staticClass: "loader" })
+                              : _c("span", [_vm._v("Lanjutkan ke pembayaran")])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          { attrs: { to: { name: "CheckoutCart" } } },
+                          [_vm._v("Keranjang Checkout Anda")]
+                        )
+                      ],
+                      1
+                    )
                   ])
                 ])
               ])
@@ -22528,14 +22542,6 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c("br"),
-                    _vm._v(
-                      "\n                                    Stok Barang : " +
-                        _vm._s(_vm.item.stock) +
-                        " "
-                    ),
-                    _c("br"),
-                    _vm._v(" "),
                     _vm.$parent.token != null
                       ? _c(
                           "button",
@@ -22566,7 +22572,13 @@ var render = function() {
                           },
                           [_c("span", [_vm._v("Tambahkan Ke Keranjang")])]
                         )
-                      : _vm._e()
+                      : _vm._e(),
+                    _vm._v(
+                      "\n                                    Stok Barang : " +
+                        _vm._s(_vm.item.stock) +
+                        " "
+                    ),
+                    _c("br")
                   ])
                 ]
               )
@@ -25434,7 +25446,7 @@ var render = function() {
                                   _c("div", { staticClass: "d-flex" }, [
                                     _c("img", {
                                       staticStyle: {
-                                        height: "auto !important"
+                                        height: "100% !important"
                                       },
                                       attrs: {
                                         src:
@@ -29562,6 +29574,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -29773,6 +29787,10 @@ var render = function() {
                         _c("div", [_vm._v(_vm._s(confirm.notes))])
                       ]),
                       _vm._v(" "),
+                      _c("td", { staticClass: "cell-title" }, [
+                        _c("div", [_vm._v(_vm._s(confirm.user.detail.phone))])
+                      ]),
+                      _vm._v(" "),
                       _c("td", { staticClass: "cell-time " }, [
                         _vm._v(
                           _vm._s(
@@ -29884,6 +29902,8 @@ var staticRenderFns = [
       _c("td", {}, [_vm._v("Tanggal transaksi")]),
       _vm._v(" "),
       _c("td", {}, [_vm._v("Note")]),
+      _vm._v(" "),
+      _c("td", {}, [_vm._v("Nomor HP")]),
       _vm._v(" "),
       _c("td", { staticClass: "cell-time " }, [_vm._v("Total*")]),
       _vm._v(" "),

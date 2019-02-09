@@ -115,7 +115,8 @@
                                         <li><a href="#"><span>Total Bayar *</span> <br> {{price(parseInt(total) + parseInt(shipping) + parseInt(unik))}}</a></li>
                                     </ul>
                                 </div>
-                                <a class="btn btn-primary checkout_btn" @click.prevent="checkout()"><div class="loader" v-if="load ==  'Checkout'"></div> <span v-else>Lanjutkan ke pembayaran</span></a>
+                                <a class="btn btn-primary checkout_btn" @click.prevent="checkout()"><div class="loader" v-if="load ==  'Checkout'"></div> <span v-else>Lanjutkan ke pembayaran</span></a> <br>
+                                <router-link :to="{name: 'CheckoutCart'}">Keranjang Checkout Anda</router-link> 
                             </div>
                         </div>
                     </div>

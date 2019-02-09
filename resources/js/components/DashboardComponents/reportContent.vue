@@ -41,15 +41,15 @@
                                                 </td>
                                                 <td>
                                                     <table width="100%" style="border: none" class="inner-table">
-                                                        <tr v-for="item in report.detail" :key="item.id">
-                                                            <td>{{item.cart.item.name}}</td>
+                                                        <tr v-for="item in report.detail" :key="item.id" >
+                                                            <td v-if="item.cart != null">{{item.cart.item.name}}</td>
                                                         </tr>
                                                     </table>	
                                                 </td>
                                                 <td>
                                                     <table width="100%" style="border: none" class="inner-table">
                                                         <tr v-for="item in report.detail" :key="item.id">
-                                                            <td>{{item.cart.quantity}}</td>
+                                                            <td v-if="item.cart != null">{{item.cart.quantity}}</td>
                                                         </tr>
                                                     </table>	
                                                 </td>

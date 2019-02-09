@@ -29294,7 +29294,9 @@ var render = function() {
                       },
                       _vm._l(report.detail, function(item) {
                         return _c("tr", { key: item.id }, [
-                          _c("td", [_vm._v(_vm._s(item.cart.item.name))])
+                          item.cart != null
+                            ? _c("td", [_vm._v(_vm._s(item.cart.item.name))])
+                            : _vm._e()
                         ])
                       })
                     )
@@ -29310,7 +29312,9 @@ var render = function() {
                       },
                       _vm._l(report.detail, function(item) {
                         return _c("tr", { key: item.id }, [
-                          _c("td", [_vm._v(_vm._s(item.cart.quantity))])
+                          item.cart != null
+                            ? _c("td", [_vm._v(_vm._s(item.cart.quantity))])
+                            : _vm._e()
                         ])
                       })
                     )

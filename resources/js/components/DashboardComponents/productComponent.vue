@@ -75,7 +75,7 @@
                                         <tr class="gradeU" v-for="(item,index) in filterItem" :key="item.id">
                                             <td>
                                                 <center>
-                                                    {{index}}
+                                                    {{index + 1}}
                                                 </center>
                                             </td>
                                             <td>

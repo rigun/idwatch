@@ -31,7 +31,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return Transaction::with(['detail','user'])->orderBy('created_at','desc')->get();
+        return Transaction::with(['detail','user'])->orderBy('created_at','asc')->get();
     }
     public function myhistory()
     {
